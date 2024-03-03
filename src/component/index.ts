@@ -1,5 +1,5 @@
 export { default as Navbar } from './navbar/navbar'
-export { default as AppNavBar } from './navbar/appbar'
+export { default as AppNavBar } from './navbar/app-appbar'
 export { default as AppFooter } from './navbar/footer'
 // textfield
 export { default as TextField } from './textfield/textfield'

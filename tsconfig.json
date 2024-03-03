@@ -7,9 +7,9 @@
     "skipLibCheck": true,
     "rootDir": "./src",
     "baseUrl": "./src",
-    "paths": {
-      "@*": ["./*"]
-    },
+    // "paths": {
+    //   "@*": ["./*"]
+    // },
 
     /* Bundler mode */
     "moduleResolution": "bundler",

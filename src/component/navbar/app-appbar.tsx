@@ -41,7 +41,7 @@ function AppNavBar() {
               href='/premium-themes/onepirate/sign-up/'
               sx={{ ...rightLink, color: 'secondary.main' }}
             >
-              {'Sign Up'}
+              {'Register'}
             </Link>
           </Box>
         </Toolbar>

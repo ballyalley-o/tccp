@@ -1,5 +1,4 @@
 import { Fragment } from 'react'
-import { Home } from 'page'
 import { AppNavBar, AppFooter } from 'component'
 import {
   ProductCategory,

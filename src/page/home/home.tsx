@@ -8,7 +8,7 @@ import {
   ProductCTA,
 } from 'page/product'
 import { AppNavBar, AppFooter } from 'component/navbar'
-import withRoot from 'withroot'
+// import withRoot from 'withroot'
 
 function Home() {
   return (
@@ -25,4 +25,4 @@ function Home() {
   )
 }
 
-export default withRoot(Home)
+export default Home

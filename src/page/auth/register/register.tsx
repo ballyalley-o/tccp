@@ -14,7 +14,7 @@ import {
 } from 'component/form'
 import withRoot from 'withroot'
 
-function SignUp() {
+function Register() {
   const [sent, setSent] = React.useState(false)
 
   const validate = (values: { [index: string]: string }) => {
@@ -135,4 +135,4 @@ function SignUp() {
   )
 }
 
-export default withRoot(SignUp)
+export default withRoot(Register)

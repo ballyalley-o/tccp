@@ -1,8 +1,8 @@
+/* eslint-disable react-refresh/only-export-components */
 import * as React from 'react'
 import { Field, Form, FormSpy } from 'react-final-form'
 import Box from '@mui/material/Box'
-import { Typography } from 'component'
-import { AppNavBar, AppFooter } from 'component'
+import { Typography, AppNavBar, AppFooter } from 'component'
 import { AppForm } from 'component/form'
 import {
   FormFeedback,

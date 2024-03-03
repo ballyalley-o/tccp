@@ -31,7 +31,7 @@ function ProductValues() {
             <Box sx={item}>
               <Box
                 component='img'
-                src='/static/themes/onepirate/productValues1.svg'
+                // src='/static/themes/onepirate/productValues1.svg'
                 alt='suitcase'
                 sx={{ height: 55 }}
               />
@@ -79,7 +79,7 @@ function ProductValues() {
                 Exclusive rates
               </Typography>
               <Typography variant='h5'>
-                {'By registering, you will access specially negotiated rates '}
+                {'By registering, you will access specially negotiated rates'}
                 {'that you will not find anywhere else.'}
               </Typography>
             </Box>

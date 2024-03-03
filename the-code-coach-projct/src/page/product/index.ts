@@ -1,0 +1,7 @@
+export { default as ProductCTA } from './product-cta'
+export { default as ProductCategory } from './product-category'
+export { default as ProductHero } from './product-hero'
+export { default as ProductHowItWorks } from './product-how-it-works'
+export { default as ProductSmokingHero } from './product-smoking-hero'
+export { default as ProductValue } from './product-value'
+export { default as ProductHeroLayout } from './product-hero-layout'

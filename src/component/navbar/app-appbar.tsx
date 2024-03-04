@@ -3,6 +3,7 @@ import Box from '@mui/material/Box'
 import Link from '@mui/material/Link'
 import AppBar from './appbar'
 import { Toolbar } from 'component/toolbar'
+import { default as Logo } from 'component/logo'
 
 const rightLink = {
   fontSize: 12,
@@ -16,7 +17,7 @@ function AppNavBar() {
       <AppBar position='fixed' sx={{ height: '50px' }}>
         <Toolbar sx={{ justifyContent: 'space-between' }}>
           <Box>
-            <img src='' alt='logo' />
+            <Logo width={40} />
             <Link
               variant='h6'
               underline='none'

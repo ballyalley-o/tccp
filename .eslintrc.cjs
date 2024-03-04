@@ -12,11 +12,9 @@ module.exports = {
   rules: {
     '@typescript-eslint/no-explicit-any': 'off',
     'react-refresh/only-export-components': 'off',
-    'no-unused-vars': [
-      'warn',
-      { vars: 'all', args: 'after-used', ignoreRestSiblings: false },
-    ],
+    '@typescript-eslint/no-unused-vars': 'off', // disable rule for unused vars in TypeScript
     'react/jsx-no-target-blank': 'off',
+    '@typescript-eslint/no-unused-vars-experimental': 'off', // disable rule for unused props in TypeScript
     'react-refresh/only-export-components': [
       'warn',
       { allowConstantExport: true },

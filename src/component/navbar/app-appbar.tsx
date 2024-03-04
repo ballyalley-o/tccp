@@ -5,7 +5,7 @@ import AppBar from './appbar'
 import { Toolbar } from 'component/toolbar'
 
 const rightLink = {
-  fontSize: 16,
+  fontSize: 12,
   color: 'common.white',
   ml: 3,
 }
@@ -13,18 +13,21 @@ const rightLink = {
 function AppNavBar() {
   return (
     <div>
-      <AppBar position='fixed'>
+      <AppBar position='fixed' sx={{ height: '50px' }}>
         <Toolbar sx={{ justifyContent: 'space-between' }}>
-          <Box sx={{ flex: 1 }} />
-          <Link
-            variant='h6'
-            underline='none'
-            color='inherit'
-            href='/premium-themes/onepirate/'
-            sx={{ fontSize: 24 }}
-          >
-            {'onepirate'}
-          </Link>
+          <Box>
+            <img src='' alt='logo' />
+            <Link
+              variant='h6'
+              underline='none'
+              color='inherit'
+              // href='/premium-themes/onepirate/'
+              sx={{ fontSize: 14 }}
+            >
+              The Code Coach Projct
+            </Link>
+          </Box>
+
           <Box sx={{ flex: 1, display: 'flex', justifyContent: 'flex-end' }}>
             <Link
               color='inherit'

@@ -4,13 +4,13 @@ import { green, grey, red } from '@mui/material/colors'
 const rawTheme = createTheme({
   palette: {
     primary: {
-      light: '#69696a',
-      main: '#28282a',
+      light: '#D3D3D3',
+      main: '#000009',
       dark: '#1e1e1f',
     },
     secondary: {
       light: '#fff5f8',
-      main: '#ff3366',
+      main: '#FFD500',
       dark: '#e62958',
     },
     warning: {
@@ -27,21 +27,23 @@ const rawTheme = createTheme({
       main: green[500],
       dark: green[700],
     },
+    text: {
+      primary: '#172b4d',
+      secondary: '#6b778c',
+    },
   },
   typography: {
-    fontFamily: "'Work Sans', sans-serif",
+    fontFamily: "'Roboto Condensed', sans-serif",
     fontSize: 14,
-    fontWeightLight: 300, // Work Sans
-    fontWeightRegular: 400, // Work Sans
-    fontWeightMedium: 700, // Roboto Condensed
+    fontWeightLight: 300,
+    fontWeightRegular: 400,
   },
 })
 
 const fontHeader = {
   color: rawTheme.palette.text.primary,
-  fontWeight: rawTheme.typography.fontWeightMedium,
+  fontWeight: rawTheme.typography.fontWeightRegular,
   fontFamily: "'Roboto Condensed', sans-serif",
-  textTransform: 'uppercase',
 }
 
 const theme = {

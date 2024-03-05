@@ -10,7 +10,7 @@ import {
   ProductCTA,
 } from 'page/product'
 import withRoot from 'withroot'
-import { GLOBAL } from 'global'
+import GLOBAL from 'config/global'
 
 function App() {
   useEffect(() => {

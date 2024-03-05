@@ -12,7 +12,8 @@ export default defineConfig({
   resolve: {
     alias: {
       app: path.resolve(__dirname, 'src', 'app.tsx'),
-      global: path.resolve(__dirname, 'src', 'config', 'index.ts'),
+      global: path.resolve(__dirname, 'src', 'config'),
+      config: path.resolve(__dirname, 'src', 'config'),
       css: path.resolve(__dirname, 'src', 'theme', 'css', 'index.css'),
       theme: path.resolve(__dirname, 'src', 'theme'),
       component: path.resolve(__dirname, 'src', 'component'),

@@ -12,23 +12,13 @@ export default defineConfig({
   resolve: {
     alias: {
       app: path.resolve(__dirname, 'src', 'app.tsx'),
+      global: path.resolve(__dirname, 'src', 'config', 'index.ts'),
       css: path.resolve(__dirname, 'src', 'theme', 'css', 'index.css'),
-      theme: path.resolve(__dirname, 'src', 'theme', 'index.ts'),
+      theme: path.resolve(__dirname, 'src', 'theme'),
       component: path.resolve(__dirname, 'src', 'component'),
       navbar: path.resolve(__dirname, 'src', 'component', 'index.ts'),
       page: path.resolve(__dirname, 'src', 'page'),
       withroot: path.resolve(__dirname, 'src', 'withroot.tsx'),
-      // root: './App.jsx',
-      // config: './config',
-      // locale: path.resolve(__dirname, 'src', 'locale'),
-      // route: path.resolve(__dirname, 'src', 'route'),
-      // theme: path.resolve(__dirname, 'src', 'theme'),
-      // util: path.resolve(__dirname, 'src', 'util'),
-      // // @pages
-      // dashboard: path.resolve(__dirname, 'src', 'pages', 'dashboard'),
-      // customer: path.resolve(__dirname, 'src', 'pages', 'customer'),
-      // machine: path.resolve(__dirname, 'src', 'pages', 'machine'),
-      // document: path.resolve(__dirname, 'src', 'pages', 'document'),
     },
   },
 })

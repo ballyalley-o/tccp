@@ -1,4 +1,4 @@
-import { Fragment } from 'react'
+import { Fragment, useEffect } from 'react'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { AppNavBar, AppFooter } from 'component'
 import {
@@ -10,8 +10,12 @@ import {
   ProductCTA,
 } from 'page/product'
 import withRoot from 'withroot'
+import { GLOBAL } from 'global'
 
 function App() {
+  useEffect(() => {
+    document.title = GLOBAL.APP_NAME
+  }, [])
   return (
     <Fragment>
       <Router>

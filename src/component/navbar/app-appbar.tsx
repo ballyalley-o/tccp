@@ -1,6 +1,5 @@
 import * as React from 'react'
-import Box from '@mui/material/Box'
-import Link from '@mui/material/Link'
+import { Box, Link } from '@mui/material'
 import AppBar from './appbar'
 import { Toolbar } from 'component/toolbar'
 import { default as Logo } from 'component/logo'
@@ -16,18 +15,16 @@ function AppNavBar() {
     <div>
       <AppBar position='fixed' sx={{ height: '50px' }}>
         <Toolbar sx={{ justifyContent: 'space-between' }}>
-          <Box>
-            <Logo width={40} />
-            <Link
-              variant='h6'
-              underline='none'
-              color='inherit'
-              // href='/premium-themes/onepirate/'
-              sx={{ fontSize: 14 }}
-            >
-              The Code Coach Projct
-            </Link>
-          </Box>
+          <Logo width={40} />
+          <Link
+            variant='h6'
+            underline='none'
+            color='inherit'
+            href='/premium-themes/onepirate/'
+            sx={{ fontSize: 14 }}
+          >
+            The Code Coach Projct
+          </Link>
 
           <Box sx={{ flex: 1, display: 'flex', justifyContent: 'flex-end' }}>
             <Link

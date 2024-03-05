@@ -7,7 +7,7 @@ interface ILogoProps {
   disabledLink?: boolean
   sx?: any
   src?: string
-  [key: string]: any
+  // [key: string]: any
 }
 const Logo = forwardRef(
   (

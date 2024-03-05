@@ -1,4 +1,5 @@
 import { Fragment } from 'react'
+import { BrowserRouter as Router } from 'react-router-dom'
 import { AppNavBar, AppFooter } from 'component'
 import {
   ProductCategory,
@@ -13,14 +14,16 @@ import withRoot from 'withroot'
 function App() {
   return (
     <Fragment>
-      <AppNavBar />
-      <ProductHero />
-      <ProductValue />
-      <ProductCategory />
-      <ProductHowItWorks />
-      <ProductCTA />
-      <ProductSmokingHero />
-      <AppFooter />
+      <Router>
+        <AppNavBar />
+        <ProductHero />
+        <ProductValue />
+        <ProductCategory />
+        <ProductHowItWorks />
+        <ProductCTA />
+        <ProductSmokingHero />
+        <AppFooter />
+      </Router>
     </Fragment>
   )
 }

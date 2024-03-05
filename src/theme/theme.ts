@@ -33,7 +33,7 @@ const rawTheme = createTheme({
     },
   },
   typography: {
-    fontFamily: "'Honk', sans-serif",
+    fontFamily: "'Poppins', sans-serif",
     fontSize: 14,
     fontWeightLight: 300,
     fontWeightRegular: 400,
@@ -43,7 +43,7 @@ const rawTheme = createTheme({
 const fontHeader = {
   color: rawTheme.palette.text.primary,
   fontWeight: rawTheme.typography.fontWeightRegular,
-  fontFamily: "'Honk', Elkwood, sans-serif",
+  fontFamily: "'Madimi One', Elkwood, sans-serif",
 }
 
 const theme = {

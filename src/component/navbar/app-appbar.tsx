@@ -1,7 +1,8 @@
 import * as React from 'react'
 import { Box, Link } from '@mui/material'
+import { m } from 'framer-motion'
 import AppBar from './appbar'
-import { Toolbar } from 'component/toolbar'
+import { SToolbar } from 'theme/style'
 import { default as Logo } from 'component/logo'
 
 const rightLink = {
@@ -12,9 +13,9 @@ const rightLink = {
 
 function AppNavBar() {
   return (
-    <div>
-      <AppBar position='fixed' sx={{ height: '50px' }}>
-        <Toolbar sx={{ justifyContent: 'space-between' }}>
+    <m.div>
+      <AppBar position='fixed'>
+        <SToolbar sx={{ justifyContent: 'space-between' }}>
           <Logo width={40} />
           <Link
             variant='h6'
@@ -34,7 +35,7 @@ function AppNavBar() {
               href='/premium-themes/onepirate/sign-in/'
               sx={rightLink}
             >
-              {'Sign In'}
+              {'Log In'}
             </Link>
             <Link
               variant='h6'
@@ -45,10 +46,9 @@ function AppNavBar() {
               {'Register'}
             </Link>
           </Box>
-        </Toolbar>
+        </SToolbar>
       </AppBar>
-      <Toolbar />
-    </div>
+    </m.div>
   )
 }
 

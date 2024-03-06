@@ -1,4 +1,4 @@
-import * as React from 'react'
+import { ElementType } from 'react'
 import { experimentalStyled as styled } from '@mui/material/styles'
 import MuiButton, { ButtonProps } from '@mui/material/Button'
 
@@ -12,6 +12,10 @@ const ButtonRoot = styled(MuiButton)(({ theme, size }) => ({
   '&:active, &:focus': {
     boxShadow: 'none',
   },
+  '&:hover': {
+    backgroundColor: theme.palette.common.black,
+    color: theme.palette.secondary.main,
+  },
   ...(size === 'small' && {
     padding: theme.spacing(1, 3),
     fontSize: theme.typography.pxToRem(13),
@@ -22,7 +26,7 @@ const ButtonRoot = styled(MuiButton)(({ theme, size }) => ({
   }),
 }))
 
-function Button<C extends React.ElementType>(
+function Button<C extends ElementType>(
   props: ButtonProps<C, { component?: C }>
 ) {
   return <ButtonRoot {...props} />

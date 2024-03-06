@@ -1,9 +1,10 @@
 import { Fragment, useEffect } from 'react'
 import { BrowserRouter as Router } from 'react-router-dom'
+import { HelmetProvider } from 'react-helmet-async'
 import { AppNavBar, AppFooter } from 'component'
 import {
   ProductCategory,
-  ProductHero,
+  DashboardHero,
   ProductValue,
   ProductHowItWorks,
   ProductSmokingHero,
@@ -16,18 +17,21 @@ function App() {
   useEffect(() => {
     document.title = GLOBAL.APP_NAME
   }, [])
+
   return (
     <Fragment>
-      <Router>
-        <AppNavBar />
-        <ProductHero />
-        <ProductValue />
-        <ProductCategory />
-        <ProductHowItWorks />
-        <ProductCTA />
-        <ProductSmokingHero />
-        <AppFooter />
-      </Router>
+      <HelmetProvider>
+        <Router>
+          <AppNavBar />
+          <DashboardHero />
+          <ProductValue />
+          <ProductCategory />
+          <ProductHowItWorks />
+          <ProductCTA />
+          <ProductSmokingHero />
+          <AppFooter />
+        </Router>
+      </HelmetProvider>
     </Fragment>
   )
 }

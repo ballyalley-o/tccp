@@ -1,11 +1,11 @@
-import * as React from 'react'
+import { HTMLAttributes } from 'react'
 import { Theme, styled } from '@mui/material/styles'
 import { SxProps } from '@mui/system'
 import Container from '@mui/material/Container'
 import Box from '@mui/material/Box'
 
-const ProductHeroLayoutRoot = styled('section')(({ theme }) => ({
-  color: theme.palette.common.white,
+const SDashboardSection = styled('section')(({ theme }) => ({
+  color: theme.palette.common.black,
   position: 'relative',
   display: 'flex',
   alignItems: 'center',
@@ -27,17 +27,17 @@ const Background = styled('div')({
   zIndex: -2,
 })
 
-interface ProductHeroLayoutProps {
+interface DashboardSectionProps {
   sxBackground: SxProps<Theme>
 }
 
-function ProductHeroLayout(
-  props: React.HTMLAttributes<HTMLDivElement> & ProductHeroLayoutProps
+function DashboardSection(
+  props: HTMLAttributes<HTMLDivElement> & DashboardSectionProps
 ) {
   const { sxBackground, children } = props
 
   return (
-    <ProductHeroLayoutRoot>
+    <SDashboardSection>
       <Container
         sx={{
           mt: 3,
@@ -47,14 +47,14 @@ function ProductHeroLayout(
           alignItems: 'center',
         }}
       >
-        <img
+        {/* <img
           src='/static/themes/onepirate/productHeroWonder.png'
           alt='wonder'
           width='147'
           height='80'
-        />
+        /> */}
         {children}
-        <Box
+        {/* <Box
           sx={{
             position: 'absolute',
             left: 0,
@@ -65,7 +65,7 @@ function ProductHeroLayout(
             opacity: 0.5,
             zIndex: -1,
           }}
-        />
+        /> */}
         <Background sx={sxBackground} />
         <Box
           component='img'
@@ -76,8 +76,8 @@ function ProductHeroLayout(
           sx={{ position: 'absolute', bottom: 32 }}
         />
       </Container>
-    </ProductHeroLayoutRoot>
+    </SDashboardSection>
   )
 }
 
-export default ProductHeroLayout
+export default DashboardSection

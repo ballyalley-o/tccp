@@ -1,27 +1,25 @@
-import * as React from 'react'
 import { Button, Typography } from 'component'
-import ProductHeroLayout from './product-hero-layout'
+import SDashboardSection from './dashboard-section'
 
-// const backgroundImage =
-//   'https://images.unsplash.com/photo-1534854638093-bada1813ca19?auto=format&fit=crop&w=1400'
+const backgroundImage =
+  'https://images.pexels.com/photos/1438072/pexels-photo-1438072.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
 
-export default function ProductHero() {
+function DashboardHero() {
   return (
-    <ProductHeroLayout
+    <SDashboardSection
       sxBackground={{
-        // backgroundImage: `url(${backgroundImage})`,
-        backgroundColor: '#00', // Average color of the background image.
-        // backgroundPosition: 'center',
+        backgroundImage: `url(${backgroundImage})`,
+        // backgroundColor: '#000',
+        backgroundPosition: 'center',
       }}
     >
-      {/* Increase the network loading priority of the background image. */}
       {/* <img
         style={{ display: 'none' }}
         src={backgroundImage}
         alt='increase priority'
       /> */}
       <Typography color='inherit' align='center' variant='h2' marked='center'>
-        Upgrade your Sundays
+        the Code Coach Projct
       </Typography>
       <Typography
         color='inherit'
@@ -29,21 +27,23 @@ export default function ProductHero() {
         variant='h5'
         sx={{ mb: 4, mt: { xs: 4, sm: 10 } }}
       >
-        Enjoy secret offers up to -70% off the best luxury hotels every Sunday.
+        World Class Bootcamp for Programmers
       </Typography>
       <Button
         color='secondary'
         variant='contained'
-        size='large'
+        size='small'
         component='a'
-        href='/premium-themes/onepirate/sign-up/'
+        // href='/premium-themes/onepirate/sign-up/'
         sx={{ minWidth: 200 }}
       >
-        Register
+        Browse for Bootcamps
       </Button>
       <Typography variant='body2' color='inherit' sx={{ mt: 2 }}>
         Discover the experience
       </Typography>
-    </ProductHeroLayout>
+    </SDashboardSection>
   )
 }
+
+export default DashboardHero

@@ -9,7 +9,7 @@ import {
   ProductHowItWorks,
   ProductSmokingHero,
   ProductCTA,
-} from 'page/product'
+} from 'page/dashboard'
 import withRoot from 'withroot'
 import GLOBAL from 'config/global'
 

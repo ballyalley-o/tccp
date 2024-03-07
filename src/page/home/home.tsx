@@ -5,7 +5,7 @@ import // ProductCategory,
 // ProductHowItWorks,
 // ProductSmokingHero,
 // ProductCTA,
-'page/product'
+'page/dashboard'
 import { AppNavBar, AppFooter } from 'component/navbar'
 import withRoot from 'withroot'
 
@@ -17,9 +17,6 @@ function Index() {
       {/* <ProductValue /> */}
       {/* <ProductCategory /> */}
       {/* <ProductHowItWorks /> */}
-      <div>
-        <h1>Home</h1>
-      </div>
       {/* <ProductCTA /> */}
       {/* <ProductSmokingHero /> */}
       <AppFooter />

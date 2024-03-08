@@ -1,5 +1,16 @@
 import { createTheme } from '@mui/material/styles'
 import { green, grey, red } from '@mui/material/colors'
+import { Theme } from '@mui/material/styles'
+import ComponentOverride from './override'
+
+export const COLORS = [
+  'primary',
+  'secondary',
+  'info',
+  'success',
+  'warning',
+  'error',
+]
 
 const rawTheme = createTheme({
   palette: {
@@ -14,6 +25,7 @@ const rawTheme = createTheme({
       dark: '#e62958',
     },
     warning: {
+      light: '#fff3e0',
       main: '#ffc071',
       dark: '#ffb25e',
     },
@@ -38,12 +50,15 @@ const rawTheme = createTheme({
     fontWeightLight: 300,
     fontWeightRegular: 400,
   },
+  shape: {
+    borderRadius: 2,
+  },
 })
 
 const fontHeader = {
   color: rawTheme.palette.text.primary,
   fontWeight: rawTheme.typography.fontWeightRegular,
-  fontFamily: "'Madimi One', Elkwood, sans-serif",
+  fontFamily: 'Poppins, sans-serif',
 }
 
 const theme = {
@@ -54,7 +69,18 @@ const theme = {
       ...rawTheme.palette.background,
       default: rawTheme.palette.common.white,
       placeholder: grey[200],
+      light: '#f5f5f5',
+      main: '#e0e0e0',
+      dark: '#bdbdbd',
     },
+    common: {
+      light: '#D3D3D3',
+      main: '#000009',
+      dark: '#1e1e1f',
+      black: '#000000',
+      white: '#FFFFFF',
+    },
+    mode: 'light', // or 'dark' depending on your theme
   },
   typography: {
     ...rawTheme.typography,
@@ -105,5 +131,9 @@ const theme = {
     },
   },
 }
+
+ComponentOverride(theme as ThemeType)
+
+export type ThemeType = typeof theme & Theme
 
 export default theme

@@ -13,13 +13,19 @@ function DashboardHero() {
         backgroundPosition: 'center',
       }}
     >
-      {/* <img
+      <img
         style={{ display: 'none' }}
         src={backgroundImage}
         alt='increase priority'
-      /> */}
-      <Typography color='inherit' align='center' variant='h2' marked='center'>
-        the Code Coach Projct
+      />
+      <Typography
+        color='inherit'
+        align='center'
+        fontWeight='bold'
+        variant='h1'
+        marked='center'
+      >
+        Fuel your ambition
       </Typography>
       <Typography
         color='inherit'

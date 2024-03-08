@@ -1,9 +1,11 @@
+import { m } from 'framer-motion'
 import { Theme } from '@mui/material/styles'
 import { SxProps } from '@mui/system'
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
 import Container from '@mui/material/Container'
 import { Button, Typography } from 'component'
+import CourseTile from './dashboard-course-tile'
 
 const item: SxProps<Theme> = {
   display: 'flex',
@@ -28,7 +30,11 @@ function ProductHowItWorks() {
   return (
     <Box
       component='section'
-      sx={{ display: 'flex', bgcolor: 'secondary.light', overflow: 'hidden' }}
+      sx={{
+        display: 'flexStart',
+        bgcolor: 'secondary.light',
+        overflow: 'hidden',
+      }}
     >
       <Container
         sx={{
@@ -51,57 +57,45 @@ function ProductHowItWorks() {
             opacity: 0.7,
           }}
         />
-        <Typography variant='h4' marked='center' component='h2' sx={{ mb: 14 }}>
-          How it works
+        <Typography variant='h4' marked='left' component='h2' sx={{ mb: 14 }}>
+          New on The Code Coach
         </Typography>
-        <div>
+        <m.div>
           <Grid container spacing={5}>
-            <Grid item xs={12} md={4}>
-              <Box sx={item}>
-                <Box sx={number}>1.</Box>
-                <Box
-                  component='img'
-                  src='/static/themes/onepirate/productHowItWorks1.svg'
-                  alt='suitcase'
-                  sx={image}
-                />
-                <Typography variant='h5' align='center'>
-                  Appointment every Wednesday 9am.
-                </Typography>
-              </Box>
+            <Grid item xs={12} md={4} lg={3}>
+              <CourseTile
+                title='Python'
+                institution='Learn Python from scratch'
+                imageUrl='https://images.pexels.com/photos/2982449/pexels-photo-2982449.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+                badge='https://m.media-amazon.com/images/I/61fLmo3aOHL.jpg'
+              />
             </Grid>
-            <Grid item xs={12} md={4}>
-              <Box sx={item}>
-                <Box sx={number}>2.</Box>
-                <Box
-                  component='img'
-                  src='/static/themes/onepirate/productHowItWorks2.svg'
-                  alt='graph'
-                  sx={image}
-                />
-                <Typography variant='h5' align='center'>
-                  First come, first served. Our offers are in limited
-                  quantities, so be quick.
-                </Typography>
-              </Box>
+            <Grid item xs={12} md={4} lg={3}>
+              <CourseTile
+                title='Python'
+                institution='Learn Python from scratch'
+                imageUrl='https://images.pexels.com/photos/2982449/pexels-photo-2982449.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+                badge='https://m.media-amazon.com/images/I/61fLmo3aOHL.jpg'
+              />
             </Grid>
-            <Grid item xs={12} md={4}>
-              <Box sx={item}>
-                <Box sx={number}>3.</Box>
-                <Box
-                  component='img'
-                  src='/static/themes/onepirate/productHowItWorks3.svg'
-                  alt='clock'
-                  sx={image}
-                />
-                <Typography variant='h5' align='center'>
-                  {'New offers every week. New experiences, new surprises. '}
-                  {'Your Sundays will no longer be alike.'}
-                </Typography>
-              </Box>
+            <Grid item xs={12} md={4} lg={3}>
+              <CourseTile
+                title='Python'
+                institution='Learn Python from scratch'
+                imageUrl='https://images.pexels.com/photos/2982449/pexels-photo-2982449.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+                badge='https://m.media-amazon.com/images/I/61fLmo3aOHL.jpg'
+              />
+            </Grid>
+            <Grid item xs={12} md={4} lg={3}>
+              <CourseTile
+                title='Python'
+                institution='Learn Python from scratch'
+                imageUrl='https://images.pexels.com/photos/2982449/pexels-photo-2982449.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+                badge='https://m.media-amazon.com/images/I/61fLmo3aOHL.jpg'
+              />
             </Grid>
           </Grid>
-        </div>
+        </m.div>
         <Button
           color='secondary'
           size='large'

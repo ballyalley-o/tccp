@@ -1,11 +1,5 @@
 import { Fragment } from 'react'
-import // ProductCategory,
-// ProductHero,
-// ProductValue,
-// ProductHowItWorks,
-// ProductSmokingHero,
-// ProductCTA,
-'page/dashboard'
+
 import { AppNavBar, AppFooter } from 'component/navbar'
 import withRoot from 'withroot'
 

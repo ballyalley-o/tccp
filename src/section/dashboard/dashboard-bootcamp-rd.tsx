@@ -26,7 +26,7 @@ const image = {
   my: 4,
 }
 
-function ProductHowItWorks() {
+function DashbordBootcampRundown() {
   return (
     <Box
       component='section'
@@ -57,11 +57,19 @@ function ProductHowItWorks() {
             opacity: 0.7,
           }}
         />
-        <Typography variant='h4' marked='left' component='h2' sx={{ mb: 14 }}>
+        <Typography variant='h4' marked='left' component='h2'>
+          New on The Code Coach
+        </Typography>
+        <Typography
+          variant='subtitle2'
+          marked='left'
+          component='h2'
+          sx={{ mb: 14 }}
+        >
           New on The Code Coach
         </Typography>
         <m.div>
-          <Grid container spacing={5}>
+          <Grid container spacing={20}>
             <Grid item xs={12} md={4} lg={3}>
               <CourseTile
                 title='Python'
@@ -80,7 +88,7 @@ function ProductHowItWorks() {
             </Grid>
             <Grid item xs={12} md={4} lg={3}>
               <CourseTile
-                title='Python'
+                title='C#'
                 institution='Learn Python from scratch'
                 imageUrl='https://images.pexels.com/photos/2982449/pexels-photo-2982449.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
                 badge='https://m.media-amazon.com/images/I/61fLmo3aOHL.jpg'
@@ -88,10 +96,11 @@ function ProductHowItWorks() {
             </Grid>
             <Grid item xs={12} md={4} lg={3}>
               <CourseTile
-                title='Python'
+                title='Reason'
                 institution='Learn Python from scratch'
                 imageUrl='https://images.pexels.com/photos/2982449/pexels-photo-2982449.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
                 badge='https://m.media-amazon.com/images/I/61fLmo3aOHL.jpg'
+                chips={['Reason', 'OCaml']}
               />
             </Grid>
           </Grid>
@@ -111,4 +120,4 @@ function ProductHowItWorks() {
   )
 }
 
-export default ProductHowItWorks
+export default DashbordBootcampRundown

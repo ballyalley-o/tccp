@@ -7,7 +7,8 @@ function Card(theme: MuiTheme) {
         root: {
           position: 'relative',
           borderRadius: Number(theme.shape.borderRadius) * 2,
-          zIndex: 0, // Fix Safari overflow: hidden with border radius,
+          zIndex: 0,
+          boxShadow: 'none',
         },
       },
     },
@@ -29,6 +30,9 @@ function Card(theme: MuiTheme) {
       styleOverrides: {
         root: {
           padding: theme.spacing(3),
+          ShadowRoot: {
+            boxShadow: '0 0 0 0',
+          },
         },
       },
     },

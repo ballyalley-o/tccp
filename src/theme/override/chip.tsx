@@ -77,7 +77,10 @@ export default function Chip(theme: Theme) {
       },
 
       styleOverrides: {
-        root: ({ ownerState }: any) => rootStyle(ownerState),
+        root: ({ ownerState }: any) => ({
+          fontSize: '0.2rem',
+          ...rootStyle(ownerState),
+        }),
       },
     },
   }

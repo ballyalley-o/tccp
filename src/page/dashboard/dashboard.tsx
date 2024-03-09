@@ -4,7 +4,7 @@ import {
   DashboardHero,
   ProductCTA,
   //   ProductHowIt,
-  ProductHowItWorks,
+  DashbordBootcampRundown,
   ProductSmokingHero,
   ProductValue,
 } from 'section/dashboard'
@@ -14,7 +14,7 @@ const Dashboard = () => {
     <Fragment>
       <AppNavBar />
       <DashboardHero />
-      <ProductHowItWorks />
+      <DashbordBootcampRundown />
       <ProductValue />
       <ProductCTA />
       <ProductSmokingHero />

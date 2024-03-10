@@ -14,6 +14,7 @@ export default defineConfig({
       app: path.resolve(__dirname, 'src', 'app.tsx'),
       global: path.resolve(__dirname, 'src', 'config'),
       config: path.resolve(__dirname, 'src', 'config'),
+      constant: path.resolve(__dirname, 'src', 'constant'),
       types: path.resolve(__dirname, 'src', 'types'),
       css: path.resolve(__dirname, 'src', 'theme', 'css', 'index.css'),
       theme: path.resolve(__dirname, 'src', 'theme'),

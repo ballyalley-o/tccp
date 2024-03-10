@@ -2,11 +2,10 @@ import { AppFooter, AppNavBar } from 'component'
 import { Fragment } from 'react'
 import {
   DashboardHero,
-  ProductCTA,
+  BootcampConsult,
   //   ProductHowIt,
-  DashbordBootcampRundown,
-  ProductSmokingHero,
-  ProductValue,
+  DashboardBootcampRundown,
+  DashboardFeedbackSection,
 } from 'section/dashboard'
 
 const Dashboard = () => {
@@ -14,10 +13,9 @@ const Dashboard = () => {
     <Fragment>
       <AppNavBar />
       <DashboardHero />
-      <DashbordBootcampRundown />
-      <ProductValue />
-      <ProductCTA />
-      <ProductSmokingHero />
+      <DashboardBootcampRundown />
+      <BootcampConsult />
+      <DashboardFeedbackSection />
       <AppFooter />
     </Fragment>
   )

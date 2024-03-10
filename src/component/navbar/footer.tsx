@@ -1,151 +1,169 @@
+import { m } from 'framer-motion'
 import { Fragment } from 'react'
-import Box from '@mui/material/Box'
-import Grid from '@mui/material/Grid'
-import Link from '@mui/material/Link'
-import Container from '@mui/material/Container'
+import { Grid, Link, Box, Container } from '@mui/material'
 import { Typography } from 'component/typography'
 import { TextField } from 'component/textfield'
+import { GLOBAL, ASSET } from 'config'
+import { SOCIAL, LANG } from 'constant'
 
 function Copyright() {
   return (
-    <Fragment>
-      {'© '}
-      <Link color='inherit' href='https://thecodecoachprojct.com'>
-        www.thecodecoachprojct.com
-      </Link>{' '}
+    <Box display='flex' justifyContent='center' gap={2}>
+      <Link
+        color='grey.500'
+        href='https://thecodecoachprojct.com'
+        sx={{ textDecoration: 'none' }}
+      >
+        {'© '} {GLOBAL.APP_WEBSITE}
+      </Link>
       {new Date().getFullYear()}
-    </Fragment>
+    </Box>
   )
 }
 
 const iconStyle = {
-  width: 48,
-  height: 48,
+  width: 36,
+  height: 36,
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  backgroundColor: 'warning.main',
+  backgroundColor: 'common.black',
+  color: 'common.white',
+  cursor: 'pointer',
   mr: 1,
   '&:hover': {
-    bgcolor: 'warning.dark',
+    // reduce size when hovered
+    transform: 'scale(0.9)',
+    animation: 'ease-in-out',
+    opacity: 0.6,
   },
 }
 
-const LANGUAGES = [
-  {
-    code: 'en-US',
-    name: 'English',
-  },
-  {
-    code: 'fr-FR',
-    name: 'Français',
-  },
-]
-
 function AppFooter() {
   return (
-    <Typography
-      component='footer'
-      sx={{ display: 'flex', bgcolor: 'secondary.light' }}
-    >
-      <Container sx={{ my: 8, display: 'flex' }}>
-        <Grid container spacing={5}>
-          <Grid item xs={6} sm={4} md={3}>
-            <Grid
-              container
-              direction='column'
-              justifyContent='flex-end'
-              spacing={2}
-              sx={{ height: 120 }}
-            >
-              <Grid item sx={{ display: 'flex' }}>
-                <Box component='a' href='https://mui.com/' sx={iconStyle}>
-                  <img
-                    src='/static/themes/onepirate/appFooterFacebook.png'
-                    alt='Facebook'
-                  />
-                </Box>
-                <Box
-                  component='a'
-                  href='https://twitter.com/MUI_hq'
-                  sx={iconStyle}
-                >
-                  <img
-                    src='/static/themes/onepirate/appFooterTwitter.png'
-                    alt='X'
-                  />
-                </Box>
-              </Grid>
-              <Grid item>
-                <Copyright />
+    <Fragment>
+      <Typography
+        component='footer'
+        sx={{ display: 'flex', bgcolor: 'common.black', color: 'common.white' }}
+      >
+        <Container sx={{ my: 8, display: 'flex' }}>
+          <Grid container spacing={5}>
+            <Grid item xs={6} sm={4} md={3}>
+              <Grid
+                container
+                direction='column'
+                justifyContent='flex-end'
+                spacing={2}
+                sx={{ height: 120 }}
+              >
+                <Grid item sx={{ display: 'flex' }}>
+                  {SOCIAL.map((social) => (
+                    <Box
+                      component='a'
+                      href={social.href}
+                      sx={iconStyle}
+                      key={social.href}
+                    >
+                      <m.img {...social.icon} />
+                    </Box>
+                  ))}
+                </Grid>
               </Grid>
             </Grid>
-          </Grid>
-          <Grid item xs={6} sm={4} md={2}>
-            <Typography variant='h6' marked='left' gutterBottom>
-              Legal
-            </Typography>
-            <Box component='ul' sx={{ m: 0, listStyle: 'none', p: 0 }}>
-              <Box component='li' sx={{ py: 0.5 }}>
-                <Link href='/premium-themes/onepirate/terms/'>Terms</Link>
+            <Grid item xs={6} sm={4} md={2}>
+              <Typography
+                variant='h6'
+                marked='left'
+                gutterBottom
+                sx={{ color: 'secondary.main' }}
+              >
+                Legal
+              </Typography>
+              <Box component='ul' sx={{ m: 0, listStyle: 'none', p: 0 }}>
+                <Box component='li' sx={{ py: 0.5 }}>
+                  <Link
+                    href='/premium-themes/onepirate/terms/'
+                    color='grey.500'
+                    sx={{
+                      textDecoration: 'none',
+                      '&:hover': { opacity: 0.5, translate: '0.5s' },
+                    }}
+                  >
+                    Terms
+                  </Link>
+                </Box>
+                <Box component='li' sx={{ py: 0.5 }}>
+                  <Link
+                    href='/premium-themes/onepirate/privacy/'
+                    color='grey.500'
+                    sx={{
+                      textDecoration: 'none',
+                      '&:hover': { opacity: 0.5, translate: '0.5s' },
+                    }}
+                  >
+                    Privacy
+                  </Link>
+                </Box>
               </Box>
-              <Box component='li' sx={{ py: 0.5 }}>
-                <Link href='/premium-themes/onepirate/privacy/'>Privacy</Link>
-              </Box>
-            </Box>
-          </Grid>
-          <Grid item xs={6} sm={8} md={4}>
-            <Typography variant='h6' marked='left' gutterBottom>
-              Language
-            </Typography>
-            <TextField
-              select
-              size='medium'
-              variant='standard'
-              SelectProps={{
-                native: true,
-              }}
-              sx={{ mt: 1, width: 150 }}
-            >
-              {LANGUAGES.map((language) => (
-                <option value={language.code} key={language.code}>
-                  {language.name}
-                </option>
-              ))}
-            </TextField>
-          </Grid>
-          <Grid item>
-            <Typography variant='caption'>
-              {'Icons made by '}
-              <Link
-                href='https://www.freepik.com'
-                rel='sponsored'
-                title='Freepik'
+            </Grid>
+            <Grid item xs={6} sm={8} md={4}>
+              <Typography
+                variant='h6'
+                marked='left'
+                gutterBottom
+                sx={{ color: 'secondary.main' }}
               >
-                Freepik
-              </Link>
-              {' from '}
-              <Link
-                href='https://www.flaticon.com'
-                rel='sponsored'
-                title='Flaticon'
+                Language
+              </Typography>
+              <TextField
+                select
+                size='small'
+                variant='filled'
+                SelectProps={{
+                  native: true,
+                }}
+                sx={{
+                  mt: 1,
+                  width: 150,
+                  color: 'common.white',
+                  '&:before': {
+                    bgcolor: 'secondary.main',
+                    borderColor: 'common.white',
+                    color: 'common.white',
+                  },
+                  '&:after': {
+                    bgcolor: 'secondary.main',
+                    color: 'common.white',
+                  },
+                }}
               >
-                www.flaticon.com
-              </Link>
-              {' is licensed by '}
-              <Link
-                href='https://creativecommons.org/licenses/by/3.0/'
-                title='Creative Commons BY 3.0'
-                target='_blank'
-                rel='noopener noreferrer'
-              >
-                CC 3.0 BY
-              </Link>
-            </Typography>
+                {LANG.map((language) => (
+                  <option value={language.code} key={language.code}>
+                    {language.name}
+                  </option>
+                ))}
+              </TextField>
+            </Grid>
           </Grid>
+        </Container>
+      </Typography>
+      <Grid
+        container
+        bgcolor='common.black'
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          color: 'common.white',
+          py: 2,
+          pb: 10,
+        }}
+      >
+        <Grid item lg={12}>
+          <Copyright />
         </Grid>
-      </Container>
-    </Typography>
+      </Grid>
+    </Fragment>
   )
 }
 

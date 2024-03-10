@@ -7,6 +7,12 @@ export default function Link(theme: Theme) {
         underline: 'none',
         variant: 'hover',
       },
+      styleOverrides: {
+        root: {
+          color: theme.palette.primary.main,
+          textDecoration: 'none',
+        },
+      },
     },
   }
 }

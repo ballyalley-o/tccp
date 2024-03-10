@@ -20,7 +20,7 @@ const rawTheme = createTheme({
       dark: '#1e1e1f',
     },
     secondary: {
-      light: '#D9D9D9',
+      light: '#fff5f8',
       main: '#FFD500',
       dark: '#e62958',
     },
@@ -67,10 +67,10 @@ const theme = {
     ...rawTheme.palette,
     background: {
       ...rawTheme.palette.background,
-      default: rawTheme.palette.background.paper,
+      default: '#f4f6f2',
       placeholder: grey[200],
       light: '#f5f5f5',
-      main: '#D9D9D9',
+      main: '#d4d3d3',
       dark: '#D9D9D9',
     },
     common: {

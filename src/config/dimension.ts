@@ -1,0 +1,3 @@
+export enum ICON_DIMENSION {
+  FOOTER_SOCIAL_ICON = 30,
+}

@@ -4,7 +4,7 @@ import Button from '@mui/material/Button'
 import Container from '@mui/material/Container'
 import { Typography } from 'component/typography'
 
-function ProductSmokingHero() {
+function DashboardFeedbackSection() {
   return (
     <Container
       component='section'
@@ -20,25 +20,16 @@ function ProductSmokingHero() {
           border: '4px solid currentColor',
           borderRadius: 0,
           height: 'auto',
-          py: 2,
-          px: 5,
+          py: 1,
+          px: 2,
         }}
       >
-        <Typography variant='h4' component='span'>
-          Got any questions? Need help?
+        <Typography variant='h5' component='span'>
+          See Feedback from our alumni
         </Typography>
       </Button>
-      <Typography variant='subtitle1' sx={{ my: 3 }}>
-        We are here to help. Get in touch!
-      </Typography>
-      <Box
-        component='img'
-        src='/static/themes/onepirate/productBuoy.svg'
-        alt='buoy'
-        sx={{ width: 60 }}
-      />
     </Container>
   )
 }
 
-export default ProductSmokingHero
+export default DashboardFeedbackSection

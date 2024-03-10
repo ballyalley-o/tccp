@@ -1,8 +1,8 @@
 import { HTMLAttributes } from 'react'
+import { Box, Container } from '@mui/material'
 import { Theme, styled } from '@mui/material/styles'
 import { SxProps } from '@mui/system'
-import Container from '@mui/material/Container'
-import Box from '@mui/material/Box'
+import { ASSET } from 'config'
 
 const SDashboardSection = styled('section')(({ theme }) => ({
   color: theme.palette.common.white,
@@ -47,12 +47,6 @@ function DashboardSection(
           alignItems: 'center',
         }}
       >
-        {/* <img
-          src='/static/themes/onepirate/productHeroWonder.png'
-          alt='wonder'
-          width='147'
-          height='80'
-        /> */}
         {children}
         <Box
           sx={{
@@ -66,15 +60,14 @@ function DashboardSection(
             zIndex: -1,
           }}
         />
-        <Background sx={sxBackground} />
+
         <Box
           component='img'
-          src='/static/themes/onepirate/productHeroArrowDown.png'
-          height='16'
-          width='12'
+          src={ASSET.ARROW_DOWN}
           alt='arrow down'
-          sx={{ position: 'absolute', bottom: 32 }}
+          sx={{ position: 'absolute', bottom: 32, width: 40 }}
         />
+        <Background sx={sxBackground} />
       </Container>
     </SDashboardSection>
   )

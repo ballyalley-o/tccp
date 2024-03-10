@@ -1,11 +1,11 @@
+import { ChangeEvent, useState } from 'react'
 import { m } from 'framer-motion'
+import { Box, Grid, Divider, Container, Tab, Tabs } from '@mui/material'
 import { Theme } from '@mui/material/styles'
 import { SxProps } from '@mui/system'
-import Box from '@mui/material/Box'
-import Grid from '@mui/material/Grid'
-import Container from '@mui/material/Container'
+import { ASSET } from 'config'
 import { Button, Typography } from 'component'
-import CourseTile from './dashboard-course-tile'
+import BootcampTile from './dashboard-bootcamp-tile'
 
 const item: SxProps<Theme> = {
   display: 'flex',
@@ -21,19 +21,18 @@ const number = {
   fontWeight: 'medium',
 }
 
-const image = {
-  height: 55,
-  my: 4,
-}
+function DashboardBootcampRundown() {
+  const [value, setValue] = useState(0)
 
-function DashbordBootcampRundown() {
+  const handleChange = (event: React.SyntheticEvent, newValue: any) => {
+    setValue(newValue)
+  }
+
   return (
     <Box
       component='section'
       sx={{
-        display: 'flexStart',
-        bgcolor: 'secondary.light',
-        overflow: 'hidden',
+        display: 'center',
       }}
     >
       <Container
@@ -41,37 +40,44 @@ function DashbordBootcampRundown() {
           mt: 10,
           mb: 15,
           position: 'relative',
-          display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
         }}
       >
-        <Box
-          component='img'
-          src='/static/themes/onepirate/productCurvyLines.png'
-          alt='curvy lines'
-          sx={{
-            pointerEvents: 'none',
-            position: 'absolute',
-            top: -180,
-            opacity: 0.7,
-          }}
-        />
-        <Typography variant='h4' marked='left' component='h2'>
-          New on The Code Coach
-        </Typography>
-        <Typography
-          variant='subtitle2'
-          marked='left'
-          component='h2'
-          sx={{ mb: 14 }}
-        >
-          New on The Code Coach
-        </Typography>
+        <Grid container sx={{ mb: 5 }}>
+          <Grid item alignItems='flex-start'>
+            <Typography
+              variant='h3'
+              marked='left'
+              component='h2'
+              fontWeight='medium'
+            >
+              New Bootcamps
+            </Typography>
+          </Grid>
+          <Box
+            sx={{
+              display: 'flex-start',
+              justifyContent: 'center',
+              alignItems: 'center',
+              width: '100%',
+              mt: 2,
+            }}
+          >
+            <Divider orientation='horizontal' flexItem sx={{ width: 1120 }} />
+          </Box>
+          <Tabs value={value} onChange={handleChange} aria-label='tabs'>
+            <Tab label='AI & Digital Transformation' />
+            <Tab label='Sustainability' />
+            <Tab label='Leadership & Interpersonal Skills' />
+            <Tab label='Business Management & Strategy' />
+          </Tabs>
+        </Grid>
+
         <m.div>
-          <Grid container spacing={20}>
+          <Grid container>
             <Grid item xs={12} md={4} lg={3}>
-              <CourseTile
+              <BootcampTile
                 title='Python'
                 institution='Learn Python from scratch'
                 imageUrl='https://images.pexels.com/photos/2982449/pexels-photo-2982449.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
@@ -79,7 +85,7 @@ function DashbordBootcampRundown() {
               />
             </Grid>
             <Grid item xs={12} md={4} lg={3}>
-              <CourseTile
+              <BootcampTile
                 title='Python'
                 institution='Learn Python from scratch'
                 imageUrl='https://images.pexels.com/photos/2982449/pexels-photo-2982449.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
@@ -87,7 +93,7 @@ function DashbordBootcampRundown() {
               />
             </Grid>
             <Grid item xs={12} md={4} lg={3}>
-              <CourseTile
+              <BootcampTile
                 title='C#'
                 institution='Learn Python from scratch'
                 imageUrl='https://images.pexels.com/photos/2982449/pexels-photo-2982449.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
@@ -95,7 +101,7 @@ function DashbordBootcampRundown() {
               />
             </Grid>
             <Grid item xs={12} md={4} lg={3}>
-              <CourseTile
+              <BootcampTile
                 title='Reason'
                 institution='Learn Python from scratch'
                 imageUrl='https://images.pexels.com/photos/2982449/pexels-photo-2982449.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
@@ -104,20 +110,34 @@ function DashbordBootcampRundown() {
               />
             </Grid>
           </Grid>
+          <Box
+            component='img'
+            src={ASSET.LINE_BG}
+            alt=' lines'
+            sx={{
+              pointerEvents: 'none',
+              position: 'absolute',
+              top: -190,
+              opacity: 0.9,
+              zIndex: -3,
+            }}
+          />
         </m.div>
-        <Button
-          color='secondary'
-          size='large'
-          variant='contained'
-          component='a'
-          href='/premium-themes/onepirate/sign-up/'
-          sx={{ mt: 8 }}
-        >
-          Get started
-        </Button>
+        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+          <Button
+            color='secondary'
+            size='small'
+            variant='contained'
+            component='a'
+            href='/premium-themes/onepirate/sign-up/'
+            sx={{ mt: 8 }}
+          >
+            Start your Application
+          </Button>
+        </Box>
       </Container>
     </Box>
   )
 }
 
-export default DashbordBootcampRundown
+export default DashboardBootcampRundown

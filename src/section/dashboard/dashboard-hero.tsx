@@ -1,27 +1,20 @@
 import { Button, Typography } from 'component'
 import SDashboardSection from './dashboard-section'
-
-const backgroundImage =
-  'https://images.pexels.com/photos/1438072/pexels-photo-1438072.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+import { ASSET } from 'config'
 
 function DashboardHero() {
   return (
     <SDashboardSection
       sxBackground={{
-        backgroundImage: `url(${backgroundImage})`,
-        // backgroundColor: '#FFF',
+        backgroundImage: `url(${ASSET._BG_TEMP})`,
         backgroundPosition: 'center',
+        // zIndex: -1,
       }}
     >
-      <img
-        style={{ display: 'none' }}
-        src={backgroundImage}
-        alt='increase priority'
-      />
       <Typography
         color='inherit'
         align='center'
-        fontWeight='bold'
+        fontWeight='medium'
         variant='h1'
         marked='center'
       >
@@ -33,14 +26,13 @@ function DashboardHero() {
         variant='h5'
         sx={{ mb: 4, mt: { xs: 4, sm: 10 } }}
       >
-        World Class Bootcamp for Programmers
+        Leading Coding Bootcamp Programs
       </Typography>
       <Button
         color='secondary'
         variant='contained'
         size='small'
         component='a'
-        // href='/premium-themes/onepirate/sign-up/'
         sx={{ minWidth: 200 }}
       >
         Browse Bootcamps

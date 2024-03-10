@@ -3,8 +3,9 @@ import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
 import Container from '@mui/material/Container'
 import { Snackbar, Typography, TextField, Button } from 'component'
+import { theme } from 'theme'
 
-function ProductCTA() {
+function BootcampConsult() {
   const [open, setOpen] = useState(false)
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -24,7 +25,8 @@ function ProductCTA() {
             sx={{
               display: 'flex',
               justifyContent: 'center',
-              bgcolor: 'warning.main',
+              bgcolor: 'primary.main',
+              color: 'primary.contrastText',
               py: 8,
               px: 3,
             }}
@@ -34,11 +36,17 @@ function ProductCTA() {
               onSubmit={handleSubmit}
               sx={{ maxWidth: 400 }}
             >
-              <Typography variant='h2' component='h2' gutterBottom>
-                Receive offers
+              <Typography
+                variant='h2'
+                component='h2'
+                gutterBottom
+                color={theme.palette.secondary.main}
+              >
+                Consult with the experts
               </Typography>
               <Typography variant='h5'>
-                Taste the holidays of the everyday close to home.
+                Ask for a free consultation. Our team of experts are here to
+                help you.
               </Typography>
               <TextField
                 noBorder
@@ -48,11 +56,16 @@ function ProductCTA() {
               />
               <Button
                 type='submit'
-                color='primary'
                 variant='contained'
-                sx={{ width: '100%' }}
+                size='large'
+                sx={{
+                  width: '100%',
+                  bgcolor: theme.palette.secondary.main,
+                  fontSize: '1.2rem',
+                  color: theme.palette.common.black,
+                }}
               >
-                Keep me updated
+                Contact Me
               </Button>
             </Box>
           </Box>
@@ -77,7 +90,7 @@ function ProductCTA() {
           />
           <Box
             component='img'
-            src='https://images.unsplash.com/photo-1527853787696-f7be74f2e39a?auto=format&fit=crop&w=750'
+            src='https://images.pexels.com/photos/8199568/pexels-photo-8199568.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
             alt='call to action'
             sx={{
               position: 'absolute',
@@ -100,4 +113,4 @@ function ProductCTA() {
   )
 }
 
-export default ProductCTA
+export default BootcampConsult

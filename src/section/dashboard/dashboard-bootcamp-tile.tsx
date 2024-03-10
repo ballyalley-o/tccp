@@ -22,10 +22,11 @@ const SBadgeHeader = styled(CardHeader)({
 })
 
 const SCard = styled(Card)(({ theme }) => ({
-  width: '280px',
+  width: '250px',
+  boxShadow: 'none',
 }))
 
-const CourseTile = ({
+const BootcampTile = ({
   title,
   institution,
   badge,
@@ -43,24 +44,24 @@ const CourseTile = ({
             style={{
               maxHeight: 40,
               position: 'absolute',
-              top: 180,
+              top: 200,
               right: '10%',
               zIndex: 1,
               transform: 'translateX(-50%)',
-             boxShadow: theme.shadows[4],
+              boxShadow: theme.shadows[4],
             }}
           />
         }
       />
       <CardMedia
         component='img'
-        height='200'
+        height='230'
         image={imageUrl}
         alt={title}
         sx={{
-          objectFit: 'contain',
+          objectFit: 'cover',
           objectPosition: 'top',
-          marginTop: '-30px'
+          marginTop: '-40px',
         }}
       />
       <CardContent>
@@ -77,15 +78,21 @@ const CourseTile = ({
             mt: 2,
           }}
         >
-          {chips && chips.length > 0 ? chips.map((chip: any, index: number) => (
-            <Typography key={index} variant='caption' m='1em'>
-              #{chip}
+          {chips && chips.length > 0 ? (
+            chips.map((chip: any, index: number) => (
+              <Typography key={index} variant='caption' m='1em'>
+                #{chip}
+              </Typography>
+            ))
+          ) : (
+            <Typography variant='caption' m='1em'>
+              &nbsp;
             </Typography>
-          ))  : <Typography variant='caption' m='1em'>&nbsp;</Typography>}
+          )}
         </Box>
       </CardContent>
     </SCard>
   )
 }
 
-export default CourseTile
+export default BootcampTile

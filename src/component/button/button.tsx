@@ -15,6 +15,7 @@ const ButtonRoot = styled(MuiButton)(({ theme, size }) => ({
   '&:hover': {
     backgroundColor: theme.palette.common.black,
     color: theme.palette.secondary.main,
+    boxShadow: 'none',
   },
   ...(size === 'small' && {
     padding: theme.spacing(1, 3),

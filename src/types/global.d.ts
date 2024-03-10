@@ -16,3 +16,18 @@ declare global {
     }
   }
 }
+
+declare global {
+  namespace tccp {
+    interface LogoProps {
+      width?: number
+      disabledLink?: boolean
+      sx?: any
+      src?: string
+      onMouseEnter?: () => void
+      onMouseLeave?: () => void
+    }
+  }
+}
+
+export = tccp

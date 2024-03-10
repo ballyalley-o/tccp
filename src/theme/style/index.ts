@@ -1,1 +1,1 @@
-export { SToolbar } from './main'
+export * from './main'

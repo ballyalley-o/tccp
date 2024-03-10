@@ -2,13 +2,6 @@ import { forwardRef } from 'react'
 import { Link as RouterLink } from 'react-router-dom'
 import { Box, Link } from '@mui/material'
 
-interface ILogoProps {
-  width?: number
-  disabledLink?: boolean
-  sx?: any
-  src?: string
-  // [key: string]: any
-}
 const Logo = forwardRef(
   (
     {
@@ -17,7 +10,7 @@ const Logo = forwardRef(
       sx,
       src = '/asset/logo.png',
       ...other
-    }: ILogoProps,
+    }: tccp.LogoProps,
     ref
   ) => {
     // Uncomment the lines below when you're ready to use these variables.

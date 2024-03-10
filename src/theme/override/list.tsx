@@ -8,6 +8,7 @@ export default function List(theme: Theme) {
           color: 'inherit',
           minWidth: 'auto',
           marginRight: theme.spacing(2),
+          padding: 0,
         },
       },
     },

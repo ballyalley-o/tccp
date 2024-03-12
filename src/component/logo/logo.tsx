@@ -1,6 +1,7 @@
 import { forwardRef } from 'react'
 import { Link as RouterLink } from 'react-router-dom'
 import { Box, Link } from '@mui/material'
+import { ASSET } from 'config'
 
 const Logo = forwardRef(
   (
@@ -8,19 +9,11 @@ const Logo = forwardRef(
       width = 40,
       disabledLink = false,
       sx,
-      src = '/asset/logo.png',
+      src = ASSET.BRAND,
       ...other
     }: tccp.LogoProps,
     ref
   ) => {
-    // Uncomment the lines below when you're ready to use these variables.
-    // const theme = useTheme();
-    // const PRIMARY_LIGHT = theme.palette.primary.light;
-    // const PRIMARY_MAIN = theme.palette.primary.main;
-    // const PRIMARY_DARK = theme.palette.primary.dark;
-
-    // OR using local (public folder)
-    // -------------------------------------------------------
     const logo = (
       <Box
         component='img'

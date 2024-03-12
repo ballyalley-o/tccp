@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { m } from 'framer-motion'
-import { Link as RouterLink } from 'react-router-dom'
+import { Link as RouterLink, useParams } from 'react-router-dom'
 import {
   Box,
   Link,
@@ -15,6 +15,7 @@ import { useTheme, styled } from '@mui/material/styles'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import ExpandLessIcon from '@mui/icons-material/ExpandLess'
 import { Button } from 'component'
+
 import AppBar from './appbar'
 import { SToolbar, SDrawer, SListItem, SBox } from 'theme/style'
 import { default as Logo } from 'component/logo'
@@ -30,6 +31,8 @@ const rightLink = {
 function AppNavBar(): JSX.Element {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [isLogoHovered, setIsLogoHovered] = useState(false)
+
+  const param = useParams()
 
   const handleSidebarOpen = () => {
     setSidebarOpen((prevSidebarOpen) => !prevSidebarOpen)
@@ -85,28 +88,30 @@ function AppNavBar(): JSX.Element {
             }}
           >
             <Box>
-              <Link
-                color='common.black'
-                variant='h6'
-                underline='none'
-                href={AuthPath.LOG_IN}
-                style={rightLink}
-              >
-                <Button
-                  variant='contained'
-                  sx={{
-                    boxShadow: 'none',
-                    bgcolor: 'secondary.main',
-                    color: 'common.black',
-                    fontSize: 10,
-                    padding: '.5em 1em',
-                    borderRadius: 0,
-                    textTransform: 'none',
-                  }}
+              {location.pathname.slice(1) != AuthPath.LOG_IN && (
+                <Link
+                  color='common.black'
+                  variant='h6'
+                  underline='none'
+                  href={AuthPath.LOG_IN}
+                  style={rightLink}
                 >
-                  {BUTTON.LOG_IN}
-                </Button>
-              </Link>
+                  <Button
+                    variant='contained'
+                    sx={{
+                      boxShadow: 'none',
+                      bgcolor: 'secondary.main',
+                      color: 'common.black',
+                      fontSize: 10,
+                      padding: '.5em 1em',
+                      borderRadius: 0,
+                      textTransform: 'none',
+                    }}
+                  >
+                    {BUTTON.LOG_IN}
+                  </Button>
+                </Link>
+              )}
             </Box>
             <Box>
               <Link

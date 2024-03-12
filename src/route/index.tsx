@@ -1,5 +1,5 @@
 import { Navigate, useRoutes } from 'react-router-dom'
-import { Home, Dashboard, LogIn } from 'route/element'
+import { Home, Dashboard, LogIn, NotFoundPage } from 'route/element'
 import { PATH } from 'route/param'
 import { FallbackPath } from 'route/path'
 
@@ -26,6 +26,11 @@ function Router() {
           // element: <ResetPasswordPage />,
         },
       ],
+    },
+    {
+      // @fallback
+      path: FallbackPath.NOT_FOUND,
+      element: <NotFoundPage />,
     },
     { path: '*', element: <Navigate to={FallbackPath.NOT_FOUND} replace /> },
   ])

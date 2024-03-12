@@ -4,6 +4,8 @@ const LABEL = {
   REGISTER: 'Register',
   RESET_PASSWORD: 'Reset Password',
   HOME: 'Home',
+  REGISTER_Sub: 'Register for free',
+  FORGOT_PASSWORD: 'Forgot password?',
 }
 
 export default LABEL

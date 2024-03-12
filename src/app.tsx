@@ -16,8 +16,9 @@ function App() {
     <Fragment>
       <HelmetProvider>
         <BrowserRouter>
+          <AppNavBar />
           <Router />
-          <Dashboard />
+          <AppFooter />
         </BrowserRouter>
       </HelmetProvider>
     </Fragment>

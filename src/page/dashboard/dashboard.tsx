@@ -11,12 +11,10 @@ import {
 const Dashboard = () => {
   return (
     <Fragment>
-      <AppNavBar />
       <DashboardHero />
       <DashboardBootcampRundown />
       <BootcampConsult />
       <DashboardFeedbackSection />
-      <AppFooter />
     </Fragment>
   )
 }

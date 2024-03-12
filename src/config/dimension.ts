@@ -5,3 +5,9 @@ export enum ICON_DIMENSION {
 export enum APP_NAVBAR {
   HEIGHT = 60,
 }
+
+export const RADIUS = {
+  BORDER: {
+    borderRadius: 2,
+  },
+}

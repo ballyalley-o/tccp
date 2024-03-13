@@ -27,6 +27,15 @@ declare global {
       onMouseEnter?: () => void
       onMouseLeave?: () => void
     }
+
+    interface FallbackProps {
+      fallbackTitle: string
+      errorCode: CODE
+    }
+
+    interface FallbackCodeProps {
+      errorCode: tccp.FallbackProps['errorCode']
+    }
   }
 }
 

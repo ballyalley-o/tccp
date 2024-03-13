@@ -14,6 +14,10 @@ const _element = (image: string) => {
   return `/asset/element/${image}`
 }
 
+const _octicon = (svg: string) => {
+  return `/asset/octicon/${svg}`
+}
+
 const ASSET = {
   // bg
   _BG_TEMP:
@@ -28,15 +32,9 @@ const ASSET = {
   FCC_ICON: _social('free-code-camp.svg'),
   // element
   ARROW_DOWN: _element('arrow-down.svg'),
-  IMAGE: 'assets/images',
-  LOGO: 'assets/logos',
-  SVG: 'assets/svgs',
-  FONT: 'assets/fonts',
-  VIDEO: 'assets/videos',
-  AUDIO: 'assets/audios',
-  JSON: 'assets/jsons',
-  FILE: 'assets/files',
-  OTHER: 'assets/others',
+  // octicon
+  HUBOT: _octicon('hubot.svg'),
+  ALERT: _octicon('alert.svg'),
 }
 
 export default ASSET

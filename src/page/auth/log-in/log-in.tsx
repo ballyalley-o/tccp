@@ -11,7 +11,7 @@ import {
   email,
   required,
 } from 'component/form'
-import { default as Logo } from 'component/logo'
+import { Logo } from 'component/logo'
 import { Meta } from 'component/meta'
 import withRoot from 'withroot'
 import { AuthPath } from 'route/path'

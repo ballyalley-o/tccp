@@ -19,7 +19,7 @@ const ASSET = {
   _BG_TEMP:
     'https://images.pexels.com/photos/9672971/pexels-photo-9672971.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
   BRAND: _asset('logo.png'),
-  BRAND_ALT: _asset('favicon64x64.ico'),
+  BRAND_ALT: _asset('favicon.ico'),
   LINE_BG: _background('lines.png'),
   FB_ICON: _social('facebook.svg'),
   GOOGLE_ICON: _social('google.plus.svg'),

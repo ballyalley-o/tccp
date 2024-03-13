@@ -18,7 +18,7 @@ import { Button } from 'component'
 
 import AppBar from './appbar'
 import { SToolbar, SDrawer, SListItem, SBox } from 'theme/style'
-import { default as Logo } from 'component/logo'
+import { Logo } from 'component/logo'
 import { GLOBAL } from 'config'
 import { BUTTON } from 'constant'
 import { RootPath, AuthPath } from 'route/path'

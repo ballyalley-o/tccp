@@ -10,9 +10,12 @@ enum PATH {
   RESET_PASSWORD = 'reset-password',
   RESET_TOKEN = 'reset-token',
   // @fallback
-  NOT_AUTHORIZED = '403',
+  BAD_REQUEST = '400',
+  NOT_AUTHORIZED = '401',
+  FORBIDDEN = '403',
   NOT_FOUND = '404',
-  INTERNAL_SERVER_ERROR = '500',
+  UNPROCESSABLE_ENTITY = '422',
+  SERVER_ERROR = '500',
   MAINTENNANCE = '503',
 }
 

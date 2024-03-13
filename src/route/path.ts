@@ -29,8 +29,11 @@ export class FallbackPath {
     throw new Error(RESPONSE.error.NotInstance)
   }
 
+  static BAD_REQUEST = conNex(PATH.BAD_REQUEST)
   static NOT_AUTHORIZED = conNex(PATH.NOT_AUTHORIZED)
+  static FORBIDDEN = conNex(PATH.FORBIDDEN)
   static NOT_FOUND = conNex(PATH.NOT_FOUND)
-  static INTERNAL_SERVER_ERROR = conNex(PATH.INTERNAL_SERVER_ERROR)
+  static UNPROCESSABLE_ENTITY = conNex(PATH.UNPROCESSABLE_ENTITY)
+  static SERVER_ERROR = conNex(PATH.SERVER_ERROR)
   static MAINTENNANCE = conNex(PATH.MAINTENNANCE)
 }

@@ -9,7 +9,7 @@ interface ExtraPaperProps {
 const PaperRoot = styled(MuiPaper, {
   shouldForwardProp: (prop) => prop !== 'background' && prop !== 'padding',
 })<ExtraPaperProps>(({ theme, background, padding }) => ({
-  backgroundColor: theme.palette.secondary[background],
+  backgroundColor: theme.palette.common.black,
   ...(padding && {
     padding: theme.spacing(1),
   }),

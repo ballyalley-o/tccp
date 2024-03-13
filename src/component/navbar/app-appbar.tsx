@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { m } from 'framer-motion'
+import { Link as RouterLink, useParams } from 'react-router-dom'
 import {
   Box,
   Link,
@@ -14,9 +15,13 @@ import { useTheme, styled } from '@mui/material/styles'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import ExpandLessIcon from '@mui/icons-material/ExpandLess'
 import { Button } from 'component'
+
 import AppBar from './appbar'
-import { SToolbar, SDrawer, SListItem } from 'theme/style'
+import { SToolbar, SDrawer, SListItem, SBox } from 'theme/style'
 import { default as Logo } from 'component/logo'
+import { GLOBAL } from 'config'
+import { BUTTON } from 'constant'
+import { RootPath, AuthPath } from 'route/path'
 
 const rightLink = {
   fontSize: 12,
@@ -26,6 +31,8 @@ const rightLink = {
 function AppNavBar(): JSX.Element {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [isLogoHovered, setIsLogoHovered] = useState(false)
+
+  const param = useParams()
 
   const handleSidebarOpen = () => {
     setSidebarOpen((prevSidebarOpen) => !prevSidebarOpen)
@@ -46,7 +53,7 @@ function AppNavBar(): JSX.Element {
           <Link
             variant='h6'
             underline='none'
-            href='/premium-themes/onepirate/'
+            href={RootPath.DASHBOARD}
             sx={{
               fontSize: 14,
               color: isLogoHovered ? 'grey.600' : 'common.black',
@@ -54,7 +61,7 @@ function AppNavBar(): JSX.Element {
               ease: 'ease-in-out',
             }}
           >
-            The Code Coach Projct
+            {GLOBAL.APP_NAME}
           </Link>
           <m.div>
             <Box sx={{ bgcolor: 'secondary.main', ml: '2em' }}>
@@ -66,7 +73,7 @@ function AppNavBar(): JSX.Element {
                 onClick={handleSidebarOpen}
                 sx={{ fontSize: 12, color: 'common.black' }}
               >
-                <span>Learn&nbsp;</span>
+                <span>{BUTTON.LEARN}&nbsp;</span>
                 {sidebarOpen ? <ExpandLessIcon /> : <ExpandMoreIcon />}
               </IconButton>
             </Box>
@@ -81,34 +88,36 @@ function AppNavBar(): JSX.Element {
             }}
           >
             <Box>
-              <Link
-                color='common.black'
-                variant='h6'
-                underline='none'
-                href='/auth/log-in/'
-                sx={rightLink}
-              >
-                <Button
-                  variant='contained'
-                  sx={{
-                    boxShadow: 'none',
-                    bgcolor: 'secondary.main',
-                    color: 'common.black',
-                    fontSize: 10,
-                    padding: '.5em 1em',
-                    borderRadius: 0,
-                    textTransform: 'none',
-                  }}
+              {location.pathname.slice(1) != AuthPath.LOG_IN && (
+                <Link
+                  color='common.black'
+                  variant='h6'
+                  underline='none'
+                  href={AuthPath.LOG_IN}
+                  style={rightLink}
                 >
-                  {'Log In'}
-                </Button>
-              </Link>
+                  <Button
+                    variant='contained'
+                    sx={{
+                      boxShadow: 'none',
+                      bgcolor: 'secondary.main',
+                      color: 'common.black',
+                      fontSize: 10,
+                      padding: '.5em 1em',
+                      borderRadius: 0,
+                      textTransform: 'none',
+                    }}
+                  >
+                    {BUTTON.LOG_IN}
+                  </Button>
+                </Link>
+              )}
             </Box>
             <Box>
               <Link
                 variant='h6'
                 underline='none'
-                href='/auth/register/'
+                href={AuthPath.REGISTER}
                 sx={{ ...rightLink, color: 'secondary.main' }}
               >
                 <Button
@@ -127,29 +136,12 @@ function AppNavBar(): JSX.Element {
                     },
                   }}
                 >
-                  {'Register'}
+                  {BUTTON.REGISTER}
                 </Button>
               </Link>
             </Box>
           </Box>
-          <Box
-            sx={{
-              display: 'flex',
-              justifyContent: 'flex-end',
-              alignItems: 'center',
-              width: '12%',
-              height: '100%',
-              position: 'absolute',
-              top: 0,
-              right: -20,
-              zIndex: -1,
-              bgcolor: 'secondary.main',
-              backgroundPosition: 'right',
-              backgroundSize: 'cover',
-              transform: 'scale(1.1) skew(30deg)',
-              transition: 'all 0.5s ease',
-            }}
-          ></Box>
+          <SBox />
         </SToolbar>
       </AppBar>
       <SDrawer anchor='left' open={sidebarOpen} onClose={handleSidebarClose}>
@@ -157,7 +149,7 @@ function AppNavBar(): JSX.Element {
           role='presentation'
           onClick={handleSidebarClose}
           onKeyDown={handleSidebarClose}
-          sx={{ width: 250, padding: '.5em .5em', mt: 5 }}
+          sx={{ width: 250, padding: '.5em .5em', mt: 7 }}
         >
           <List>
             <ListItemText

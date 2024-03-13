@@ -12,7 +12,11 @@ interface UseScreenSizeProps {
   size: 'sm' | 'md' | 'lg' | 'xl'
 }
 
-function useResponsive({ query, start, end }: UseResponsiveProps): boolean {
+export function useResponsive({
+  query,
+  start,
+  end,
+}: UseResponsiveProps): boolean {
   const theme = useTheme()
 
   const mediaUp = useMediaQuery(theme.breakpoints.up(start))
@@ -96,5 +100,3 @@ export const useScreenSize = ({ size }: UseScreenSizeProps): boolean => {
 
   return isSize
 }
-
-export default useResponsive

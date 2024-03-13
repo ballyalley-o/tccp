@@ -18,7 +18,6 @@ export const SToolbar = styled(MuiToolbar)(({ theme }) => ({
 }))
 
 // @dashboard -- drawer
-
 export const SDrawer = styled(Drawer)(({ theme }) => ({
   marginTop: '64px',
   zIndex: 1,
@@ -57,3 +56,21 @@ export const SBox = styled(Box)(({ theme }) => ({
   transform: 'scale(1.0) skew(30deg)',
   transition: 'all 0.5s ease',
 }))
+
+// @fallback -- page
+export const FallbackProps = {
+  maxWidth: 'sm' as const,
+  sx: {
+    height: '100vh',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+}
+
+export const FallbackTypographyProps = {
+  variant: 'h3' as const,
+  align: 'center' as const,
+  color: 'grey.400' as const,
+}

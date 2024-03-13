@@ -2,7 +2,7 @@ import { useState, Fragment } from 'react'
 import { Field, Form, FormSpy } from 'react-final-form'
 import { Box, Link, Grid } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
-import { Typography, AppNavBar, AppFooter } from 'component'
+import { Typography } from 'component'
 import {
   FormButton,
   RFTextField,
@@ -12,6 +12,7 @@ import {
   required,
 } from 'component/form'
 import { default as Logo } from 'component/logo'
+import { Meta } from 'component/meta'
 import withRoot from 'withroot'
 import { AuthPath } from 'route/path'
 import { LABEL } from 'constant'
@@ -40,7 +41,7 @@ function LogIn() {
 
   return (
     <Fragment>
-      {/* <AppNavBar /> */}
+      <Meta title={LABEL.LOG_IN} />
       <AppForm>
         <Fragment>
           <Grid container alignItems='center' flexDirection='column' flex={1}>

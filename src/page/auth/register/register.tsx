@@ -1,9 +1,9 @@
-import * as React from 'react'
+import { Fragment, useState } from 'react'
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
 import Link from '@mui/material/Link'
 import { Field, Form, FormSpy } from 'react-final-form'
-import { Typography, AppFooter, AppNavBar } from 'component'
+import { Typography } from 'component'
 import {
   AppForm,
   RFTextField,
@@ -12,10 +12,12 @@ import {
   email,
   required,
 } from 'component/form'
+import { AuthForgotPassword, AuthBranding } from 'section/auth'
 import withRoot from 'withroot'
+import { GLOBAL } from 'config'
 
 function Register() {
-  const [sent, setSent] = React.useState(false)
+  const [sent, setSent] = useState(false)
 
   const validate = (values: { [index: string]: string }) => {
     const errors = required(
@@ -38,19 +40,16 @@ function Register() {
   }
 
   return (
-    <React.Fragment>
-      <AppNavBar />
+    <Fragment>
       <AppForm>
-        <React.Fragment>
-          <Typography variant='h3' gutterBottom marked='center' align='center'>
-            Sign Up
-          </Typography>
+        <Fragment>
+          <AuthBranding />
           <Typography variant='body2' align='center'>
             <Link href='/premium-themes/onepirate/sign-in/' underline='always'>
               Already have an account?
             </Link>
           </Typography>
-        </React.Fragment>
+        </Fragment>
         <Form
           onSubmit={handleSubmit}
           subscription={{ submitting: true }}
@@ -129,9 +128,9 @@ function Register() {
             </Box>
           )}
         </Form>
+        <AuthForgotPassword />
       </AppForm>
-      <AppFooter />
-    </React.Fragment>
+    </Fragment>
   )
 }
 

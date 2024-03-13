@@ -1,12 +1,7 @@
 import { Helmet } from 'react-helmet-async'
+import { GLOBAL } from 'config'
 
-interface MetaProps {
-  title?: string
-  description?: string
-  keywords?: string
-}
-
-const Meta = ({ title, description, keywords }: MetaProps) => {
+const Meta = ({ title, description, keywords }: tccp.MetaProps) => {
   return (
     <Helmet>
       <title>{title}</title>
@@ -16,10 +11,6 @@ const Meta = ({ title, description, keywords }: MetaProps) => {
   )
 }
 
-Meta.defaultProps = {
-  title: 'The Code Coach Projct',
-  description: `The Code Coach Projct is a source of the well-known bootcaamps worldwide.`,
-  keywords: 'bootcamp, course, user, feedback, dev, code, coach,',
-}
+Meta.defaultProps = GLOBAL.APP_META
 
 export default Meta

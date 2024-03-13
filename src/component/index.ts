@@ -14,3 +14,5 @@ export { default as Button } from './button/button'
 export { default as Typography } from './typography/typography'
 // markdown
 export { default as Markdown } from './markdown/markdown'
+// meta
+export { default as Meta } from './meta/meta'

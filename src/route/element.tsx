@@ -17,4 +17,4 @@ export const Home = Loadable(() => import('page/home/home'))
 export const Dashboard = Loadable(() => import('page/dashboard/dashboard'))
 export const LogIn = Loadable(() => import('page/auth/log-in/log-in'))
 // fallback
-export const NotFoundPage = Loadable(() => import('page/fallback/not-found'))
+export const FallbackPage = Loadable(() => import('page/fallback/fallback'))

@@ -1,6 +1,12 @@
 import { CODE } from 'constant'
 import { Navigate, useRoutes } from 'react-router-dom'
-import { Home, Dashboard, LogIn, FallbackPage } from 'route/element'
+import {
+  Home,
+  Dashboard,
+  LogIn,
+  RegisterPage,
+  FallbackPage,
+} from 'route/element'
 import { FallbackPath } from 'route/path'
 import { PATH } from 'route/param'
 import { FALLBACK } from 'constant'
@@ -21,7 +27,7 @@ function Router() {
         },
         {
           path: PATH.REGISTER,
-          // element: <Register />,
+          element: <RegisterPage />,
         },
         {
           path: PATH.RESET_PASSWORD,

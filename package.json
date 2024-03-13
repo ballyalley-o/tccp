@@ -1,5 +1,6 @@
 {
   "name": "the-code-coach-projct",
+  "description": "Empower your coding journey with The Code Coach Project, your go-to hub for elite bootcamps globally. Level up your skills and accelerate your career with our comprehensive resources and expert guidance.",
   "private": true,
   "version": "0.0.0",
   "type": "module",

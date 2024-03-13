@@ -36,6 +36,12 @@ declare global {
     interface FallbackCodeProps {
       errorCode: tccp.FallbackProps['errorCode']
     }
+
+    interface MetaProps {
+      title?: string
+      description?: string
+      keywords?: string
+    }
   }
 }
 

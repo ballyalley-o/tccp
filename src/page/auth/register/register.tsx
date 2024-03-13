@@ -124,7 +124,7 @@ function Register() {
                 color='secondary'
                 fullWidth
               >
-                {submitting || sent ? 'In progress…' : 'Sign Up'}
+                {submitting || sent ? 'In progress…' : 'Register'}
               </FormButton>
             </Box>
           )}

@@ -1,7 +1,6 @@
 import { Fragment, useState } from 'react'
-import Box from '@mui/material/Box'
-import Grid from '@mui/material/Grid'
-import Link from '@mui/material/Link'
+import { Box, Grid, Link } from '@mui/material'
+import { useTheme } from '@mui/material/styles'
 import { Field, Form, FormSpy } from 'react-final-form'
 import { Typography } from 'component'
 import {
@@ -14,11 +13,13 @@ import {
 } from 'component/form'
 import { AuthForgotPassword, AuthBranding } from 'section/auth'
 import withRoot from 'withroot'
+import { AuthPath } from 'route/path'
 import { GLOBAL } from 'config'
+import { LABEL } from 'constant'
 
 function Register() {
   const [sent, setSent] = useState(false)
-
+  const theme = useTheme()
   const validate = (values: { [index: string]: string }) => {
     const errors = required(
       ['firstName', 'lastName', 'email', 'password'],
@@ -63,72 +64,150 @@ function Register() {
               sx={{ mt: 6 }}
             >
               <Grid container spacing={2}>
-                <Grid item xs={12} sm={6}>
+                <Grid item xs={6}>
+                  <Grid container spacing={2}>
+                    <Grid item xs={12} sm={6}>
+                      <Field
+                        autoFocus
+                        component={RFTextField}
+                        disabled={submitting || sent}
+                        autoComplete='given-name'
+                        fullWidth
+                        label='First name'
+                        name='firstName'
+                        required
+                      />
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                      <Field
+                        component={RFTextField}
+                        disabled={submitting || sent}
+                        autoComplete='family-name'
+                        fullWidth
+                        label='Last name'
+                        name='lastName'
+                        required
+                      />
+                    </Grid>
+                  </Grid>
                   <Field
-                    autoFocus
+                    autoComplete='email'
                     component={RFTextField}
                     disabled={submitting || sent}
-                    autoComplete='given-name'
                     fullWidth
-                    label='First name'
-                    name='firstName'
+                    label='Email'
+                    margin='normal'
+                    name='email'
                     required
                   />
-                </Grid>
-                <Grid item xs={12} sm={6}>
                   <Field
+                    fullWidth
                     component={RFTextField}
                     disabled={submitting || sent}
-                    autoComplete='family-name'
-                    fullWidth
-                    label='Last name'
-                    name='lastName'
                     required
+                    name='password'
+                    autoComplete='new-password'
+                    label='Password'
+                    type='password'
+                    margin='normal'
+                  />
+                  <Field
+                    fullWidth
+                    component={RFTextField}
+                    disabled={submitting || sent}
+                    required
+                    name='password'
+                    autoComplete='confirm-password'
+                    label='Confirm password'
+                    type='password'
+                    margin='normal'
                   />
                 </Grid>
+                <Grid item xs={6}>
+                  <Grid container spacing={2}>
+                    <Grid item xs={12} sm={6}>
+                      <Field
+                        autoFocus
+                        component={RFTextField}
+                        disabled={submitting || sent}
+                        autoComplete='given-name'
+                        fullWidth
+                        label='First name'
+                        name='firstName'
+                        required
+                      />
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                      <Field
+                        component={RFTextField}
+                        disabled={submitting || sent}
+                        autoComplete='family-name'
+                        fullWidth
+                        label='Last name'
+                        name='lastName'
+                        required
+                      />
+                    </Grid>
+                  </Grid>
+                  <Field
+                    autoComplete='email'
+                    component={RFTextField}
+                    disabled={submitting || sent}
+                    fullWidth
+                    label='Email'
+                    margin='normal'
+                    name='email'
+                    required
+                  />
+                  <Field
+                    fullWidth
+                    component={RFTextField}
+                    disabled={submitting || sent}
+                    required
+                    name='password'
+                    autoComplete='new-password'
+                    label='Password'
+                    type='password'
+                    margin='normal'
+                  />
+                  <Field
+                    fullWidth
+                    component={RFTextField}
+                    disabled={submitting || sent}
+                    required
+                    name='password'
+                    autoComplete='confirm-password'
+                    label='Confirm password'
+                    type='password'
+                    margin='normal'
+                  />
+                </Grid>
+                <FormSpy subscription={{ submitError: true }}>
+                  {({ submitError }) =>
+                    submitError ? (
+                      <FormFeedback error sx={{ mt: 2 }}>
+                        {submitError}
+                      </FormFeedback>
+                    ) : null
+                  }
+                </FormSpy>
+                <FormButton
+                  sx={{ mt: 3, mb: 2 }}
+                  disabled={submitting || sent}
+                  color='secondary'
+                  fullWidth
+                >
+                  {submitting || sent ? 'In progress…' : 'Register'}
+                </FormButton>
               </Grid>
-              <Field
-                autoComplete='email'
-                component={RFTextField}
-                disabled={submitting || sent}
-                fullWidth
-                label='Email'
-                margin='normal'
-                name='email'
-                required
-              />
-              <Field
-                fullWidth
-                component={RFTextField}
-                disabled={submitting || sent}
-                required
-                name='password'
-                autoComplete='new-password'
-                label='Password'
-                type='password'
-                margin='normal'
-              />
-              <FormSpy subscription={{ submitError: true }}>
-                {({ submitError }) =>
-                  submitError ? (
-                    <FormFeedback error sx={{ mt: 2 }}>
-                      {submitError}
-                    </FormFeedback>
-                  ) : null
-                }
-              </FormSpy>
-              <FormButton
-                sx={{ mt: 3, mb: 2 }}
-                disabled={submitting || sent}
-                color='secondary'
-                fullWidth
-              >
-                {submitting || sent ? 'In progress…' : 'Register'}
-              </FormButton>
             </Box>
           )}
         </Form>
-        <AuthForgotPassword />
+        <AuthForgotPassword
+          label={LABEL.ALREADY_MEMBER}
+          labelSub={LABEL.LOGIN_Sub}
+          href={AuthPath.LOG_IN}
+        />
       </AppForm>
     </Fragment>
   )

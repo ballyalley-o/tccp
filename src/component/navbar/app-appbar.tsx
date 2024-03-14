@@ -100,9 +100,9 @@ function AppNavBar(): JSX.Element {
                     variant='contained'
                     sx={{
                       boxShadow: 'none',
-                      bgcolor: 'secondary.main',
+                      bgcolor: 'transparent',
                       color: 'common.black',
-                      fontSize: 10,
+                      fontSize: 12,
                       padding: '.5em 1em',
                       borderRadius: 0,
                       textTransform: 'none',

@@ -221,7 +221,7 @@ function Register() {
                     }
                   </FormSpy>
                   <FormButton
-                    sx={{ mt: 3, mb: 2 }}
+                    sx={{ mt: 3, mb: 2, fontSize: 14 }}
                     disabled={submitting || sent}
                     color='secondary'
                     fullWidth
@@ -275,7 +275,7 @@ function Register() {
                     <MenuItem value='role2'>Role 2</MenuItem>
                     <MenuItem value='role3'>Role 3</MenuItem>
                   </TextField>
-                  <Grid item lg={6}>
+                  <Grid item lg={12}>
                     <UploadField />
                   </Grid>
                 </Grid>

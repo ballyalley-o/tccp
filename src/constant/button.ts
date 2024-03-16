@@ -67,6 +67,7 @@ enum BUTTON {
   ADD_MESSAGE = 'Add Message',
   LEARN = 'Learn',
   // @form
+  UPLOADED_AVATAR = 'Uploaded',
   UPLOAD_AVATAR = 'Upload Avatar',
   CLEAR_PREVIEW = 'Clear Preview',
 

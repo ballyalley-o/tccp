@@ -1,5 +1,6 @@
 import { Suspense, lazy, FC, ComponentType } from 'react'
 import { LoadingScreen } from 'component/loading-screen'
+import { MotionLazyContainer } from 'component/motion'
 
 const Loadable = (
   Component: () => Promise<{ default: ComponentType<any> }>
@@ -8,7 +9,9 @@ const Loadable = (
 
   return (props: any) => (
     <Suspense fallback={<LoadingScreen />}>
-      <LazyComponent {...props} />
+      <MotionLazyContainer>
+        <LazyComponent {...props} />
+      </MotionLazyContainer>
     </Suspense>
   )
 }

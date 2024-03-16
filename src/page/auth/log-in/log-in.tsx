@@ -11,8 +11,9 @@ import {
   email,
   required,
 } from 'component/form'
-import { default as Logo } from 'component/logo'
+import { Logo } from 'component/logo'
 import { Meta } from 'component/meta'
+import { AuthForgotPassword } from 'section/auth'
 import withRoot from 'withroot'
 import { AuthPath } from 'route/path'
 import { LABEL } from 'constant'
@@ -116,40 +117,14 @@ function LogIn() {
                 {/* TODO: loading button */}
                 {submitting || sent ? 'In progress…' : 'Log In'}
               </FormButton>
-              <Typography variant='subtitle2' align='center' color='grey.500'>
-                {'Not a member yet? '}
-                <Link
-                  href={AuthPath.REGISTER}
-                  align='center'
-                  sx={{
-                    color: theme.palette.secondary.main,
-                    '&:hover': {
-                      color: theme.palette.common.white,
-                      textDecoration: 'none',
-                    },
-                  }}
-                >
-                  {LABEL.REGISTER_Sub}
-                </Link>
-              </Typography>
             </Box>
           )}
         </Form>
-        <Typography variant='subtitle2' align='center'>
-          <Link
-            underline='always'
-            href={AuthPath.FORGOT_PASSWORD}
-            sx={{
-              color: theme.palette.grey[500],
-              '&:hover': {
-                color: theme.palette.common.white,
-                textDecoration: 'none',
-              },
-            }}
-          >
-            {LABEL.FORGOT_PASSWORD}
-          </Link>
-        </Typography>
+        <AuthForgotPassword
+          href={AuthPath.FORGOT_PASSWORD}
+          label={LABEL.NOT_A_MEMBER}
+          labelSub={LABEL.REGISTER_Sub}
+        />
       </AppForm>
     </Fragment>
   )

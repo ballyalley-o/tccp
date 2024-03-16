@@ -7,7 +7,6 @@ import {
   List,
   ListItemText,
   IconButton,
-  Container,
   Typography,
   Divider,
 } from '@mui/material'
@@ -15,13 +14,18 @@ import { useTheme, styled } from '@mui/material/styles'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import ExpandLessIcon from '@mui/icons-material/ExpandLess'
 import { Button } from 'component'
-
 import AppBar from './appbar'
 import { SToolbar, SDrawer, SListItem, SBox } from 'theme/style'
-import { default as Logo } from 'component/logo'
+import { Logo } from 'component/logo'
 import { GLOBAL } from 'config'
 import { BUTTON } from 'constant'
 import { RootPath, AuthPath } from 'route/path'
+import {
+  MotionLazyContainer,
+  MotionContainer,
+  MotionText,
+  varFade,
+} from 'component/motion'
 
 const rightLink = {
   fontSize: 12,
@@ -42,7 +46,7 @@ function AppNavBar(): JSX.Element {
     setSidebarOpen(false)
   }
   return (
-    <m.div>
+    <MotionLazyContainer>
       <AppBar position='fixed'>
         <SToolbar sx={{ justifyContent: 'space-between' }}>
           <Logo
@@ -50,18 +54,31 @@ function AppNavBar(): JSX.Element {
             onMouseEnter={() => setIsLogoHovered(true)}
             onMouseLeave={() => setIsLogoHovered(false)}
           />
+
           <Link
-            variant='h6'
+            variant='body1'
             underline='none'
             href={RootPath.DASHBOARD}
             sx={{
-              fontSize: 14,
               color: isLogoHovered ? 'grey.600' : 'common.black',
-              animation: '0.5s',
+              animation: isLogoHovered ? '0.5s' : 'none',
               ease: 'ease-in-out',
             }}
           >
-            {GLOBAL.APP_NAME}
+            {isLogoHovered ? (
+              <MotionText
+                text={GLOBAL.APP_NAME}
+                sx={{ typography: 'body1' }}
+                variants={
+                  varFade({
+                    durationIn: 0.9,
+                    delay: 0.5,
+                  }).inUp
+                }
+              />
+            ) : (
+              GLOBAL.APP_NAME
+            )}
           </Link>
           <m.div>
             <Box sx={{ bgcolor: 'secondary.main', ml: '2em' }}>
@@ -100,9 +117,9 @@ function AppNavBar(): JSX.Element {
                     variant='contained'
                     sx={{
                       boxShadow: 'none',
-                      bgcolor: 'secondary.main',
+                      bgcolor: 'transparent',
                       color: 'common.black',
-                      fontSize: 10,
+                      fontSize: 12,
                       padding: '.5em 1em',
                       borderRadius: 0,
                       textTransform: 'none',
@@ -273,7 +290,7 @@ function AppNavBar(): JSX.Element {
           </List>
         </Box>
       </SDrawer>
-    </m.div>
+    </MotionLazyContainer>
   )
 }
 

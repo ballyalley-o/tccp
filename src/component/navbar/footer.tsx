@@ -124,7 +124,7 @@ function AppFooter() {
                 }}
                 sx={{
                   mt: 1,
-                  width: 150,
+                  width: 200,
                   color: 'common.white',
                   '&:before': {
                     bgcolor: 'secondary.main',

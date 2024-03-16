@@ -1,9 +1,9 @@
-import { useState, ChangeEventHandler, SetStateAction } from 'react'
+import { useState, ChangeEventHandler } from 'react'
 import AvatarEditor from 'react-avatar-editor'
 import { Button, Grid, IconButton, Dialog, DialogContent } from '@mui/material'
-import { BUTTON } from 'constant'
 import { ICON_WEB_NAME } from 'config'
 import { useIcon } from 'hook'
+import { BUTTON } from 'constant'
 
 const UploadField = () => {
   const [file, setFile] = useState<File | null>(null)

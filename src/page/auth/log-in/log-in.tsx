@@ -121,7 +121,7 @@ function LogIn() {
           )}
         </Form>
         <AuthForgotPassword
-          href={AuthPath.FORGOT_PASSWORD}
+          href={AuthPath.REGISTER}
           label={LABEL.NOT_A_MEMBER}
           labelSub={LABEL.REGISTER_Sub}
         />

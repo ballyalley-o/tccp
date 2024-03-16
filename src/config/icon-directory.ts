@@ -19,7 +19,7 @@ function _getWebIcon(icon: string) {
 // add icons that are from MDI
 const ICON_WEB = {
   ALERT_OUTLINE: _getWebIcon('alert-triangle-outline'),
-  CLOSE: _getWebIcon('close'),
+  CLOSE: _getWebIcon('close-fill'),
   CONTRAST_BOX: _getWebIcon('contrast-box'),
 
   EYE_OFF: _getWebIcon('eye-off-outline'),
@@ -30,6 +30,7 @@ const ICON_WEB = {
   FULLSCREEN_EXIT: _getWebIcon('fullscreen-exit'),
   REFRESH: _getWebIcon('refresh'),
   SETTING: _getWebIcon('cog'),
+  UPLOAD: _getWebIcon('upload-fill'),
 }
 
 // add icons that are saved locally
@@ -54,6 +55,7 @@ export enum ICON_WEB_NAME {
   REFRESH = 'REFRESH',
 
   SETTING = 'SETTING',
+  UPLOAD = 'UPLOAD',
 }
 
 export enum ICON_LOC_NAME {

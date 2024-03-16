@@ -1,6 +1,6 @@
 <br/>
 
-![LOGO](https://i.ibb.co/RjJ0hXX/Screenshot-2024-02-14-at-11-47-06-PM.png)
+![LOGO](https://i.ibb.co/9ZLGFVW/tccp-client.png)
 
 # The CodeCoach Projct
 

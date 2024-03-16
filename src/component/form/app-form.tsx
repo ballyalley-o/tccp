@@ -1,12 +1,18 @@
-import * as React from 'react'
-import Container from '@mui/material/Container'
-import Box from '@mui/material/Box'
+import { HTMLAttributes, ReactNode } from 'react'
+import { Container, Box, ContainerProps } from '@mui/material'
 import { Paper } from 'component/paper'
 import { ASSET } from 'config'
 
-export default function AppForm(props: React.HTMLAttributes<HTMLDivElement>) {
-  const { children } = props
+interface AppFormProps extends HTMLAttributes<HTMLDivElement> {
+  size?: ContainerProps['maxWidth']
+  children: ReactNode
+}
 
+export default function AppForm({
+  size = 'sm',
+  children,
+  ...props
+}: AppFormProps) {
   return (
     <Box
       sx={{
@@ -18,7 +24,7 @@ export default function AppForm(props: React.HTMLAttributes<HTMLDivElement>) {
         color: 'common.white',
       }}
     >
-      <Container maxWidth='sm'>
+      <Container maxWidth={size}>
         <Box sx={{ mt: 20, mb: 12, height: '100vh', alignContent: 'center' }}>
           <Paper
             background='dark'

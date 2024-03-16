@@ -82,6 +82,9 @@ const theme = {
     },
     mode: 'light',
   },
+  shape: {
+    borderRadius: 2,
+  },
   typography: {
     ...rawTheme.typography,
     fontHeader,

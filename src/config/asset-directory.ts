@@ -14,8 +14,8 @@ const _element = (image: string) => {
   return `/asset/element/${image}`
 }
 
-const _octicon = (svg: string) => {
-  return `/asset/octicon/${svg}`
+const _svg = (svg: string) => {
+  return `/asset/svg/${svg}`
 }
 
 const ASSET = {
@@ -33,8 +33,8 @@ const ASSET = {
   // element
   ARROW_DOWN: _element('arrow-down.svg'),
   // octicon
-  HUBOT: _octicon('hubot.svg'),
-  ALERT: _octicon('alert.svg'),
+  HUBOT: _svg('hubot.svg'),
+  ALERT: _svg('alert.svg'),
 }
 
 export default ASSET

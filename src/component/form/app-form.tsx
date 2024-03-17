@@ -6,25 +6,23 @@ import { ASSET } from 'config'
 interface AppFormProps extends HTMLAttributes<HTMLDivElement> {
   size?: ContainerProps['maxWidth']
   children: ReactNode
+  isLogin?: boolean
 }
 
-export default function AppForm({
-  size = 'sm',
-  children,
-  ...props
-}: AppFormProps) {
+export default function AppForm({ isLogin, size = 'sm', children, ...props }: AppFormProps) {
   return (
     <Box
       sx={{
         display: 'flex',
-        backgroundImage: `url(${ASSET.LINE_BG})`,
+        backgroundImage: `url(${ASSET.PATTERN_BG})`,
         backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
         margin: 'auto',
         fontSize: '1.2rem',
         color: 'common.white',
       }}
     >
-      <Container maxWidth={size}>
+      <Container maxWidth={size} sx={{ width: isLogin ? 500 : 'auto' }}>
         <Box sx={{ mt: 20, mb: 12, height: '100vh', alignContent: 'center' }}>
           <Paper
             background='dark'

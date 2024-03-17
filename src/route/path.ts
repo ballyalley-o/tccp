@@ -1,5 +1,5 @@
-import { RESPONSE } from 'constant'
 import conNex from 'util/connex'
+import { RESPONSE } from 'constant'
 import { PATH } from './param'
 
 export class RootPath {
@@ -22,6 +22,15 @@ export class AuthPath {
   static FORGOT_PASSWORD = conNex(PATH.AUTH, PATH.FORGOT_PASSWORD)
   static RESET_PASSWORD = conNex(PATH.AUTH, PATH.RESET_PASSWORD)
   static RESET_TOKEN = conNex(PATH.AUTH, PATH.RESET_TOKEN)
+}
+
+export class BootcampPath {
+  constructor() {
+    throw new Error(RESPONSE.error.NotInstance)
+  }
+
+  static BOOTCAMP = PATH.BOOTCAMP
+  static BOOTCAMP_ID = conNex(PATH.BOOTCAMP, PATH.ID)
 }
 
 export class FallbackPath {

@@ -2,15 +2,9 @@ import { createTheme } from '@mui/material/styles'
 import { green, grey, red } from '@mui/material/colors'
 import { Theme } from '@mui/material/styles'
 import ComponentOverride from './override'
+import { ASSET } from 'config'
 
-export const COLORS = [
-  'primary',
-  'secondary',
-  'info',
-  'success',
-  'warning',
-  'error',
-]
+export const COLORS = ['primary', 'secondary', 'info', 'success', 'warning', 'error']
 
 const rawTheme = createTheme({
   palette: {
@@ -81,6 +75,7 @@ const theme = {
       white: '#FFFFFF',
     },
     mode: 'light',
+    backgroundImage: ASSET.PATTERN_BG,
   },
   shape: {
     borderRadius: 2,

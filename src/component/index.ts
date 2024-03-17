@@ -2,8 +2,8 @@ export { default as Navbar } from './navbar/navbar'
 export { default as AppNavBar } from './navbar/app-appbar'
 export { default as AppFooter } from './navbar/footer'
 // textfield
-export { default as TextField } from './textfield/textfield'
-export type { OnePirateTextFieldProps } from './textfield/textfield'
+export { default as TextField } from './text-field/text-field'
+export type { OnePirateTextFieldProps } from './text-field/text-field'
 // paper
 export { default as Paper } from './paper/paper'
 // snackbar

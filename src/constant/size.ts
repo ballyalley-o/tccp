@@ -19,3 +19,11 @@ export type SizeType = {
   lg: 'lg'
   xl: 'xl'
 }
+
+export const SIZE_TYPE: SizeType = {
+  xs: 'xs',
+  sm: 'sm',
+  md: 'md',
+  lg: 'lg',
+  xl: 'xl',
+}

@@ -46,12 +46,7 @@ function DashboardBootcampRundown() {
       >
         <Grid container sx={{ mb: 5 }}>
           <Grid item alignItems='flex-start'>
-            <Typography
-              variant='h3'
-              marked='left'
-              component='h2'
-              fontWeight='medium'
-            >
+            <Typography variant='h3' marked='left' component='h2' fontWeight='medium'>
               New Bootcamps
             </Typography>
           </Grid>
@@ -124,14 +119,7 @@ function DashboardBootcampRundown() {
           />
         </m.div>
         <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-          <Button
-            color='secondary'
-            size='small'
-            variant='contained'
-            component='a'
-            href='/premium-themes/onepirate/sign-up/'
-            sx={{ mt: 8 }}
-          >
+          <Button color='secondary' size='small' variant='contained' component='a' href='/premium-themes/onepirate/sign-up/' sx={{ mt: 8 }}>
             Start your Application
           </Button>
         </Box>

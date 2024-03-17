@@ -1,10 +1,7 @@
-import * as React from 'react'
-import { styled } from '@mui/material/styles'
-import Box from '@mui/material/Box'
-import ButtonBase from '@mui/material/ButtonBase'
-import Container from '@mui/material/Container'
+import { Box, ButtonBase, Container } from '@mui/material'
 import { Typography } from 'component/typography'
 import { image as imageArr } from '_mock'
+import { styled } from '@mui/material/styles'
 
 const ImageBackdrop = styled('div')(({ theme }) => ({
   position: 'absolute',
@@ -54,11 +51,11 @@ const ImageIconButton = styled(ButtonBase)(({ theme }) => ({
   },
 }))
 
-function ProductCategories() {
+function Bootcamp() {
   return (
     <Container component='section' sx={{ mt: 8, mb: 4 }}>
       <Typography variant='h4' marked='center' align='center' component='h2'>
-        For all tastes and all desires
+        Worldclass Bootcamps Worldwide
       </Typography>
       <Box sx={{ mt: 8, display: 'flex', flexWrap: 'wrap' }}>
         {imageArr.map((image) => (
@@ -94,12 +91,7 @@ function ProductCategories() {
                 color: 'common.white',
               }}
             >
-              <Typography
-                component='h3'
-                variant='h6'
-                color='inherit'
-                className='imageTitle'
-              >
+              <Typography component='h3' variant='h6' color='inherit' className='imageTitle'>
                 {image.title}
                 <div className='imageMarked' />
               </Typography>
@@ -111,4 +103,4 @@ function ProductCategories() {
   )
 }
 
-export default ProductCategories
+export default Bootcamp

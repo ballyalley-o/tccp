@@ -1,0 +1,37 @@
+﻿<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2000 1500'>
+    <rect fill='#000000' width='2000' height='1500' />
+    <defs>
+        <ellipse fill='none' stroke-width='200' stroke-opacity='1' id='a' rx='600' ry='450' />
+    </defs>
+    <g transform='' style='transform-origin:center'>
+        <g transform='' style='transform-origin:center'>
+            <g transform='rotate(-76.8 0 0)' style='transform-origin:center'>
+                <g transform='translate(1000 750)'>
+                    <use stroke='#27002B' href='#a' transform='rotate(-28.8 0 0) scale(0.712)' />
+                    <use stroke='#340331' href='#a' transform='rotate(-24 0 0) scale(0.76)' />
+                    <use stroke='#430436' href='#a' transform='rotate(-19.2 0 0) scale(0.808)' />
+                    <use stroke='#51063b' href='#a' transform='rotate(-14.4 0 0) scale(0.856)' />
+                    <use stroke='#60093f' href='#a' transform='rotate(-9.6 0 0) scale(0.904)' />
+                    <use stroke='#6f0d42' href='#a' transform='rotate(-4.8 0 0) scale(0.952)' />
+                    <use stroke='#7e1344' href='#a' transform='' />
+                    <use stroke='#8c1a45' href='#a' transform='rotate(4.8 0 0) scale(1.048)' />
+                    <use stroke='#9a2145' href='#a' transform='rotate(9.6 0 0) scale(1.096)' />
+                    <use stroke='#a82a45' href='#a' transform='rotate(14.4 0 0) scale(1.144)' />
+                    <use stroke='#b53344' href='#a' transform='rotate(19.2 0 0) scale(1.192)' />
+                    <use stroke='#c23e42' href='#a' transform='rotate(24 0 0) scale(1.24)' />
+                    <use stroke='#cd493f' href='#a' transform='rotate(28.8 0 0) scale(1.288)' />
+                    <use stroke='#d8553c' href='#a' transform='rotate(33.6 0 0) scale(1.336)' />
+                    <use stroke='#e16138' href='#a' transform='rotate(38.4 0 0) scale(1.384)' />
+                    <use stroke='#e96e33' href='#a' transform='rotate(43.2 0 0) scale(1.432)' />
+                    <use stroke='#f17c2e' href='#a' transform='rotate(48 0 0) scale(1.48)' />
+                    <use stroke='#f68a27' href='#a' transform='rotate(52.8 0 0) scale(1.528)' />
+                    <use stroke='#fb9820' href='#a' transform='rotate(57.6 0 0) scale(1.576)' />
+                    <use stroke='#fea717' href='#a' transform='rotate(62.4 0 0) scale(1.624)' />
+                    <use stroke='#ffb60d' href='#a' transform='rotate(67.2 0 0) scale(1.672)' />
+                    <use stroke='#ffc603' href='#a' transform='rotate(72 0 0) scale(1.72)' />
+                    <use stroke='#FFD500' href='#a' transform='rotate(76.8 0 0) scale(1.768)' />
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

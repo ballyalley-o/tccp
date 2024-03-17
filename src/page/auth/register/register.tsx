@@ -1,32 +1,23 @@
 import { useState } from 'react'
-import {
-  Box,
-  Grid,
-  MenuItem,
-  IconButton,
-  InputAdornment,
-  Button,
-  Input,
-} from '@mui/material'
+import { Box, Grid, MenuItem, IconButton, InputAdornment } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
 import { Field, Form, FormSpy } from 'react-final-form'
 import { MotionContainer } from 'component/motion'
 import {
   AppForm,
-  RFTextField,
   FormButton,
   FormFeedback,
   email,
   required,
 } from 'component/form'
 import { TextField } from 'component'
-import { UploadField } from 'component/uploadfield'
-import { AuthForgotPassword, AuthBranding } from 'section/auth'
+import { UploadField } from 'component/upload-field'
+import { AuthForgotPassword, AuthBranding, FORM } from 'section/auth'
 import { AuthPath } from 'route/path'
-import withRoot from 'withroot'
-import { LABEL } from 'constant'
+import { KEY, LABEL, BUTTON } from 'constant'
 import { useIcon } from 'hook'
-import { ICON_WEB_NAME } from 'config'
+import { ICON_WEB_NAME, APP_FIELD, ICON_LOC_NAME } from 'config'
+import withRoot from 'withroot'
 
 function Register() {
   const [sent, setSent] = useState(false)
@@ -35,10 +26,17 @@ function Register() {
   const theme = useTheme()
   const { Icon: WebIcon, iconSrc: eyeHideSrc } = useIcon(ICON_WEB_NAME.EYE_HIDE)
   const { iconSrc: eyeOffSrc } = useIcon(ICON_WEB_NAME.EYE_OFF)
+  const { Icon: LocIcon, iconSrc: githubSrc } = useIcon(ICON_LOC_NAME.GITHUB)
 
   const validate = (values: { [index: string]: string }) => {
     const errors = required(
-      ['firstName', 'lastName', 'email', 'password'],
+      [
+        KEY.FIRST_NAME,
+        KEY.LAST_NAME,
+        KEY.EMAIL,
+        KEY.PASSWORD,
+        KEY.CONFIRM_PASSWORD,
+      ],
       values
     )
 
@@ -80,56 +78,27 @@ function Register() {
               noValidate
               sx={{ mt: 6 }}
             >
-              <Grid container spacing={2}>
+              <Grid container spacing={4}>
                 <Grid item xs={6}>
                   <Grid container spacing={2}>
                     <Grid item xs={12} sm={6}>
                       <Field
-                        autoFocus
-                        variant='outlined'
-                        component={RFTextField}
                         disabled={submitting || sent}
-                        autoComplete='given-name'
-                        fullWidth
-                        label='First name'
-                        name='firstName'
-                        required
-                        sx={{ height: 90 }}
+                        {...FORM.FIRST_NAME}
                       />
                     </Grid>
                     <Grid item xs={12} sm={6}>
                       <Field
-                        component={RFTextField}
                         disabled={submitting || sent}
-                        autoComplete='family-name'
-                        fullWidth
-                        label='Last name'
-                        name='lastName'
-                        required
-                        sx={{ height: 90 }}
+                        {...FORM.LAST_NAME}
                       />
                     </Grid>
                   </Grid>
+                  <Field disabled={submitting || sent} {...FORM.EMAIL} />
                   <Field
-                    autoComplete='email'
-                    component={RFTextField}
                     disabled={submitting || sent}
-                    fullWidth
-                    label='Email'
-                    margin='normal'
-                    name='email'
-                    required
-                    sx={{ height: 90 }}
-                  />
-                  <Field
-                    fullWidth
-                    component={RFTextField}
-                    disabled={submitting || sent}
-                    required
-                    name='password'
-                    autoComplete='new-password'
-                    label='Password'
-                    type={showPassword ? 'text' : 'password'}
+                    {...FORM.PASSWORD}
+                    type={showPassword ? KEY.TEXT : KEY.PASSWORD}
                     InputProps={{
                       endAdornment: (
                         <InputAdornment
@@ -157,23 +126,17 @@ function Register() {
                         </InputAdornment>
                       ),
                     }}
-                    margin='normal'
                     sx={{
-                      height: 90,
+                      height: APP_FIELD.HEIGHT,
                       '&:focus': {
                         color: 'primary.main',
                       },
                     }}
                   />
                   <Field
-                    fullWidth
-                    component={RFTextField}
                     disabled={submitting || sent}
-                    required
-                    name='confirm password'
-                    autoComplete='confirm-password'
-                    label='Confirm password'
-                    type={showConfirmPassword ? 'text' : 'password'}
+                    {...FORM.CONFIRM_PASSWORD}
+                    type={showConfirmPassword ? KEY.TEXT : KEY.PASSWORD}
                     InputProps={{
                       endAdornment: (
                         <InputAdornment
@@ -203,9 +166,8 @@ function Register() {
                         </InputAdornment>
                       ),
                     }}
-                    margin='normal'
                     sx={{
-                      height: 90,
+                      height: APP_FIELD.HEIGHT,
                       '&:focus': {
                         color: 'primary.main',
                       },
@@ -226,7 +188,7 @@ function Register() {
                     color='secondary'
                     fullWidth
                   >
-                    {submitting || sent ? 'In progress…' : 'Register'}
+                    {submitting || sent ? BUTTON.IN_PROGRESS : BUTTON.REGISTER}
                   </FormButton>
                   <AuthForgotPassword
                     label={LABEL.ALREADY_MEMBER}
@@ -236,44 +198,29 @@ function Register() {
                 </Grid>
                 <Grid item xs={6}>
                   <Field
-                    autoFocus
-                    component={RFTextField}
                     disabled={submitting || sent}
-                    autoComplete='given-name'
-                    fullWidth
-                    label='Github username'
-                    name='username'
-                    required
-                    sx={{ height: 90 }}
+                    {...FORM.GITHUB_USERNAME}
+                    InputProps={{
+                      startAdornment: (
+                        <InputAdornment position='start'>
+                          <LocIcon
+                            icon={githubSrc}
+                            color={theme.palette.common.white}
+                          />
+                        </InputAdornment>
+                      ),
+                    }}
                   />
 
-                  <Field
-                    autoComplete='location'
-                    component={RFTextField}
-                    disabled={submitting || sent}
-                    fullWidth
-                    label='Location'
-                    margin='normal'
-                    name='location'
-                    sx={{ height: 90 }}
-                  />
-                  <TextField
-                    select
-                    size='medium'
-                    variant='standard'
-                    label='Role'
-                    fullWidth
-                    margin='normal'
-                    SelectProps={{
-                      native: false,
-                    }}
-                  >
+                  <Field disabled={submitting || sent} {...FORM.LOCATION} />
+
+                  <TextField margin='normal' variant='standard' {...FORM.ROLE}>
                     <MenuItem value='' disabled>
-                      Select your role
+                      {LABEL.SELECT_ROLE}
                     </MenuItem>
-                    <MenuItem value='role1'>Role 1</MenuItem>
-                    <MenuItem value='role2'>Role 2</MenuItem>
-                    <MenuItem value='role3'>Role 3</MenuItem>
+                    <MenuItem value={KEY.STUDENT}>{LABEL.STUDENT}</MenuItem>
+                    <MenuItem value={KEY.TRAINER}>{LABEL.TRAINER}</MenuItem>
+                    <MenuItem value={KEY.ADMIN}>{LABEL.ADMIN}</MenuItem>
                   </TextField>
                   <Grid item lg={12}>
                     <UploadField />

@@ -43,6 +43,11 @@ declare global {
       keywords?: string
     }
   }
+
+  interface FormFieldProps {
+    submitting: boolean
+    sent: boolean
+  }
 }
 
 export = tccp

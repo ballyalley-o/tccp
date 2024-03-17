@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react'
+import { ComponentType, useState, useEffect } from 'react'
 
-function defer<P>(Component: React.ComponentType<P>) {
+function defer<P>(Component: ComponentType<P>) {
   function Defer(props: P) {
     const [mounted, setMounted] = useState(false)
 

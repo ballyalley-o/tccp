@@ -11,3 +11,7 @@ export const RADIUS = {
     borderRadius: 2,
   },
 }
+
+export enum APP_FIELD {
+  HEIGHT = 90,
+}

@@ -65,6 +65,8 @@ enum BUTTON {
   ADD_COMMENT = 'Add Comment',
   ADD_REPLY = 'Add Reply',
   ADD_MESSAGE = 'Add Message',
+
+  IN_PROGRESS = 'In progress…',
   LEARN = 'Learn',
   // @form
   UPLOADED_AVATAR = 'Uploaded',

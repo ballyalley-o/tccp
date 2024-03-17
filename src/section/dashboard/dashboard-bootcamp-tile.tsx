@@ -1,15 +1,7 @@
-import {
-  Card,
-  CardContent,
-  CardMedia,
-  CardHeader,
-  Typography,
-  Box,
-  Chip,
-} from '@mui/material'
+import { Card, CardContent, CardMedia, CardHeader, Typography, Box, Chip } from '@mui/material'
 import { useTheme, styled } from '@mui/material/styles'
 
-interface CourseTileProps {
+interface BootcampTileProps {
   title: string
   institution: string
   badge: string
@@ -26,13 +18,7 @@ const SCard = styled(Card)(({ theme }) => ({
   boxShadow: 'none',
 }))
 
-const BootcampTile = ({
-  title,
-  institution,
-  badge,
-  imageUrl,
-  chips,
-}: CourseTileProps) => {
+const BootcampTile = ({ title, institution, badge, imageUrl, chips }: BootcampTileProps) => {
   const theme = useTheme()
   return (
     <SCard>

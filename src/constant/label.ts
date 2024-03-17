@@ -10,6 +10,12 @@ const LABEL = {
   LOGIN_Sub: 'Log in here ',
   REGISTER_Sub: 'Register for free',
   FORGOT_PASSWORD: 'Forgot password?',
+
+  SELECT_ROLE: 'Select your role',
+
+  STUDENT: 'Student',
+  TRAINER: 'Trainer',
+  ADMIN: 'Admin',
 }
 
 export default LABEL

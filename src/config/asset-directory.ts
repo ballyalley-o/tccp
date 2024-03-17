@@ -20,16 +20,18 @@ const _svg = (svg: string) => {
 
 const ASSET = {
   // bg
-  _BG_TEMP:
-    'https://images.pexels.com/photos/9672971/pexels-photo-9672971.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+  _BG_TEMP: 'https://images.pexels.com/photos/9672971/pexels-photo-9672971.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
   BRAND: _asset('logo.png'),
   BRAND_ALT: _asset('favicon.ico'),
   LINE_BG: _background('lines.png'),
+  PATTERN_BG: _background('pattern.svg'),
+  ECLIPSE_BG: _background('eclipse.svg'),
   FB_ICON: _social('facebook.svg'),
   GOOGLE_ICON: _social('google.plus.svg'),
   GITHUB_ICON: _social('github.svg'),
   EDX_ICON: _social('edx.svg'),
   FCC_ICON: _social('free-code-camp.svg'),
+  TCCP_ICON: _svg('tccp.svg'),
   // element
   ARROW_DOWN: _element('arrow-down.svg'),
   // octicon

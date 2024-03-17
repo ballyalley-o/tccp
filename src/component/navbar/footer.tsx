@@ -2,7 +2,7 @@ import { m } from 'framer-motion'
 import { Fragment } from 'react'
 import { Grid, Link, Box, Container } from '@mui/material'
 import { Typography } from 'component/typography'
-import { TextField } from 'component/text-field'
+import { TextField } from 'component/form/text-field'
 import { GLOBAL, ASSET } from 'config'
 import { SOCIAL, LANG } from 'constant'
 

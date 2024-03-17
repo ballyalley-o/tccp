@@ -9,7 +9,7 @@
  */
 
 function _getIcon(icon: string) {
-  return `/asset/icon/${icon}.svg`
+  return `/asset/svg/${icon}.svg`
 }
 
 function _getWebIcon(icon: string) {
@@ -33,8 +33,10 @@ const ICON_WEB = {
   UPLOAD: _getWebIcon('upload-fill'),
 }
 
-// add icons that are saved locally
+// note: this is local icons
 const ICON_LOC = {
+  GITHUB: _getIcon('github'),
+  // not implemented yet
   EXPAND: _getIcon('expand-outline'),
   MODE_LIGHT: _getIcon('sun'),
   MODE_DARK: _getIcon('moon'),
@@ -60,6 +62,8 @@ export enum ICON_WEB_NAME {
 
 export enum ICON_LOC_NAME {
   // @local
+  GITHUB = 'GITHUB',
+
   EXPAND = 'EXPAND',
   MODE_LIGHT = 'MODE_LIGHT',
   MODE_DARK = 'MODE_DARK',

@@ -1,3 +1,4 @@
+import { FORM } from 'section/auth/constant'
 enum KEY {
   // @form
   FIRST_NAME = 'firstName',
@@ -12,7 +13,9 @@ enum KEY {
   STUDENT = 'student',
   TRAINER = 'trainer',
   ADMIN = 'admin',
-  //important keys
+  // default keys
+  FORM = 'form',
+  START = 'start',
   TEXT = 'text',
   AUTO = 'auto',
   END = 'end',

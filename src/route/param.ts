@@ -1,6 +1,10 @@
 enum PATH {
   ROOT = '/',
+  ID = ':id',
   DASHBOARD = 'dashboard',
+  // @bootcamp
+  BOOTCAMP = 'bootcamp',
+
   // @auth
   AUTH = 'auth',
   LOG_IN = 'log-in',

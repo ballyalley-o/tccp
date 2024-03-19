@@ -11,17 +11,17 @@ const rawTheme = createTheme({
     primary: {
       light: '#D3D3D3',
       main: '#000009',
-      dark: '#1e1e1f',
+      dark: '#1E1E1f',
     },
     secondary: {
-      light: '#fff5f8',
+      light: '#FFF5F8',
       main: '#FFD500',
-      dark: '#e62958',
+      dark: '#E62958',
     },
     warning: {
-      light: '#fff3e0',
-      main: '#ffc071',
-      dark: '#ffb25e',
+      light: '#FFF3E0',
+      main: '#FFC071',
+      dark: '#FFB25E',
     },
     error: {
       light: red[50],
@@ -34,8 +34,8 @@ const rawTheme = createTheme({
       dark: green[700],
     },
     text: {
-      primary: '#172b4d',
-      secondary: '#6b778c',
+      primary: '#172B4D',
+      secondary: '#6B778C',
     },
   },
   typography: {
@@ -61,16 +61,16 @@ const theme = {
     ...rawTheme.palette,
     background: {
       ...rawTheme.palette.background,
-      default: '#f4f6f2',
+      default: '#F4F6F2',
       placeholder: grey[200],
-      light: '#f5f5f5',
-      main: '#d4d3d3',
+      light: '#F5F5F5',
+      main: '#D4D3D3',
       dark: '#D9D9D9',
     },
     common: {
       light: '#D3D3D3',
       main: '#D9D9D9',
-      dark: '#1e1e1f',
+      dark: '#1E1E1F',
       black: '#000000',
       white: '#FFFFFF',
     },

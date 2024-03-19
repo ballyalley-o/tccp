@@ -5,7 +5,7 @@ import { SxProps } from '@mui/system'
 import { ASSET } from 'config'
 
 const SDashboardSection = styled('section')(({ theme }) => ({
-  color: theme.palette.common.white,
+  color: theme.palette.secondary.main,
   position: 'relative',
   display: 'flex',
   alignItems: 'center',
@@ -31,9 +31,7 @@ interface DashboardSectionProps {
   sxBackground: SxProps<Theme>
 }
 
-function DashboardSection(
-  props: HTMLAttributes<HTMLDivElement> & DashboardSectionProps
-) {
+function DashboardSection(props: HTMLAttributes<HTMLDivElement> & DashboardSectionProps) {
   const { sxBackground, children } = props
 
   return (
@@ -55,18 +53,13 @@ function DashboardSection(
             right: 0,
             top: 0,
             bottom: 0,
-            backgroundColor: 'common.black',
+            // backgroundColor: 'common.black',
             opacity: 0.5,
             zIndex: -1,
           }}
         />
 
-        <Box
-          component='img'
-          src={ASSET.ARROW_DOWN}
-          alt='arrow down'
-          sx={{ position: 'absolute', bottom: 32, width: 40 }}
-        />
+        <Box component='img' src={ASSET.ARROW_DOWN} alt='arrow down' sx={{ position: 'absolute', bottom: 32, width: 40 }} />
         <Background sx={sxBackground} />
       </Container>
     </SDashboardSection>

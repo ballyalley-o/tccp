@@ -1,11 +1,12 @@
 import { m } from 'framer-motion'
-import { Box, ButtonBase, Container, Grid, Card, CardContent, CardMedia, CardHeader } from '@mui/material'
+import { Box, ButtonBase, Container, Grid, Card, CardContent, CardMedia, CardHeader, Rating } from '@mui/material'
+import { styled } from '@mui/material/styles'
 import { MotionContainer, MotionLazyContainer } from 'component/motion'
 import { Typography } from 'component/typography'
 import { useTheme } from '@mui/material/styles'
 import { image as imageArr } from '_mock'
-import { styled } from '@mui/material/styles'
 import { ASSET } from 'config'
+import { mockBootcamp } from '_mock'
 
 const ImageBackdrop = styled('div')(({ theme }) => ({
   position: 'absolute',
@@ -109,6 +110,7 @@ function Bootcamp({ title, institution, badge, imageUrl, chips }: BootcampTilePr
               }}
             />
           </Grid>
+
           <Grid item sm={9}>
             <SCard
               sx={{
@@ -126,68 +128,37 @@ function Bootcamp({ title, institution, badge, imageUrl, chips }: BootcampTilePr
                     sx={{
                       objectFit: 'cover',
                       objectPosition: 'top',
-                      // marginTop: '-40px',
                     }}
                   />
                 </Grid>
-                <Grid
-                  item
-                  xs={8}
-                  sx={{
-                    backgroundImage: `url(https://upload.wikimedia.org/wikipedia/commons/f/fc/IBM_logo_in.jpg)`,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-
-                    position: 'relative',
-                  }}
-                >
-                  {/* <SBadgeHeader
-                    avatar={
-                      <img
-                        src={`https://upload.wikimedia.org/wikipedia/commons/f/fc/IBM_logo_in.jpg`}
-                        alt={`${institution} logo`}
-                        style={{
-                          maxHeight: 50,
-                          position: 'absolute',
-                          top: 50,
-                          left: '70%',
-                          zIndex: 1,
-                          transform: 'translateX(-50%)',
-                          boxShadow: theme.shadows[4],
+                {mockBootcamp.map((bootcamp: any) => (
+                  <Grid item xs={8}>
+                    <CardContent>
+                      <Typography variant='h4'>{bootcamp.name}</Typography>
+                      <SBadgeHeader
+                        title={title}
+                        subheader={institution}
+                        avatar={
+                          <Rating
+                            name='read-only'
+                            value={3}
+                            readOnly
+                            sx={{
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'space-between',
+                            }}
+                          />
+                        }
+                        sx={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'space-between',
                         }}
                       />
-                    }
-                  /> */}
-                  <CardContent>
-                    <Typography gutterBottom variant='h6' component='div'>
-                      {title}
-                    </Typography>
-                    <Typography variant='subtitle2' color='text.secondary'>
-                      {institution}
-                    </Typography>
-                    <Box
-                      sx={{
-                        display: 'flex',
-                        justifyContent: 'flex-end',
-                        mt: 2,
-                      }}
-                    >
-                      {chips && chips.length > 0 ? (
-                        chips.map((chip: any, index: number) => (
-                          <Typography key={index} variant='caption' m='1em'>
-                            #{chip}
-                          </Typography>
-                        ))
-                      ) : (
-                        <Typography variant='caption' m='1em'>
-                          &nbsp;
-                        </Typography>
-                      )}
-                    </Box>
-                  </CardContent>
-                </Grid>
+                    </CardContent>
+                  </Grid>
+                ))}
               </Grid>
             </SCard>
           </Grid>

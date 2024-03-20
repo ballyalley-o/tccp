@@ -37,10 +37,12 @@ const ICON_WEB = {
 const ICON_LOC = {
   GITHUB: _getIcon('github'),
   // not implemented yet
+  HUBOT: _getIcon('hubot'),
   EXPAND: _getIcon('expand-outline'),
   MODE_LIGHT: _getIcon('sun'),
   MODE_DARK: _getIcon('moon'),
   SETTING: _getIcon('setting'),
+  TCCP: _getIcon('tccp'),
 }
 
 // constant for icon name values
@@ -63,11 +65,12 @@ export enum ICON_WEB_NAME {
 export enum ICON_LOC_NAME {
   // @local
   GITHUB = 'GITHUB',
-
   EXPAND = 'EXPAND',
+  HUBOT = 'HUBOT',
   MODE_LIGHT = 'MODE_LIGHT',
   MODE_DARK = 'MODE_DARK',
   SETTING = 'SETTING',
+  TCCP = 'TCCP',
 }
 
 export { ICON_LOC, ICON_WEB }

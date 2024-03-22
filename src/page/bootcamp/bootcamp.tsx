@@ -1,11 +1,13 @@
 import { m } from 'framer-motion'
-import { Box, ButtonBase, Container, Grid, Card, CardContent, CardMedia, CardHeader } from '@mui/material'
-import { MotionContainer, MotionLazyContainer } from 'component/motion'
+import { Box, ButtonBase, Grid, Card, CardContent, CardMedia, CardHeader, Rating, Chip } from '@mui/material'
+import { styled } from '@mui/material/styles'
+import { BootcampSearch } from 'section/bootcamp'
+import { MotionLazyContainer } from 'component/motion'
 import { Typography } from 'component/typography'
 import { useTheme } from '@mui/material/styles'
-import { image as imageArr } from '_mock'
-import { styled } from '@mui/material/styles'
 import { ASSET } from 'config'
+import { mockBootcamp } from '_mock'
+import { LABEL } from 'constant'
 
 const ImageBackdrop = styled('div')(({ theme }) => ({
   position: 'absolute',
@@ -96,98 +98,89 @@ function Bootcamp({ title, institution, badge, imageUrl, chips }: BootcampTilePr
             <img src={ASSET.TCCP_ICON} alt='logo' width={100} />
           </Box>
           <Typography variant='h2' marked='center' align='center' component='h2'>
-            Worldclass Bootcamps Worldwide
+            {LABEL.BOOTCAMP_PAGE_TITLE}
           </Typography>
         </Box>
-        <Grid container flexDirection='row' spacing={4} sx={{ mt: 8, display: 'flex', flexWrap: 'wrap' }}>
-          <Grid item sm={3}>
-            <div
-              style={{
-                backgroundColor: 'red',
-                width: '100%',
-                height: '100vh',
-              }}
-            />
+        <Grid container flexDirection='row' spacing={2} sx={{ mt: 8, display: 'flex', flexWrap: 'wrap' }}>
+          <Grid item sm={3} mt={2}>
+            <BootcampSearch />
           </Grid>
+
           <Grid item sm={9}>
             <SCard
               sx={{
                 width: '100%',
                 display: 'flex',
+                bgcolor: 'transparent',
               }}
             >
-              <Grid container>
-                <Grid item xs={4}>
-                  <CardMedia
-                    component='img'
-                    height='300'
-                    image={ASSET._BG_TEMP}
-                    alt={title}
+              <Grid container flexDirection='column' flex={1} sx={{ backgroundColor: 'transparent' }}>
+                {mockBootcamp.map((bootcamp: any, index: number) => (
+                  <Grid
+                    container
+                    key={index}
                     sx={{
-                      objectFit: 'cover',
-                      objectPosition: 'top',
-                      // marginTop: '-40px',
+                      mb: 4,
+                      borderRadius: 2,
+                      bgcolor: 'grey.300',
+                      backgroundImage: `url(${ASSET.DOT_MATRIX_BG})`,
                     }}
-                  />
-                </Grid>
-                <Grid
-                  item
-                  xs={8}
-                  sx={{
-                    backgroundImage: `url(https://upload.wikimedia.org/wikipedia/commons/f/fc/IBM_logo_in.jpg)`,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-
-                    position: 'relative',
-                  }}
-                >
-                  {/* <SBadgeHeader
-                    avatar={
-                      <img
-                        src={`https://upload.wikimedia.org/wikipedia/commons/f/fc/IBM_logo_in.jpg`}
-                        alt={`${institution} logo`}
-                        style={{
-                          maxHeight: 50,
-                          position: 'absolute',
-                          top: 50,
-                          left: '70%',
-                          zIndex: 1,
-                          transform: 'translateX(-50%)',
-                          boxShadow: theme.shadows[4],
+                  >
+                    <Grid item xs={4}>
+                      <CardMedia
+                        component='img'
+                        image={bootcamp.imageUrl}
+                        alt={title}
+                        sx={{
+                          height: { xs: '100vh', sm: 200, md: 200, lg: 200, xl: '100%' },
+                          objectFit: 'cover',
                         }}
                       />
-                    }
-                  /> */}
-                  <CardContent>
-                    <Typography gutterBottom variant='h6' component='div'>
-                      {title}
-                    </Typography>
-                    <Typography variant='subtitle2' color='text.secondary'>
-                      {institution}
-                    </Typography>
-                    <Box
-                      sx={{
-                        display: 'flex',
-                        justifyContent: 'flex-end',
-                        mt: 2,
-                      }}
-                    >
-                      {chips && chips.length > 0 ? (
-                        chips.map((chip: any, index: number) => (
-                          <Typography key={index} variant='caption' m='1em'>
-                            #{chip}
-                          </Typography>
-                        ))
-                      ) : (
-                        <Typography variant='caption' m='1em'>
-                          &nbsp;
+                    </Grid>
+                    <Grid item xs={8}>
+                      <CardContent>
+                        <Box>
+                          <Grid container>
+                            <Grid item xs={8}>
+                              <Typography variant='h4' color='common.black'>
+                                {bootcamp.name}
+                              </Typography>
+                            </Grid>
+                            <Grid item xs={4}>
+                              <Grid container spacing={0} justifyContent='flex-end'>
+                                <CardMedia
+                                  component='img'
+                                  src={bootcamp.badge}
+                                  alt='company badge'
+                                  height={50}
+                                  sx={{ width: 50, display: 'flex', justifyContent: 'flex-end', borderRadius: 2 }}
+                                />
+                              </Grid>
+                            </Grid>
+                          </Grid>
+                        </Box>
+                        <SBadgeHeader
+                          title={title}
+                          subheader={institution}
+                          avatar={<Rating name='read-only' value={bootcamp.rating} readOnly />}
+                          sx={{
+                            p: 0,
+                            py: 2,
+                          }}
+                        />
+                        <Typography variant='body2'>{bootcamp.description}</Typography>
+                        <Typography variant='h6' py={2}>
+                          {bootcamp.location.city}, {bootcamp.location.country}
                         </Typography>
-                      )}
-                    </Box>
-                  </CardContent>
-                </Grid>
+                      </CardContent>
+                      <Box my={2} ml={2}>
+                        {bootcamp.course.map((chip: string, index: number) => (
+                          <Chip key={index} label={chip} variant='outlined' size='small' sx={{ mr: 2, color: 'common.black' }} />
+                        ))}
+                      </Box>
+                    </Grid>
+                  </Grid>
+                ))}
               </Grid>
             </SCard>
           </Grid>

@@ -11,17 +11,17 @@ const rawTheme = createTheme({
     primary: {
       light: '#D3D3D3',
       main: '#000009',
-      dark: '#1e1e1f',
+      dark: '#1E1E1f',
     },
     secondary: {
-      light: '#fff5f8',
+      light: '#FFF5F8',
       main: '#FFD500',
-      dark: '#e62958',
+      dark: '#E62958',
     },
     warning: {
-      light: '#fff3e0',
-      main: '#ffc071',
-      dark: '#ffb25e',
+      light: '#FFF3E0',
+      main: '#FFC071',
+      dark: '#FFB25E',
     },
     error: {
       light: red[50],
@@ -34,8 +34,8 @@ const rawTheme = createTheme({
       dark: green[700],
     },
     text: {
-      primary: '#172b4d',
-      secondary: '#6b778c',
+      primary: '#172B4D',
+      secondary: '#6B778C',
     },
   },
   typography: {
@@ -47,6 +47,18 @@ const rawTheme = createTheme({
   shape: {
     borderRadius: 2,
   },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          boxShadow: 'none',
+          '&:hover': {
+            boxShadow: 'none',
+          },
+        },
+      },
+    },
+  },
 })
 
 const fontHeader = {
@@ -55,25 +67,36 @@ const fontHeader = {
   fontFamily: 'Poppins, sans-serif',
 }
 
+const BRAND = {
+  primary: '#000009',
+  secondary: '#FFD500',
+  warning: '#FFC071',
+  error: red[500],
+  success: green[500],
+}
+
+const COMMON = {
+  light: '#D3D3D3',
+  main: '#D9D9D9',
+  dark: '#1E1E1F',
+  black: '#000000',
+  white: '#FFFFFF',
+}
+
 const theme = {
   ...rawTheme,
   palette: {
     ...rawTheme.palette,
     background: {
       ...rawTheme.palette.background,
-      default: '#f4f6f2',
+      default: '#F4F6F2',
       placeholder: grey[200],
-      light: '#f5f5f5',
-      main: '#d4d3d3',
+      light: '#F5F5F5',
+      main: '#D4D3D3',
       dark: '#D9D9D9',
     },
-    common: {
-      light: '#D3D3D3',
-      main: '#D9D9D9',
-      dark: '#1e1e1f',
-      black: '#000000',
-      white: '#FFFFFF',
-    },
+    common: COMMON,
+    brand: BRAND,
     mode: 'light',
     backgroundImage: ASSET.PATTERN_BG,
   },
@@ -83,6 +106,12 @@ const theme = {
   typography: {
     ...rawTheme.typography,
     fontHeader,
+    h0: {
+      ...rawTheme.typography.h1,
+      ...fontHeader,
+      letterSpacing: 0,
+      fontSize: 80,
+    },
     h1: {
       ...rawTheme.typography.h1,
       ...fontHeader,
@@ -113,6 +142,11 @@ const theme = {
       ...rawTheme.typography.h6,
       ...fontHeader,
       fontSize: 18,
+    },
+    h7: {
+      ...rawTheme.typography.h6,
+      ...fontHeader,
+      fontSize: 15,
     },
     subtitle1: {
       ...rawTheme.typography.subtitle1,

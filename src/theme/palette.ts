@@ -1,6 +1,6 @@
 import { alpha } from '@mui/material/styles'
+import { KEY } from 'constant'
 
-// SETUP COLORS
 const BRAND = {
   background: '#63738114',
   title: '#FFF',
@@ -28,12 +28,8 @@ const PRIMARY = {
   contrastText: '#fff',
 }
 
-const HOWICKBURNIN = {
-  main: '#D1ED18',
-}
-
 const COMMON = {
-  common: { black: '#000', white: '#fff' },
+  common: { black: '#000', white: '#F4F6F2' },
   primary: PRIMARY,
   grey: GREY,
   divider: alpha(GREY[500], 0.24),
@@ -49,20 +45,24 @@ const COMMON = {
   background: BRAND.background,
 }
 
-export default function palette() {
+export default function palettee(mode: KEY.LIGHT | KEY.DARK = KEY.DARK) {
+  const text = {
+    primary: mode === KEY.DARK ? GREY[0] : GREY[900],
+    secondary: GREY[500],
+    disabled: GREY[600],
+  }
+
+  const background = {
+    paper: mode === 'dark' ? GREY[800] : GREY[100],
+    default: mode === 'dark' ? GREY[900] : '#fff',
+    neutral: alpha(GREY[500], 0.16),
+  }
+
   return {
     ...COMMON,
-    mode: 'dark',
-    text: {
-      primary: '#fff',
-      secondary: GREY[500],
-      disabled: GREY[600],
-    },
-    background: {
-      paper: GREY[800],
-      default: GREY[900],
-      neutral: alpha(GREY[500], 0.16),
-    },
+    mode: KEY.DARK,
+    text,
+    background,
     action: {
       ...COMMON.action,
       active: GREY[500],

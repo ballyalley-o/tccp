@@ -1,31 +1,19 @@
 import { useState } from 'react'
 import { m } from 'framer-motion'
 import { Link as RouterLink, useParams } from 'react-router-dom'
-import {
-  Box,
-  Link,
-  List,
-  ListItemText,
-  IconButton,
-  Typography,
-  Divider,
-} from '@mui/material'
-import { useTheme, styled } from '@mui/material/styles'
+import { Box, Link, IconButton } from '@mui/material'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import ExpandLessIcon from '@mui/icons-material/ExpandLess'
 import { Button } from 'component'
 import AppBar from './appbar'
-import { SToolbar, SDrawer, SListItem, SBox } from 'theme/style'
+import { SToolbar, SBox } from 'theme/style'
+import { AnimatedButton } from 'component/button'
 import { Logo } from 'component/logo'
+import { NavDrawer } from 'component/navbar'
 import { GLOBAL } from 'config'
 import { BUTTON } from 'constant'
 import { RootPath, AuthPath } from 'route/path'
-import {
-  MotionLazyContainer,
-  MotionContainer,
-  MotionText,
-  varFade,
-} from 'component/motion'
+import { MotionLazyContainer, MotionText, varFade } from 'component/motion'
 
 const rightLink = {
   fontSize: 12,
@@ -49,11 +37,7 @@ function AppNavBar(): JSX.Element {
     <MotionLazyContainer>
       <AppBar position='fixed'>
         <SToolbar sx={{ justifyContent: 'space-between' }}>
-          <Logo
-            width={40}
-            onMouseEnter={() => setIsLogoHovered(true)}
-            onMouseLeave={() => setIsLogoHovered(false)}
-          />
+          <Logo width={40} onMouseEnter={() => setIsLogoHovered(true)} onMouseLeave={() => setIsLogoHovered(false)} />
 
           <Link
             variant='body1'
@@ -104,39 +88,9 @@ function AppNavBar(): JSX.Element {
               justifyContent: 'flex-end',
             }}
           >
+            <AnimatedButton to={AuthPath.LOG_IN} text={BUTTON.LOG_IN} style={rightLink} />
             <Box>
-              {location.pathname.slice(1) != AuthPath.LOG_IN && (
-                <Link
-                  color='common.black'
-                  variant='h6'
-                  underline='none'
-                  href={AuthPath.LOG_IN}
-                  style={rightLink}
-                >
-                  <Button
-                    variant='contained'
-                    sx={{
-                      boxShadow: 'none',
-                      bgcolor: 'transparent',
-                      color: 'common.black',
-                      fontSize: 12,
-                      padding: '.5em 1em',
-                      borderRadius: 0,
-                      textTransform: 'none',
-                    }}
-                  >
-                    {BUTTON.LOG_IN}
-                  </Button>
-                </Link>
-              )}
-            </Box>
-            <Box>
-              <Link
-                variant='h6'
-                underline='none'
-                href={AuthPath.REGISTER}
-                sx={{ ...rightLink, color: 'secondary.main' }}
-              >
+              <Link variant='h6' underline='none' href={AuthPath.REGISTER} sx={{ ...rightLink, color: 'secondary.main' }}>
                 <Button
                   variant='contained'
                   color='primary'
@@ -161,135 +115,7 @@ function AppNavBar(): JSX.Element {
           <SBox />
         </SToolbar>
       </AppBar>
-      <SDrawer anchor='left' open={sidebarOpen} onClose={handleSidebarClose}>
-        <Box
-          role='presentation'
-          onClick={handleSidebarClose}
-          onKeyDown={handleSidebarClose}
-          sx={{ width: 250, padding: '.5em .5em', mt: 7 }}
-        >
-          <List>
-            <ListItemText
-              primary={
-                <Typography variant='body1' fontWeight='bold'>
-                  Bootcamp
-                </Typography>
-              }
-              sx={{ pl: 0.5 }}
-            />
-            <SListItem>
-              <ListItemText
-                primary={
-                  <Typography variant='subtitle2'>Find a Bootcamp</Typography>
-                }
-              />
-            </SListItem>
-            <SListItem>
-              <ListItemText
-                primary={
-                  <Typography variant='subtitle2'>
-                    Find a Bootcamp by Course
-                  </Typography>
-                }
-              />
-            </SListItem>
-            <SListItem>
-              <ListItemText
-                primary={
-                  <Typography variant='subtitle2'>
-                    Find a Bootcamp by Location
-                  </Typography>
-                }
-              />
-            </SListItem>
-            <Divider sx={{ height: 2, paddingTop: 1 }} />
-            <ListItemText
-              primary={
-                <Typography variant='body1' fontWeight='bold'>
-                  Course
-                </Typography>
-              }
-              sx={{ pl: 0.5, pt: 1 }}
-            />
-            <SListItem>
-              <ListItemText
-                primary={
-                  <Typography variant='subtitle2'>Take a Course</Typography>
-                }
-              />
-            </SListItem>
-            <SListItem>
-              <ListItemText
-                primary={
-                  <Typography variant='subtitle2'>Find a Course</Typography>
-                }
-              />
-            </SListItem>
-            <Divider sx={{ height: 2, paddingTop: 1 }} />
-            <ListItemText
-              primary={
-                <Typography variant='body1' fontWeight='bold'>
-                  Resources
-                </Typography>
-              }
-              sx={{ pl: 0.5, pt: 1 }}
-            />
-            <SListItem>
-              <ListItemText
-                primary={
-                  <Typography variant='subtitle2'>
-                    Scholarship Programmes
-                  </Typography>
-                }
-              />
-            </SListItem>
-            <SListItem>
-              <ListItemText
-                primary={
-                  <Typography variant='subtitle2'>
-                    Application Process
-                  </Typography>
-                }
-              />
-            </SListItem>
-
-            <Divider sx={{ height: 2, paddingTop: 1 }} />
-            <ListItemText
-              primary={
-                <Typography variant='body1' fontWeight='bold'>
-                  Still Confused?
-                </Typography>
-              }
-              sx={{ mt: 2, pl: 0.5 }}
-            />
-            <SListItem>
-              <ListItemText
-                primary={
-                  <Typography variant='subtitle2'>
-                    Ask a question on our forum
-                  </Typography>
-                }
-              />
-            </SListItem>
-            <Box
-              sx={{
-                margin: '1em 0',
-                display: 'flex',
-                justifyContent: 'center',
-              }}
-            >
-              <Button
-                variant='outlined'
-                color='primary'
-                size='small'
-                sx={{ width: '100%', boxShadow: 'none' }}
-              >
-                <Typography variant='subtitle2'>Contact Us</Typography>
-              </Button>
-            </Box>
-          </List>
-        </Box>
-      </SDrawer>
+      <NavDrawer open={sidebarOpen} onClose={handleSidebarClose} />
     </MotionLazyContainer>
   )
 }

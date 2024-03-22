@@ -1,4 +1,4 @@
-enum PATH {
+enum ROUTING {
   ROOT = '/',
   ID = ':id',
   DASHBOARD = 'dashboard',
@@ -20,7 +20,7 @@ enum PATH {
   NOT_FOUND = '404',
   UNPROCESSABLE_ENTITY = '422',
   SERVER_ERROR = '500',
-  MAINTENNANCE = '503',
+  MAINTENNANCE = '503'
 }
 
-export { PATH }
+export { ROUTING };

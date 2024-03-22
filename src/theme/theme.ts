@@ -47,12 +47,40 @@ const rawTheme = createTheme({
   shape: {
     borderRadius: 2,
   },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          boxShadow: 'none',
+          '&:hover': {
+            boxShadow: 'none',
+          },
+        },
+      },
+    },
+  },
 })
 
 const fontHeader = {
   color: rawTheme.palette.text.primary,
   fontWeight: rawTheme.typography.fontWeightRegular,
   fontFamily: 'Poppins, sans-serif',
+}
+
+const BRAND = {
+  primary: '#000009',
+  secondary: '#FFD500',
+  warning: '#FFC071',
+  error: red[500],
+  success: green[500],
+}
+
+const COMMON = {
+  light: '#D3D3D3',
+  main: '#D9D9D9',
+  dark: '#1E1E1F',
+  black: '#000000',
+  white: '#FFFFFF',
 }
 
 const theme = {
@@ -67,13 +95,8 @@ const theme = {
       main: '#D4D3D3',
       dark: '#D9D9D9',
     },
-    common: {
-      light: '#D3D3D3',
-      main: '#D9D9D9',
-      dark: '#1E1E1F',
-      black: '#000000',
-      white: '#FFFFFF',
-    },
+    common: COMMON,
+    brand: BRAND,
     mode: 'light',
     backgroundImage: ASSET.PATTERN_BG,
   },
@@ -83,6 +106,12 @@ const theme = {
   typography: {
     ...rawTheme.typography,
     fontHeader,
+    h0: {
+      ...rawTheme.typography.h1,
+      ...fontHeader,
+      letterSpacing: 0,
+      fontSize: 80,
+    },
     h1: {
       ...rawTheme.typography.h1,
       ...fontHeader,
@@ -113,6 +142,11 @@ const theme = {
       ...rawTheme.typography.h6,
       ...fontHeader,
       fontSize: 18,
+    },
+    h7: {
+      ...rawTheme.typography.h6,
+      ...fontHeader,
+      fontSize: 15,
     },
     subtitle1: {
       ...rawTheme.typography.subtitle1,

@@ -27,6 +27,8 @@ const ASSET = {
   PATTERN_BG: _background('pattern.svg'),
   GRADIENT_LINES_BG: _background('gradient-lines.svg'),
   GRADIENT_LINES_2_BG: _background('gradient-lines-2.svg'),
+  STRIPES_BG: _background('stripes-grid.svg'),
+  DOT_MATRIX_BG: _background('dot-matrix.svg'),
   ECLIPSE_BG: _background('eclipse.svg'),
   CONSTELLATION_BG: _background('constellation.svg'),
   WAVES_BG: _background('waves.svg'),

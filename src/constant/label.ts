@@ -13,9 +13,11 @@ const LABEL = {
 
   SELECT_ROLE: 'Select your role',
 
+  ADMIN: 'Admin',
   STUDENT: 'Student',
   TRAINER: 'Trainer',
-  ADMIN: 'Admin',
+
+  BOOTCAMP_PAGE_TITLE: 'Worldclass Bootcamps Worldwide',
 }
 
 export default LABEL

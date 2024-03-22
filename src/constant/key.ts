@@ -19,6 +19,9 @@ enum KEY {
   TEXT = 'text',
   AUTO = 'auto',
   END = 'end',
+  // modes
+  LIGHT = 'light',
+  DARK = 'dark',
 }
 
 export default KEY

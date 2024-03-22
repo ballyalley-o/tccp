@@ -68,6 +68,10 @@ enum BUTTON {
 
   IN_PROGRESS = 'In progress…',
   LEARN = 'Learn',
+
+  // @button
+  FIND_BOOTCAMP = 'Find Bootcamp',
+
   // @form
   UPLOADED_AVATAR = 'Uploaded',
   UPLOAD_AVATAR = 'Upload Avatar',

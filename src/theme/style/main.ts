@@ -43,7 +43,7 @@ export const SBox = styled(Box)(({ theme }) => ({
   display: 'flex',
   justifyContent: 'flex-end',
   alignItems: 'center',
-  width: '12%',
+  width: '14%',
   height: 60,
   overflow: 'hidden',
   position: 'absolute',

@@ -6,7 +6,6 @@ import { fileURLToPath } from 'url'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
   resolve: {
@@ -22,11 +21,13 @@ export default defineConfig({
       component: path.resolve(__dirname, 'src', 'component'),
       navbar: path.resolve(__dirname, 'src', 'component', 'index.ts'),
       section: path.resolve(__dirname, 'src', 'section'),
+      slice: path.resolve(__dirname, 'src', 'store', 'slice'),
+      store: path.resolve(__dirname, 'src', 'store'),
       route: path.resolve(__dirname, 'src', 'route'),
       page: path.resolve(__dirname, 'src', 'page'),
       withroot: path.resolve(__dirname, 'src', 'withroot.tsx'),
       util: path.resolve(__dirname, 'src', 'util'),
-      _mock: path.resolve(__dirname, 'src', '_mock'),
-    },
-  },
+      _mock: path.resolve(__dirname, 'src', '_mock')
+    }
+  }
 })

@@ -20,7 +20,7 @@ const RESPONSE = {
     LOGOUT: `User logged out`,
     UPDATED: `Entity updated`,
     DELETED: `Entity deleted`,
-    EMAIL_SENT: 'Email sent',
+    EMAIL_SENT: 'Email sent'
   },
 
   /**
@@ -37,6 +37,7 @@ const RESPONSE = {
     503: 'SERVICE UNAVAILABLE: The server is temporarily unable to handle the Request',
     504: 'GATEWAY TIMEOUT: The server acting as a gateway did not receive a timely response from an upstream server',
     ENTITY_EXISTS: 'Entity already exists',
+    CORS_NOT_ALLOWED: 'CORS ERROR: Not allowed by Access-Control-Allow-Origin',
     ALREADY_EXISTS: (data: string) => `${data} already exists`,
     NOT_FOUND_COURSE: (data: string) => `Course not found with id of ${data}`,
     NOT_FOUND_BOOTCAMP: (data: string) => `Bootcamp not found with id of ${data}`,
@@ -58,8 +59,8 @@ const RESPONSE = {
     FAILED_EMAIL: 'Email could not be sent',
     RESET_SUBJECT: 'Password Reset Request',
     RESET_MESSAGE: (resetUrl: string) =>
-      `A request has been made to reset your password. If you made this request, please copy the following code into the prompt in: \n\n ${resetUrl} to verify your identity.`,
-  },
-}
+      `A request has been made to reset your password. If you made this request, please copy the following code into the prompt in: \n\n ${resetUrl} to verify your identity.`
+  }
+};
 
-export default RESPONSE
+export default RESPONSE;

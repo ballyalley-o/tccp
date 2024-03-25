@@ -1,74 +1,71 @@
-import { FC, useState } from 'react'
-import { InputAdornment, IconButton } from '@mui/material'
-import { Field } from 'react-final-form'
-import { useTheme } from '@mui/material/styles'
-import { useIcon } from 'hook'
-import { ICON_WEB_NAME, APP_FIELD, ICON_LOC_NAME } from 'config'
-import { KEY } from 'constant'
-import { FORM } from 'section/auth'
+import { FC, useState } from 'react';
+import { InputAdornment, IconButton, Input } from '@mui/material';
+import { Field } from 'react-final-form';
+import { useTheme } from '@mui/material/styles';
+import { useIcon } from 'hook';
+import { ICON_WEB_NAME, APP_FIELD, ICON_LOC_NAME } from 'config';
+import { KEY } from 'constant';
+import { FORM } from 'section/auth';
 
 interface PasswordFieldProps {
-  submitting: boolean
-  sent: boolean
-  isConfirm?: boolean
+  submitting: boolean;
+  sent: boolean;
+  isConfirm?: boolean;
 }
 
-const PasswordField: FC<PasswordFieldProps> = ({
-  submitting,
-  sent,
-  isConfirm,
-}) => {
-  const [showPassword, setShowPassword] = useState(false)
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
+const PasswordField: FC<PasswordFieldProps> = ({ submitting, sent, isConfirm }) => {
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  const theme = useTheme()
-  const { Icon: WebIcon, iconSrc: eyeHideSrc } = useIcon(ICON_WEB_NAME.EYE_HIDE)
-  const { iconSrc: eyeOffSrc } = useIcon(ICON_WEB_NAME.EYE_OFF)
+  const theme = useTheme();
+  const { Icon: WebIcon, iconSrc: eyeHideSrc } = useIcon(ICON_WEB_NAME.EYE_HIDE);
+  const { iconSrc: eyeOffSrc } = useIcon(ICON_WEB_NAME.EYE_OFF);
 
   const handleToggleShowPassword = () => {
-    setShowPassword(!showPassword)
-  }
+    setShowPassword(!showPassword);
+  };
 
   const handleToggleShowConfirmPassword = () => {
-    setShowConfirmPassword(!showConfirmPassword)
-  }
+    setShowConfirmPassword(!showConfirmPassword);
+  };
 
   return (
-    <Field
+    <Input
+      // {...input}
+      // types of input
+      color="secondary"
       disabled={submitting || sent}
       {...(isConfirm ? FORM.CONFIRM_PASSWORD : FORM.PASSWORD)}
       type={showPassword ? KEY.TEXT : KEY.PASSWORD}
-      InputProps={{
-        endAdornment: (
-          <InputAdornment
-            position='end'
+      endAdornment={
+        <InputAdornment
+          position="end"
+          sx={{
+            width: 'auto'
+          }}>
+          <IconButton
+            edge="start"
+            aria-label="toggle password visibility"
+            onClick={handleToggleShowPassword}
+            size="small"
             sx={{
               width: 'auto',
-            }}
-          >
-            <IconButton
-              edge='start'
-              aria-label='toggle password visibility'
-              onClick={handleToggleShowPassword}
-              size='small'
-              sx={{
-                width: 'auto',
-                color: theme.palette.text.secondary,
-              }}
-            >
-              {<WebIcon icon={showPassword ? eyeHideSrc : eyeOffSrc} />}
-            </IconButton>
-          </InputAdornment>
-        ),
-      }}
+              color: theme.palette.text.secondary
+            }}>
+            {<WebIcon icon={showPassword ? eyeHideSrc : eyeOffSrc} />}
+          </IconButton>
+        </InputAdornment>
+      }
       sx={{
+        color: 'secondary.main',
         height: APP_FIELD.HEIGHT,
         '&:focus': {
-          color: 'primary.main',
-        },
+          color: 'secondary.main'
+        }
       }}
+      margin="dense"
     />
-  )
-}
+  );
+};
 
-export default PasswordField
+export default PasswordField;

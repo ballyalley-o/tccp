@@ -1,6 +1,17 @@
 import conNex from 'util/connex';
+import { GLOBAL } from 'config';
 import { RESPONSE } from 'constant';
 import { ROUTING } from 'constant/routing';
+
+export class ServerPath {
+  constructor() {
+    throw new Error(RESPONSE.error.NotInstance);
+  }
+
+  static ORIGIN = GLOBAL.APP_ORIGIN;
+  static SERVER = GLOBAL.APP_SERVER;
+  static BOOTCAMP = this.SERVER + '/' + ROUTING.BOOTCAMP;
+}
 
 export class RootPath {
   constructor() {

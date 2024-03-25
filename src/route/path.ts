@@ -1,14 +1,25 @@
 import conNex from 'util/connex'
+import { GLOBAL } from 'config'
 import { RESPONSE } from 'constant'
-import { PATH } from './param'
+import { ROUTING } from 'constant/routing'
+
+export class ServerPath {
+  constructor() {
+    throw new Error(RESPONSE.error.NotInstance)
+  }
+
+  static ORIGIN = GLOBAL.APP_ORIGIN
+  static SERVER = GLOBAL.APP_SERVER
+  static BOOTCAMP = ROUTING.BOOTCAMP
+}
 
 export class RootPath {
   constructor() {
     throw new Error(RESPONSE.error.NotInstance)
   }
 
-  static ROOT_PARAM = PATH.ROOT
-  static DASHBOARD = PATH.DASHBOARD
+  static ROOT_PARAM = ROUTING.ROOT
+  static DASHBOARD = ROUTING.DASHBOARD
 }
 
 export class AuthPath {
@@ -16,12 +27,12 @@ export class AuthPath {
     throw new Error(RESPONSE.error.NotInstance)
   }
 
-  static LOG_IN = conNex(PATH.AUTH, PATH.LOG_IN)
-  static LOG_OUT = conNex(PATH.AUTH, PATH.LOG_OUT)
-  static REGISTER = conNex(PATH.AUTH, PATH.REGISTER)
-  static FORGOT_PASSWORD = conNex(PATH.AUTH, PATH.FORGOT_PASSWORD)
-  static RESET_PASSWORD = conNex(PATH.AUTH, PATH.RESET_PASSWORD)
-  static RESET_TOKEN = conNex(PATH.AUTH, PATH.RESET_TOKEN)
+  static LOG_IN = conNex(ROUTING.AUTH, ROUTING.LOG_IN)
+  static LOG_OUT = conNex(ROUTING.AUTH, ROUTING.LOG_OUT)
+  static REGISTER = conNex(ROUTING.AUTH, ROUTING.REGISTER)
+  static FORGOT_PASSWORD = conNex(ROUTING.AUTH, ROUTING.FORGOT_PASSWORD)
+  static RESET_PASSWORD = conNex(ROUTING.AUTH, ROUTING.RESET_PASSWORD)
+  static RESET_TOKEN = conNex(ROUTING.AUTH, ROUTING.RESET_TOKEN)
 }
 
 export class BootcampPath {
@@ -29,8 +40,8 @@ export class BootcampPath {
     throw new Error(RESPONSE.error.NotInstance)
   }
 
-  static BOOTCAMP = PATH.BOOTCAMP
-  static BOOTCAMP_ID = conNex(PATH.BOOTCAMP, PATH.ID)
+  static BOOTCAMP = ROUTING.BOOTCAMP
+  static BOOTCAMP_ID = conNex(ROUTING.BOOTCAMP, ROUTING.ID)
 }
 
 export class FallbackPath {
@@ -38,11 +49,11 @@ export class FallbackPath {
     throw new Error(RESPONSE.error.NotInstance)
   }
 
-  static BAD_REQUEST = conNex(PATH.BAD_REQUEST)
-  static NOT_AUTHORIZED = conNex(PATH.NOT_AUTHORIZED)
-  static FORBIDDEN = conNex(PATH.FORBIDDEN)
-  static NOT_FOUND = conNex(PATH.NOT_FOUND)
-  static UNPROCESSABLE_ENTITY = conNex(PATH.UNPROCESSABLE_ENTITY)
-  static SERVER_ERROR = conNex(PATH.SERVER_ERROR)
-  static MAINTENNANCE = conNex(PATH.MAINTENNANCE)
+  static BAD_REQUEST = conNex(ROUTING.BAD_REQUEST)
+  static NOT_AUTHORIZED = conNex(ROUTING.NOT_AUTHORIZED)
+  static FORBIDDEN = conNex(ROUTING.FORBIDDEN)
+  static NOT_FOUND = conNex(ROUTING.NOT_FOUND)
+  static UNPROCESSABLE_ENTITY = conNex(ROUTING.UNPROCESSABLE_ENTITY)
+  static SERVER_ERROR = conNex(ROUTING.SERVER_ERROR)
+  static MAINTENNANCE = conNex(ROUTING.MAINTENNANCE)
 }

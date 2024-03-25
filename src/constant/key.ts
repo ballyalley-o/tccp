@@ -1,5 +1,9 @@
-import { FORM } from 'section/auth/constant'
 enum KEY {
+  PRODUCTION = 'production',
+  DEVELOPMENT = 'development',
+  // @auth
+  PHOTO_DEFAULT = 'no-photo.jpeg',
+  BADGE_DEFAULT = 'no-badge.png',
   // @form
   FIRST_NAME = 'firstName',
   LAST_NAME = 'lastName',
@@ -21,7 +25,7 @@ enum KEY {
   END = 'end',
   // modes
   LIGHT = 'light',
-  DARK = 'dark',
+  DARK = 'dark'
 }
 
 export default KEY

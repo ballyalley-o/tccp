@@ -11,7 +11,7 @@ const mockBootcamp = [
       city: 'San Francisco',
       state: 'CA',
       zip: '94111',
-      country: 'USA',
+      country: 'USA'
     },
     duration: '12 weeks',
     averageCost: '$10,000',
@@ -19,9 +19,9 @@ const mockBootcamp = [
     jobAssistance: true,
     jobGuarantee: false,
     slug: 'ibm-bootcamp',
-    course: ['Python', 'Django', 'Flask'],
+    careers: ['Python', 'Django', 'Flask'],
     imageUrl: 'https://images.pexels.com/photos/2982449/pexels-photo-2982449.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-    badge: 'https://m.media-amazon.com/images/I/61fLmo3aOHL.jpg',
+    badge: 'https://m.media-amazon.com/images/I/61fLmo3aOHL.jpg'
   },
   {
     name: 'Codecademy',
@@ -35,7 +35,7 @@ const mockBootcamp = [
       city: 'Wilmington',
       state: 'CA',
       zip: '94111',
-      country: 'Vietnam',
+      country: 'Vietnam'
     },
     duration: '10 weeks',
     averageCost: '$9,000',
@@ -45,7 +45,7 @@ const mockBootcamp = [
     slug: 'codecademy',
     course: ['Frontend Web Development', 'Backend Web Development', 'Full Stack Web Development'],
     imageUrl: 'https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-    badge: 'https://ebranch.lili.org/tetons/wp-content/uploads/sites/22/2016/09/CodeAC.png',
+    badge: 'https://ebranch.lili.org/tetons/wp-content/uploads/sites/22/2016/09/CodeAC.png'
   },
   {
     name: 'STI Learning',
@@ -59,7 +59,7 @@ const mockBootcamp = [
       city: 'Quezon City',
       state: 'NCR',
       zip: '1109',
-      country: 'Philippines',
+      country: 'Philippines'
     },
     duration: '12 weeks',
     averageCost: '$8,390',
@@ -69,8 +69,8 @@ const mockBootcamp = [
     slug: 'sti-learning',
     course: ['CI/CD', 'DevOps', 'Jenkins'],
     imageUrl: 'https://images.pexels.com/photos/7213434/pexels-photo-7213434.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-    badge: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3UTtubMsPmN-Hd5n68A1aZviCGhzH8MVvHBoOg5hGXg&s',
-  },
-]
+    badge: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3UTtubMsPmN-Hd5n68A1aZviCGhzH8MVvHBoOg5hGXg&s'
+  }
+];
 
-export default mockBootcamp
+export default mockBootcamp;

@@ -1,6 +1,13 @@
 import { Drawer, ListItem, Box, Toolbar, Card, CardHeader } from '@mui/material'
+import { LoadingButton } from '@mui/lab'
 import { styled } from '@mui/material/styles'
 import { APP_NAVBAR } from 'config'
+
+export const GSLoadingButton = styled(LoadingButton)(({ theme }) => ({
+  backgroundColor: theme.palette.primary.dark,
+  color: theme.palette.common.white,
+  '&:hover': { backgroundColor: theme.palette.secondary.main }
+}))
 
 export const SToolbar = styled(Toolbar)(({ theme }) => ({
   justifyContent: 'space-between',

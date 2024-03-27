@@ -36,6 +36,7 @@ const RESPONSE = {
     500: 'INTERNAL SERVER ERROR: Server encountered an Unhandled Exception',
     503: 'SERVICE UNAVAILABLE: The server is temporarily unable to handle the Request',
     504: 'GATEWAY TIMEOUT: The server acting as a gateway did not receive a timely response from an upstream server',
+    REDUX_PERSIST: 'Error clearing persisted states:',
     ENTITY_EXISTS: 'Entity already exists',
     CORS_NOT_ALLOWED: 'CORS ERROR: Not allowed by Access-Control-Allow-Origin',
     ALREADY_EXISTS: (data: string) => `${data} already exists`,
@@ -61,6 +62,6 @@ const RESPONSE = {
     RESET_MESSAGE: (resetUrl: string) =>
       `A request has been made to reset your password. If you made this request, please copy the following code into the prompt in: \n\n ${resetUrl} to verify your identity.`
   }
-};
+}
 
-export default RESPONSE;
+export default RESPONSE

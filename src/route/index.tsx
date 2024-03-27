@@ -1,5 +1,5 @@
-import { CODE } from 'constant';
-import { Navigate, useRoutes } from 'react-router-dom';
+import { CODE } from 'constant'
+import { Navigate, useRoutes } from 'react-router-dom'
 import {
   HomePage,
   DashboardPage,
@@ -8,10 +8,10 @@ import {
   // bootcamp
   BootcampPage,
   FallbackPage
-} from 'route/element';
-import { FallbackPath } from 'route/path';
-import { ROUTING } from 'constant/routing/routing';
-import { FALLBACK } from 'constant';
+} from 'route/element'
+import { FallbackPath } from 'route/path'
+import { ROUTING } from 'constant/routing/routing'
+import { FALLBACK } from 'constant'
 
 function Router() {
   return useRoutes([
@@ -73,7 +73,7 @@ function Router() {
       element: <FallbackPage errorCode={CODE.INTERNAL_SERVER_ERROR} fallbackTitle={FALLBACK.SERVER_ERROR.MESSAGE} />
     },
     { path: '*', element: <Navigate to={FallbackPath.NOT_FOUND} replace /> }
-  ]);
+  ])
 }
 
-export default Router;
+export default Router

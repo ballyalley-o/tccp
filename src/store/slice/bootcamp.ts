@@ -8,8 +8,13 @@ export const bootcampApiSlice = apiSlice.injectEndpoints({
         url: ServerPath.BOOTCAMP
       }),
       keepUnusedDataFor: 5
+    }),
+    getBootcamp: builder.query<any, string>({
+      query: (id) => ({
+        url: ServerPath.BOOTCAMP_ID(id)
+      })
     })
   })
 })
 
-export const { useGetAllBootcampQuery } = bootcampApiSlice
+export const { useGetAllBootcampQuery, useGetBootcampQuery } = bootcampApiSlice

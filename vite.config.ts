@@ -11,6 +11,7 @@ export default defineConfig({
   resolve: {
     alias: {
       app: path.resolve(__dirname, 'src', 'app.tsx'),
+      auth: path.resolve(__dirname, 'src', 'auth'),
       global: path.resolve(__dirname, 'src', 'config'),
       config: path.resolve(__dirname, 'src', 'config'),
       constant: path.resolve(__dirname, 'src', 'constant'),

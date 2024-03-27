@@ -16,7 +16,6 @@ import { Snack } from 'component/snack'
 import { useLoginMutation } from 'store/slice/auth/endpoint'
 import { setCredential } from 'store/slice/auth'
 import { LABEL, KEY, LOCAL_STORAGE } from 'constant'
-import { APP_FIELD } from 'config'
 import withRoot from 'withroot'
 
 interface IResponse {
@@ -47,6 +46,12 @@ function LogIn() {
     }
     return errors
   }
+
+  useEffect(() => {
+    if (userInfo) {
+      console.log('userInfo: ', userInfo)
+    }
+  }, [userInfo, navigate])
 
   const loginSchema = Yup.object().shape({
     email: Yup.string().email().required(),
@@ -123,8 +128,10 @@ function LogIn() {
         <Fragment>
           <AuthBranding />
         </Fragment>
-        {!!errors && (
+        {errors.email ? (
           <Snack severity="error" title={errors.email?.message || errors.password?.message || 'Something went wrong. Please try again later.'} />
+        ) : (
+          <Box height={95} width="100%" />
         )}
         <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
           <Controller

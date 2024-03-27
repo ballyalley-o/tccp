@@ -14,6 +14,6 @@ const GLOBAL = {
     description: 'The Code Coach is a platform that provides a wide range of coaching services to help you improve your coding skills.',
     keywords: 'code, coach, coding, skills, platform, coaching, improve'
   }
-};
+}
 
-export default GLOBAL;
+export default GLOBAL

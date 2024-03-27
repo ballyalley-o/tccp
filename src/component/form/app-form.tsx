@@ -19,20 +19,18 @@ export default function AppForm({ isLogin, size = 'sm', children, ...props }: Ap
         backgroundSize: 'cover',
         margin: 'auto',
         fontSize: '1.2rem',
-        color: 'common.white',
-      }}
-    >
+        color: 'common.white'
+      }}>
       <Container maxWidth={size} sx={{ width: isLogin ? 500 : 'auto' }}>
-        <Box sx={{ mt: 20, mb: 12, height: '100vh', alignContent: 'center' }}>
+        <Box sx={{ height: '100vh', alignContent: 'center' }}>
           <Paper
-            background='dark'
+            background="dark"
             sx={{
               py: { xs: 4, md: 8 },
               px: { xs: 3, md: 6 },
               fontSize: '1.2rem',
-              color: 'common.white',
-            }}
-          >
+              color: 'common.white'
+            }}>
             {children}
           </Paper>
         </Box>

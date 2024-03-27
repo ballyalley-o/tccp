@@ -11,6 +11,9 @@ export class ServerPath {
   static ORIGIN = GLOBAL.APP_ORIGIN
   static SERVER = GLOBAL.APP_SERVER
   static BOOTCAMP = ROUTING.BOOTCAMP
+  static BOOTCAMP_ID = (bootcampId: string) => conNex(ROUTING.BOOTCAMP, bootcampId)
+  static AUTH_LOG_IN = conNex(ROUTING.AUTH, ROUTING.LOG_IN)
+  static AUTH_LOG_OUT = conNex(ROUTING.AUTH, ROUTING.LOG_OUT)
 }
 
 export class RootPath {

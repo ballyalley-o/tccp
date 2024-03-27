@@ -10,42 +10,36 @@ interface AuthForgotPasswordProps {
   href: string
 }
 
-const AuthForgotPassword = ({
-  label,
-  labelSub,
-  href,
-}: AuthForgotPasswordProps) => {
+const AuthForgotPassword = ({ label, labelSub, href }: AuthForgotPasswordProps) => {
   const theme = useTheme()
   return (
     <Fragment>
-      <Typography variant='subtitle2' align='center' color='grey.500'>
+      <Typography variant="subtitle2" align="center" color="grey.500">
         {label}
         <Link
           href={href}
-          align='center'
+          align="center"
           sx={{
             color: theme.palette.secondary.main,
             '&:hover': {
               color: theme.palette.common.white,
-              textDecoration: 'none',
-            },
-          }}
-        >
+              textDecoration: 'none'
+            }
+          }}>
           {labelSub}
         </Link>
       </Typography>
-      <Typography variant='subtitle2' align='center'>
+      <Typography variant="subtitle2" align="center">
         <Link
-          underline='always'
+          underline="always"
           href={AuthPath.FORGOT_PASSWORD}
           sx={{
             color: theme.palette.grey[500],
             '&:hover': {
               color: theme.palette.common.white,
-              textDecoration: 'none',
-            },
-          }}
-        >
+              textDecoration: 'none'
+            }
+          }}>
           {LABEL.FORGOT_PASSWORD}
         </Link>
       </Typography>

@@ -1,5 +1,5 @@
 import { Fragment } from 'react'
-import { FormButton } from 'component/form'
+import { GSLoadingButton } from 'theme/style'
 import { AuthForgotPassword } from 'section/auth'
 import { COLOR, BUTTON } from 'constant'
 
@@ -10,24 +10,26 @@ interface FormFieldExtended extends FormFieldProps {
   href: string
 }
 
-const FormButtonRedir = ({
-  submitting,
-  sent,
-  button,
-  label,
-  labelSub,
-  href,
-}: FormFieldExtended) => {
+const FormButtonRedir = ({ submitting, sent, button, label, labelSub, href }: FormFieldExtended) => {
   return (
     <Fragment>
-      <FormButton
-        sx={{ mt: 3, mb: 2, fontSize: 14 }}
-        disabled={submitting || sent}
-        color={COLOR.SECONDARY}
+      <GSLoadingButton
         fullWidth
-      >
-        {submitting || sent ? BUTTON.IN_PROGRESS : button}
-      </FormButton>
+        color={COLOR.SECONDARY}
+        size="large"
+        type="submit"
+        variant="contained"
+        loading={sent || submitting}
+        sx={{
+          mt: 3,
+          mb: 2,
+          fontSize: 14,
+          '&:hover': {
+            color: 'common.black'
+          }
+        }}>
+        {button}
+      </GSLoadingButton>
       <AuthForgotPassword label={label} labelSub={labelSub} href={href} />
     </Fragment>
   )

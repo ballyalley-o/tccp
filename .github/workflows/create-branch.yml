@@ -23,6 +23,6 @@ jobs:
 
       - name: Push branch to development
         env:
-          PAT: ${{ secrets.CREATE_BRANCH }}
+          PAT: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git push origin HEAD:development

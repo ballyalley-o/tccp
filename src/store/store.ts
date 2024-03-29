@@ -1,16 +1,38 @@
-import { configureStore } from '@reduxjs/toolkit'
-import { authReducer } from './slice'
-import { apiSlice } from './slice'
+import { configureStore, combineReducers } from '@reduxjs/toolkit'
+import { setupListeners } from '@reduxjs/toolkit/query'
+import { authReducer, apiSlice } from './slice'
 import { GLOBAL } from 'config'
 import { KEY } from 'constant'
+import storage from 'redux-persist/lib/storage'
+import { persistReducer, persistStore, PERSIST, REHYDRATE } from 'redux-persist'
+
+const persistConfig = {
+  key: 'root',
+  storage,
+  blacklist: [apiSlice.reducerPath],
+  whitelist: [authReducer.name],
+  blackboxWarning: true,
+  blackboxActions: [PERSIST, REHYDRATE]
+}
+const rootReducer = combineReducers({
+  [apiSlice.reducerPath]: apiSlice.reducer
+})
+
+const persistedReducer = persistReducer(persistConfig, rootReducer)
 
 const store = configureStore({
-  reducer: {
-    [apiSlice.reducerPath]: apiSlice.reducer,
-    auth: authReducer
-  },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(apiSlice.middleware),
+  reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [PERSIST, REHYDRATE]
+      }
+    }).concat(apiSlice.middleware),
+
   devTools: GLOBAL.APP_ENV !== KEY.PRODUCTION
 })
 
-export default store
+const persistor = persistStore(store)
+setupListeners(store.dispatch)
+
+export { store, persistor }

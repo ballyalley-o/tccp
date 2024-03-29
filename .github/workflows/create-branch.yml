@@ -1,0 +1,25 @@
+name: Create Branch from Issue
+
+on:
+  issues:
+    types: [opened]
+  pull_request:
+    types: [opened]
+
+jobs:
+  create-branch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Create branch
+        id: create_branch
+        run: |
+          ISSUE_NUMBER=$(jq -r ".issue.number" "$GITHUB_EVENT_PATH")
+          ISSUE_TITLE=$(jq -r ".issue.title" "$GITHUB_EVENT_PATH")
+          BRANCH_NAME=$(echo "$ISSUE_TITLE" | tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-zA-Z0-9]+/-/g' | sed -E 's/^-+|-+$//g' | cut -c 1-50)
+          git checkout -b "TCCPISSUE${ISSUE_NUMBER}-$BRANCH_NAME"
+
+      - name: Push branch to repository
+        run: git push origin HEAD

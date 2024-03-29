@@ -5,8 +5,8 @@ import { KEY, SIZE, SIZE_MAP } from 'constant'
 const DEFAULT = {
   margin: 'normal',
   fullWidth: true,
-  component: RFTextField,
-  sx: { height: APP_FIELD.HEIGHT },
+  // component: RFTextField,
+  sx: { height: APP_FIELD.HEIGHT }
 }
 
 export const FORM = {
@@ -18,7 +18,7 @@ export const FORM = {
     autoFocus: true,
     required: true,
 
-    ...DEFAULT,
+    ...DEFAULT
   },
   LAST_NAME: {
     name: KEY.LAST_NAME,
@@ -27,7 +27,7 @@ export const FORM = {
     autoComplete: 'family-name',
     required: true,
 
-    ...DEFAULT,
+    ...DEFAULT
   },
   EMAIL: {
     name: KEY.EMAIL,
@@ -36,7 +36,7 @@ export const FORM = {
     autoComplete: 'email',
     required: true,
 
-    ...DEFAULT,
+    ...DEFAULT
   },
   PASSWORD: {
     name: KEY.PASSWORD,
@@ -45,7 +45,7 @@ export const FORM = {
     autoComplete: 'new-password',
     required: true,
 
-    ...DEFAULT,
+    ...DEFAULT
   },
   CONFIRM_PASSWORD: {
     name: KEY.CONFIRM_PASSWORD,
@@ -54,7 +54,7 @@ export const FORM = {
     autoComplete: 'new-password',
     required: true,
 
-    ...DEFAULT,
+    ...DEFAULT
   },
   GITHUB_USERNAME: {
     name: KEY.GITHUB_USERNAME,
@@ -63,7 +63,7 @@ export const FORM = {
     autoComplete: 'username',
     required: true,
 
-    ...DEFAULT,
+    ...DEFAULT
   },
   LOCATION: {
     name: KEY.LOCATION,
@@ -72,7 +72,7 @@ export const FORM = {
     autoComplete: 'location',
     required: true,
 
-    ...DEFAULT,
+    ...DEFAULT
   },
   ROLE: {
     name: KEY.ROLE,
@@ -86,10 +86,10 @@ export const FORM = {
     options: [
       { value: 'student', label: 'Student' },
       { value: 'trainer', label: 'Trainer' },
-      { value: 'admin', label: 'Admin' },
+      { value: 'admin', label: 'Admin' }
     ],
     // margin: 'normal',
-    fullWidth: true,
+    fullWidth: true
   },
   AVATAR: {
     INPUT: {
@@ -97,27 +97,27 @@ export const FORM = {
       type: 'file',
       accept: 'image/*',
       style: { display: 'none' },
-      id: 'avatar-upload',
+      id: 'avatar-upload'
     },
     BUTTON: {
       size: SIZE_MAP[SIZE.LARGE] as 'large',
       component: 'span',
-      fullWidth: DEFAULT.fullWidth,
+      fullWidth: DEFAULT.fullWidth
     },
     LABEL: {
-      htmlFor: 'avatar-upload',
-    },
-  },
+      htmlFor: 'avatar-upload'
+    }
+  }
 }
 
 export const FORM_ARIA = {
   FIRST_NAME: {
-    'aria-label': 'First name',
+    'aria-label': 'First name'
   },
   LAST_NAME: {
-    'aria-label': 'Last name',
+    'aria-label': 'Last name'
   },
   EMAIL: {
-    'aria-label': 'Email',
-  },
+    'aria-label': 'Email'
+  }
 }

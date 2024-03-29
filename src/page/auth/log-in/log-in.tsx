@@ -31,7 +31,7 @@ function LogIn() {
   const [upassword, setPassword] = useState('')
   const [uremember, setRemember] = useState(false)
   const [login, { isLoading }] = useLoginMutation()
-  const { userInfo } = useSelector((state: { auth: { userInfo: any } }) => state.auth)
+  // const { userInfo } = useSelector((state: { auth: { userInfo: any } }) => state.auth)
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
@@ -109,8 +109,7 @@ function LogIn() {
       if (res?.message) {
         throw new Error(res.message)
       }
-      console.log('userInfo: ', userInfo)
-      console.log('res: ', res)
+
       navigate(RootPath.ROOT_PARAM)
     } catch (error: any) {
       console.error('error : ', error || '')
@@ -128,13 +127,13 @@ function LogIn() {
         </Fragment>
         {/* TODO: NEEDS REFACTORING */}
         {errors.email ? (
-          <Snack severity="error" title={errors.email?.message || errors.password?.message || 'Something went wrong. Please try again later.'} />
+          <Snack severity='error' title={errors.email?.message || errors.password?.message || 'Something went wrong. Please try again later.'} />
         ) : isLoading ? (
-          <Box height={95} width="100%" />
+          <Box height={95} width='100%' />
         ) : isSubmitSuccessful ? (
-          <Snack severity="success" title="Logged In" />
+          <Snack severity='success' title='Logged In' />
         ) : (
-          <Box height={95} width="100%" />
+          <Box height={95} width='100%' />
         )}
         <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
           <Controller
@@ -149,10 +148,10 @@ function LogIn() {
                 placeholder={FORM.EMAIL.placeholder}
                 onChange={(e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
                 value={uemail}
-                name="uemail"
-                color="secondary"
-                type="email"
-                margin="dense"
+                name='uemail'
+                color='secondary'
+                type='email'
+                margin='dense'
                 required
                 autoFocus
                 fullWidth
@@ -174,7 +173,7 @@ function LogIn() {
 
           <Controller
             control={control}
-            name="email"
+            name='email'
             render={({ field }) => (
               <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 <FormControlLabel
@@ -183,8 +182,8 @@ function LogIn() {
                       {...field}
                       checked={uremember}
                       onChange={(e: ChangeEvent<HTMLInputElement>) => setRemember(e.currentTarget.checked)}
-                      color="secondary"
-                      size="small"
+                      color='secondary'
+                      size='small'
                     />
                   }
                   label={<span style={{ fontSize: '1rem' }}>Remember me</span>}

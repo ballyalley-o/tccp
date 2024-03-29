@@ -1,4 +1,4 @@
-import { useState, useEffect, Fragment, FormEvent, ChangeEvent, BaseSyntheticEvent } from 'react'
+import { useState, useEffect, Fragment, ChangeEvent, BaseSyntheticEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import * as Yup from 'yup'
@@ -6,11 +6,11 @@ import { useForm, Controller } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { FormProvider } from 'component/form'
 import { Box, Input, FormControlLabel, Checkbox } from '@mui/material'
-import { FormFeedback, AppForm, PasswordField, FormButtonRedir, email, required } from 'component/form'
+import { AppForm, PasswordField, FormButtonRedir, email, required } from 'component/form'
 import { MotionContainer } from 'component/motion'
 import { Meta } from 'component/meta'
 import { AuthBranding } from 'section/auth'
-import { AuthPath } from 'route/path'
+import { AuthPath, RootPath } from 'route/path'
 import { FORM } from 'section/auth'
 import { Snack } from 'component/snack'
 import { useLoginMutation } from 'store/slice/auth/endpoint'
@@ -23,6 +23,7 @@ interface IResponse {
   name: string
   token: string
   password: string
+  message: string
 }
 
 function LogIn() {
@@ -47,15 +48,10 @@ function LogIn() {
     return errors
   }
 
-  useEffect(() => {
-    if (userInfo) {
-      console.log('userInfo: ', userInfo)
-    }
-  }, [userInfo, navigate])
-
   const loginSchema = Yup.object().shape({
-    email: Yup.string().email().required(),
-    password: Yup.string().required()
+    email: Yup.string().email(),
+    password: Yup.string(),
+    remember: Yup.boolean()
   })
 
   const methods = useForm({
@@ -106,14 +102,16 @@ function LogIn() {
       const res: IResponse = (await login({ email: data.email, password: data.password }).unwrap()) as IResponse
       dispatch(
         setCredential({
-          email: res.email,
-          name: res.name,
-          token: res.token,
-          password: res.password
+          ...res
         })
       )
+
+      if (res?.message) {
+        throw new Error(res.message)
+      }
       console.log('userInfo: ', userInfo)
-      alert('LOGGED IN')
+      console.log('res: ', res)
+      navigate(RootPath.ROOT_PARAM)
     } catch (error: any) {
       console.error('error : ', error || '')
       reset()
@@ -128,8 +126,13 @@ function LogIn() {
         <Fragment>
           <AuthBranding />
         </Fragment>
+        {/* TODO: NEEDS REFACTORING */}
         {errors.email ? (
           <Snack severity="error" title={errors.email?.message || errors.password?.message || 'Something went wrong. Please try again later.'} />
+        ) : isLoading ? (
+          <Box height={95} width="100%" />
+        ) : isSubmitSuccessful ? (
+          <Snack severity="success" title="Logged In" />
         ) : (
           <Box height={95} width="100%" />
         )}
@@ -140,17 +143,18 @@ function LogIn() {
             render={({ field }) => (
               <Input
                 {...field}
-                color="secondary"
                 autoComplete={FORM.EMAIL.autoComplete}
                 disabled={isSubmitting || isSubmitSuccessful}
                 title={FORM.EMAIL.label}
-                name={FORM.EMAIL.name}
                 placeholder={FORM.EMAIL.placeholder}
+                onChange={(e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
                 value={uemail}
-                onChange={(e: ChangeEvent<HTMLInputElement>) => setEmail(e.currentTarget.value)}
+                name="uemail"
+                color="secondary"
                 type="email"
                 margin="dense"
                 required
+                autoFocus
                 fullWidth
                 sx={{
                   color: 'secondary.main',
@@ -161,7 +165,6 @@ function LogIn() {
                   padding: 1,
                   marginY: 1
                 }}
-                autoFocus
               />
             )}
             disabled={isSubmitting || isSubmitSuccessful}

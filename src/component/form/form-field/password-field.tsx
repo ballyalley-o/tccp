@@ -6,7 +6,6 @@ import { useIcon } from 'hook'
 import { ICON_WEB_NAME, APP_FIELD, ICON_LOC_NAME } from 'config'
 import { KEY } from 'constant'
 import { FORM } from 'section/auth'
-import { set } from 'nprogress'
 
 interface PasswordFieldProps {
   submitting: boolean
@@ -35,8 +34,10 @@ const PasswordField: FC<PasswordFieldProps> = ({ submitting, sent, isConfirm, va
 
   return (
     <Controller
-      control={control}
       name={KEY.EMAIL}
+      control={control}
+      disabled={submitting || sent}
+      rules={{ required: true }}
       render={({ field }) => (
         <Input
           color="secondary"
@@ -63,6 +64,7 @@ const PasswordField: FC<PasswordFieldProps> = ({ submitting, sent, isConfirm, va
             </InputAdornment>
           }
           value={value}
+          margin="dense"
           onChange={(e) => setValue(e.target.value)}
           sx={{
             color: 'secondary.main',
@@ -72,11 +74,8 @@ const PasswordField: FC<PasswordFieldProps> = ({ submitting, sent, isConfirm, va
               color: 'secondary.main'
             }
           }}
-          margin="dense"
         />
       )}
-      disabled={submitting || sent}
-      rules={{ required: true }}
     />
   )
 }

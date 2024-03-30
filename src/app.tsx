@@ -17,15 +17,17 @@ function App() {
 
   return (
     <Fragment>
-      <HelmetProvider>
-        <BrowserRouter>
-          <AppNavBar />
-          <ErrorBoundary fallback={<Fallback fallbackTitle={FALLBACK.BAD_REQUEST.MESSAGE} errorCode={FALLBACK.BAD_REQUEST.CODE} />}>
-            <Router />
-          </ErrorBoundary>
-          <AppFooter />
-        </BrowserRouter>
-      </HelmetProvider>
+      <AuthProvider>
+        <HelmetProvider>
+          <BrowserRouter>
+            <AppNavBar />
+            <ErrorBoundary fallback={<Fallback fallbackTitle={FALLBACK.BAD_REQUEST.MESSAGE} errorCode={FALLBACK.BAD_REQUEST.CODE} />}>
+              <Router />
+            </ErrorBoundary>
+            <AppFooter />
+          </BrowserRouter>
+        </HelmetProvider>
+      </AuthProvider>
     </Fragment>
   )
 }

@@ -13,11 +13,13 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     setCredential(state, action) {
+      console.log('action.payload', action.payload)
       state.user = action.payload
       localStorage.setItem(LOCAL_STORAGE.USER, JSON.stringify(action.payload))
 
       const expirationTime = new Date().getTime() + 3600 * 1000
       localStorage.setItem('expirationTime', expirationTime.toString())
+      state.isAuthenticated = true
     },
 
     logout(state) {

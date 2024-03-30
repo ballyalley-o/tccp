@@ -1,5 +1,6 @@
 import axios from 'util/axios'
 import { AuthPath } from 'route/path'
+import { LOCAL_STORAGE } from 'constant'
 
 function jwtDecode(token: string) {
   const base64Url = token.split('.')[1]
@@ -40,21 +41,22 @@ export const tokenExpired = (exp: any) => {
   expiredTimer = setTimeout(() => {
     alert('Your session has expired. Please login again')
 
-    localStorage.removeItem('token')
+    localStorage.removeItem(LOCAL_STORAGE.TOKEN)
 
     window.location.href = AuthPath.LOG_IN
   }, timeLeft)
 }
 
-export const setSession = (token: string) => {
+export const setSession = (token: string | null) => {
   if (token) {
-    localStorage.setItem('token', token)
+    localStorage.setItem(LOCAL_STORAGE.TOKEN, token)
 
     axios.defaults.headers.common.Authorization = `${token}`
+    console.log(axios.defaults.headers.common.Authorization, 'axios.defaults.headers.common.Authorization')
     const { exp } = jwtDecode(token)
     tokenExpired(exp)
   } else {
-    localStorage.removeItem('token')
+    localStorage.removeItem(LOCAL_STORAGE.TOKEN)
 
     delete axios.defaults.headers.common.Authorization
   }

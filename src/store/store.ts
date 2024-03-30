@@ -1,5 +1,6 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit'
 import { setupListeners } from '@reduxjs/toolkit/query'
+import thunk from 'redux-thunk'
 import { authReducer, apiSlice } from './slice'
 import { GLOBAL } from 'config'
 import { KEY } from 'constant'
@@ -15,7 +16,8 @@ const persistConfig = {
   blackboxActions: [PERSIST, REHYDRATE]
 }
 const rootReducer = combineReducers({
-  [apiSlice.reducerPath]: apiSlice.reducer
+  [apiSlice.reducerPath]: apiSlice.reducer,
+  auth: authReducer
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

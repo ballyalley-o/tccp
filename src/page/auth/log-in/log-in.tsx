@@ -31,7 +31,7 @@ function LogIn() {
   const [upassword, setPassword] = useState('')
   const [uremember, setRemember] = useState(false)
   const [login, { isLoading }] = useLoginMutation()
-  // const { userInfo } = useSelector((state: { auth: { userInfo: any } }) => state.auth)
+  const { user } = useSelector((state: { auth: { user: any } }) => state.auth)
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
@@ -109,7 +109,7 @@ function LogIn() {
       if (res?.message) {
         throw new Error(res.message)
       }
-
+      console.log('user : ', user)
       navigate(RootPath.ROOT_PARAM)
     } catch (error: any) {
       console.error('error : ', error || '')

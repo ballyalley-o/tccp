@@ -1,5 +1,6 @@
 import { CODE } from 'constant'
 import { Navigate, useRoutes } from 'react-router-dom'
+import { GuestGuard } from 'auth'
 import {
   HomePage,
   DashboardPage,
@@ -25,7 +26,11 @@ function Router() {
       children: [
         {
           path: ROUTING.LOG_IN,
-          element: <LogInPage />
+          element: (
+            <GuestGuard>
+              <LogInPage />
+            </GuestGuard>
+          )
         },
         {
           path: ROUTING.REGISTER,

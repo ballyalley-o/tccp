@@ -21,19 +21,6 @@ interface AuthProviderProps {
   children: React.ReactNode
 }
 
-interface User {
-  avatar: string
-  email: string
-  firstname: string
-  lastname: string
-  _id: string
-  role: string
-  username: string
-  location: string
-  updatedAt: string
-  createdAt: string
-}
-
 interface RootState {
   auth: {
     user: any | null
@@ -41,8 +28,8 @@ interface RootState {
 }
 export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
-  const { user } = useSelector((state: RootState) => state.auth?.user || {})
-  const [logoutMutation] = useLogoutMutation()
+  const { user = null } = useSelector((state: RootState) => state.auth || {})
+  // const [logoutMutation] = useLogoutMutation()
   const dispatch = useDispatch()
 
   const storageAvailable = useMemo(() => localStorageSpace(), [])
@@ -59,12 +46,12 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
       setIsAuthenticated(true)
     } else {
       setIsAuthenticated(false)
-      dispatch(setCredential({ email: '', name: '', token: '', password: '' }))
+      dispatch(setCredential({ user: null }))
       localStorage.removeItem('expirationTime')
     }
   }, [dispatch])
 
-  // Clear All persisted data and remove Items from localStorage
+  // clear All persisted data and remove Items from localStorage
   const clearAllPersistedStates = createAsyncThunk('auth/clearAllPersistedStates', async (_, { dispatch }) => {
     try {
       setSession(null)

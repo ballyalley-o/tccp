@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
-import { Link as RouterLink, useParams } from 'react-router-dom'
+import { Link as RouterLink, useParams, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import { createSelector } from 'reselect'
 import { m } from 'framer-motion'
 import { Box, Link, IconButton, Toolbar, Stack } from '@mui/material'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import ExpandLessIcon from '@mui/icons-material/ExpandLess'
-import { useAuthContext } from 'auth'
 import { Button } from 'component'
 import AppBar from './appbar'
 import { MotionLazyContainer, MotionText, varFade } from 'component/motion'
@@ -13,7 +13,6 @@ import { SToolbar, SBox } from 'theme/style'
 import { AnimatedButton } from 'component/button'
 import { NavDrawer } from 'component/navbar'
 import { Logo } from 'component/logo'
-import { DefaultAvatar } from 'component/avatar'
 import { AccountPopover } from 'component/navbar'
 import { GLOBAL } from 'config'
 import { BUTTON } from 'constant'
@@ -27,9 +26,13 @@ const rightLink = {
 function AppNavBar(): JSX.Element {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [isLogoHovered, setIsLogoHovered] = useState(false)
-  const { isAuthenticated, user } = useAuthContext()
+  //  avoid re-rendering when user changes
+  const selectAuth = (state: { auth: { user: any } }) => state.auth
+  const selectUser = createSelector([selectAuth], (auth) => auth.user || {})
+  const { user } = useSelector(selectUser)
 
   const param = useParams()
+  const isLogInRoute = location.pathname === AuthPath.LOG_IN
 
   const handleSidebarOpen = () => {
     setSidebarOpen((prevSidebarOpen) => !prevSidebarOpen)
@@ -38,8 +41,6 @@ function AppNavBar(): JSX.Element {
   const handleSidebarClose = () => {
     setSidebarOpen(false)
   }
-
-  useEffect(() => {}, [param])
 
   return (
     <MotionLazyContainer>
@@ -102,9 +103,21 @@ function AppNavBar(): JSX.Element {
                 display: 'flex',
                 justifyContent: 'flex-end'
               }}>
-              {isAuthenticated ? <AccountPopover /> : <AnimatedButton to={AuthPath.LOG_IN} text={BUTTON.LOG_IN} style={rightLink} />}
+              {user ? (
+                <AccountPopover user={user} />
+              ) : isLogInRoute ? (
+                <Box
+                  sx={{
+                    py: 1,
+                    flex: 1,
+                    display: 'flex',
+                    justifyContent: 'flex-end'
+                  }}></Box>
+              ) : (
+                <AnimatedButton to={AuthPath.LOG_IN} text={BUTTON.LOG_IN} style={rightLink} />
+              )}
               <Box>
-                {!isAuthenticated && (
+                {!user && (
                   <Link variant='h6' underline='none' href={AuthPath.REGISTER} sx={{ ...rightLink, color: 'secondary.main' }}>
                     <Button
                       variant='contained'

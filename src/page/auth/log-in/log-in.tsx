@@ -15,38 +15,17 @@ import { FORM } from 'section/auth'
 import { Snack } from 'component/snack'
 import { useLoginMutation } from 'store/slice/auth/endpoint'
 import { setCredential } from 'store/slice/auth'
-import { LABEL, KEY, LOCAL_STORAGE } from 'constant'
+import { LABEL, KEY, LOCAL_STORAGE, RESPONSE } from 'constant'
 import withRoot from 'withroot'
-
-interface IResponse {
-  email: string
-  name: string
-  token: string
-  password: string
-  message: string
-}
 
 function LogIn() {
   const [uemail, setEmail] = useState('')
   const [upassword, setPassword] = useState('')
   const [uremember, setRemember] = useState(false)
   const [login, { isLoading }] = useLoginMutation()
-  const { user } = useSelector((state: { auth: { user: any } }) => state.auth)
+  const { isAuthenticated } = useSelector((state: { auth: { isAuthenticated: boolean } }) => state.auth)
   const dispatch = useDispatch()
   const navigate = useNavigate()
-
-  const validate = (values: BaseSyntheticEvent<object, any, any> | undefined) => {
-    if (!values || typeof values !== 'object') return {}
-    const valuesObj = values as { [index: string]: any }
-    const errors = required([KEY.EMAIL, KEY.PASSWORD], valuesObj)
-    if (!errors.email) {
-      const emailError = email(valuesObj.email)
-      if (emailError) {
-        errors.email = emailError
-      }
-    }
-    return errors
-  }
 
   const loginSchema = Yup.object().shape({
     email: Yup.string().email(),
@@ -99,7 +78,12 @@ function LogIn() {
         localStorage.removeItem(LOCAL_STORAGE.USER_PASSWORD)
         localStorage.removeItem(LOCAL_STORAGE.REMEMBER)
       }
-      const res: IResponse = (await login({ email: data.email, password: data.password }).unwrap()) as IResponse
+      const res: IResponse = (await login({
+        email: data.email,
+        password: data.password,
+        isAuthenticated: data.isAuthenticated,
+        user: data.user
+      }).unwrap()) as IResponse
       dispatch(
         setCredential({
           ...res
@@ -109,12 +93,14 @@ function LogIn() {
       if (res?.message) {
         throw new Error(res.message)
       }
-      console.log('user : ', user)
-      navigate(RootPath.ROOT_PARAM)
+
+      if (isAuthenticated) {
+        navigate(RootPath.ROOT_PARAM)
+      }
     } catch (error: any) {
       console.error('error : ', error || '')
       reset()
-      setError('email', { message: error.message })
+      setError(KEY.EMAIL, { message: error.message })
     }
   }
 
@@ -127,7 +113,7 @@ function LogIn() {
         </Fragment>
         {/* TODO: NEEDS REFACTORING */}
         {errors.email ? (
-          <Snack severity='error' title={errors.email?.message || errors.password?.message || 'Something went wrong. Please try again later.'} />
+          <Snack severity='error' title={errors.email?.message || errors.password?.message || RESPONSE.error.DEFAULT} />
         ) : isLoading ? (
           <Box height={95} width='100%' />
         ) : isSubmitSuccessful ? (

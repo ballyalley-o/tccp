@@ -1,3 +1,5 @@
+import { KEY, SIZE } from 'constant'
+
 type CustomColor = {
   light: string
   dark: string
@@ -48,6 +50,10 @@ declare global {
     submitting: boolean
     sent: boolean
   }
+  type VERTICAL = KEY.TOP | KEY.CENTER | KEY.BOTTOM
+  type HORIZONTAL = KEY.LEFT | KEY.CENTER | KEY.RIGHT
+  type COLOR = 'default' | 'inherit' | 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'error'
+  type SIZE = SIZE.SMALL | SIZE.MEDIUM | SIZE.LARGE
 }
 
 export = tccp

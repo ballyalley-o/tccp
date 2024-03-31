@@ -20,9 +20,4 @@ jobs:
           ISSUE_TITLE=$(jq -r ".issue.title" "$GITHUB_EVENT_PATH")
           BRANCH_NAME=$(echo "$ISSUE_TITLE" | tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-zA-Z0-9]+/-/g' | sed -E 's/^-+|-+$//g' | cut -c 1-50)
           git checkout -b "TCCPISSUE${ISSUE_NUMBER}-$BRANCH_NAME"
-
-      - name: Push branch to development
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          git push origin HEAD:development
+          echo "::set-output name=branch_name::TCCPISSUE${ISSUE_NUMBER}-$BRANCH_NAME"

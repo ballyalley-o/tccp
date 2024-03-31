@@ -18,12 +18,12 @@ import { Iconify } from '../component/iconify'
 
 export const ICON_NAME = {
   ...ICON_LOC_NAME,
-  ...ICON_WEB_NAME,
+  ...ICON_WEB_NAME
 }
 
 type IconName = keyof typeof ICON_NAME & keyof typeof ICON_WEB_NAME
 
-const useIcon = (iconName: keyof typeof ICON_NAME) => {
+export const useIcon = (iconName: keyof typeof ICON_NAME) => {
   const [iconSrc, setIconSrc] = useState<string | null>(null)
   const [Icon, setIcon] = useState<FC<any>>(() => Iconify)
 
@@ -39,5 +39,3 @@ const useIcon = (iconName: keyof typeof ICON_NAME) => {
 
   return { Icon, iconSrc }
 }
-
-export default useIcon

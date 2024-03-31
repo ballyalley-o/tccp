@@ -3,8 +3,9 @@ import { BrowserRouter } from 'react-router-dom'
 import { HelmetProvider } from 'react-helmet-async'
 import { AppNavBar, AppFooter } from 'component'
 import { Fallback } from 'page'
-import ErrorBoundary from 'util/error-boundary'
 import { AuthProvider } from 'auth/auth-provider'
+import { SettingProvider } from 'component/setting'
+import ErrorBoundary from 'util/error-boundary'
 import Router from 'route'
 import withRoot from 'withroot'
 import GLOBAL from 'config/global'
@@ -17,15 +18,19 @@ function App() {
 
   return (
     <Fragment>
-      <HelmetProvider>
-        <BrowserRouter>
-          <AppNavBar />
-          <ErrorBoundary fallback={<Fallback fallbackTitle={FALLBACK.BAD_REQUEST.MESSAGE} errorCode={FALLBACK.BAD_REQUEST.CODE} />}>
-            <Router />
-          </ErrorBoundary>
-          <AppFooter />
-        </BrowserRouter>
-      </HelmetProvider>
+      <AuthProvider>
+        <HelmetProvider>
+          <BrowserRouter>
+            <SettingProvider>
+              <AppNavBar />
+              <ErrorBoundary fallback={<Fallback fallbackTitle={FALLBACK.BAD_REQUEST.MESSAGE} errorCode={FALLBACK.BAD_REQUEST.CODE} />}>
+                <Router />
+              </ErrorBoundary>
+              <AppFooter />
+            </SettingProvider>
+          </BrowserRouter>
+        </HelmetProvider>
+      </AuthProvider>
     </Fragment>
   )
 }

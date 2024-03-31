@@ -1,10 +1,10 @@
-import { alpha } from '@mui/material/styles';
-import { KEY } from 'constant';
+import { alpha } from '@mui/material/styles'
+import { KEY } from 'constant'
 
 const BRAND = {
   background: '#63738114',
   title: '#FFF'
-};
+}
 
 const GREY = {
   0: '#FFFFFF',
@@ -17,7 +17,7 @@ const GREY = {
   700: '#454F5B',
   800: '#212B36',
   900: '#161C24'
-};
+}
 
 const PRIMARY = {
   lighter: '#0940B2',
@@ -25,8 +25,8 @@ const PRIMARY = {
   main: '#0940B2',
   dark: '#10079F',
   darker: '#10079F',
-  contrastText: '#fff'
-};
+  contrastText: '#FFF'
+}
 
 const COMMON = {
   common: { black: '#000', white: '#F4F6F2' },
@@ -43,20 +43,20 @@ const COMMON = {
     disabledOpacity: 0.48
   },
   background: BRAND.background
-};
+}
 
 export default function palettee(mode: KEY.LIGHT | KEY.DARK = KEY.DARK) {
   const text = {
     primary: mode === KEY.DARK ? GREY[0] : GREY[900],
     secondary: GREY[500],
     disabled: GREY[600]
-  };
+  }
 
   const background = {
     paper: mode === 'dark' ? GREY[800] : GREY[100],
     default: mode === 'dark' ? GREY[900] : '#fff',
     neutral: alpha(GREY[500], 0.16)
-  };
+  }
 
   return {
     ...COMMON,
@@ -67,5 +67,5 @@ export default function palettee(mode: KEY.LIGHT | KEY.DARK = KEY.DARK) {
       ...COMMON.action,
       active: GREY[500]
     }
-  };
+  }
 }

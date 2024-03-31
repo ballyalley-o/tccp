@@ -2,7 +2,7 @@ import { IconButton } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
 import { SCard } from 'component/setting'
 import { useSettingContext } from 'component/setting'
-import { useIcon } from 'hook'
+import { useIcon, ICON_NAME } from 'hook'
 import { RADIUS } from 'config'
 import { KEY } from 'constant'
 
@@ -14,8 +14,8 @@ export function ModeOption() {
   const { themeMode, onToggleMode } = useSettingContext()
 
   const theme = useTheme()
-  const { Icon, iconSrc: iconDark } = useIcon('MODE_DARK')
-  const { iconSrc: iconLight } = useIcon('MODE_LIGHT')
+  const { Icon, iconSrc: iconDark } = useIcon(ICON_NAME.MODE_DARK)
+  const { iconSrc: iconLight } = useIcon(ICON_NAME.MODE_LIGHT)
 
   return (
     <SCard

@@ -24,6 +24,7 @@ const authSlice = createSlice({
 
     logout(state) {
       state.user = null
+      state.isAuthenticated = false
       localStorage.removeItem(LOCAL_STORAGE.USER)
       localStorage.removeItem('expirationTime')
     }

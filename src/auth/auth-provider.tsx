@@ -12,6 +12,7 @@ import { RESPONSE } from 'constant'
 
 export const AuthContext = createContext<{
   isAuthenticated: boolean
+  user: User | null
   login?: (credentials: { email: string; name: string; token: string; password: string }) => void
   logout?: () => void
 } | null>(null)
@@ -35,12 +36,12 @@ interface User {
 
 interface RootState {
   auth: {
-    user: any
+    user: any | null
   }
 }
 export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
-  const { user } = useSelector((state: RootState) => state.auth)
+  const { user } = useSelector((state: RootState) => state.auth?.user || {})
   const [logoutMutation] = useLogoutMutation()
   const dispatch = useDispatch()
 
@@ -57,9 +58,9 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
     if (expirationTime && new Date().getTime() < parseInt(expirationTime, 10)) {
       setIsAuthenticated(true)
     } else {
-      // dispatch(logout() as any)
-      dispatch(setCredential({ email: '', name: '', token: '', password: '' }))
       setIsAuthenticated(false)
+      dispatch(setCredential({ email: '', name: '', token: '', password: '' }))
+      localStorage.removeItem('expirationTime')
     }
   }, [dispatch])
 
@@ -101,6 +102,7 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
   const memoizedValue = useMemo(
     () => ({
       isAuthenticated,
+      user: user || null,
       login,
       logout
     }),

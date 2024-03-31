@@ -1,3 +1,4 @@
+import { Fragment } from 'react'
 import { Navigate } from 'react-router-dom'
 import { RootPath } from 'route/path'
 import { LoadingScreen } from 'component/loading-screen'
@@ -14,5 +15,5 @@ export default function GuestGuard({ children }: { children: React.ReactNode }) 
   //     return <LoadingScreen />
   //   }
 
-  return <> {children} </>
+  return <Fragment> {children} </Fragment>
 }

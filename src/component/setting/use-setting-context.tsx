@@ -1,26 +1,26 @@
-import PropTypes from 'prop-types'
-import { createContext, useContext, useMemo, useCallback, ChangeEvent } from 'react'
+import { createContext, useContext, useMemo, useCallback, ChangeEvent, ReactNode } from 'react'
 import { useLocalStorage } from 'hook'
 import { themePreset } from 'theme'
 import localStorageSpace from 'util/local-storage-space'
+import { KEY } from 'constant'
 
 const initialState = {
   ...themePreset,
-  // Mode
+  // mode
   onToggleMode: () => {},
   onChangeMode: () => {},
-  // Direction
+  // direction
   onToggleDirection: () => {},
   onChangeDirection: () => {},
   onChangeDirectionByLang: () => {},
-  // Layout
+  // layout
   onToggleLayout: () => {},
   onChangeLayout: () => {},
-  // Contrast
+  // contrast
   onToggleContrast: () => {},
   onChangeContrast: () => {},
   presetOption: [],
-  // Reset
+  // reset
   onResetSetting: () => {}
 }
 
@@ -34,17 +34,17 @@ export const useSettingContext = () => {
   return context
 }
 
-SettingProvider.propTypes = {
-  children: PropTypes.node
+interface SettingProviderProps {
+  children: ReactNode
 }
 
-export function SettingProvider({ children }: { children: React.ReactNode }) {
+export function SettingProvider({ children }: SettingProviderProps) {
   const [settings, setSettings] = useLocalStorage('settings', themePreset)
   const storageAvailable = localStorageSpace()
   const langStorage = storageAvailable ? localStorage.getItem('i18nextLng') : ''
 
   const onToggleMode = useCallback(() => {
-    const themeMode = settings.themeMode === 'light' ? 'dark' : 'light'
+    const themeMode = settings.themeMode === KEY.LIGHT ? KEY.DARK : KEY.LIGHT
     setSettings({ ...settings, themeMode })
   }, [setSettings, settings])
 

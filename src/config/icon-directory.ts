@@ -32,6 +32,9 @@ const ICON_WEB = {
   FULLSCREEN_EXIT: _getWebIcon('fullscreen-exit'),
   REFRESH: _getWebIcon('refresh'),
 
+  MODE_LIGHT: _getWebIcon('sun'),
+  MODE_DARK: _getWebIcon('moon'),
+
   SUCCESS: _getWebIcon('checkmark-circle-2'),
   SETTING: _getWebIcon('cog'),
   WARNING: _getWebIcon('alert-triangle'),
@@ -66,6 +69,10 @@ export enum ICON_WEB_NAME {
   EYE_OFF = 'EYE_OFF',
   EYE_HIDE = 'EYE_HIDE',
   INFO = 'INFO',
+
+  MODE_LIGHT = 'MODE_LIGHT',
+  MODE_DARK = 'MODE_DARK',
+
   FULLSCREEN = 'FULLSCREEN',
   FULLSCREEN_EXIT = 'FULLSCREEN_EXIT',
   REFRESH = 'REFRESH',

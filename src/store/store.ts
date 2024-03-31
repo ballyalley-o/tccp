@@ -11,7 +11,7 @@ const persistConfig = {
   key: 'root',
   storage,
   blacklist: [apiSlice.reducerPath],
-  whitelist: [authReducer.name],
+  whitelist: [authReducer.name, 'auth', 'auth.user'],
   blackboxWarning: true,
   blackboxActions: [PERSIST, REHYDRATE]
 }

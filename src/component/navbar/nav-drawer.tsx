@@ -77,9 +77,8 @@ const NavDrawer = ({ open, onClose }: NavDrawerProps) => {
             sx={{
               margin: '1em 0',
               display: 'flex',
-              justifyContent: 'center',
-            }}
-          >
+              justifyContent: 'center'
+            }}>
             <Button variant='outlined' color='primary' size='small' sx={{ width: '100%', boxShadow: 'none' }}>
               <Typography variant='subtitle2'>Contact Us</Typography>
             </Button>

@@ -1,28 +1,33 @@
-import { useState } from 'react'
-import { m } from 'framer-motion'
+import { useEffect, useState } from 'react'
 import { Link as RouterLink, useParams } from 'react-router-dom'
-import { Box, Link, IconButton } from '@mui/material'
+import { useSelector } from 'react-redux'
+import { m } from 'framer-motion'
+import { Box, Link, IconButton, Toolbar, Stack } from '@mui/material'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import ExpandLessIcon from '@mui/icons-material/ExpandLess'
+import { useAuthContext } from 'auth'
 import { Button } from 'component'
 import AppBar from './appbar'
+import { MotionLazyContainer, MotionText, varFade } from 'component/motion'
 import { SToolbar, SBox } from 'theme/style'
 import { AnimatedButton } from 'component/button'
-import { Logo } from 'component/logo'
 import { NavDrawer } from 'component/navbar'
+import { Logo } from 'component/logo'
+import { DefaultAvatar } from 'component/avatar'
+import { AccountPopover } from 'component/navbar'
 import { GLOBAL } from 'config'
 import { BUTTON } from 'constant'
 import { RootPath, AuthPath } from 'route/path'
-import { MotionLazyContainer, MotionText, varFade } from 'component/motion'
 
 const rightLink = {
   fontSize: 12,
-  ml: 4,
+  ml: 4
 }
 
 function AppNavBar(): JSX.Element {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [isLogoHovered, setIsLogoHovered] = useState(false)
+  const { isAuthenticated, user } = useAuthContext()
 
   const param = useParams()
 
@@ -33,6 +38,9 @@ function AppNavBar(): JSX.Element {
   const handleSidebarClose = () => {
     setSidebarOpen(false)
   }
+
+  useEffect(() => {}, [param])
+
   return (
     <MotionLazyContainer>
       <AppBar position='fixed'>
@@ -46,9 +54,8 @@ function AppNavBar(): JSX.Element {
             sx={{
               color: isLogoHovered ? 'grey.600' : 'common.black',
               animation: isLogoHovered ? '0.5s' : 'none',
-              ease: 'ease-in-out',
-            }}
-          >
+              ease: 'ease-in-out'
+            }}>
             {isLogoHovered ? (
               <MotionText
                 text={GLOBAL.APP_NAME}
@@ -56,7 +63,7 @@ function AppNavBar(): JSX.Element {
                 variants={
                   varFade({
                     durationIn: 0.9,
-                    delay: 0.5,
+                    delay: 0.5
                   }).inUp
                 }
               />
@@ -72,8 +79,7 @@ function AppNavBar(): JSX.Element {
                 aria-controls='learn-menu'
                 aria-haspopup='true'
                 onClick={handleSidebarOpen}
-                sx={{ fontSize: 12, color: 'common.black' }}
-              >
+                sx={{ fontSize: 12, color: 'common.black' }}>
                 <span>{BUTTON.LEARN}&nbsp;</span>
                 {sidebarOpen ? <ExpandLessIcon /> : <ExpandMoreIcon />}
               </IconButton>
@@ -85,33 +91,44 @@ function AppNavBar(): JSX.Element {
               py: 1,
               flex: 1,
               display: 'flex',
-              justifyContent: 'flex-end',
-            }}
-          >
-            <AnimatedButton to={AuthPath.LOG_IN} text={BUTTON.LOG_IN} style={rightLink} />
-            <Box>
-              <Link variant='h6' underline='none' href={AuthPath.REGISTER} sx={{ ...rightLink, color: 'secondary.main' }}>
-                <Button
-                  variant='contained'
-                  color='primary'
-                  sx={{
-                    fontSize: 10,
-                    padding: '.5em 1em',
-                    borderRadius: 0,
-                    textTransform: 'none',
-                    border: '1px solid transparent',
-                    '&:hover': {
-                      bgcolor: 'secondary.main',
-                      color: 'common.black',
-                      border: '1px solid',
-                    },
-                  }}
-                >
-                  {BUTTON.REGISTER}
-                </Button>
-              </Link>
+              justifyContent: 'flex-end'
+            }}></Box>
+
+          <Stack flexGrow={1} direction='row' alignItems='center' justifyContent='flex-end'>
+            <Box
+              sx={{
+                py: 1,
+                flex: 1,
+                display: 'flex',
+                justifyContent: 'flex-end'
+              }}>
+              {isAuthenticated ? <AccountPopover /> : <AnimatedButton to={AuthPath.LOG_IN} text={BUTTON.LOG_IN} style={rightLink} />}
+              <Box>
+                {!isAuthenticated && (
+                  <Link variant='h6' underline='none' href={AuthPath.REGISTER} sx={{ ...rightLink, color: 'secondary.main' }}>
+                    <Button
+                      variant='contained'
+                      color='primary'
+                      sx={{
+                        fontSize: 10,
+                        padding: '.5em 1em',
+                        borderRadius: 0,
+                        textTransform: 'none',
+                        border: '1px solid transparent',
+                        '&:hover': {
+                          bgcolor: 'secondary.main',
+                          color: 'common.black',
+                          border: '1px solid'
+                        }
+                      }}>
+                      {BUTTON.REGISTER}
+                    </Button>
+                  </Link>
+                )}
+              </Box>
             </Box>
-          </Box>
+          </Stack>
+
           <SBox />
         </SToolbar>
       </AppBar>

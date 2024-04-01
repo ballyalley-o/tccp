@@ -9,12 +9,11 @@ import { Box, Input, FormControlLabel, Checkbox } from '@mui/material'
 import { AppForm, PasswordField, FormButtonRedir, email, required } from 'component/form'
 import { MotionContainer } from 'component/motion'
 import { Meta } from 'component/meta'
+import { Snack } from 'component/snack'
 import { AuthBranding } from 'section/auth'
 import { AuthPath, RootPath } from 'route/path'
 import { FORM } from 'section/auth'
-import { Snack } from 'component/snack'
-import { useLoginMutation } from 'store/slice/auth/endpoint'
-import { setCredential } from 'store/slice/auth'
+import { useLoginMutation, setCredential } from 'store/slice/auth'
 import { LABEL, KEY, LOCAL_STORAGE, RESPONSE } from 'constant'
 import withRoot from 'withroot'
 
@@ -185,6 +184,7 @@ function LogIn() {
             label={LABEL.NOT_A_MEMBER}
             labelSub={LABEL.REGISTER_Sub}
             href={AuthPath.REGISTER}
+            control={control}
           />
         </FormProvider>
       </AppForm>

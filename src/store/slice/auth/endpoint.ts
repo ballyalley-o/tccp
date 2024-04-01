@@ -18,8 +18,15 @@ export const authActionSlice = apiSlice.injectEndpoints({
         url: ServerPath.AUTH_LOG_OUT,
         method: METHOD.POST
       })
+    }),
+    register: builder.mutation({
+      query: (data: any) => ({
+        url: ServerPath.AUTH_REGISTER,
+        method: METHOD.POST,
+        body: data
+      })
     })
   })
 })
 
-export const { useLoginMutation, useLogoutMutation } = authActionSlice
+export const { useLoginMutation, useLogoutMutation, useRegisterMutation } = authActionSlice

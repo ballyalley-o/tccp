@@ -16,12 +16,13 @@ const FormButtonRedir = ({ submitting, sent, button, label, labelSub, href }: Fo
       <GSLoadingButton
         fullWidth
         color={COLOR.SECONDARY}
-        size="large"
-        type="submit"
-        variant="contained"
+        size='large'
+        type='submit'
+        variant='contained'
         loading={sent || submitting}
         sx={{
           mt: 3,
+          py: 2,
           mb: 2,
           fontSize: 14,
           '&:hover': {

@@ -70,7 +70,6 @@ export const FORM = {
     label: 'Location',
     placeholder: 'Enter your location',
     autoComplete: 'location',
-    required: true,
 
     ...DEFAULT
   },

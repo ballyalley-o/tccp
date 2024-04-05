@@ -25,19 +25,19 @@ const PRIMARY = {
   main: '#0940B2',
   dark: '#10079F',
   darker: '#10079F',
-  contrastText: '#FFF'
+  contrastText: '#F2EED8'
 }
 
 const COMMON = {
-  common: { black: '#000', white: '#F4F6F2' },
+  common: { black: '#000', white: '#F2EED8' },
   primary: PRIMARY,
   grey: GREY,
   divider: alpha(GREY[500], 0.24),
   action: {
     hover: alpha(GREY[500], 0.08),
-    selected: alpha(GREY[500], 0.16),
-    disabled: alpha(GREY[500], 0.8),
-    disabledBackground: alpha(GREY[500], 0.24),
+    selected: alpha(GREY[300], 0.16),
+    disabled: alpha(GREY[300], 0.8),
+    disabledBackground: alpha(GREY[400], 0.24),
     focus: alpha(GREY[500], 0.24),
     hoverOpacity: 0.08,
     disabledOpacity: 0.48
@@ -54,7 +54,7 @@ export default function palettee(mode: KEY.LIGHT | KEY.DARK = KEY.DARK) {
 
   const background = {
     paper: mode === 'dark' ? GREY[800] : GREY[100],
-    default: mode === 'dark' ? GREY[900] : '#fff',
+    default: mode === 'dark' ? GREY[900] : 'common.white',
     neutral: alpha(GREY[500], 0.16)
   }
 

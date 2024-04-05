@@ -49,7 +49,15 @@ declare global {
   interface FormFieldProps {
     submitting: boolean
     sent: boolean
-    control: any
+    control?: any
+    register?: any
+    submitting?: boolean
+    sent?: boolean
+    register?: any
+    methods?: any
+    handleSubmit?: any
+    onSubmit?: any
+    errors?: any
   }
 
   interface User {
@@ -66,11 +74,15 @@ declare global {
   }
 
   interface IResponse {
-    email: string
-    name: string
+    // email: string
+    // name: string
+    // token: string
+    // password: string
+    // message: string
+    success: boolean
+    user: User
     token: string
-    password: string
-    message: string
+    message?: string
   }
 
   type VERTICAL = KEY.TOP | KEY.CENTER | KEY.BOTTOM

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { useRegisterMutation } from 'store/slice'
@@ -10,16 +10,9 @@ import * as Yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 
 const useRegister = () => {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [confirmPassword, setConfirmPassword] = useState('')
-  const [username, setUsername] = useState('')
-  const [location, setLocation] = useState('')
-  const [role, setRole] = useState('')
-
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const [register, { isLoading }] = useRegisterMutation()
+  const [reg, { isLoading }] = useRegisterMutation()
 
   const registerSchema = Yup.object().shape({
     firstname: Yup.string().required(),
@@ -35,49 +28,66 @@ const useRegister = () => {
 
   const methods = useForm({
     resolver: yupResolver(registerSchema),
-    defaultValues: {
-      firstname: '',
-      lastname: '',
-      email: '',
-      password: '',
-      confirmPassword: '',
-      username: '',
-      location: '',
-      role: '',
-      avatar: ''
-    }
+    defaultValues: useMemo(
+      () => ({
+        firstname: '',
+        lastname: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
+        username: '',
+        location: '',
+        role: '',
+        avatar: ''
+      }),
+      []
+    )
   })
 
   const {
-    control,
+    register,
     handleSubmit,
+    getValues,
     reset,
     setError,
     formState: { errors, isSubmitting, isSubmitSuccessful }
   } = methods
 
   const onSubmit = async (data: any) => {
-    if (email) {
-      data.email = email
-    }
-    if (password) {
-      data.password = password
-    }
-    if (password !== confirmPassword) {
-      setError(KEY.PASSWORD, { message: 'Passwords must match' })
-      return
-    }
+    // const { firstname, lastname, email, password, confirmPassword } = getValues()
+
+    // if (email) {
+    //   data.email = email
+    // }
+    // if (password) {
+    //   data.password = password
+    // }
+    // if (password !== confirmPassword) {
+    //   setError(KEY.PASSWORD, { message: 'Passwords must match' })
+    //   return
+    // }
 
     try {
-      const res: IResponse = (await register({
-        firstname: data.firstname,
-        email: data.email,
-        password: data.password,
-        username: data.user,
-        role: data.role
-      }).unwrap()) as IResponse
+      // const formData = getValues()
+      const { firstname, lastname, email, password, confirmPassword, username, location, role, avatar } = data
+      const payload = {
+        firstname,
+        lastname,
+        email,
+        password,
+        confirmPassword,
+        username,
+        location,
+        role,
+        avatar
+      }
 
-      await dispatch(setCredential({ ...res }))
+      // console.log('data: ', data)
+      // console.log('payload : ', payload)
+
+      const res = (await reg(data).unwrap()) as IResponse
+
+      dispatch(setCredential({ ...res }))
 
       if (res?.message) {
         throw new Error(res.message)
@@ -91,19 +101,8 @@ const useRegister = () => {
   }
 
   return {
-    email,
-    setEmail,
-    password,
-    setPassword,
-    confirmPassword,
-    setConfirmPassword,
-    username,
-    setUsername,
-    location,
-    setLocation,
-    role,
-    setRole,
-    control,
+    register,
+    methods,
     handleSubmit,
     onSubmit,
     errors,
@@ -113,4 +112,4 @@ const useRegister = () => {
   }
 }
 
-export { useRegister }
+export default useRegister

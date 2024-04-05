@@ -8,8 +8,8 @@ enum KEY {
   PHOTO_DEFAULT = 'no-photo.jpeg',
   BADGE_DEFAULT = 'no-badge.png',
   // @form
-  FIRST_NAME = 'firstName',
-  LAST_NAME = 'lastName',
+  FIRST_NAME = 'firstname',
+  LAST_NAME = 'lastname',
   EMAIL = 'email',
   PASSWORD = 'password',
   CONFIRM_PASSWORD = 'confirmPassword',

@@ -1,71 +1,48 @@
 import { useState } from 'react'
 import { Grid } from '@mui/material'
-import { PasswordField, FormField, RoleField, UploadField } from 'component/form'
+import { FormField, RoleField, UploadField } from 'component/form'
 import { FormButtonRedir } from 'component/form'
-import { LABEL, BUTTON } from 'constant'
+import { LABEL, BUTTON, KEY } from 'constant'
 import { AuthPath } from 'route/path'
 import { FORM } from 'section/auth'
 
-interface FormFieldExtendedProps extends FormFieldProps {
-  firstname: string
-  setFirstname: (value: string) => void
-  lastname: string
-  setLastname: (value: string) => void
-  password: string
-  setPassword: (value: string) => void
-  confirmPassword: string
-  setConfirmPassword: (value: string) => void
-  role: string
-  email: string
-  setEmail: (value: string) => void
-  username: string
-  setUsername: (value: string) => void
-  location: string
-  setLocation: (value: string) => void
-}
-
-function RegisterFormLayout({
-  submitting,
-  sent,
-  control,
-  firstname,
-  setFirstname,
-  lastname,
-  setLastname,
-  password,
-  setPassword,
-  confirmPassword,
-  setConfirmPassword,
-  role,
-  email,
-  setEmail,
-  username,
-  setUsername,
-  location,
-  setLocation
-}: FormFieldExtendedProps) {
-  // const [firstName, setFirstName] = useState('')
-  // const [lastName, setLastName] = useState('')
-  // const [password, setPassword] = useState('')
-  // const [confirmPassword, setConfirmPassword] = useState('')
-  // const [email, setEmail] = useState('')
-  // const [username, setUsername] = useState('')
-  // const [location, setLocation] = useState('')
-
+function RegisterFormLayout({ submitting, sent, register, methods, handleSubmit, onSubmit, errors }: FormFieldProps) {
   return (
     <Grid container spacing={4}>
       <Grid item xs={6}>
         <Grid container spacing={2}>
           <Grid item xs={12} sm={6}>
-            <FormField submitting={submitting} sent={sent} control={control} {...FORM.FIRST_NAME} value={firstname} setValue={setFirstname} />
+            <FormField
+              submitting={submitting}
+              sent={sent}
+              name={KEY.FIRST_NAME}
+              {...FORM.FIRST_NAME}
+              register={register(KEY.FIRST_NAME)}
+              errors={errors}
+            />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <FormField submitting={submitting} sent={sent} control={control} {...FORM.LAST_NAME} value={lastname} setValue={setLastname} />
+            <FormField
+              submitting={submitting}
+              sent={sent}
+              name={KEY.LAST_NAME}
+              {...FORM.LAST_NAME}
+              register={register(KEY.LAST_NAME)}
+              errors={errors}
+            />
           </Grid>
         </Grid>
-        <FormField submitting={submitting} sent={sent} control={control} {...FORM.EMAIL} value={email} setValue={setEmail} />
-        <PasswordField submitting={submitting} sent={sent} value={password} setValue={setPassword} control={control} />
-        <PasswordField isConfirm submitting={submitting} sent={sent} value={confirmPassword} setValue={setConfirmPassword} control={control} />
+        <FormField submitting={submitting} sent={sent} name={KEY.EMAIL} {...FORM.EMAIL} register={register(KEY.EMAIL)} errors={errors} />
+        <FormField submitting={submitting} sent={sent} name={KEY.PASSWORD} {...FORM.PASSWORD} register={register(KEY.PASSWORD)} errors={errors} />
+        <FormField
+          submitting={submitting}
+          sent={sent}
+          name={KEY.CONFIRM_PASSWORD}
+          register={register(KEY.CONFIRM_PASSWORD)}
+          {...FORM.CONFIRM_PASSWORD}
+          errors={errors}
+          isConfirm
+        />
         <FormButtonRedir
           submitting={submitting}
           sent={sent}
@@ -73,22 +50,28 @@ function RegisterFormLayout({
           label={LABEL.ALREADY_MEMBER}
           labelSub={LABEL.LOGIN_Sub}
           href={AuthPath.LOG_IN}
-          control={control}
         />
       </Grid>
       <Grid item xs={6}>
-        <FormField submitting={submitting} sent={sent} control={control} {...FORM.GITHUB_USERNAME} value={username} setValue={setUsername} isGithub />
         <FormField
+          isGithub
           submitting={submitting}
           sent={sent}
-          control={control}
-          {...FORM.LOCATION}
-          type='address'
-          value={location}
-          setValue={setLocation}
-          required
+          name={KEY.GITHUB_USERNAME}
+          errors={errors}
+          register={register(KEY.GITHUB_USERNAME)}
+          {...FORM.GITHUB_USERNAME}
         />
-        <RoleField />
+        <FormField
+          submitting={submitting}
+          type='address'
+          sent={sent}
+          name={KEY.LOCATION}
+          register={register(KEY.LOCATION)}
+          errors={errors}
+          {...FORM.LOCATION}
+        />
+        <RoleField submitting={submitting} sent={sent} register={register(KEY.ROLE)} errors={errors} />
         <Grid item lg={12}>
           <UploadField />
         </Grid>

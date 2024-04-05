@@ -12,7 +12,6 @@ export * from './upload-field/style'
 
 export { default as TextField } from './text-field/text-field'
 
-export { default as PasswordField } from './form-field/password-field'
 export { default as RoleField } from './form-field/role-field'
 export { default as FormField } from './form-field/form-field'
 export { default as FormButtonRedir } from './form-field/form-button-redir'

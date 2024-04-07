@@ -5,6 +5,7 @@ import * as Yup from 'yup'
 import { useForm, Controller } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { FormField, FormProvider } from 'component/form'
+import { useAuthContext } from 'auth'
 import { Box, Input, FormControlLabel, Checkbox } from '@mui/material'
 import { AppForm, FormButtonRedir, email, required } from 'component/form'
 import { MotionContainer } from 'component/motion'
@@ -13,16 +14,14 @@ import { Snack } from 'component/snack'
 import { AuthBranding } from 'section/auth'
 import { AuthPath, RootPath } from 'route/path'
 import { FORM } from 'section/auth'
-import { useLoginMutation, setCredential } from 'store/slice/auth'
 import { LABEL, KEY, LOCAL_STORAGE, RESPONSE } from 'constant'
 import withRoot from 'withroot'
 
 function LogIn() {
   const [email, setEmail] = useState('')
   const [remember, setRemember] = useState(false)
-  const [login, { isLoading }] = useLoginMutation()
+  const { login } = useAuthContext()
   const { isAuthenticated } = useSelector((state: { auth: { isAuthenticated: boolean } }) => state.auth)
-  const dispatch = useDispatch()
   const navigate = useNavigate()
 
   const loginSchema = Yup.object().shape({
@@ -35,12 +34,12 @@ function LogIn() {
     resolver: yupResolver(loginSchema),
     defaultValues: {
       email,
-      password: ''
+      password: '',
+      remember
     }
   })
 
   const {
-    register,
     control,
     handleSubmit,
     reset,
@@ -59,11 +58,12 @@ function LogIn() {
   }, [setEmail, setRemember])
 
   const onSubmit = async (data: any) => {
-    if (email) {
-      data.email = email
-    }
-
     try {
+      console.log('data : ', data)
+      if (login) {
+        await login(data)
+      }
+
       if (remember) {
         const userInfo = {
           email: data.email,
@@ -73,21 +73,6 @@ function LogIn() {
         localStorage.setItem(LOCAL_STORAGE.USER_INFO, JSON.stringify(userInfo))
       } else {
         localStorage.removeItem(LOCAL_STORAGE.USER_INFO)
-      }
-      const res: IResponse = (await login({
-        email: data.email,
-        password: data.password,
-        isAuthenticated: data.isAuthenticated,
-        user: data.user
-      }).unwrap()) as IResponse
-      dispatch(
-        setCredential({
-          ...res
-        })
-      )
-
-      if (res?.message) {
-        throw new Error(res.message)
       }
 
       if (isAuthenticated) {
@@ -108,30 +93,16 @@ function LogIn() {
           <AuthBranding />
         </Fragment>
         <Snack
-          severity='error'
-          title={errors.email?.message || errors.password?.message || RESPONSE.error.DEFAULT}
-          condition={errors ? true : false}
+          severity={errors.email || errors.password ? 'error' : 'success'}
+          title={errors.email?.message || errors.password?.message ? 'Invalid Credential' : isSubmitSuccessful ? 'Logged In' : RESPONSE.error.DEFAULT}
+          condition={errors.email?.message || errors.password?.message || isSubmitSuccessful ? true : false}
         />
         <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-          <FormField
-            name={KEY.EMAIL}
-            submitting={isSubmitting}
-            sent={isSubmitSuccessful}
-            {...FORM.EMAIL}
-            register={register(KEY.EMAIL)}
-            errors={errors}
-          />
-          <FormField
-            name={KEY.PASSWORD}
-            submitting={isSubmitting}
-            sent={isSubmitSuccessful}
-            register={register(KEY.PASSWORD)}
-            {...FORM.PASSWORD}
-            errors={errors}
-          />
+          <FormField name={KEY.EMAIL} submitting={isSubmitting} sent={isSubmitSuccessful} errors={errors} {...FORM.EMAIL} />
+          <FormField name={KEY.PASSWORD} submitting={isSubmitting} sent={isSubmitSuccessful} errors={errors} {...FORM.PASSWORD} />
           <Controller
             control={control}
-            name={KEY.EMAIL}
+            name={KEY.REMEMBER}
             render={({ field }) => (
               <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 <FormControlLabel
@@ -139,7 +110,7 @@ function LogIn() {
                     <Checkbox
                       {...field}
                       checked={remember}
-                      onChange={(e: ChangeEvent<HTMLInputElement>) => setRemember(e.currentTarget.checked)}
+                      onChange={(e: ChangeEvent<HTMLInputElement>) => setRemember(!remember)}
                       color='secondary'
                       size='small'
                     />

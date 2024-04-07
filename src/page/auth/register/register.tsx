@@ -56,9 +56,7 @@ function Register() {
   })
 
   const {
-    register,
     handleSubmit,
-    getValues,
     reset,
     setError,
     formState: { errors, isSubmitting, isSubmitSuccessful }
@@ -68,6 +66,8 @@ function Register() {
     try {
       const res = (await reg(data).unwrap()) as IResponse
       dispatch(setCredential({ ...res }))
+
+      console.log('data : ', data)
 
       if (res?.message) {
         throw new Error(res.message)
@@ -93,14 +93,7 @@ function Register() {
         />
         <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
           <Box sx={{ mt: 6 }}>
-            <RegisterFormLayout
-              submitting={isSubmitting}
-              sent={isSubmitSuccessful}
-              register={register}
-              handleSubmit={handleSubmit}
-              onSubmit={onSubmit}
-              errors={errors}
-            />
+            <RegisterFormLayout submitting={isSubmitting} sent={isSubmitSuccessful} errors={errors} />
           </Box>
         </FormProvider>
       </AppForm>

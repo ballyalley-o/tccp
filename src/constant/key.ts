@@ -1,5 +1,6 @@
 enum KEY {
   DEFAULT = 'default',
+  PERSIST_PREFIX = 'redux-',
   UNDEFINED = 'undefined',
   PRODUCTION = 'production',
   DEVELOPMENT = 'development',
@@ -20,6 +21,7 @@ enum KEY {
   STUDENT = 'student',
   TRAINER = 'trainer',
   ADMIN = 'admin',
+  REMEMBER = 'remember',
   // default keys
   FORM = 'form',
   START = 'start',

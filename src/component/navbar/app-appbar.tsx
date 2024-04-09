@@ -34,6 +34,7 @@ function AppNavBar(): JSX.Element {
 
   const location = useLocation()
   const isLogInRoute = location.pathname === AuthPath.LOG_IN
+  const isRegisterRoute = location.pathname === AuthPath.REGISTER
 
   const handleSidebarOpen = () => {
     setSidebarOpen((prevSidebarOpen) => !prevSidebarOpen)
@@ -118,7 +119,7 @@ function AppNavBar(): JSX.Element {
                 <AnimatedButton to={AuthPath.LOG_IN} text={BUTTON.LOG_IN} style={rightLink} />
               )}
               <Box>
-                {!user && (
+                {!user && !isRegisterRoute && (
                   <Link variant='h6' underline='none' href={AuthPath.REGISTER} sx={{ ...rightLink, color: 'secondary.main' }}>
                     <Button
                       variant='contained'

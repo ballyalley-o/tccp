@@ -6,7 +6,7 @@ import { useForm, Controller } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { FormField, FormProvider } from 'component/form'
 import { useAuthContext } from 'auth'
-import { Box, Input, FormControlLabel, Checkbox } from '@mui/material'
+import { Box, FormControlLabel, Checkbox } from '@mui/material'
 import { AppForm, FormButtonRedir, email, required } from 'component/form'
 import { MotionContainer } from 'component/motion'
 import { Meta } from 'component/meta'
@@ -21,8 +21,8 @@ function LogIn() {
   const [email, setEmail] = useState('')
   const [remember, setRemember] = useState(false)
   const { login } = useAuthContext()
-  const { isAuthenticated } = useSelector((state: { auth: { isAuthenticated: boolean } }) => state.auth)
   const navigate = useNavigate()
+  const { isAuthenticated } = useSelector((state: { auth: { isAuthenticated: boolean } }) => state.auth)
 
   const loginSchema = Yup.object().shape({
     email: Yup.string().email(),
@@ -59,6 +59,7 @@ function LogIn() {
 
   const onSubmit = async (data: any) => {
     try {
+      console.log('data : ', data)
       if (login) {
         await login(data)
       }

@@ -22,6 +22,7 @@ export default defineConfig({
       component: path.resolve(__dirname, 'src', 'component'),
       navbar: path.resolve(__dirname, 'src', 'component', 'index.ts'),
       section: path.resolve(__dirname, 'src', 'section'),
+      schema: path.resolve(__dirname, 'src', 'schema'),
       store: path.resolve(__dirname, 'src', 'store'),
       slice: path.resolve(__dirname, 'src', 'store', 'slice'),
       authEndpoint: path.resolve(__dirname, 'src', 'store', 'slice', 'auth', 'endpoint.ts'),

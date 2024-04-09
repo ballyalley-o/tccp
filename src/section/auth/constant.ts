@@ -35,6 +35,7 @@ export const FORM = {
     placeholder: 'Enter your email',
     autoComplete: 'email',
     required: true,
+    type: 'email',
 
     ...DEFAULT
   },

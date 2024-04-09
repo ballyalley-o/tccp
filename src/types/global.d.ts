@@ -48,6 +48,8 @@ declare global {
 
   interface FormFieldProps {
     submitting: boolean
+    name?: string
+    helperText?: string
     sent: boolean
     control?: any
     register?: any

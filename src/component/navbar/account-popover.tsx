@@ -62,12 +62,12 @@ export default function AccountPopover({ user }: { user: any }) {
 
   const notDefault = themeMode !== themePreset.themeMode || themeStretch !== themePreset.themeStretch || themeContrast !== themePreset.themeContrast
 
-  useEffect(() => {
-    if (user) {
-      console.log('HERE: user: ', user)
-      console.log('HERE: email: ', email)
-    }
-  }, [user])
+  // useEffect(() => {
+  //   if (user) {
+  //     console.log('HERE: user: ', user)
+  //     console.log('HERE: email: ', email)
+  //   }
+  // }, [user])
 
   return (
     <Fragment>

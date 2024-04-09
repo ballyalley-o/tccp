@@ -9,7 +9,8 @@ enum LOCAL_STORAGE {
   USER_EMAIL = 'UserEmail',
   USER_PASSWORD = 'UserPassword',
   JWT = 'jwt',
-  USER_INFO = 'userInfo'
+  USER_INFO = 'userInfo',
+  EXPIRATION = 'expiration'
 }
 
 export default LOCAL_STORAGE

@@ -1,5 +1,6 @@
 enum KEY {
   DEFAULT = 'default',
+  PERSIST_PREFIX = 'redux-',
   UNDEFINED = 'undefined',
   PRODUCTION = 'production',
   DEVELOPMENT = 'development',
@@ -13,13 +14,14 @@ enum KEY {
   EMAIL = 'email',
   PASSWORD = 'password',
   CONFIRM_PASSWORD = 'confirmPassword',
-  GITHUB_USERNAME = 'githubUsername',
+  GITHUB_USERNAME = 'username',
   LOCATION = 'location',
   ROLE = 'role',
   AVATAR = 'avatar',
   STUDENT = 'student',
   TRAINER = 'trainer',
   ADMIN = 'admin',
+  REMEMBER = 'remember',
   // default keys
   FORM = 'form',
   START = 'start',

@@ -19,13 +19,14 @@ interface ExtendedFormFieldProps extends FormFieldProps {
   required?: boolean
   errors?: any
   helperText?: string
+  defaultValue?: string
   setValue?: (value: string) => void
 }
 
 const FormField = forwardRef(
   (
     {
-      register,
+      // register,
       submitting,
       sent,
       name,
@@ -45,7 +46,7 @@ const FormField = forwardRef(
     const { Icon: WebIcon, iconSrc: eyeHideSrc } = useIcon(ICON_NAME.EYE_HIDE)
     const { iconSrc: eyeOffSrc } = useIcon(ICON_NAME.EYE_OFF)
 
-    const { control } = useFormContext()
+    const { control, register } = useFormContext()
     const theme = useTheme()
     const isPassword = name?.includes(KEY.PASSWORD) || name?.includes(KEY.CONFIRM_PASSWORD)
 
@@ -55,12 +56,10 @@ const FormField = forwardRef(
 
     return (
       <TextField
-        {...(register && register)}
-        inputRef={ref as ForwardedRef<HTMLInputElement>}
-        autoComplete={autoComplete}
-        disabled={submitting || sent}
         variant='filled'
         color='primary'
+        autoComplete={autoComplete}
+        disabled={submitting || sent}
         label={label}
         placeholder={placeholder}
         type={showPassword ? type : isPassword ? KEY.PASSWORD : type}
@@ -94,6 +93,7 @@ const FormField = forwardRef(
         required={required}
         autoFocus
         fullWidth
+        {...register(name)}
         sx={{
           color: 'common.white',
           '& .MuiFilledInput-root': {

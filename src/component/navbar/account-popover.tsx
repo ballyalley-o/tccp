@@ -1,4 +1,4 @@
-import { useState, MouseEvent, Fragment } from 'react'
+import { useState, MouseEvent, Fragment, useEffect } from 'react'
 import { useNavigate, Link as RouterLink } from 'react-router-dom'
 import { alpha, useTheme } from '@mui/material/styles'
 import { Box, Divider, Dialog, Typography, Stack, MenuItem, Link } from '@mui/material'
@@ -8,15 +8,14 @@ import { MenuPopover } from 'component/menu-popover'
 import { MotionButton } from 'component/motion'
 import { useSettingContext } from 'component/setting'
 import { DisplayDialog } from 'component/setting'
-import { useIcon, ICON_NAME } from 'hook'
 import { TITLE, LABEL } from 'constant'
 import { themePreset } from 'theme'
 import { OPTION } from './util'
 
-export default function AccountPopover() {
+export default function AccountPopover({ user }: { user: any }) {
   const [openPopover, setOpenPopover] = useState<(EventTarget & HTMLButtonElement) | null>(null)
   const [open, setOpen] = useState(false)
-  const { user, logout } = useAuthContext()
+  const { logout } = useAuthContext()
   const navigate = useNavigate()
   const theme = useTheme()
 
@@ -62,6 +61,13 @@ export default function AccountPopover() {
   }
 
   const notDefault = themeMode !== themePreset.themeMode || themeStretch !== themePreset.themeStretch || themeContrast !== themePreset.themeContrast
+
+  // useEffect(() => {
+  //   if (user) {
+  //     console.log('HERE: user: ', user)
+  //     console.log('HERE: email: ', email)
+  //   }
+  // }, [user])
 
   return (
     <Fragment>

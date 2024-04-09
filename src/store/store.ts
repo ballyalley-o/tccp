@@ -1,29 +1,14 @@
-import { configureStore, combineReducers } from '@reduxjs/toolkit'
+import { configureStore } from '@reduxjs/toolkit'
 import { setupListeners } from '@reduxjs/toolkit/query'
-import thunk from 'redux-thunk'
+import { useSelector as useAppSelector } from 'react-redux'
 import { authReducer, apiSlice } from './slice'
 import { GLOBAL } from 'config'
 import { KEY } from 'constant'
-import storage from 'redux-persist/lib/storage'
-import { persistReducer, persistStore, PERSIST, REHYDRATE } from 'redux-persist'
-
-const persistConfig = {
-  key: 'root',
-  storage,
-  blacklist: [apiSlice.reducerPath],
-  whitelist: [authReducer.name, 'auth', 'auth.user'],
-  blackboxWarning: true,
-  blackboxActions: [PERSIST, REHYDRATE]
-}
-const rootReducer = combineReducers({
-  [apiSlice.reducerPath]: apiSlice.reducer,
-  auth: authReducer
-})
-
-const persistedReducer = persistReducer(persistConfig, rootReducer)
+import { persistStore, PERSIST, REHYDRATE } from 'redux-persist'
+import rootReducer, { rootPersistConfig } from './root-reducer'
 
 const store = configureStore({
-  reducer: persistedReducer,
+  reducer: rootReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
@@ -35,6 +20,8 @@ const store = configureStore({
 })
 
 const persistor = persistStore(store)
+const { dispatch } = store
+const useSelector = useAppSelector
 setupListeners(store.dispatch)
 
-export { store, persistor }
+export { store, persistor, dispatch, useSelector }

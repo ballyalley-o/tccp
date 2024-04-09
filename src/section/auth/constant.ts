@@ -3,7 +3,7 @@ import { APP_FIELD } from 'config'
 import { KEY, SIZE, SIZE_MAP } from 'constant'
 
 const DEFAULT = {
-  margin: 'normal',
+  // margin: 'normal',
   fullWidth: true,
   // component: RFTextField,
   sx: { height: APP_FIELD.HEIGHT }
@@ -11,7 +11,7 @@ const DEFAULT = {
 
 export const FORM = {
   FIRST_NAME: {
-    name: KEY.FIRST_NAME,
+    // name: KEY.FIRST_NAME,
     label: 'First name',
     placeholder: 'Enter your first name',
     autoComplete: 'given-name',
@@ -21,7 +21,7 @@ export const FORM = {
     ...DEFAULT
   },
   LAST_NAME: {
-    name: KEY.LAST_NAME,
+    // name: KEY.LAST_NAME,
     label: 'Last name',
     placeholder: 'Enter your last name',
     autoComplete: 'family-name',
@@ -30,16 +30,17 @@ export const FORM = {
     ...DEFAULT
   },
   EMAIL: {
-    name: KEY.EMAIL,
+    // name: KEY.EMAIL,
     label: 'Email',
     placeholder: 'Enter your email',
     autoComplete: 'email',
     required: true,
+    type: 'email',
 
     ...DEFAULT
   },
   PASSWORD: {
-    name: KEY.PASSWORD,
+    // name: KEY.PASSWORD,
     label: 'Password',
     placeholder: 'Enter your password',
     autoComplete: 'new-password',
@@ -48,7 +49,7 @@ export const FORM = {
     ...DEFAULT
   },
   CONFIRM_PASSWORD: {
-    name: KEY.CONFIRM_PASSWORD,
+    // name: KEY.CONFIRM_PASSWORD,
     label: 'Confirm password',
     placeholder: 'Confirm your password',
     autoComplete: 'new-password',
@@ -57,7 +58,7 @@ export const FORM = {
     ...DEFAULT
   },
   GITHUB_USERNAME: {
-    name: KEY.GITHUB_USERNAME,
+    // name: KEY.GITHUB_USERNAME,
     label: 'Github username',
     placeholder: 'Enter your github username',
     autoComplete: 'username',
@@ -66,16 +67,15 @@ export const FORM = {
     ...DEFAULT
   },
   LOCATION: {
-    name: KEY.LOCATION,
+    // name: KEY.LOCATION,
     label: 'Location',
     placeholder: 'Enter your location',
     autoComplete: 'location',
-    required: true,
 
     ...DEFAULT
   },
   ROLE: {
-    name: KEY.ROLE,
+    // name: KEY.ROLE,
     label: 'Role',
     autoComplete: 'role',
     defaultValue: 'student',

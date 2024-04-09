@@ -12,24 +12,40 @@ const authSlice = createSlice({
   name: LOCAL_STORAGE.AUTH,
   initialState,
   reducers: {
-    setCredential(state, action) {
-      console.log('action.payload', action.payload)
-      state.user = action.payload
-      localStorage.setItem(LOCAL_STORAGE.USER, JSON.stringify(action.payload))
+    setInitial(state, action) {
+      const { isInitialized, isAuthenticated, user } = action.payload
 
-      const expirationTime = new Date().getTime() + 3600 * 1000
-      localStorage.setItem('expirationTime', expirationTime.toString())
-      state.isAuthenticated = true
+      state.isInitialized = isInitialized
+      state.isAuthenticated = isAuthenticated
+      state.user = user
+    },
+    setCredential(state, action) {
+      const { isAuthenticated, user, token } = action.payload
+
+      state.isAuthenticated = isAuthenticated
+      state.user = user
+      state.token = token
+
+      if (isAuthenticated) {
+        localStorage.setItem(LOCAL_STORAGE.USER, JSON.stringify(user))
+        const expiration = new Date().getTime() + 3600 * 1000
+
+        localStorage.setItem(LOCAL_STORAGE.TOKEN, token)
+        localStorage.setItem(LOCAL_STORAGE.EXPIRATION, expiration.toString())
+        localStorage.setItem(LOCAL_STORAGE.USER, JSON.stringify(user))
+      }
     },
 
     logout(state) {
-      state.user = null
+      state.isInitialized = false
       state.isAuthenticated = false
+      state.user = null
       localStorage.removeItem(LOCAL_STORAGE.USER)
-      localStorage.removeItem('expirationTime')
+      localStorage.removeItem(LOCAL_STORAGE.TOKEN)
+      localStorage.removeItem(LOCAL_STORAGE.EXPIRATION)
     }
   }
 })
 
-export const { setCredential, logout } = authSlice.actions
+export const { setInitial, setCredential, logout } = authSlice.actions
 export default authSlice.reducer

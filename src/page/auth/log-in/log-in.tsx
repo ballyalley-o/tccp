@@ -4,49 +4,25 @@ import { useDispatch, useSelector } from 'react-redux'
 import * as Yup from 'yup'
 import { useForm, Controller } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { FormProvider } from 'component/form'
+import { FormField, FormProvider } from 'component/form'
+import { useAuthContext } from 'auth'
 import { Box, Input, FormControlLabel, Checkbox } from '@mui/material'
-import { AppForm, PasswordField, FormButtonRedir, email, required } from 'component/form'
+import { AppForm, FormButtonRedir, email, required } from 'component/form'
 import { MotionContainer } from 'component/motion'
 import { Meta } from 'component/meta'
+import { Snack } from 'component/snack'
 import { AuthBranding } from 'section/auth'
 import { AuthPath, RootPath } from 'route/path'
 import { FORM } from 'section/auth'
-import { Snack } from 'component/snack'
-import { useLoginMutation } from 'store/slice/auth/endpoint'
-import { setCredential } from 'store/slice/auth'
-import { LABEL, KEY, LOCAL_STORAGE } from 'constant'
+import { LABEL, KEY, LOCAL_STORAGE, RESPONSE, COLOR } from 'constant'
 import withRoot from 'withroot'
 
-interface IResponse {
-  email: string
-  name: string
-  token: string
-  password: string
-  message: string
-}
-
 function LogIn() {
-  const [uemail, setEmail] = useState('')
-  const [upassword, setPassword] = useState('')
-  const [uremember, setRemember] = useState(false)
-  const [login, { isLoading }] = useLoginMutation()
-  const { user } = useSelector((state: { auth: { user: any } }) => state.auth)
-  const dispatch = useDispatch()
+  const [email, setEmail] = useState('')
+  const [remember, setRemember] = useState(false)
+  const { login } = useAuthContext()
+  const { isAuthenticated } = useSelector((state: { auth: { isAuthenticated: boolean } }) => state.auth)
   const navigate = useNavigate()
-
-  const validate = (values: BaseSyntheticEvent<object, any, any> | undefined) => {
-    if (!values || typeof values !== 'object') return {}
-    const valuesObj = values as { [index: string]: any }
-    const errors = required([KEY.EMAIL, KEY.PASSWORD], valuesObj)
-    if (!errors.email) {
-      const emailError = email(valuesObj.email)
-      if (emailError) {
-        errors.email = emailError
-      }
-    }
-    return errors
-  }
 
   const loginSchema = Yup.object().shape({
     email: Yup.string().email(),
@@ -57,8 +33,9 @@ function LogIn() {
   const methods = useForm({
     resolver: yupResolver(loginSchema),
     defaultValues: {
-      email: uemail,
-      password: upassword
+      email,
+      password: '',
+      remember
     }
   })
 
@@ -71,50 +48,39 @@ function LogIn() {
   } = methods
 
   useEffect(() => {
-    const storedEmail = localStorage.getItem(LOCAL_STORAGE.USER_EMAIL)
-    const storedPassword = localStorage.getItem(LOCAL_STORAGE.USER_PASSWORD)
-    const storedRemember = localStorage.getItem(LOCAL_STORAGE.REMEMBER)
-    if (storedEmail && storedPassword && storedRemember) {
-      setEmail(storedEmail)
-      setPassword(storedPassword)
+    const getUserInfo = localStorage.getItem(LOCAL_STORAGE.USER_INFO)
+
+    if (getUserInfo) {
+      const { email } = JSON.parse(getUserInfo)
+      setEmail(email)
       setRemember(true)
     }
-  }, [setEmail, setPassword, setRemember])
+  }, [setEmail, setRemember])
 
   const onSubmit = async (data: any) => {
-    if (uemail) {
-      data.email = uemail
-    }
-    if (upassword) {
-      data.password = upassword
-    }
-
     try {
-      if (uremember) {
-        localStorage.setItem(LOCAL_STORAGE.USER_EMAIL, data.email)
-        localStorage.setItem(LOCAL_STORAGE.USER_PASSWORD, data.password)
-        localStorage.setItem(LOCAL_STORAGE.REMEMBER, 'true')
-      } else {
-        localStorage.removeItem(LOCAL_STORAGE.USER_EMAIL)
-        localStorage.removeItem(LOCAL_STORAGE.USER_PASSWORD)
-        localStorage.removeItem(LOCAL_STORAGE.REMEMBER)
+      if (login) {
+        await login(data)
       }
-      const res: IResponse = (await login({ email: data.email, password: data.password }).unwrap()) as IResponse
-      dispatch(
-        setCredential({
-          ...res
-        })
-      )
 
-      if (res?.message) {
-        throw new Error(res.message)
+      if (remember) {
+        const userInfo = {
+          email: data.email,
+          remember
+        }
+
+        localStorage.setItem(LOCAL_STORAGE.USER_INFO, JSON.stringify(userInfo))
+      } else {
+        localStorage.removeItem(LOCAL_STORAGE.USER_INFO)
       }
-      console.log('user : ', user)
-      navigate(RootPath.ROOT_PARAM)
+
+      if (isAuthenticated) {
+        navigate(RootPath.ROOT_PARAM)
+      }
     } catch (error: any) {
       console.error('error : ', error || '')
       reset()
-      setError('email', { message: error.message })
+      setError(KEY.EMAIL, { message: error.message })
     }
   }
 
@@ -125,63 +91,31 @@ function LogIn() {
         <Fragment>
           <AuthBranding />
         </Fragment>
-        {/* TODO: NEEDS REFACTORING */}
-        {errors.email ? (
-          <Snack severity='error' title={errors.email?.message || errors.password?.message || 'Something went wrong. Please try again later.'} />
-        ) : isLoading ? (
-          <Box height={95} width='100%' />
-        ) : isSubmitSuccessful ? (
-          <Snack severity='success' title='Logged In' />
-        ) : (
-          <Box height={95} width='100%' />
-        )}
+        <Snack
+          severity={errors.email || errors.password ? COLOR.ERROR : COLOR.SUCCESS}
+          title={
+            errors.email?.message || errors.password?.message
+              ? RESPONSE.error.INVALID_CREDENTIAL
+              : isSubmitSuccessful
+              ? RESPONSE.success.LOGIN
+              : RESPONSE.error.DEFAULT
+          }
+          condition={errors.email?.message || errors.password?.message || isSubmitSuccessful ? true : false}
+        />
         <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+          <FormField name={KEY.EMAIL} submitting={isSubmitting} sent={isSubmitSuccessful} errors={errors} {...FORM.EMAIL} />
+          <FormField name={KEY.PASSWORD} submitting={isSubmitting} sent={isSubmitSuccessful} errors={errors} {...FORM.PASSWORD} />
           <Controller
             control={control}
-            name={KEY.EMAIL}
-            render={({ field }) => (
-              <Input
-                {...field}
-                autoComplete={FORM.EMAIL.autoComplete}
-                disabled={isSubmitting || isSubmitSuccessful}
-                title={FORM.EMAIL.label}
-                placeholder={FORM.EMAIL.placeholder}
-                onChange={(e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
-                value={uemail}
-                name='uemail'
-                color='secondary'
-                type='email'
-                margin='dense'
-                required
-                autoFocus
-                fullWidth
-                sx={{
-                  color: 'secondary.main',
-                  '&:focus': {
-                    color: 'secondary.main',
-                    backgroundColor: 'secondary.main'
-                  },
-                  padding: 1,
-                  marginY: 1
-                }}
-              />
-            )}
-            disabled={isSubmitting || isSubmitSuccessful}
-            rules={{ required: true }}
-          />
-          <PasswordField submitting={isSubmitting} sent={isSubmitSuccessful} value={upassword} setValue={setPassword} control={control} />
-
-          <Controller
-            control={control}
-            name='email'
+            name={KEY.REMEMBER}
             render={({ field }) => (
               <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 <FormControlLabel
                   control={
                     <Checkbox
                       {...field}
-                      checked={uremember}
-                      onChange={(e: ChangeEvent<HTMLInputElement>) => setRemember(e.currentTarget.checked)}
+                      checked={remember}
+                      onChange={(e: ChangeEvent<HTMLInputElement>) => setRemember(!remember)}
                       color='secondary'
                       size='small'
                     />
@@ -199,6 +133,7 @@ function LogIn() {
             label={LABEL.NOT_A_MEMBER}
             labelSub={LABEL.REGISTER_Sub}
             href={AuthPath.REGISTER}
+            control={control}
           />
         </FormProvider>
       </AppForm>

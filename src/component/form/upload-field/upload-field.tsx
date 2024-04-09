@@ -1,11 +1,8 @@
 import { useState, ChangeEventHandler } from 'react'
 import { m } from 'framer-motion'
 import AvatarEditor from 'react-avatar-editor'
-import { Button, Grid, IconButton, Dialog, DialogContent } from '@mui/material'
-import {
-  SUploadAvatarButton,
-  AvatarEditorDialog,
-} from 'component/form/upload-field'
+import { Grid } from '@mui/material'
+import { SUploadAvatarButton, AvatarEditorDialog } from 'component/form/upload-field'
 // import { AvatarEditorDialog } from 'component/upload-field'
 import { ICON_WEB_NAME } from 'config'
 import { useIcon } from 'hook'
@@ -58,15 +55,8 @@ const UploadField = () => {
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}
             disabled={uploaded}
-            {...FORM.AVATAR.BUTTON}
-          >
-            {uploaded ? (
-              BUTTON.UPLOADED_AVATAR
-            ) : hovered ? (
-              <Icon icon={uploadSrc} />
-            ) : (
-              BUTTON.UPLOAD_AVATAR
-            )}
+            {...FORM.AVATAR.BUTTON}>
+            {uploaded ? BUTTON.UPLOADED_AVATAR : hovered ? <Icon icon={uploadSrc} /> : BUTTON.UPLOAD_AVATAR}
           </SUploadAvatarButton>
         </label>
       </Grid>

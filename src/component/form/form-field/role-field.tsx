@@ -9,16 +9,9 @@ const MARGIN = 'normal'
 const VARIANT = 'filled'
 
 const RoleField = forwardRef(({ name, submitting, sent, errors, helperText }: FormFieldProps, ref) => {
-  const [selectedValue, setSelectedValue] = useState('student') // Initial selected value
-
-  const handleValueChange = (event: ChangeEvent<{ value: unknown }>) => {
-    setSelectedValue(event.target.value as string)
-  }
-
   const { register } = useFormContext()
   return (
     <TextField
-      // name={KEY.ROLE}
       margin={MARGIN}
       variant={VARIANT}
       disabled={submitting || sent}

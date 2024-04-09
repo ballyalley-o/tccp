@@ -14,7 +14,7 @@ enum KEY {
   EMAIL = 'email',
   PASSWORD = 'password',
   CONFIRM_PASSWORD = 'confirmPassword',
-  GITHUB_USERNAME = 'githubUsername',
+  GITHUB_USERNAME = 'username',
   LOCATION = 'location',
   ROLE = 'role',
   AVATAR = 'avatar',

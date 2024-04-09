@@ -4,13 +4,13 @@ import { Grid } from '@mui/material'
 import { FormField, FormProvider, RoleField, UploadField } from 'component/form'
 import { FormButtonRedir } from 'component/form'
 import { useForm } from 'react-hook-form'
-import { LABEL, BUTTON, KEY, RESPONSE } from 'constant'
+import { LABEL, BUTTON, KEY, RESPONSE, COLOR } from 'constant'
 import { AuthPath } from 'route/path'
 import { FORM } from 'section/auth'
-import * as Yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { RootPath } from 'route/path'
 import { useRegisterMutation } from 'store/slice'
+import { registerSchema } from 'schema'
 import { setCredential } from 'store/slice/auth'
 import { dispatch } from 'store'
 import { Snack } from 'component/snack'
@@ -18,18 +18,6 @@ import { Snack } from 'component/snack'
 function RegisterFormLayout({ submitting, sent, register }: FormFieldProps) {
   const navigate = useNavigate()
   const [reg, { isLoading }] = useRegisterMutation()
-
-  const registerSchema = Yup.object().shape({
-    firstname: Yup.string().required(),
-    lastname: Yup.string().required(),
-    email: Yup.string().email().required(),
-    password: Yup.string().required(),
-    confirmPassword: Yup.string().oneOf([Yup.ref('password'), undefined], 'Passwords must match'),
-    username: Yup.string(),
-    location: Yup.string(),
-    role: Yup.string(),
-    avatar: Yup.string()
-  })
 
   const methods = useForm({
     resolver: yupResolver(registerSchema),
@@ -86,12 +74,12 @@ function RegisterFormLayout({ submitting, sent, register }: FormFieldProps) {
   return (
     <>
       <Snack
-        severity={errors.email || errors.password ? 'error' : 'success'}
+        severity={errors.email || errors.password ? COLOR.ERROR : COLOR.SUCCESS}
         title={
           errors.email?.message || errors.password?.message
-            ? 'Invalid Credential'
+            ? RESPONSE.error.INVALID_CREDENTIAL
             : isSubmitSuccessful
-            ? 'Successful Registration'
+            ? RESPONSE.success.REGISTERED
             : RESPONSE.error.DEFAULT
         }
         condition={errors.email?.message || errors.password?.message || isSubmitSuccessful ? true : false}

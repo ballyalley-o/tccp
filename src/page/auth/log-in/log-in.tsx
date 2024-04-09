@@ -14,7 +14,7 @@ import { Snack } from 'component/snack'
 import { AuthBranding } from 'section/auth'
 import { AuthPath, RootPath } from 'route/path'
 import { FORM } from 'section/auth'
-import { LABEL, KEY, LOCAL_STORAGE, RESPONSE } from 'constant'
+import { LABEL, KEY, LOCAL_STORAGE, RESPONSE, COLOR } from 'constant'
 import withRoot from 'withroot'
 
 function LogIn() {
@@ -59,7 +59,6 @@ function LogIn() {
 
   const onSubmit = async (data: any) => {
     try {
-      console.log('data : ', data)
       if (login) {
         await login(data)
       }
@@ -93,8 +92,14 @@ function LogIn() {
           <AuthBranding />
         </Fragment>
         <Snack
-          severity={errors.email || errors.password ? 'error' : 'success'}
-          title={errors.email?.message || errors.password?.message ? 'Invalid Credential' : isSubmitSuccessful ? 'Logged In' : RESPONSE.error.DEFAULT}
+          severity={errors.email || errors.password ? COLOR.ERROR : COLOR.SUCCESS}
+          title={
+            errors.email?.message || errors.password?.message
+              ? RESPONSE.error.INVALID_CREDENTIAL
+              : isSubmitSuccessful
+              ? RESPONSE.success.LOGIN
+              : RESPONSE.error.DEFAULT
+          }
           condition={errors.email?.message || errors.password?.message || isSubmitSuccessful ? true : false}
         />
         <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>

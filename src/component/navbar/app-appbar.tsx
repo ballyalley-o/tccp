@@ -26,14 +26,15 @@ const rightLink = {
 function AppNavBar(): JSX.Element {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [isLogoHovered, setIsLogoHovered] = useState(false)
-  // const { user } = useSelector((state: any) => state.auth)
+  const { user } = useSelector((state: any) => state.auth)
   //  avoid re-rendering when user changes
-  const selectAuth = (state: any) => state.auth
-  const selectUser = createSelector([selectAuth], (auth) => auth.user || {})
-  const { user } = useSelector(selectUser)
+  // const selectAuth = (state: any) => state.auth
+  // const selectUser = createSelector([selectAuth], (auth) => auth.user || {})
+  // const { user } = useSelector(selectUser)
 
   const location = useLocation()
   const isLogInRoute = location.pathname === AuthPath.LOG_IN
+  const isRegisterRoute = location.pathname === AuthPath.REGISTER
 
   const handleSidebarOpen = () => {
     setSidebarOpen((prevSidebarOpen) => !prevSidebarOpen)
@@ -118,7 +119,7 @@ function AppNavBar(): JSX.Element {
                 <AnimatedButton to={AuthPath.LOG_IN} text={BUTTON.LOG_IN} style={rightLink} />
               )}
               <Box>
-                {!user && (
+                {!user && !isRegisterRoute && (
                   <Link variant='h6' underline='none' href={AuthPath.REGISTER} sx={{ ...rightLink, color: 'secondary.main' }}>
                     <Button
                       variant='contained'

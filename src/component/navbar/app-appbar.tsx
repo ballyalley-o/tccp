@@ -26,11 +26,11 @@ const rightLink = {
 function AppNavBar(): JSX.Element {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [isLogoHovered, setIsLogoHovered] = useState(false)
-  // const { user } = useSelector((state: any) => state.auth)
+  const { user } = useSelector((state: any) => state.auth)
   //  avoid re-rendering when user changes
-  const selectAuth = (state: any) => state.auth
-  const selectUser = createSelector([selectAuth], (auth) => auth.user || {})
-  const { user } = useSelector(selectUser)
+  // const selectAuth = (state: any) => state.auth
+  // const selectUser = createSelector([selectAuth], (auth) => auth.user || {})
+  // const { user } = useSelector(selectUser)
 
   const location = useLocation()
   const isLogInRoute = location.pathname === AuthPath.LOG_IN

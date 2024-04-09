@@ -87,7 +87,7 @@ const useRegister = () => {
 
       const res = (await reg(data).unwrap()) as IResponse
 
-      dispatch(setCredential({ ...res }))
+      dispatch(setCredential({ isAuthenticated: true, user: res.user, token: res.token }))
 
       if (res?.message) {
         throw new Error(res.message)

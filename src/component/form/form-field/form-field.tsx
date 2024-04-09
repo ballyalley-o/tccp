@@ -56,11 +56,6 @@ const FormField = forwardRef(
 
     return (
       <TextField
-        // {...(register && register)}
-        // defaultValue={defaultValue}
-        // inputRef={ref as ForwardedRef<HTMLInputElement>}
-        // control={control}
-        // name={name}
         variant='filled'
         color='primary'
         autoComplete={autoComplete}

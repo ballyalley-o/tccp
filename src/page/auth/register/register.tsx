@@ -18,84 +18,80 @@ import * as Yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { RootPath } from 'route/path'
 import { useRegisterMutation } from 'store/slice'
+import { dispatch } from 'store'
 
 function Register() {
   // const { register, methods, handleSubmit, onSubmit, errors, isLoading, isSubmitting, isSubmitSuccessful } = useRegister()
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
-  const [reg, { isLoading }] = useRegisterMutation()
+  // const dispatch = useDispatch()
+  // const navigate = useNavigate()
+  // const [reg, { isLoading }] = useRegisterMutation()
 
-  const registerSchema = Yup.object().shape({
-    firstname: Yup.string().required(),
-    lastname: Yup.string().required(),
-    email: Yup.string().email().required(),
-    password: Yup.string().required(),
-    confirmPassword: Yup.string().oneOf([Yup.ref('password'), undefined], 'Passwords must match'),
-    username: Yup.string(),
-    location: Yup.string(),
-    role: Yup.string(),
-    avatar: Yup.string()
-  })
+  // const registerSchema = Yup.object().shape({
+  //   firstname: Yup.string().required(),
+  //   lastname: Yup.string().required(),
+  //   email: Yup.string().email().required(),
+  //   password: Yup.string().required(),
+  //   confirmPassword: Yup.string().oneOf([Yup.ref('password'), undefined], 'Passwords must match'),
+  //   username: Yup.string(),
+  //   location: Yup.string(),
+  //   role: Yup.string(),
+  //   avatar: Yup.string()
+  // })
 
-  const methods = useForm({
-    resolver: yupResolver(registerSchema),
-    defaultValues: useMemo(
-      () => ({
-        firstname: '',
-        lastname: '',
-        email: '',
-        password: '',
-        confirmPassword: '',
-        username: '',
-        location: '',
-        role: '',
-        avatar: ''
-      }),
-      []
-    )
-  })
+  // const methods = useForm({
+  //   resolver: yupResolver(registerSchema),
+  //   defaultValues: useMemo(
+  //     () => ({
+  //       firstname: '',
+  //       lastname: '',
+  //       email: '',
+  //       password: '',
+  //       confirmPassword: '',
+  //       username: '',
+  //       location: '',
+  //       role: '',
+  //       avatar: ''
+  //     }),
+  //     []
+  //   )
+  // })
 
-  const {
-    handleSubmit,
-    reset,
-    setError,
-    formState: { errors, isSubmitting, isSubmitSuccessful }
-  } = methods
+  // const {
+  //   handleSubmit,
+  //   reset,
+  //   setError,
+  //   formState: { errors, isSubmitting, isSubmitSuccessful }
+  // } = methods
 
-  const onSubmit = async (data: any) => {
-    try {
-      const res = (await reg(data).unwrap()) as IResponse
-      dispatch(setCredential({ ...res }))
+  // const onSubmit = async (data: any) => {
+  //   try {
+  //     const res = (await reg(data).unwrap()) as IResponse
+  //     dispatch(setCredential({ ...res }))
 
-      console.log('data : ', data)
+  //     console.log('data : ', data)
 
-      if (res?.message) {
-        throw new Error(res.message)
-      }
-      navigate(RootPath.ROOT_PARAM)
-    } catch (error: any) {
-      console.error('error : ', error || '')
-      reset()
-      setError(KEY.EMAIL, { message: error.message })
-    }
-  }
+  //     if (res?.message) {
+  //       throw new Error(res.message)
+  //     }
+  //     navigate(RootPath.ROOT_PARAM)
+  //   } catch (error: any) {
+  //     console.error('error : ', error || '')
+  //     reset()
+  //     setError(KEY.EMAIL, { message: error.message })
+  //   }
+  // }
 
   return (
     <MotionContainer>
       <Meta title={LABEL.REGISTER} />
       <AppForm size={SIZE_TYPE.lg}>
         <AuthBranding />
-        <Snack
-          severity='error'
-          title={errors.email?.message || errors.password?.message || RESPONSE.error.DEFAULT}
-          time={5000}
-          condition={errors.email || errors.password ? true : false}
-        />
-        <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-          <Box sx={{ mt: 6 }}>
-            <RegisterFormLayout submitting={isSubmitting} sent={isSubmitSuccessful} errors={errors} />
-          </Box>
-        </FormProvider>
+
+        {/* <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}> */}
+        <Box sx={{ mt: 6 }}>
+          <RegisterFormLayout />
+        </Box>
+        {/* </FormProvider> */}
       </AppForm>
     </MotionContainer>
   )

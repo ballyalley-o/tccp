@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Link as RouterLink, useParams, useNavigate } from 'react-router-dom'
+import { Link as RouterLink, useParams, useLocation } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { createSelector } from 'reselect'
 import { m } from 'framer-motion'
@@ -26,13 +26,13 @@ const rightLink = {
 function AppNavBar(): JSX.Element {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [isLogoHovered, setIsLogoHovered] = useState(false)
-  const { user } = useSelector((state: any) => state.auth)
+  // const { user } = useSelector((state: any) => state.auth)
   //  avoid re-rendering when user changes
-  // const selectAuth = (state: any) => state.auth
-  // const selectUser = createSelector([selectAuth], (auth) => auth.user || {})
-  // const { user } = useSelector(selectUser)
+  const selectAuth = (state: any) => state.auth
+  const selectUser = createSelector([selectAuth], (auth) => auth.user || {})
+  const { user } = useSelector(selectUser)
 
-  const param = useParams()
+  const location = useLocation()
   const isLogInRoute = location.pathname === AuthPath.LOG_IN
 
   const handleSidebarOpen = () => {

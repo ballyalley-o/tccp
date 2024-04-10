@@ -21,7 +21,9 @@ const ICON_WEB = {
   ALERT_OUTLINE: _getWebIcon('alert-triangle-outline'),
   ARROW_FORWARD: _getWebIcon('arrow-ios-forward'),
   CLOSE: _getWebIcon('close-fill'),
+  CHECKMARK_CIRCLE: _getWebIcon('checkmark-circle-outline'),
   CONTRAST_BOX: _getWebIcon('contrast-box'),
+  ERROR_OUTLINE: _getWebIcon('alert-circle-outline'),
   ERROR: _getWebIcon('alert-circle'),
   INFO: _getWebIcon('info'),
 

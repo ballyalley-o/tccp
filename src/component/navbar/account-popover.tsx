@@ -3,6 +3,7 @@ import { useNavigate, Link as RouterLink } from 'react-router-dom'
 import { alpha, useTheme } from '@mui/material/styles'
 import { Box, Divider, Dialog, Typography, Stack, MenuItem, Link } from '@mui/material'
 import { useAuthContext } from 'auth'
+import { useSnackbar } from 'hook/use-snack'
 import { DefaultAvatar, Avatar } from 'component/avatar'
 import { MenuPopover } from 'component/menu-popover'
 import { MotionButton } from 'component/motion'
@@ -22,7 +23,7 @@ export default function AccountPopover({ user }: { user: any }) {
   const email = user?.email
   const displayName = user?.firstname + ' ' + user?.lastname
 
-  //   const { enqueueSnackbar } = useSnackbar()
+  const { enqueueSnackbar: snack } = useSnackbar()
 
   const { themeMode, themeStretch, themeContrast, onResetSetting } = useSettingContext()
 
@@ -39,8 +40,10 @@ export default function AccountPopover({ user }: { user: any }) {
       if (logout) {
         logout()
       }
+      snack('Logout Successful')
       handleClosePopover()
     } catch (error) {
+      snack('Unable to logout', { variant: 'error' })
       console.error(error)
       //   enqueueSnackbar('Unable to logout', { variant: 'error' })
     }

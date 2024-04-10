@@ -5,6 +5,7 @@ import { AppNavBar, AppFooter } from 'component'
 import { Fallback } from 'page'
 import { AuthProvider } from 'auth/auth-provider'
 import { SettingProvider } from 'component/setting'
+import { SnackProvider } from 'hook'
 import ErrorBoundary from 'util/error-boundary'
 import Router from 'route'
 import withRoot from 'withroot'
@@ -22,11 +23,13 @@ function App() {
         <HelmetProvider>
           <BrowserRouter>
             <SettingProvider>
-              <AppNavBar />
-              <ErrorBoundary fallback={<Fallback fallbackTitle={FALLBACK.BAD_REQUEST.MESSAGE} errorCode={FALLBACK.BAD_REQUEST.CODE} />}>
-                <Router />
-              </ErrorBoundary>
-              <AppFooter />
+              <SnackProvider>
+                <AppNavBar />
+                <ErrorBoundary fallback={<Fallback fallbackTitle={FALLBACK.BAD_REQUEST.MESSAGE} errorCode={FALLBACK.BAD_REQUEST.CODE} />}>
+                  <Router />
+                </ErrorBoundary>
+                <AppFooter />
+              </SnackProvider>
             </SettingProvider>
           </BrowserRouter>
         </HelmetProvider>

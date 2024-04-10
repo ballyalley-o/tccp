@@ -1,11 +1,11 @@
 import { useState, useEffect, Fragment, ChangeEvent, BaseSyntheticEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import * as Yup from 'yup'
+import { useAuthContext } from 'auth'
 import { useForm, Controller } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { FormField, FormProvider } from 'component/form'
-import { useAuthContext } from 'auth'
 import { Box, FormControlLabel, Checkbox } from '@mui/material'
 import { AppForm, FormButtonRedir, email, required } from 'component/form'
 import { MotionContainer } from 'component/motion'
@@ -14,6 +14,7 @@ import { Snack } from 'component/snack'
 import { AuthBranding } from 'section/auth'
 import { AuthPath, RootPath } from 'route/path'
 import { FORM } from 'section/auth'
+import { useSnackbar } from 'hook/use-snack'
 import { LABEL, KEY, LOCAL_STORAGE, RESPONSE, COLOR } from 'constant'
 import withRoot from 'withroot'
 
@@ -22,6 +23,7 @@ function LogIn() {
   const [remember, setRemember] = useState(false)
   const { login } = useAuthContext()
   const navigate = useNavigate()
+  const { enqueueSnackbar: snack } = useSnackbar()
   const { isAuthenticated } = useSelector((state: { auth: { isAuthenticated: boolean } }) => state.auth)
 
   const loginSchema = Yup.object().shape({
@@ -59,29 +61,41 @@ function LogIn() {
 
   const onSubmit = async (data: any) => {
     try {
-      console.log('data : ', data)
       if (login) {
         await login(data)
-      }
-
-      if (remember) {
-        const userInfo = {
-          email: data.email,
-          remember
-        }
-
-        localStorage.setItem(LOCAL_STORAGE.USER_INFO, JSON.stringify(userInfo))
       } else {
-        localStorage.removeItem(LOCAL_STORAGE.USER_INFO)
+        throw new Error(RESPONSE.error.INVALID_CREDENTIAL)
       }
 
       if (isAuthenticated) {
+        await snack('Logged in successful')
+
+        if (remember) {
+          const userInfo = {
+            email: data.email,
+            remember
+          }
+
+          localStorage.setItem(LOCAL_STORAGE.USER_INFO, JSON.stringify(userInfo))
+        } else {
+          localStorage.removeItem(LOCAL_STORAGE.USER_INFO)
+        }
+
         navigate(RootPath.ROOT_PARAM)
+      } else {
+        snack(RESPONSE.error.INVALID_CREDENTIAL)
+        throw new Error(RESPONSE.error.INVALID_CREDENTIAL)
       }
     } catch (error: any) {
       console.error('error : ', error || '')
       reset()
-      setError(KEY.EMAIL, { message: error.message })
+      if (error.message === RESPONSE.error.INVALID_CREDENTIAL) {
+        setError(KEY.EMAIL, { message: 'Invalid email' })
+        setError(KEY.PASSWORD, { message: 'Invalid password' })
+      } else {
+        setError(KEY.EMAIL, { message: error.message })
+      }
+      snack(error.message)
     }
   }
 
@@ -92,7 +106,7 @@ function LogIn() {
         <Fragment>
           <AuthBranding />
         </Fragment>
-        <Snack
+        {/* <Snack
           severity={errors.email || errors.password ? COLOR.ERROR : COLOR.SUCCESS}
           title={
             errors.email?.message || errors.password?.message
@@ -102,7 +116,7 @@ function LogIn() {
               : RESPONSE.error.DEFAULT
           }
           condition={errors.email?.message || errors.password?.message || isSubmitSuccessful ? true : false}
-        />
+        /> */}
         <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
           <FormField name={KEY.EMAIL} submitting={isSubmitting} sent={isSubmitSuccessful} errors={errors} {...FORM.EMAIL} />
           <FormField name={KEY.PASSWORD} submitting={isSubmitting} sent={isSubmitSuccessful} errors={errors} {...FORM.PASSWORD} />

@@ -10,9 +10,8 @@ import { Box, FormControlLabel, Checkbox } from '@mui/material'
 import { AppForm, FormButtonRedir, email, required } from 'component/form'
 import { MotionContainer } from 'component/motion'
 import { Meta } from 'component/meta'
-import { Snack } from 'component/snack'
 import { AuthBranding } from 'section/auth'
-import { AuthPath, RootPath } from 'route/path'
+import { AuthPath } from 'route/path'
 import { FORM } from 'section/auth'
 import { useSnackbar } from 'hook/use-snack'
 import { LABEL, KEY, LOCAL_STORAGE, RESPONSE, COLOR } from 'constant'
@@ -63,12 +62,7 @@ function LogIn() {
     try {
       if (login) {
         await login(data)
-      } else {
-        throw new Error(RESPONSE.error.INVALID_CREDENTIAL)
-      }
-
-      if (isAuthenticated) {
-        await snack('Logged in successful')
+        // navigate(RootPath.ROOT_PARAM)
 
         if (remember) {
           const userInfo = {
@@ -80,22 +74,24 @@ function LogIn() {
         } else {
           localStorage.removeItem(LOCAL_STORAGE.USER_INFO)
         }
-
-        navigate(RootPath.ROOT_PARAM)
       } else {
-        snack(RESPONSE.error.INVALID_CREDENTIAL)
+        snack(RESPONSE.error.INVALID_CREDENTIAL, {
+          variant: COLOR.ERROR
+        })
         throw new Error(RESPONSE.error.INVALID_CREDENTIAL)
       }
     } catch (error: any) {
       console.error('error : ', error || '')
       reset()
       if (error.message === RESPONSE.error.INVALID_CREDENTIAL) {
-        setError(KEY.EMAIL, { message: 'Invalid email' })
-        setError(KEY.PASSWORD, { message: 'Invalid password' })
+        setError(KEY.EMAIL, { message: RESPONSE.error.EMAIL_INVALID })
+        setError(KEY.PASSWORD, { message: RESPONSE.error.PASSWORD_INVALID })
       } else {
+        snack(error.message, {
+          variant: COLOR.ERROR
+        })
         setError(KEY.EMAIL, { message: error.message })
       }
-      snack(error.message)
     }
   }
 
@@ -104,22 +100,18 @@ function LogIn() {
       <Meta title={LABEL.LOG_IN} />
       <AppForm isLogin>
         <Fragment>
-          <AuthBranding />
+          <Box marginBottom={2}>
+            <AuthBranding />
+          </Box>
         </Fragment>
-        {/* <Snack
-          severity={errors.email || errors.password ? COLOR.ERROR : COLOR.SUCCESS}
-          title={
-            errors.email?.message || errors.password?.message
-              ? RESPONSE.error.INVALID_CREDENTIAL
-              : isSubmitSuccessful
-              ? RESPONSE.success.LOGIN
-              : RESPONSE.error.DEFAULT
-          }
-          condition={errors.email?.message || errors.password?.message || isSubmitSuccessful ? true : false}
-        /> */}
+
         <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-          <FormField name={KEY.EMAIL} submitting={isSubmitting} sent={isSubmitSuccessful} errors={errors} {...FORM.EMAIL} />
-          <FormField name={KEY.PASSWORD} submitting={isSubmitting} sent={isSubmitSuccessful} errors={errors} {...FORM.PASSWORD} />
+          <Box marginBottom={2}>
+            <FormField name={KEY.EMAIL} submitting={isSubmitting} sent={isSubmitSuccessful} errors={errors} {...FORM.EMAIL} />
+          </Box>
+          <Box marginBottom={2}>
+            <FormField name={KEY.PASSWORD} submitting={isSubmitting} sent={isSubmitSuccessful} errors={errors} {...FORM.PASSWORD} />
+          </Box>
           <Controller
             control={control}
             name={KEY.REMEMBER}

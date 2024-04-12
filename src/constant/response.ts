@@ -57,6 +57,7 @@ const RESPONSE = {
     INVALID_TOKEN: 'Invalid token',
     NOT_OWNER: (user: string, course: string) => `User ${user} is unauthorized to update course ${course}`,
     ROLE_NOT_ALLOWED: (data: string) => `Current role ${data} is unauthorized to access this route`,
+    LOGIN_UNABLE: 'Unable to login',
     parseErr: (err: any) => `Error parsing JSON: ${err}`,
     NotInstance: 'This class cannot be instantiated',
     PASSWORD_MATCH: 'Passwords do not match',

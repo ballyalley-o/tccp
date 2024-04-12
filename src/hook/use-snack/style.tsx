@@ -1,48 +1,42 @@
-import { useTheme } from '@mui/material/styles'
-import { GlobalStyles } from '@mui/material'
-import { KEY } from 'constant'
+import { m } from 'framer-motion'
+import { Box } from '@mui/material'
+import { styled } from '@mui/material/styles'
+import { MaterialDesignContent } from 'notistack'
 
-export default function StyledNotistack() {
-  const theme = useTheme()
+export const SSnackContent = styled(MaterialDesignContent)(({ theme }) => ({
+  '&.notistack-MuiContent': {
+    backgroundColor: theme.palette.common.white,
+    display: 'flex',
+    flexDirection: 'row',
+    objectFit: 'cover',
+    justifyContent: 'space-evenly',
+    fontSize: theme.typography.overline.fontSize,
+    color: theme.palette.common.black,
+    padding: theme.spacing(2)
+  },
+  '&.notistack-MuiContent-error': {
+    backgroundColor: theme.palette.error.dark,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    color: theme.palette.common.white,
+    padding: 0
+  },
+  '&.notistack-MuiContent-success': {
+    flexDirection: 'row',
+    padding: 0
+  },
+  '&.notistack-MuiContent-warning': {
+    backgroundColor: theme.palette.common.white,
+    flexDirection: 'row',
+    padding: 0
+  }
+}))
 
-  const isLight = theme.palette.mode === KEY.LIGHT
-
-  const inputGlobalStyles = (
-    <GlobalStyles
-      styles={{
-        '#root': {
-          '.SnackbarContent-root': {
-            width: '100%',
-            padding: theme.spacing(1),
-            margin: theme.spacing(0.25, 0),
-            borderRadius: theme.shape.borderRadius,
-            color: isLight ? theme.palette.common.white : theme.palette.grey[800],
-            backgroundColor: isLight ? theme.palette.grey[900] : theme.palette.common.white,
-            '&.SnackbarItem-variantSuccess, &.SnackbarItem-variantError, &.SnackbarItem-variantWarning, &.SnackbarItem-variantInfo': {
-              color: theme.palette.text.primary,
-              backgroundColor: theme.palette.background.paper
-            },
-            [theme.breakpoints.up('md')]: {
-              minWidth: 240
-            }
-          },
-          '.SnackbarItem-message': {
-            padding: '0 !important',
-            fontWeight: theme.typography.fontWeightMedium
-          },
-          '.SnackbarItem-action': {
-            marginRight: 0,
-            color: theme.palette.action.active,
-
-            '& svg': {
-              width: 20,
-              height: 20
-            }
-          }
-        }
-      }}
-    />
-  )
-
-  return inputGlobalStyles
-}
+export const SSnackIconMDiv = styled(Box)(({ theme, color }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  color: theme.palette.grey[500],
+  width: 30,
+  height: 30
+}))

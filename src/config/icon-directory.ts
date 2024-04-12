@@ -20,6 +20,7 @@ function _getWebIcon(icon: string) {
 const ICON_WEB = {
   ALERT_OUTLINE: _getWebIcon('alert-triangle-outline'),
   ARROW_FORWARD: _getWebIcon('arrow-ios-forward'),
+  CHEVRON_RIGHT: _getWebIcon('chevron-right-outline'),
   CLOSE: _getWebIcon('close-fill'),
   CHECKMARK_CIRCLE: _getWebIcon('checkmark-circle-outline'),
   CONTRAST_BOX: _getWebIcon('contrast-box'),
@@ -65,9 +66,12 @@ export enum ICON_WEB_NAME {
   // @web
   ALERT_OUTLINE = 'ALERT_OUTLINE',
   ARROW_FORWARD = 'ARROW_FORWARD',
+  CHECKMARK_CIRCLE = 'CHECKMARK_CIRCLE',
+  CHEVRON_RIGHT = 'CHEVRON_RIGHT',
   CLOSE = 'CLOSE',
   CONTRAST_BOX = 'CONTRAST_BOX',
   ERROR = 'ERROR',
+  ERROR_OUTLINE = 'ERROR_OUTLINE',
   EYE_OFF = 'EYE_OFF',
   EYE_HIDE = 'EYE_HIDE',
   INFO = 'INFO',

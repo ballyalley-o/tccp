@@ -19,7 +19,7 @@ const RESPONSE = {
     COLLECTION_DESTROYED: ' COLLECTION/s DESTROYED 💥 ',
     REGISTERED: `User registered`,
     LOGIN: `Logged in`,
-    LOGOUT: `User logged out`,
+    LOGOUT: `Logged out`,
     UPDATED: `Entity updated`,
     DELETED: `Entity deleted`,
     EMAIL_SENT: 'Email sent'
@@ -58,6 +58,8 @@ const RESPONSE = {
     NOT_OWNER: (user: string, course: string) => `User ${user} is unauthorized to update course ${course}`,
     ROLE_NOT_ALLOWED: (data: string) => `Current role ${data} is unauthorized to access this route`,
     LOGIN_UNABLE: 'Unable to login',
+    EMAIL_INVALID: 'Invalid email',
+    PASSWORD_INVALID: 'Invalid password',
     parseErr: (err: any) => `Error parsing JSON: ${err}`,
     NotInstance: 'This class cannot be instantiated',
     PASSWORD_MATCH: 'Passwords do not match',

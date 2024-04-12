@@ -76,7 +76,7 @@ const BRAND = {
 }
 
 export const COMMON = {
-  light: '#D3D3D3',
+  light: '#F2EED8',
   main: '#D9D9D9',
   yellow: '#FFD500',
   blue: blue[500],

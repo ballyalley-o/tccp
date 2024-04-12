@@ -1,5 +1,6 @@
 import { alpha } from '@mui/material/styles'
 import { KEY } from 'constant'
+import { COMMON as COMMON_COLOR } from './theme'
 
 const BRAND = {
   background: '#63738114',
@@ -28,9 +29,19 @@ const PRIMARY = {
   contrastText: '#F2EED8'
 }
 
+const ERROR = {
+  lighter: '#FCEBEB',
+  light: '#E45D5D',
+  main: '#DD3535',
+  dark: '#9B2525',
+  darker: '#581515',
+  contrastText: '#F2EED8'
+}
+
 const COMMON = {
-  common: { black: '#000', white: '#F2EED8' },
+  common: COMMON_COLOR,
   primary: PRIMARY,
+  error: ERROR,
   grey: GREY,
   divider: alpha(GREY[500], 0.24),
   action: {

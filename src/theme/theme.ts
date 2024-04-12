@@ -1,5 +1,5 @@
 import { createTheme } from '@mui/material/styles'
-import { green, grey, red } from '@mui/material/colors'
+import { blue, green, grey, red } from '@mui/material/colors'
 import { Theme } from '@mui/material/styles'
 import ComponentOverride from './override'
 import { ASSET } from 'config'
@@ -11,41 +11,41 @@ const rawTheme = createTheme({
     primary: {
       light: '#D3D3D3',
       main: '#000009',
-      dark: '#1E1E1f',
+      dark: '#1E1E1f'
     },
     secondary: {
       light: '#FFF5F8',
       main: '#FFD500',
-      dark: '#E62958',
+      dark: '#E62958'
     },
     warning: {
       light: '#FFF3E0',
       main: '#FFC071',
-      dark: '#FFB25E',
+      dark: '#FFB25E'
     },
     error: {
       light: red[50],
       main: red[500],
-      dark: red[700],
+      dark: red[700]
     },
     success: {
       light: green[50],
       main: green[500],
-      dark: green[700],
+      dark: green[700]
     },
     text: {
       primary: '#172B4D',
-      secondary: '#6B778C',
-    },
+      secondary: '#6B778C'
+    }
   },
   typography: {
     fontFamily: "'Poppins', sans-serif",
     fontSize: 14,
     fontWeightLight: 300,
-    fontWeightRegular: 400,
+    fontWeightRegular: 400
   },
   shape: {
-    borderRadius: 2,
+    borderRadius: 2
   },
   components: {
     MuiButton: {
@@ -53,18 +53,18 @@ const rawTheme = createTheme({
         root: {
           boxShadow: 'none',
           '&:hover': {
-            boxShadow: 'none',
-          },
-        },
-      },
-    },
-  },
+            boxShadow: 'none'
+          }
+        }
+      }
+    }
+  }
 })
 
 const fontHeader = {
   color: rawTheme.palette.text.primary,
   fontWeight: rawTheme.typography.fontWeightRegular,
-  fontFamily: 'Poppins, sans-serif',
+  fontFamily: 'Poppins, sans-serif'
 }
 
 const BRAND = {
@@ -72,15 +72,19 @@ const BRAND = {
   secondary: '#FFD500',
   warning: '#FFC071',
   error: red[500],
-  success: green[500],
+  success: green[500]
 }
 
-const COMMON = {
+export const COMMON = {
   light: '#D3D3D3',
   main: '#D9D9D9',
+  yellow: '#FFD500',
+  blue: blue[500],
+  red: red[500],
+  green: green[500],
   dark: '#1E1E1F',
   black: '#000000',
-  white: '#FFFFFF',
+  white: '#F2EED8'
 }
 
 const theme = {
@@ -93,15 +97,15 @@ const theme = {
       placeholder: grey[200],
       light: '#F5F5F5',
       main: '#D4D3D3',
-      dark: '#D9D9D9',
+      dark: '#D9D9D9'
     },
     common: COMMON,
     brand: BRAND,
     mode: 'light',
-    backgroundImage: ASSET.PATTERN_BG,
+    backgroundImage: ASSET.PATTERN_BG
   },
   shape: {
-    borderRadius: 2,
+    borderRadius: 2
   },
   typography: {
     ...rawTheme.typography,
@@ -110,58 +114,69 @@ const theme = {
       ...rawTheme.typography.h1,
       ...fontHeader,
       letterSpacing: 0,
-      fontSize: 80,
+      fontSize: 80
     },
     h1: {
       ...rawTheme.typography.h1,
       ...fontHeader,
       letterSpacing: 0,
-      fontSize: 60,
+      fontSize: 60
     },
     h2: {
       ...rawTheme.typography.h2,
       ...fontHeader,
-      fontSize: 48,
+      fontSize: 48
     },
     h3: {
       ...rawTheme.typography.h3,
       ...fontHeader,
-      fontSize: 42,
+      fontSize: 42
     },
     h4: {
       ...rawTheme.typography.h4,
       ...fontHeader,
-      fontSize: 36,
+      fontSize: 36
     },
     h5: {
       ...rawTheme.typography.h5,
       fontSize: 20,
-      fontWeight: rawTheme.typography.fontWeightLight,
+      fontWeight: rawTheme.typography.fontWeightLight
     },
     h6: {
       ...rawTheme.typography.h6,
       ...fontHeader,
-      fontSize: 18,
+      fontSize: 18
     },
     h7: {
       ...rawTheme.typography.h6,
       ...fontHeader,
-      fontSize: 15,
+      fontSize: 15
     },
     subtitle1: {
       ...rawTheme.typography.subtitle1,
-      fontSize: 18,
+      fontSize: 18
+    },
+    overline: {
+      ...rawTheme.typography.overline,
+      fontSize: 16,
+      textTransform: 'uppercase'
+    },
+    body0: {
+      ...rawTheme.typography.body2,
+      fontWeight: rawTheme.typography.fontWeightRegular,
+      fontSize: 20,
+      textTransform: 'uppercase'
     },
     body1: {
       ...rawTheme.typography.body2,
       fontWeight: rawTheme.typography.fontWeightRegular,
-      fontSize: 16,
+      fontSize: 16
     },
     body2: {
       ...rawTheme.typography.body1,
-      fontSize: 14,
-    },
-  },
+      fontSize: 14
+    }
+  }
 }
 
 ComponentOverride(theme as ThemeType)

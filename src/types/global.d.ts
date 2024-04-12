@@ -87,6 +87,14 @@ declare global {
     message?: string
   }
 
+  interface ISize {
+    xs?: number
+    sm: number
+    md: number
+    lg: number
+    xl?: number
+  }
+
   type VERTICAL = KEY.TOP | KEY.CENTER | KEY.BOTTOM
   type HORIZONTAL = KEY.LEFT | KEY.CENTER | KEY.RIGHT
   type COLOR = 'default' | 'inherit' | 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'error'

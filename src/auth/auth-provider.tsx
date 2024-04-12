@@ -1,14 +1,15 @@
-import { LOCAL_STORAGE } from 'constant'
+import { COLOR, LOCAL_STORAGE } from 'constant'
 import React, { FC, createContext, useEffect, useState, useMemo, useCallback } from 'react'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import localStorageSpace from 'util/local-storage-space'
 import storage from 'redux-persist/lib/storage'
 import { setInitial, setCredential } from 'store/slice/auth'
 import { useLoginMutation, useLogoutMutation } from 'store/slice/auth/endpoint'
+import { useSelector, dispatch } from 'store'
 import { isValidToken, setSession } from 'auth/utility'
 import { AuthPath } from 'route/path'
 import { RESPONSE } from 'constant'
-import { useSelector, dispatch } from 'store'
+import { snack } from 'hook'
 
 export const AuthContext = createContext<{
   isAuthenticated: boolean
@@ -32,29 +33,9 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
   // const [isAuthenticated, setIsAuthenticated] = useState(false)
   const { user, isAuthenticated } = useSelector((state: RootState) => state.auth || {})
   const [logoutCall] = useLogoutMutation()
-  const [loginCall, { isLoading }] = useLoginMutation()
+  const [loginCall, { isLoading, error }] = useLoginMutation()
 
   const storageAvailable = useMemo(() => localStorageSpace(), [])
-
-  const token = storageAvailable ? localStorage.getItem(LOCAL_STORAGE.TOKEN) : ''
-
-  if (token && isValidToken(token)) {
-    setSession(token)
-  }
-
-  // useEffect(() => {
-  //   const expirationTime = localStorage.getItem('expirationTime')
-  //   const user = JSON.parse(localStorage.getItem(LOCAL_STORAGE.USER) || '{}')
-
-  //   if (user.user !== null) {
-  //     dispatch(setCredential({ user: null, isAuthenticated: false, token: null, isInitialized: false }))
-  //     localStorage.removeItem('expirationTime')
-  //   } else {
-  //     console.log('user', user)
-  //     setIsAuthenticated(false)
-  //     dispatch(setCredential({ user: null, isAuthenticated: false, token: null, isInitialized: false }))
-  //   }
-  // }, [dispatch])
 
   const initialize = useCallback(async () => {
     try {
@@ -116,13 +97,26 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
   const login = useCallback(
     async (credentials: { email: string; password: string; name?: string; token?: string }) => {
       const { email, password } = credentials
-      const res = await loginCall({
+
+      if (error) {
+        snack(error || RESPONSE.error.INVALID_CREDENTIAL)
+        dispatch(setCredential({ isAuthenticated: false, ...(credentials || {}) }))
+        throw new Error(RESPONSE.error.INVALID_CREDENTIAL)
+      }
+
+      const res = (await loginCall({
         email,
         password
-      }).unwrap()
+      }).unwrap()) as any
 
-      dispatch(setCredential({ isAuthenticated: true, ...(res || {}) }))
-      // setIsAuthenticated(true)
+      if (res && res.success && res.user) {
+        snack(RESPONSE.success.LOGIN, { variant: COLOR.SUCCESS })
+        dispatch(setCredential({ isAuthenticated: true, ...res }))
+      } else {
+        snack(RESPONSE.error.LOGIN_UNABLE, { variant: COLOR.ERROR })
+        dispatch(setCredential({ isAuthenticated: false, ...(res || {}) }))
+        throw new Error(RESPONSE.error.INVALID_CREDENTIAL)
+      }
     },
     [dispatch]
   )

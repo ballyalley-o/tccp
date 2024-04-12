@@ -1,7 +1,7 @@
 export enum SIZE {
   SMALL = 'small',
   MEDIUM = 'medium',
-  LARGE = 'large',
+  LARGE = 'large'
 }
 
 type SizeMapType = 'small' | 'medium' | 'large'
@@ -9,7 +9,7 @@ type SizeMapType = 'small' | 'medium' | 'large'
 export const SIZE_MAP: Record<SizeMapType, string> = {
   [SIZE.SMALL]: 'small',
   [SIZE.MEDIUM]: 'medium',
-  [SIZE.LARGE]: 'large',
+  [SIZE.LARGE]: 'large'
 }
 
 export type SizeType = {
@@ -25,5 +25,5 @@ export const SIZE_TYPE: SizeType = {
   sm: 'sm',
   md: 'md',
   lg: 'lg',
-  xl: 'xl',
+  xl: 'xl'
 }

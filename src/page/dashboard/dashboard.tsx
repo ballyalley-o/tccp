@@ -1,12 +1,7 @@
-import { AppFooter, AppNavBar } from 'component'
-import { Fragment } from 'react'
-import {
-  DashboardHero,
-  BootcampConsult,
-  //   ProductHowIt,
-  DashboardBootcampRundown,
-  DashboardFeedbackSection,
-} from 'section/dashboard'
+import { useLocation } from 'react-router-dom'
+import { Fragment, useEffect } from 'react'
+import { DashboardHero, BootcampConsult, DashboardBootcampRundown, DashboardFeedbackSection } from 'section/dashboard'
+import { snack } from 'hook'
 
 const Dashboard = () => {
   return (

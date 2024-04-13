@@ -6,7 +6,7 @@ const loadFeatures = () => import('./feature.ts').then((res) => res.default)
 function MotionLazyContainer({ children }: { children: ReactNode }) {
   return (
     <LazyMotion strict features={loadFeatures}>
-      <m.div style={{ height: '100%' }}> {children} </m.div>
+      <m.div style={{ height: '100%', backgroundColor: 'common.white' }}> {children} </m.div>
     </LazyMotion>
   )
 }

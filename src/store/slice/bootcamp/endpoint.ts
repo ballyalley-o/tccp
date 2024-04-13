@@ -1,4 +1,4 @@
-import { apiSlice } from './api'
+import { apiSlice } from '../api'
 import { ServerPath } from 'route/path'
 
 export const bootcampApiSlice = apiSlice.injectEndpoints({

@@ -8,8 +8,8 @@ const BRAND = {
 }
 
 const GREY = {
-  0: '#FFFFFF',
-  100: '#F4F4F4',
+  0: '#F2EED8',
+  100: '#F2EED8',
   200: '#F5F5F5',
   300: '#DFDFDF',
   400: '#DFE3E8',
@@ -66,7 +66,7 @@ export default function palettee(mode: KEY.LIGHT | KEY.DARK = KEY.DARK) {
   const background = {
     paper: mode === 'dark' ? GREY[800] : GREY[100],
     default: mode === 'dark' ? GREY[900] : 'common.white',
-    neutral: alpha(GREY[500], 0.16)
+    neutral: mode === 'dark' ? alpha(GREY[500], 0.16) : alpha(GREY[500], 1)
   }
 
   return {

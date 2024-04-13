@@ -2,12 +2,10 @@ import { ServerPath } from 'route/path'
 import { apiSlice } from 'store/slice/api'
 import { METHOD } from 'constant'
 
-const { POST } = METHOD
+const { GET, POST } = METHOD
 
 export const authActionSlice = apiSlice.injectEndpoints({
-  endpoints: (builder: {
-    mutation: (arg0: { query: ((data: any) => { url: string; method: METHOD; body: any }) | (() => { url: string; method: METHOD }) }) => any
-  }) => ({
+  endpoints: (builder: EndpointBuilder) => ({
     login: builder.mutation({
       query: (data: any) => ({
         url: ServerPath.AUTH_LOG_IN,
@@ -27,8 +25,15 @@ export const authActionSlice = apiSlice.injectEndpoints({
         method: POST,
         body: data
       })
+    }),
+    account: builder.mutation({
+      query: (data: any) => ({
+        url: ServerPath.AUTH_ACCOUNT,
+        method: GET,
+        body: data
+      })
     })
   })
 })
 
-export const { useLoginMutation, useLogoutMutation, useRegisterMutation } = authActionSlice
+export const { useLoginMutation, useLogoutMutation, useRegisterMutation, useAccountMutation } = authActionSlice

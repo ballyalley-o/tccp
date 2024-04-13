@@ -19,6 +19,7 @@ export const DashboardPage = Loadable(() => import('page/dashboard/dashboard'))
 // auth
 export const LogInPage = Loadable(() => import('page/auth/log-in/log-in'))
 export const RegisterPage = Loadable(() => import('page/auth/register/register'))
+export const UserAccountPage = Loadable(() => import('page/auth/account/user-account'))
 // bootcamp
 export const BootcampPage = Loadable(() => import('page/bootcamp/bootcamp'))
 // fallback

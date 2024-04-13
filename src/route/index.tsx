@@ -1,18 +1,22 @@
 import { CODE } from 'constant'
 import { Navigate, useRoutes } from 'react-router-dom'
-import { GuestGuard } from 'auth'
+import { GuestGuard, AuthGuard } from 'auth'
 import {
   HomePage,
   DashboardPage,
+  // :auth
   LogInPage,
   RegisterPage,
-  // bootcamp
+  UserAccountPage,
+  // :bootcamp
   BootcampPage,
   FallbackPage
 } from 'route/element'
 import { FallbackPath } from 'route/path'
 import { ROUTING } from 'constant/routing/routing'
 import { FALLBACK } from 'constant'
+
+const { ACCOUNT, AUTH, BOOTCAMP, LOG_IN, REGISTER, RESET_PASSWORD } = ROUTING
 
 function Router() {
   return useRoutes([
@@ -22,10 +26,10 @@ function Router() {
     },
     {
       // @auth
-      path: ROUTING.AUTH,
+      path: AUTH,
       children: [
         {
-          path: ROUTING.LOG_IN,
+          path: LOG_IN,
           element: (
             <GuestGuard>
               <LogInPage />
@@ -33,17 +37,25 @@ function Router() {
           )
         },
         {
-          path: ROUTING.REGISTER,
+          path: REGISTER,
           element: <RegisterPage />
         },
         {
-          path: ROUTING.RESET_PASSWORD
+          path: ACCOUNT,
+          element: (
+            <AuthGuard>
+              <UserAccountPage />
+            </AuthGuard>
+          )
+        },
+        {
+          path: RESET_PASSWORD
           // element: <ResetPasswordPage />,
         }
       ]
     },
     {
-      path: ROUTING.BOOTCAMP,
+      path: BOOTCAMP,
       element: <BootcampPage />,
       children: [
         {

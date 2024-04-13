@@ -10,6 +10,8 @@ enum ROUTING {
   LOG_IN = 'log-in',
   LOG_OUT = 'log-out',
   REGISTER = 'register',
+  ACCOUNT = 'account',
+  USER = 'user',
   FORGOT_PASSWORD = 'forgot-password',
   RESET_PASSWORD = 'reset-password',
   RESET_TOKEN = 'reset-token',
@@ -23,4 +25,4 @@ enum ROUTING {
   MAINTENNANCE = '503'
 }
 
-export { ROUTING };
+export { ROUTING }

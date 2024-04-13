@@ -11,7 +11,7 @@ const ImageBackdrop = styled('div')(({ theme }) => ({
   bottom: 0,
   background: '#000',
   opacity: 0.5,
-  transition: theme.transitions.create('opacity'),
+  transition: theme.transitions.create('opacity')
 }))
 
 const ImageIconButton = styled(ButtonBase)(({ theme }) => ({
@@ -22,23 +22,23 @@ const ImageIconButton = styled(ButtonBase)(({ theme }) => ({
   height: '40vh',
   [theme.breakpoints.down('md')]: {
     width: '100% !important',
-    height: 100,
+    height: 100
   },
   '&:hover': {
-    zIndex: 1,
+    zIndex: 1
   },
   '&:hover .imageBackdrop': {
-    opacity: 0.15,
+    opacity: 0.15
   },
   '&:hover .imageMarked': {
-    opacity: 0,
+    opacity: 0
   },
   '&:hover .imageTitle': {
-    border: '4px solid currentColor',
+    border: '4px solid currentColor'
   },
   '& .imageTitle': {
     position: 'relative',
-    padding: `${theme.spacing(2)} ${theme.spacing(4)} 14px`,
+    padding: `${theme.spacing(2)} ${theme.spacing(4)} 14px`
   },
   '& .imageMarked': {
     height: 3,
@@ -47,8 +47,8 @@ const ImageIconButton = styled(ButtonBase)(({ theme }) => ({
     position: 'absolute',
     bottom: -2,
     left: 'calc(50% - 9px)',
-    transition: theme.transitions.create('opacity'),
-  },
+    transition: theme.transitions.create('opacity')
+  }
 }))
 
 function Bootcamp() {
@@ -62,9 +62,8 @@ function Bootcamp() {
           <ImageIconButton
             key={image.title}
             style={{
-              width: image.width,
-            }}
-          >
+              width: image.width
+            }}>
             <Box
               sx={{
                 position: 'absolute',
@@ -74,7 +73,7 @@ function Bootcamp() {
                 bottom: 0,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center 40%',
-                backgroundImage: `url(${image.url})`,
+                backgroundImage: `url(${image.url})`
               }}
             />
             <ImageBackdrop className='imageBackdrop' />
@@ -87,10 +86,8 @@ function Bootcamp() {
                 bottom: 0,
                 display: 'flex',
                 alignItems: 'center',
-                justifyContent: 'center',
-                color: 'common.white',
-              }}
-            >
+                justifyContent: 'center'
+              }}>
               <Typography component='h3' variant='h6' color='inherit' className='imageTitle'>
                 {image.title}
                 <div className='imageMarked' />

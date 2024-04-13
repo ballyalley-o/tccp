@@ -2,8 +2,8 @@
 
 const OPTION = [
   {
-    label: 'Profile',
-    linkTo: '/'
+    label: 'Account',
+    linkTo: '/auth/account'
   },
   {
     label: 'Change Password',

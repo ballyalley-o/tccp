@@ -85,7 +85,7 @@ export const SBox = styled(Box)(({ theme }) => ({
 }))
 
 // @fallback -- page
-export const FallbackProps = {
+export const FullBox = {
   maxWidth: 'sm' as const,
   sx: {
     height: '100vh',

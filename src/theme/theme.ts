@@ -76,7 +76,7 @@ const BRAND = {
 }
 
 export const COMMON = {
-  light: '#D3D3D3',
+  light: '#F2EED8',
   main: '#D9D9D9',
   yellow: '#FFD500',
   blue: blue[500],
@@ -95,7 +95,7 @@ const theme = {
       ...rawTheme.palette.background,
       default: '#F4F6F2',
       placeholder: grey[200],
-      light: '#F5F5F5',
+      light: '#F2EED8',
       main: '#D4D3D3',
       dark: '#D9D9D9'
     },

@@ -1,5 +1,4 @@
 import { KEY, MENU_POPOVER_ARROW } from 'constant'
-// import { PopoverOrigin } from '@mui/material'
 
 export interface PopoverOrigin {
   vertical: KEY

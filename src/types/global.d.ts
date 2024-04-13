@@ -95,6 +95,24 @@ declare global {
     xl?: number
   }
 
+  interface EndpointBuilder {
+    /**
+     *
+     * @param arg0  { query: ((data: any) => { url: string; method?: METHOD; body: any }) | ((id: any) => { url: string; method: METHOD }), providesTags?: any[], keepUnusedDataFor?: number }
+     * @returns any
+     */
+    query: (arg0: {
+      query: ((data: any) => { url: string; method?: METHOD; body: any }) | ((id: any) => { url: string; method: METHOD })
+      providesTags?: any[]
+      keepUnusedDataFor?: number
+    }) => any
+    mutation: (arg0: {
+      query: ((data: any) => { url: string; method?: METHOD; body: any }) | ((id: any) => { url: string; method: METHOD })
+      providesTags?: any
+      keepUnusedDataFor?: number
+    }) => any
+  }
+
   type VERTICAL = KEY.TOP | KEY.CENTER | KEY.BOTTOM
   type HORIZONTAL = KEY.LEFT | KEY.CENTER | KEY.RIGHT
   type COLOR = 'default' | 'inherit' | 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'error'

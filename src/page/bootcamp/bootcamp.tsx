@@ -13,12 +13,6 @@ import { LABEL, PLACEHOLDER } from 'constant'
 function Bootcamp() {
   const { data, error, isLoading } = useGetAllBootcampQuery()
 
-  useEffect(() => {
-    if (data) {
-      console.log('data: ', data?.data)
-    }
-  }, [data])
-
   return (
     <MotionLazyContainer>
       <Box
@@ -30,19 +24,19 @@ function Bootcamp() {
           <Box
             component={m.div}
             flex={1}
-            justifyContent="center"
+            justifyContent='center'
             sx={{
               display: 'flex',
               alignItems: 'center',
               flexDirection: 'column'
             }}>
-            <img src={ASSET.TCCP_ICON} alt="logo" width={100} />
+            <img src={ASSET.TCCP_ICON} alt='logo' width={100} />
           </Box>
-          <Typography variant="h2" marked="center" align="center" component="h2">
+          <Typography variant='h2' marked='center' align='center' component='h2'>
             {LABEL.BOOTCAMP_PAGE_TITLE}
           </Typography>
         </Box>
-        <Grid container flexDirection="row" spacing={2} sx={{ mt: 8, display: 'flex' }}>
+        <Grid container flexDirection='row' spacing={2} sx={{ mt: 8, display: 'flex' }}>
           <Grid item sm={3}>
             <BootcampSearch />
           </Grid>
@@ -54,11 +48,11 @@ function Bootcamp() {
                 display: 'flex',
                 bgcolor: 'transparent'
               }}>
-              <Grid container flexDirection="column" flex={1} sx={{ backgroundColor: 'transparent' }}>
+              <Grid container flexDirection='column' flex={1} sx={{ backgroundColor: 'transparent' }}>
                 {isLoading ? (
                   <SkeletonLoader cards={8} />
                 ) : error ? (
-                  <Typography variant="h4">{'status' in error ? (error.data as { message: string })?.message : error.message}</Typography>
+                  <Typography variant='h4'>{'status' in error ? (error.data as { message: string })?.message : error.message}</Typography>
                 ) : (
                   data?.data?.map((bootcamp: any, index: number) => <BootcampCard key={index} bootcamp={bootcamp} />)
                 )}

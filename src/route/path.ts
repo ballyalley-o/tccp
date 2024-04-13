@@ -15,6 +15,9 @@ export class ServerPath {
   static AUTH_LOG_IN = conNex(ROUTING.AUTH, ROUTING.LOG_IN)
   static AUTH_LOG_OUT = conNex(ROUTING.AUTH, ROUTING.LOG_OUT)
   static AUTH_REGISTER = conNex(ROUTING.AUTH, ROUTING.REGISTER)
+  static AUTH_USER = conNex(ROUTING.AUTH, ROUTING.USER)
+  static AUTH_SINGLE_USER = (userId: string) => conNex(ROUTING.AUTH, ROUTING.USER, userId)
+  static AUTH_ACCOUNT = conNex(ROUTING.AUTH, ROUTING.ACCOUNT)
 }
 
 export class RootPath {

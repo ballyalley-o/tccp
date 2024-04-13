@@ -1,14 +1,14 @@
 ﻿<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2000 1500'>
     <rect fill='#F4F6F2' width='2200' height='1500' />
     <defs>
-        <rect stroke='#F4F6F2' stroke-width='.5' width='1' height='1' id='s' />
+        <rect stroke='#F2EED8' stroke-width='.5' width='1' height='1' id='s' />
         <pattern id='a' width='3' height='3' patternUnits='userSpaceOnUse'
             patternTransform='scale(13.4) translate(-925.37 -694.03)'>
             <use fill='#f2f4f0' href='#s' y='2' />
             <use fill='#f2f4f0' href='#s' x='1' y='2' />
-            <use fill='#eff1ed' href='#s' x='2' y='2' />
-            <use fill='#eff1ed' href='#s' />
-            <use fill='#edefeb' href='#s' x='2' />
+            <use fill='#F2EED8' href='#s' x='2' y='2' />
+            <use fill='#F2EED8' href='#s' />
+            <use fill='#F2EED8' href='#s' x='2' />
             <use fill='#edefeb' href='#s' x='1' y='1' />
         </pattern>
         <pattern id='b' width='7' height='11' patternUnits='userSpaceOnUse'

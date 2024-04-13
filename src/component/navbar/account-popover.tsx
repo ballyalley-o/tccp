@@ -9,7 +9,7 @@ import { MenuPopover } from 'component/menu-popover'
 import { MotionButton } from 'component/motion'
 import { useSettingContext } from 'component/setting'
 import { DisplayDialog } from 'component/setting'
-import { TITLE, LABEL } from 'constant'
+import { TITLE, LABEL, RESPONSE, COLOR } from 'constant'
 import { themePreset } from 'theme'
 import { OPTION } from './util'
 
@@ -40,10 +40,10 @@ export default function AccountPopover({ user }: { user: any }) {
       if (logout) {
         logout()
       }
-      snack('Logout Successful')
+      snack(RESPONSE.success.LOGOUT, { variant: COLOR.SUCCESS })
       handleClosePopover()
     } catch (error) {
-      snack('Unable to logout', { variant: 'error' })
+      snack(RESPONSE.error.LOGIN_UNABLE, { variant: COLOR.ERROR })
       console.error(error)
       //   enqueueSnackbar('Unable to logout', { variant: 'error' })
     }
@@ -64,13 +64,6 @@ export default function AccountPopover({ user }: { user: any }) {
   }
 
   const notDefault = themeMode !== themePreset.themeMode || themeStretch !== themePreset.themeStretch || themeContrast !== themePreset.themeContrast
-
-  // useEffect(() => {
-  //   if (user) {
-  //     console.log('HERE: user: ', user)
-  //     console.log('HERE: email: ', email)
-  //   }
-  // }, [user])
 
   return (
     <Fragment>
@@ -122,7 +115,7 @@ export default function AccountPopover({ user }: { user: any }) {
           <Typography variant='subtitle2' noWrap>
             {displayName}
           </Typography>
-          <Typography variant='overline' sx={{ color: 'text.primary' }} fontWeight='bold' noWrap>
+          <Typography variant='body2' sx={{ color: 'text.primary' }} noWrap>
             {email}
           </Typography>
         </Box>

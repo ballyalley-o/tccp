@@ -51,8 +51,6 @@ function Bootcamp() {
               <Grid container flexDirection='column' flex={1} sx={{ backgroundColor: 'transparent' }}>
                 {isLoading ? (
                   <SkeletonLoader cards={8} />
-                ) : error ? (
-                  <Typography variant='h4'>{'status' in error ? (error.data as { message: string })?.message : error.message}</Typography>
                 ) : (
                   data?.data?.map((bootcamp: any, index: number) => <BootcampCard key={index} bootcamp={bootcamp} />)
                 )}

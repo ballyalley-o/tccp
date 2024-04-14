@@ -1,27 +1,22 @@
 const mockBootcamp = [
   {
-    name: 'IBM Bootcamp',
-    description: 'Learn Python from scratch',
-    website: 'https://www.python.org/',
-    phone: '123-456-7890',
-    email: 'educ@ibm.edu',
-    rating: 4.5,
-    location: {
-      address: '1234 Main St',
-      city: 'San Francisco',
-      state: 'CA',
-      zip: '94111',
-      country: 'USA'
-    },
-    duration: '12 weeks',
-    averageCost: '$10,000',
+    _id: '660013d68eb169c7f3b10081',
+    name: 'Amazon AWS Training',
+    description: 'AWS Training and Certification helps you build and validate your cloud skills so you can get more out of the cloud.',
+    website: 'https://aws.amazon.com/training/',
+    phone: '(666) 666-6666',
+    rating: 4.8,
+    email: 'enroll@amazon.com',
+    address: '410 Terry Ave N, Seattle, WA 98109',
+    duration: '36 weeks',
+    careers: ['Cloud Computing', 'Data Science', 'Artificial Intelligence', 'Dev Ops'],
+    photo: 'no-photo.jpeg',
+    badge: 'tccp-b-660013d68eb169c7f3b10081.png',
     housing: false,
     jobAssistance: true,
     jobGuarantee: false,
-    slug: 'ibm-bootcamp',
-    careers: ['Python', 'Django', 'Flask'],
-    imageUrl: 'https://images.pexels.com/photos/2982449/pexels-photo-2982449.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-    badge: 'https://m.media-amazon.com/images/I/61fLmo3aOHL.jpg'
+    acceptGi: true,
+    id: '660013d68eb169c7f3b10081'
   },
   {
     name: 'Codecademy',
@@ -30,13 +25,7 @@ const mockBootcamp = [
     phone: '123-456-7890',
     email: '',
     rating: 4.7,
-    location: {
-      address: '2 Duboce Ave',
-      city: 'Wilmington',
-      state: 'CA',
-      zip: '94111',
-      country: 'Vietnam'
-    },
+    address: '575 Broadway, New York, NY 10012',
     duration: '10 weeks',
     averageCost: '$9,000',
     housing: true,
@@ -44,7 +33,7 @@ const mockBootcamp = [
     jobGuarantee: false,
     slug: 'codecademy',
     course: ['Frontend Web Development', 'Backend Web Development', 'Full Stack Web Development'],
-    imageUrl: 'https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    photo: 'https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
     badge: 'https://ebranch.lili.org/tetons/wp-content/uploads/sites/22/2016/09/CodeAC.png'
   },
   {
@@ -54,23 +43,16 @@ const mockBootcamp = [
     phone: '123-456-7890',
     email: 'educ@ibm.edu',
     rating: 2,
-    location: {
-      address: '2 Cubao St',
-      city: 'Quezon City',
-      state: 'NCR',
-      zip: '1109',
-      country: 'Philippines'
-    },
-    duration: '12 weeks',
+    address: 'Quezon City, Philippines',
     averageCost: '$8,390',
     housing: true,
     jobAssistance: false,
     jobGuarantee: true,
     slug: 'sti-learning',
     course: ['CI/CD', 'DevOps', 'Jenkins'],
-    imageUrl: 'https://images.pexels.com/photos/7213434/pexels-photo-7213434.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    photo: 'https://images.pexels.com/photos/7213434/pexels-photo-7213434.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
     badge: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3UTtubMsPmN-Hd5n68A1aZviCGhzH8MVvHBoOg5hGXg&s'
   }
-];
+]
 
-export default mockBootcamp;
+export default mockBootcamp

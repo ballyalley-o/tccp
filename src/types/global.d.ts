@@ -90,6 +90,18 @@ declare global {
     xl?: number
   }
 
+  interface IDefaultAvatar {
+    color?: COLOR
+    firstName?: string
+    lastName?: string
+    extension?: string
+    isLarge?: boolean
+    children?: React.ReactNode
+    BadgeProps?: object
+    sx?: object
+  }
+  
+
   interface EndpointBuilder {
     /**
      *

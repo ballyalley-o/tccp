@@ -1,7 +1,7 @@
 import { FC, forwardRef } from 'react'
 import { useTheme } from '@mui/material/styles'
 import { Badge, Avatar, Typography } from '@mui/material'
-import { KEY, SizeType } from 'constant'
+import { KEY, TYPOGRAPHY, FONTWEIGHT } from 'constant'
 
 const getCharAtName = (name: string) => name && name.charAt(0).toUpperCase()
 const getCharAtSecondName = (name: string) => name && name.split(' ')[1]?.charAt(0).toUpperCase()
@@ -15,18 +15,10 @@ const getColorByName = (name: string) => {
   return KEY.DEFAULT
 }
 
-interface DefaultAvatarProps {
-  color?: COLOR
-  firstName?: string
-  lastName?: string
-  extension?: string
-  isLarge?: boolean
-  children?: React.ReactNode
-  BadgeProps?: object
-  sx?: object
-}
+const { H4, OVERLINE } = TYPOGRAPHY
+const { BOLD, NORMAL } = FONTWEIGHT
 
-const DefaultAvatar: FC<DefaultAvatarProps> = forwardRef<HTMLDivElement, DefaultAvatarProps>(
+const DefaultAvatar: FC<IDefaultAvatar> = forwardRef<HTMLDivElement, IDefaultAvatar>(
   ({ color, firstName = '', lastName = '', BadgeProps, children, extension, isLarge, sx, ...other }, ref) => {
     const theme = useTheme()
     const charAtName = lastName ? getCharAtName(firstName) + getCharAtName(lastName) : getCharAtName(firstName)
@@ -61,10 +53,10 @@ const DefaultAvatar: FC<DefaultAvatarProps> = forwardRef<HTMLDivElement, Default
           }}
           {...other}>
           <Typography
-            variant={isLarge ? 'h4' : 'overline'}
+            variant={isLarge ? H4 : OVERLINE}
             color={theme.palette[colr].contrastText}
             sx={{
-              fontWeight: isLarge ? 'bold' : 'normal'
+              fontWeight: isLarge ? BOLD : NORMAL
             }}>
             {firstName && charAtName}
           </Typography>

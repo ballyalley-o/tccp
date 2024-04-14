@@ -1,7 +1,7 @@
 import { FC, forwardRef } from 'react'
 import { useTheme } from '@mui/material/styles'
-import { Badge, Avatar } from '@mui/material'
-import { KEY } from 'constant'
+import { Badge, Avatar, Typography } from '@mui/material'
+import { KEY, SizeType } from 'constant'
 
 const getCharAtName = (name: string) => name && name.charAt(0).toUpperCase()
 const getCharAtSecondName = (name: string) => name && name.split(' ')[1]?.charAt(0).toUpperCase()
@@ -20,13 +20,14 @@ interface DefaultAvatarProps {
   firstName?: string
   lastName?: string
   extension?: string
+  isLarge?: boolean
   children?: React.ReactNode
   BadgeProps?: object
   sx?: object
 }
 
 const DefaultAvatar: FC<DefaultAvatarProps> = forwardRef<HTMLDivElement, DefaultAvatarProps>(
-  ({ color, firstName = '', lastName = '', BadgeProps, children, extension, sx, ...other }, ref) => {
+  ({ color, firstName = '', lastName = '', BadgeProps, children, extension, isLarge, sx, ...other }, ref) => {
     const theme = useTheme()
     const charAtName = lastName ? getCharAtName(firstName) + getCharAtName(lastName) : getCharAtName(firstName)
 
@@ -59,7 +60,14 @@ const DefaultAvatar: FC<DefaultAvatarProps> = forwardRef<HTMLDivElement, Default
             ...sx
           }}
           {...other}>
-          {firstName && charAtName}
+          <Typography
+            variant={isLarge ? 'h4' : 'overline'}
+            color={theme.palette[colr].contrastText}
+            sx={{
+              fontWeight: isLarge ? 'bold' : 'normal'
+            }}>
+            {firstName && charAtName}
+          </Typography>
           {children}
         </Avatar>
       )

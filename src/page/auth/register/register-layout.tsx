@@ -14,6 +14,7 @@ import { registerSchema } from 'schema'
 import { setCredential } from 'store/slice/auth'
 import { dispatch } from 'store'
 import { Snack } from 'component/snack'
+import { snack } from 'hook'
 
 function RegisterFormLayout({ submitting, sent, register }: FormFieldProps) {
   const navigate = useNavigate()
@@ -63,7 +64,9 @@ function RegisterFormLayout({ submitting, sent, register }: FormFieldProps) {
       }
 
       reset()
-      navigate(RootPath.ROOT_PARAM)
+      navigate(AuthPath.LOG_IN)
+      // dispatch(setCredential({ isAuthenticated: true, ...res }))
+      snack(RESPONSE.success.REGISTERED, { variant: COLOR.SUCCESS })
     } catch (error: any) {
       console.error('error : ', error || '')
       reset()

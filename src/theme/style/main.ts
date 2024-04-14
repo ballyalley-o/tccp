@@ -90,6 +90,7 @@ export const FullBox = {
   sx: {
     height: '100vh',
     display: 'flex',
+    // width: '100%',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center'

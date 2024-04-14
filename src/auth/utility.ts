@@ -2,6 +2,10 @@ import axios from 'util/axios'
 import { AuthPath } from 'route/path'
 import { LOCAL_STORAGE } from 'constant'
 
+export const getAuthToken = () => {
+  return localStorage.getItem(LOCAL_STORAGE.TOKEN)
+}
+
 function jwtDecode(token: string) {
   const base64Url = token.split('.')[1]
   const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/')

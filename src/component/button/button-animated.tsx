@@ -15,9 +15,9 @@ const AnimatedButton: FC<AnimatedButtonProps> = ({ to, text, style }) => {
     hover: {
       scale: 1.1,
       transition: {
-        duration: 0.3,
-      },
-    },
+        duration: 0.3
+      }
+    }
   }
 
   return (
@@ -30,16 +30,16 @@ const AnimatedButton: FC<AnimatedButtonProps> = ({ to, text, style }) => {
             bgcolor: 'transparent',
             color: 'common.black',
             fontSize: 10,
+            fontWeight: 'bold',
             padding: '.5em 1em',
             textTransform: 'full-size-kana',
             '&:hover': {
               boxShadow: 'none',
-              fontWeight: 'bold',
+              fontWeight: 'black',
               color: 'common.black',
-              bgcolor: 'transparent',
-            },
-          }}
-        >
+              bgcolor: 'transparent'
+            }
+          }}>
           {text}
         </Button>
       </m.div>

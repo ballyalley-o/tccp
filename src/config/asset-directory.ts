@@ -23,6 +23,7 @@ const ASSET = {
   _BG_TEMP: 'https://images.pexels.com/photos/9672971/pexels-photo-9672971.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
   BRAND: _asset('logo.png'),
   BRAND_ALT: _asset('favicon.ico'),
+  // WAVES_COVER_BG: _background('waves.svg'),
   LINE_BG: _background('lines.png'),
   PATTERN_BG: _background('pattern.svg'),
   GRADIENT_LINES_BG: _background('gradient-lines.svg'),
@@ -42,7 +43,7 @@ const ASSET = {
   ARROW_DOWN: _element('arrow-down.svg'),
   // octicon
   HUBOT: _svg('hubot.svg'),
-  ALERT: _svg('alert.svg'),
+  ALERT: _svg('alert.svg')
 }
 
 export default ASSET

@@ -1,6 +1,7 @@
 import { ServerPath } from 'route/path'
 import { apiSlice } from 'store/slice/api'
 import { METHOD } from 'constant'
+import { getAuthToken } from 'auth/utility'
 
 const { GET, POST } = METHOD
 
@@ -26,14 +27,17 @@ export const authActionSlice = apiSlice.injectEndpoints({
         body: data
       })
     }),
-    account: builder.mutation({
-      query: (data: any) => ({
+    account: builder.query({
+      query: () => ({
         url: ServerPath.AUTH_ACCOUNT,
         method: GET,
-        body: data
+        credentials: 'include',
+        headers: {
+          Authorization: `Bearer ${getAuthToken()}`
+        }
       })
     })
   })
 })
 
-export const { useLoginMutation, useLogoutMutation, useRegisterMutation, useAccountMutation } = authActionSlice
+export const { useLoginMutation, useLogoutMutation, useRegisterMutation, useAccountQuery } = authActionSlice

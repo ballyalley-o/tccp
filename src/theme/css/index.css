@@ -1,8 +1,8 @@
 /* language: lang-none */
-@import url('https://fonts.googleapis.com/css2?family=Abel:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Abel:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap'); */
 
 :root {
-  font-family: Abel, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Abel, system-ui, Source Sans Pro, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -105,20 +105,20 @@
   font-style: italic;
 }
 
-.abel-bold-italic {
-  font-family: 'Abel', sans-serif;
+.source-bold-italic {
+  font-family: 'Source Sans Pro', sans-serif;
   font-weight: 700;
   font-style: italic;
 }
 
-.abel-extrabold-italic {
-  font-family: 'Abel', sans-serif;
+.source-extrabold-italic {
+  font-family: 'Source Sans Pro', sans-serif;
   font-weight: 800;
   font-style: italic;
 }
 
-.abel-black-italic {
-  font-family: 'Abel', sans-serif;
+.source-black-italic {
+  font-family: 'Source Sans Pro', sans-serif;
   font-weight: 900;
   font-style: italic;
 }

@@ -64,7 +64,7 @@ const rawTheme = createTheme({
 const fontHeader = {
   color: rawTheme.palette.text.primary,
   fontWeight: rawTheme.typography.fontWeightRegular,
-  fontFamily: 'Abel, sans-serif'
+  fontFamily: 'Abel, Source Sans Pro, sans-serif'
 }
 
 const BRAND = {

@@ -76,11 +76,6 @@ declare global {
   }
 
   interface IResponse {
-    // email: string
-    // name: string
-    // token: string
-    // password: string
-    // message: string
     success: boolean
     user: User
     token: string
@@ -102,12 +97,12 @@ declare global {
      * @returns any
      */
     query: (arg0: {
-      query: ((data: any) => { url: string; method?: METHOD; body: any }) | ((id: any) => { url: string; method: METHOD })
+      query: ((data?: any) => { url: string; method?: METHOD; body: any }) | ((id?: any) => { url: string; method: METHOD })
       providesTags?: any[]
       keepUnusedDataFor?: number
     }) => any
     mutation: (arg0: {
-      query: ((data: any) => { url: string; method?: METHOD; body: any }) | ((id: any) => { url: string; method: METHOD })
+      query: ((data: any) => { url: string; method?: METHOD; body: any }) | ((ids: any) => { url: string; method: METHOD })
       providesTags?: any
       keepUnusedDataFor?: number
     }) => any

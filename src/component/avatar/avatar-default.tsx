@@ -15,18 +15,8 @@ const getColorByName = (name: string) => {
   return KEY.DEFAULT
 }
 
-interface DefaultAvatarProps {
-  color?: COLOR
-  firstName?: string
-  lastName?: string
-  extension?: string
-  isLarge?: boolean
-  children?: React.ReactNode
-  BadgeProps?: object
-  sx?: object
-}
 
-const DefaultAvatar: FC<DefaultAvatarProps> = forwardRef<HTMLDivElement, DefaultAvatarProps>(
+const DefaultAvatar: FC<IDefaultAvatar> = forwardRef<HTMLDivElement, IDefaultAvatar>(
   ({ color, firstName = '', lastName = '', BadgeProps, children, extension, isLarge, sx, ...other }, ref) => {
     const theme = useTheme()
     const charAtName = lastName ? getCharAtName(firstName) + getCharAtName(lastName) : getCharAtName(firstName)

@@ -3,7 +3,7 @@ import { Link as RouterLink, useParams, useLocation } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { createSelector } from 'reselect'
 import { m } from 'framer-motion'
-import { Box, Link, IconButton, Toolbar, Stack } from '@mui/material'
+import { Box, Link, IconButton, Stack } from '@mui/material'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import ExpandLessIcon from '@mui/icons-material/ExpandLess'
 import { Button } from 'component'
@@ -125,8 +125,9 @@ function AppNavBar(): JSX.Element {
                       variant='contained'
                       color='primary'
                       sx={{
-                        fontSize: 10,
-                        padding: '.5em 1em',
+                        fontSize: 12,
+                        fontWeight: 'bold',
+                        padding: '.1em 1em',
                         borderRadius: 0,
                         textTransform: 'none',
                         border: '1px solid transparent',

@@ -1,4 +1,4 @@
-import { Fragment } from 'react'
+import { Children, Fragment } from 'react'
 import { m, AnimatePresence } from 'framer-motion'
 import { SnackbarProvider as NotistackProvider, useSnackbar } from 'notistack'
 import { Slide, IconButton } from '@mui/material'
@@ -6,7 +6,6 @@ import { useIcon, ICON_NAME } from 'hook'
 import { ICON_WEB_NAME } from 'config'
 import { KEY, COLOR as COLOR_CONSTANT } from 'constant'
 import { SSnackContent, SSnackIconMDiv } from './style'
-import { Iconify } from 'component/iconify'
 
 interface SnackProviderProps {
   children: React.ReactNode
@@ -47,7 +46,11 @@ export default function SnackProvider({ children }: SnackProviderProps) {
             <Icon icon={closeSrc} />
           </IconButton>
         )}>
-        <AnimatePresence>{children}</AnimatePresence>
+        <AnimatePresence>
+          {Children.map(children, (child, index) => (
+            <m.div key={index}>{child}</m.div>
+          ))}
+        </AnimatePresence>
       </NotistackProvider>
     </Fragment>
   )

@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import { Children, Fragment } from 'react'
 import { m, AnimatePresence } from 'framer-motion'
 import { SnackbarProvider as NotistackProvider, useSnackbar } from 'notistack'
 import { Slide, IconButton } from '@mui/material'
@@ -47,7 +47,7 @@ export default function SnackProvider({ children }: SnackProviderProps) {
           </IconButton>
         )}>
         <AnimatePresence>
-          {React.Children.map(children, (child, index) => (
+          {Children.map(children, (child, index) => (
             <m.div key={index}>{child}</m.div>
           ))}
         </AnimatePresence>

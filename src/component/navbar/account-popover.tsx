@@ -121,8 +121,8 @@ export default function AccountPopover({ user }: { user: any }) {
         </Box>
         <Divider sx={{ borderStyle: 'solid' }} />
         <Stack sx={{ p: 1 }}>
-          {OPTION.map((option) => (
-            <MenuItem key={option.label} onClick={() => handleClickItem(option.linkTo)}>
+          {OPTION.map((option, index) => (
+            <MenuItem key={index} onClick={() => handleClickItem(option.linkTo)}>
               <Link underline='none' color='inherit' to={option.linkTo} component={RouterLink} typography={'subtitle2'}>
                 {option.label}
               </Link>

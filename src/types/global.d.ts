@@ -100,7 +100,6 @@ declare global {
     BadgeProps?: object
     sx?: object
   }
-  
 
   interface EndpointBuilder {
     /**
@@ -117,6 +116,7 @@ declare global {
       query: ((data: any) => { url: string; method?: METHOD; body: any }) | ((ids: any) => { url: string; method: METHOD })
       providesTags?: any
       keepUnusedDataFor?: number
+      invalidatesTags?: any[]
     }) => any
   }
 

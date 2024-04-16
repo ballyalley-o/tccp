@@ -12,6 +12,8 @@ export class ServerPath {
   static SERVER = GLOBAL.APP_SERVER
   static BOOTCAMP = ROUTING.BOOTCAMP
   static BOOTCAMP_ID = (bootcampId: string) => conNex(ROUTING.BOOTCAMP, bootcampId)
+  static COURSE = ROUTING.COURSE
+  static COURSE_ID = (courseId: string) => conNex(ROUTING.COURSE, courseId)
   static AUTH_LOG_IN = conNex(ROUTING.AUTH, ROUTING.LOG_IN)
   static AUTH_LOG_OUT = conNex(ROUTING.AUTH, ROUTING.LOG_OUT)
   static AUTH_REGISTER = conNex(ROUTING.AUTH, ROUTING.REGISTER)

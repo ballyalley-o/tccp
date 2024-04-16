@@ -2,10 +2,11 @@ enum ROUTING {
   ROOT = '/',
   ID = ':id',
   DASHBOARD = 'dashboard',
-  // @bootcamp
+  // :bootcamp
   BOOTCAMP = 'bootcamp',
-
-  // @auth
+  // :course
+  COURSE = 'course',
+  // :auth
   AUTH = 'auth',
   LOG_IN = 'log-in',
   LOG_OUT = 'log-out',

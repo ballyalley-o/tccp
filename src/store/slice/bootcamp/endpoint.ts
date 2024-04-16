@@ -2,19 +2,21 @@ import { apiSlice } from 'store/slice/api'
 import { ServerPath } from 'route/path'
 import { METHOD } from 'constant'
 
-const { POST, PUT, DELETE } = METHOD
+const { GET, POST, PUT, DELETE } = METHOD
 
 export const bootcampSlice = apiSlice.injectEndpoints({
-  endpoints: (builder) => ({
-    getAllBootcamp: builder.query<any, void>({
+  endpoints: (builder: EndpointBuilder) => ({
+    getAllBootcamp: builder.query({
       query: () => ({
-        url: ServerPath.BOOTCAMP
+        url: ServerPath.BOOTCAMP,
+        method: GET
       }),
       keepUnusedDataFor: 5
     }),
-    getBootcamp: builder.query<any, string>({
+    getBootcamp: builder.query({
       query: (id) => ({
-        url: ServerPath.BOOTCAMP_ID(id)
+        url: ServerPath.BOOTCAMP_ID(id),
+        method: GET
       })
     }),
     createBootcamp: builder.mutation({

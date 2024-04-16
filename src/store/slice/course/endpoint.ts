@@ -35,7 +35,7 @@ export const courseSlice = apiSlice.injectEndpoints({
     }),
     deleteCourse: builder.mutation({
       query: (id: string) => ({
-        url: ServerPath.BOOTCAMP_ID(id),
+        url: ServerPath.COURSE_ID(id),
         method: DELETE
       })
     })

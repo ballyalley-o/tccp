@@ -5,7 +5,7 @@ import { getAuthToken } from 'auth/utility'
 
 const { GET, POST } = METHOD
 
-export const authActionSlice = apiSlice.injectEndpoints({
+export const authSlice = apiSlice.injectEndpoints({
   endpoints: (builder: EndpointBuilder) => ({
     login: builder.mutation({
       query: (data: any) => ({
@@ -40,4 +40,4 @@ export const authActionSlice = apiSlice.injectEndpoints({
   })
 })
 
-export const { useLoginMutation, useLogoutMutation, useRegisterMutation, useAccountQuery } = authActionSlice
+export const { useLoginMutation, useLogoutMutation, useRegisterMutation, useAccountQuery } = authSlice

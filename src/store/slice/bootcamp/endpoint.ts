@@ -1,20 +1,48 @@
-import { apiSlice } from '../api'
+import { apiSlice } from 'store/slice/api'
 import { ServerPath } from 'route/path'
+import { METHOD } from 'constant'
 
-export const bootcampApiSlice = apiSlice.injectEndpoints({
-  endpoints: (builder) => ({
-    getAllBootcamp: builder.query<any, void>({
+const { GET, POST, PUT, DELETE } = METHOD
+
+export const bootcampSlice = apiSlice.injectEndpoints({
+  endpoints: (builder: EndpointBuilder) => ({
+    getAllBootcamp: builder.query({
       query: () => ({
-        url: ServerPath.BOOTCAMP
+        url: ServerPath.BOOTCAMP,
+        method: GET
       }),
       keepUnusedDataFor: 5
     }),
-    getBootcamp: builder.query<any, string>({
+    getBootcamp: builder.query({
       query: (id) => ({
-        url: ServerPath.BOOTCAMP_ID(id)
+        url: ServerPath.BOOTCAMP_ID(id),
+        method: GET
+      })
+    }),
+    createBootcamp: builder.mutation({
+      query: (data: any) => ({
+        url: ServerPath.BOOTCAMP,
+        method: POST,
+        body: data
+      }),
+      invalidatesTags: ['Bootcamp']
+    }),
+    updateBootcamp: builder.mutation({
+      query: (data: any) => ({
+        url: ServerPath.BOOTCAMP_ID(data.id),
+        method: PUT,
+        body: data
+      }),
+      invalidatesTags: ['Bootcamp']
+    }),
+    deleteBootcamp: builder.mutation({
+      query: (id: string) => ({
+        url: ServerPath.BOOTCAMP_ID(id),
+        method: DELETE
       })
     })
   })
 })
 
-export const { useGetAllBootcampQuery, useGetBootcampQuery } = bootcampApiSlice
+export const { useGetAllBootcampQuery, useGetBootcampQuery, useCreateBootcampMutation, useUpdateBootcampMutation, useDeleteBootcampMutation } =
+  bootcampSlice

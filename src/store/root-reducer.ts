@@ -39,6 +39,13 @@ export const bootcampPersistConfig = {
   blacklist: ['error', 'initial', 'responseMessage']
 }
 
+export const coursePersistConfig = {
+  key: 'course',
+  storage,
+  keyPrefix: KEY.PERSIST_PREFIX,
+  blacklist: ['error', 'initial', 'responseMessage']
+}
+
 const rootReducer = combineReducers({
   [apiSlice.reducerPath]: persistReducer(apiPersistConfig, apiSlice.reducer),
   auth: persistReducer(authPersistConfig, authReducer)

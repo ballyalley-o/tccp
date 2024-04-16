@@ -1,7 +1,5 @@
-import { useLocation } from 'react-router-dom'
-import { Fragment, useEffect } from 'react'
+import { Fragment } from 'react'
 import { DashboardHero, BootcampConsult, DashboardBootcampRundown, DashboardFeedbackSection } from 'section/dashboard'
-import { snack } from 'hook'
 
 const Dashboard = () => {
   return (

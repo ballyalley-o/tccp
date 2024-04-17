@@ -71,6 +71,7 @@ enum BUTTON {
 
   // @button
   FIND_BOOTCAMP = 'Find Bootcamp',
+  FIND_COURSE = 'Find Course',
 
   // @form
   UPLOADED_AVATAR = 'Uploaded',
@@ -80,7 +81,7 @@ enum BUTTON {
   //  @auth
   LOG_IN = 'Log In',
   LOG_OUT = 'Log Out',
-  REGISTER = 'Register',
+  REGISTER = 'Register'
 }
 
 export { BUTTON }

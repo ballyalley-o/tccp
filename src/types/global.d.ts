@@ -120,6 +120,39 @@ declare global {
     }) => any
   }
 
+  interface Bootcamp {
+    _id: Schema.Types.ObjectId
+    name: string
+    slug: string
+    description: string
+    website: string
+    phone: string
+    email: string
+    address: string
+    location: {
+      type: string
+      coordinates: [number | undefined, number | undefined]
+      formattedAddress: string
+      street: string
+      city: string
+      state: string
+      zipcode: string
+      country: string
+    }
+    careers: [string]
+    duration: string
+    averageRating: number
+    averageCost: number
+    photo: string
+    badge: string
+    housing: boolean
+    jobAssistance: boolean
+    jobGuarantee: boolean
+    acceptGi: boolean
+    createdAt: Date
+    user: Schema.Types.ObjectId
+  }
+
   type VERTICAL = KEY.TOP | KEY.CENTER | KEY.BOTTOM
   type HORIZONTAL = KEY.LEFT | KEY.CENTER | KEY.RIGHT
   type COLOR = 'default' | 'inherit' | 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'error'

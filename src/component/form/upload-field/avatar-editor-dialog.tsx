@@ -15,24 +15,13 @@ interface AvatarEditorDialogProps {
   setEditor: (editor: AvatarEditor | null) => void
 }
 
-const AvatarEditorDialog: FC<AvatarEditorDialogProps> = ({
-  onSave,
-  openDialog,
-  setOpenDialog,
-  setEditor,
-  previewUrl,
-  handleClearPreview,
-}) => {
+const AvatarEditorDialog: FC<AvatarEditorDialogProps> = ({ onSave, openDialog, setOpenDialog, setEditor, previewUrl, handleClearPreview }) => {
   const { Icon, iconSrc: clearSrc } = useIcon(ICON_WEB_NAME.CLOSE)
 
   return (
     <Dialog open={openDialog} onClose={() => setOpenDialog(false)}>
       <DialogContent>
-        <AvatarEditor
-          ref={(editor: AvatarEditor | null) => setEditor(editor)}
-          image={previewUrl || 'default_image_path'}
-          {...AvatarEditorProps}
-        />
+        <AvatarEditor ref={(editor: AvatarEditor | null) => setEditor(editor)} image={previewUrl || 'default_image_path'} {...AvatarEditorProps} />
         <SIconButton onClick={handleClearPreview}>
           <Icon icon={clearSrc} />
         </SIconButton>

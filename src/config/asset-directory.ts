@@ -38,7 +38,7 @@ const ASSET = {
   GITHUB_ICON: _social('github.svg'),
   EDX_ICON: _social('edx.svg'),
   FCC_ICON: _social('free-code-camp.svg'),
-  TCCP_ICON: _svg('tccp.svg'),
+  TCCP_ICON: _svg('tccp-vector.svg'),
   // element
   ARROW_DOWN: _element('arrow-down.svg'),
   // octicon

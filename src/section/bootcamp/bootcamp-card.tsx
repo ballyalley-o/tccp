@@ -44,7 +44,7 @@ const BootcampCard: FC<UploadLocationProps> = ({ bootcamp }) => {
       }}>
       <Grid item xs={4}>
         <CardMedia
-          component="img"
+          component='img'
           image={photoLocation({ bootcamp })}
           alt={bootcamp.name}
           sx={{
@@ -58,16 +58,16 @@ const BootcampCard: FC<UploadLocationProps> = ({ bootcamp }) => {
           <Box>
             <Grid container>
               <Grid item xs={8}>
-                <Typography variant="h4" color="common.black">
+                <Typography variant='h4' color='common.black'>
                   {bootcamp?.name}
                 </Typography>
               </Grid>
               <Grid item xs={4}>
-                <Grid container spacing={0} justifyContent="flex-end">
+                <Grid container spacing={0} justifyContent='flex-end'>
                   <CardMedia
-                    component="img"
+                    component='img'
                     src={badgeLocation({ bootcamp })}
-                    alt="company badge"
+                    alt='company badge'
                     height={50}
                     sx={{ width: 50, display: 'flex', justifyContent: 'flex-end', borderRadius: 2 }}
                   />
@@ -76,22 +76,22 @@ const BootcampCard: FC<UploadLocationProps> = ({ bootcamp }) => {
             </Grid>
           </Box>
           <SBadgeHeader
-            avatar={<Rating name="read-only" value={bootcamp.rating || 5} readOnly />}
+            avatar={<Rating name='read-only' value={bootcamp.rating || 5} readOnly />}
             sx={{
               p: 0,
               py: 2
             }}
           />
           <Box height={40}>
-            <Typography variant="body2">{bootcamp.description}</Typography>
+            <Typography variant='body2'>{bootcamp.description}</Typography>
           </Box>
-          <Typography variant="h6" py={2}>
+          <Typography variant='h6' py={2}>
             {bootcamp?.address}
           </Typography>
         </CardContent>
         <SScrollBox my={2} ml={2}>
           {bootcamp?.careers?.map((chip: string, index: number) => (
-            <Chip key={index} label={chip} variant="outlined" size="small" sx={{ mr: 2, color: 'common.black' }} />
+            <Chip key={index} label={chip} variant='outlined' size='small' sx={{ mr: 2, color: 'common.black' }} />
           ))}
         </SScrollBox>
       </Grid>

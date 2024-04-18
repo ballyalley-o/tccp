@@ -5,8 +5,8 @@ import { METHOD } from 'constant'
 const { GET, POST, PUT, DELETE } = METHOD
 
 export const courseSlice = apiSlice.injectEndpoints({
-  endpoints: (builder: EndpointBuilder) => ({
-    getAllCourse: builder.query({
+  endpoints: (builder) => ({
+    getAllCourse: builder.query<GetAllResponse, void>({
       query: () => ({
         url: ServerPath.COURSE,
         method: GET
@@ -42,4 +42,4 @@ export const courseSlice = apiSlice.injectEndpoints({
   })
 })
 
-export const { useGetAllCourseMutation, useGetCourseQuery, useCreateCourseMutation, useUpdateCourseMutation, useDeleteCourseMutation } = courseSlice
+export const { useGetAllCourseQuery, useGetCourseQuery, useCreateCourseMutation, useUpdateCourseMutation, useDeleteCourseMutation } = courseSlice

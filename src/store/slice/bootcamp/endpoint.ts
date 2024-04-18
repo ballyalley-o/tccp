@@ -6,7 +6,7 @@ const { GET, POST, PUT, DELETE } = METHOD
 
 export const bootcampSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    getAllBootcamp: builder.query<any, void>({
+    getAllBootcamp: builder.query<GetAllResponse, void>({
       query: () => ({
         url: ServerPath.BOOTCAMP
       }),

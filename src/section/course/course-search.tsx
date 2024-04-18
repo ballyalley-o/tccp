@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { TextField, Select, MenuItem, Button, Grid } from '@mui/material'
 import { BUTTON, PLACEHOLDER } from 'constant'
 
@@ -37,7 +37,7 @@ const CourseSearch = () => {
           sx={{
             borderRadius: 0.8
           }}>
-          {BUTTON.FIND_BOOTCAMP}
+          {BUTTON.FIND_COURSE}
         </Button>
       </Grid>
 

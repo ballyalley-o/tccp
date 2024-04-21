@@ -36,7 +36,7 @@ const UserAccount = () => {
             <Box>
               <DefaultAvatar
                 firstName={account?.data?.firstname}
-                lastName={account?.data?.lastname}
+                lastName={account?.data?.lastname || ''}
                 isLarge
                 sx={{
                   width: 150,

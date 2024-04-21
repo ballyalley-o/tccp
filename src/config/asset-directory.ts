@@ -21,6 +21,7 @@ const _svg = (svg: string) => {
 const ASSET = {
   // bg
   _BG_TEMP: 'https://images.pexels.com/photos/9672971/pexels-photo-9672971.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+  default_badge: 'https://thecodecoachprojct.com/upload/badge/no-badge.png',
   BRAND: _asset('logo.png'),
   BRAND_ALT: _asset('favicon.ico'),
   // WAVES_COVER_BG: _background('waves.svg'),

@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { m } from 'framer-motion'
 import { useGetAllCourseQuery } from 'store/slice'
 import { MotionLazyContainer } from 'component/motion'
@@ -11,6 +12,12 @@ import { ASSET } from 'config'
 import { LABEL } from 'constant'
 const Course = () => {
   const { data, error, isLoading } = useGetAllCourseQuery()
+
+  useEffect(() => {
+    if (data) {
+      console.log('data _: ', data?.data?.length)
+    }
+  }, [data])
 
   return (
     <MotionLazyContainer>

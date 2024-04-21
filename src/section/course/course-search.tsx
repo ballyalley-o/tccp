@@ -19,28 +19,6 @@ const CourseSearch = () => {
 
   return (
     <Grid container flexDirection='column'>
-      <Grid container spacing={4} mb={2}>
-        <Grid item lg={6}>
-          <TextField label={PLACEHOLDER.MILES_FROM} value={milesFrom} onChange={(e) => setMilesFrom(e.target.value)} />
-        </Grid>
-        <Grid item lg={6}>
-          <TextField label={PLACEHOLDER.ENTER_ZIPCODE} value={zipcode} onChange={(e) => setZipcode(e.target.value)} />
-        </Grid>
-      </Grid>
-
-      <Grid container mb={2}>
-        <Button
-          variant='contained'
-          onClick={handleSearch}
-          fullWidth
-          size='large'
-          sx={{
-            borderRadius: 0.8
-          }}>
-          {BUTTON.FIND_COURSE}
-        </Button>
-      </Grid>
-
       <Grid container spacing={2} flexDirection='row'>
         <Grid item lg={12}>
           <Select value={rating} onChange={(e) => setRating(e.target.value)} fullWidth displayEmpty>

@@ -82,6 +82,7 @@ function LogIn() {
       }
     } catch (error: any) {
       console.error('error : ', error || '')
+      snack(error?.data?.message, { variant: COLOR.ERROR })
       reset()
       if (error.message === RESPONSE.error.INVALID_CREDENTIAL) {
         setError(KEY.EMAIL, { message: RESPONSE.error.EMAIL_INVALID })

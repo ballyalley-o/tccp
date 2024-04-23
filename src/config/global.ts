@@ -4,6 +4,7 @@ const GLOBAL = {
   APP_SERVER: import.meta.env.VITE_APP_SERVER,
   APP_ORIGIN: import.meta.env.VITE_APP_ORIGIN,
   APP_ENV: import.meta.env.VITE_APP_ENV,
+  DEFAULT_BADGE: import.meta.env.VITE_DEFAULT_BADGE,
   APP_DESCRIPTION: 'The Code Coach is a platform that provides a wide range of coaching services to help you improve your coding skills.',
   APP_KEYWORDS: 'code, coach, coding, skills, platform, coaching, improve',
   APP_AUTHOR: 'The Code Coach Team',

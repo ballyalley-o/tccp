@@ -1,6 +1,6 @@
-import { useEffect } from 'react'
+import { useState } from 'react'
 import { m } from 'framer-motion'
-import { Box, Grid } from '@mui/material'
+import { Pagination, Box, Grid } from '@mui/material'
 import { SCard } from 'theme/style'
 import { useGetAllBootcampQuery } from 'store/slice/bootcamp'
 import { BootcampSearch, BootcampCard } from 'section/bootcamp'
@@ -11,7 +11,12 @@ import { ASSET } from 'config'
 import { LABEL, PLACEHOLDER } from 'constant'
 
 function Bootcamp() {
+  const [currentPage, setCurrentPage] = useState(1)
   const { data, error, isLoading } = useGetAllBootcampQuery()
+
+  const handlePageChange = (event: any, value: any) => {
+    setCurrentPage(value)
+  }
 
   return (
     <MotionLazyContainer>
@@ -42,6 +47,15 @@ function Bootcamp() {
           </Grid>
 
           <Grid item sm={9}>
+            <Pagination
+              count={Math.ceil(data?.data?.length ?? 0 / 6)}
+              page={currentPage}
+              onChange={handlePageChange}
+              variant='outlined'
+              shape='rounded'
+              color='primary'
+              sx={{ display: 'flex', justifyContent: 'flex-end', mb: 2 }}
+            />
             <SCard
               sx={{
                 width: '100%',
@@ -52,10 +66,21 @@ function Bootcamp() {
                 {isLoading ? (
                   <SkeletonLoader cards={8} />
                 ) : (
-                  data?.data?.map((bootcamp: any, index: number) => <BootcampCard key={index} bootcamp={bootcamp} />)
+                  data?.data
+                    ?.slice((currentPage - 1) * 6, currentPage * 6)
+                    .map((bootcamp: any, index: number) => <BootcampCard key={index} bootcamp={bootcamp} />)
                 )}
               </Grid>
             </SCard>
+            <Pagination
+              count={Math.ceil(data?.data?.length ?? 0 / 6)}
+              page={currentPage}
+              onChange={handlePageChange}
+              variant='outlined'
+              shape='rounded'
+              color='primary'
+              sx={{ display: 'flex', justifyContent: 'flex-end', mt: 2 }}
+            />
           </Grid>
         </Grid>
       </Box>

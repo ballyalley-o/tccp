@@ -8,7 +8,8 @@ export const bootcampSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getAllBootcamp: builder.query<GetAllResponse, void>({
       query: () => ({
-        url: ServerPath.BOOTCAMP
+        url: ServerPath.BOOTCAMP,
+        method: GET
       }),
       keepUnusedDataFor: 5
     }),

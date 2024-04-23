@@ -10,13 +10,15 @@ import {
   UserAccountPage,
   // :bootcamp
   BootcampPage,
+  // :course
+  CoursePage,
   FallbackPage
 } from 'route/element'
 import { FallbackPath } from 'route/path'
 import { ROUTING } from 'constant/routing/routing'
 import { FALLBACK } from 'constant'
 
-const { ACCOUNT, AUTH, BOOTCAMP, LOG_IN, REGISTER, RESET_PASSWORD } = ROUTING
+const { ACCOUNT, AUTH, BOOTCAMP, COURSE, LOG_IN, REGISTER, RESET_PASSWORD } = ROUTING
 
 function Router() {
   return useRoutes([
@@ -57,6 +59,16 @@ function Router() {
     {
       path: BOOTCAMP,
       element: <BootcampPage />,
+      children: [
+        {
+          path: ROUTING.ID
+          // element: <BootcampDetailPage />,
+        }
+      ]
+    },
+    {
+      path: COURSE,
+      element: <CoursePage />,
       children: [
         {
           path: ROUTING.ID

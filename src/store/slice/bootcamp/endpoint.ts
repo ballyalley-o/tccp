@@ -5,8 +5,8 @@ import { METHOD } from 'constant'
 const { GET, POST, PUT, DELETE } = METHOD
 
 export const bootcampSlice = apiSlice.injectEndpoints({
-  endpoints: (builder: EndpointBuilder) => ({
-    getAllBootcamp: builder.query({
+  endpoints: (builder) => ({
+    getAllBootcamp: builder.query<GetAllResponse, void>({
       query: () => ({
         url: ServerPath.BOOTCAMP,
         method: GET

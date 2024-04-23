@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { TextField, Select, MenuItem, Button, Grid } from '@mui/material'
 import { BUTTON, PLACEHOLDER } from 'constant'
 
-const BootcampSearch = () => {
+const CourseSearch = () => {
   const [milesFrom, setMilesFrom] = useState('')
   const [zipcode, setZipcode] = useState('')
   const [rating, setRating] = useState('')
@@ -19,39 +19,18 @@ const BootcampSearch = () => {
 
   return (
     <Grid container flexDirection='column'>
-      <Grid container spacing={4} mb={2}>
-        <Grid item lg={6}>
-          <TextField label={PLACEHOLDER.MILES_FROM} value={milesFrom} onChange={(e) => setMilesFrom(e.target.value)} />
-        </Grid>
-        <Grid item lg={6}>
-          <TextField label={PLACEHOLDER.ENTER_ZIPCODE} value={zipcode} onChange={(e) => setZipcode(e.target.value)} />
-        </Grid>
-      </Grid>
-
-      <Grid container mb={2}>
-        <Button
-          variant='contained'
-          onClick={handleSearch}
-          fullWidth
-          size='large'
-          sx={{
-            borderRadius: 0.8
-          }}>
-          {BUTTON.FIND_BOOTCAMP}
-        </Button>
-      </Grid>
-
       <Grid container spacing={2} flexDirection='row'>
+        <Grid item lg={12}>
+          <TextField fullWidth label='Search' variant='outlined' />
+        </Grid>
         <Grid item lg={12}>
           <Select value={rating} onChange={(e) => setRating(e.target.value)} fullWidth displayEmpty>
             <MenuItem value='' disabled>
-              {PLACEHOLDER.SELECT_RATING}
+              {PLACEHOLDER.SELECT_SKILL}
             </MenuItem>
-            <MenuItem value='5'>5 Stars</MenuItem>
-            <MenuItem value='4'>4 Stars</MenuItem>
-            <MenuItem value='3'>3 Stars</MenuItem>
-            <MenuItem value='2'>2 Stars</MenuItem>
-            <MenuItem value='1'>1 Star</MenuItem>
+            <MenuItem value='beginner'>Beginner</MenuItem>
+            <MenuItem value='intermediate'>Intermediate</MenuItem>
+            <MenuItem value='advanced'>Advanced</MenuItem>
           </Select>
         </Grid>
         <Grid item lg={12}>
@@ -73,7 +52,7 @@ const BootcampSearch = () => {
             sx={{
               borderRadius: 0.8
             }}>
-            {BUTTON.FIND_BOOTCAMP}
+            {BUTTON.FIND_COURSE}
           </Button>
         </Grid>
       </Grid>
@@ -81,4 +60,4 @@ const BootcampSearch = () => {
   )
 }
 
-export default BootcampSearch
+export default CourseSearch

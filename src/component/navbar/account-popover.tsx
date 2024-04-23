@@ -82,7 +82,7 @@ export default function AccountPopover({ user }: { user: any }) {
             }
           })
         }}>
-        {user?.avatar !== '/upload/avatar/no-avatar.jpeg' ? (
+        {user?.avatar === '/upload/avatar/no-avatar.jpeg' ? (
           <Avatar src={user?.avatar} />
         ) : (
           <DefaultAvatar firstName={user.firstname} lastName={user.lastname} />

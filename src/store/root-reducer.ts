@@ -2,7 +2,7 @@ import { combineReducers } from '@reduxjs/toolkit'
 import { persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import { KEY } from 'constant'
-import { apiSlice, authReducer } from './slice'
+import { apiSlice, authReducer, bootcampReducer } from './slice'
 
 export const apiPersistConfig = {
   key: 'api',
@@ -48,7 +48,8 @@ export const coursePersistConfig = {
 
 const rootReducer = combineReducers({
   [apiSlice.reducerPath]: persistReducer(apiPersistConfig, apiSlice.reducer),
-  auth: persistReducer(authPersistConfig, authReducer)
+  auth: persistReducer(authPersistConfig, authReducer),
+  bootcamp: persistReducer(bootcampPersistConfig, bootcampReducer)
 })
 
 export default rootReducer

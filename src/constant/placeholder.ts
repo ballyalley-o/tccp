@@ -14,6 +14,7 @@ enum PLACEHOLDER {
   MILES_FROM = 'Miles From',
   ENTER_ZIPCODE = 'Enter Zipcode',
   SELECT_RATING = 'Select a rating',
+  SELECT_SKILL = 'Select a skill',
   SELECT_BUDGET = 'Select a budget'
 }
 

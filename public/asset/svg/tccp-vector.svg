@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg width="148.59131mm" height="109.99048mm" viewBox="0 0 148.59132 109.99048" version="1.1" id="svg1"
+   xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+   <defs id="defs1">
+      <linearGradient id="swatch42">
+         <stop style="stop-color:#000000;stop-opacity:1;" offset="0" id="stop42" />
+      </linearGradient>
+      <linearGradient xlink:href="#swatch42" id="linearGradient42" x1="105.97316" y1="143.63599" x2="105.9732"
+         y2="143.63599" gradientUnits="userSpaceOnUse"
+         gradientTransform="matrix(0.81748951,0,0,0.81748951,20.519183,31.079089)" />
+      <linearGradient xlink:href="#swatch42" id="linearGradient48" gradientUnits="userSpaceOnUse" x1="105.97316"
+         y1="143.63599" x2="105.9732" y2="143.63599"
+         gradientTransform="matrix(-0.81748951,0,0,0.67698116,239.27875,51.123384)" />
+   </defs>
+   <g id="layer1" transform="matrix(0,-0.58529041,0.58529041,0,-15.798235,115.08934)">
+      <circle
+         style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:8.1749;stroke-linejoin:round;stroke-dasharray:none;image-rendering:auto"
+         id="path1" cx="107.15115" cy="148.5" r="81.748955" />
+      <path
+         style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:8.1749;stroke-linejoin:round;stroke-dasharray:none"
+         d="m 189.00825,147.53513 -163.7142,1.92973" id="path2" />
+      <path
+         style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:8.1749;stroke-linejoin:round;stroke-dasharray:none"
+         d="m 189.00825,147.53513 c -28.01687,64.79564 -139.176047,56.16005 -163.7142,1.92973" id="path38" />
+      <path
+         style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:8.1749;stroke-linejoin:round;stroke-dasharray:none"
+         d="M 189.00825,147.53513 C 171.84073,102.13288 61.013485,83.865155 25.29405,149.46486" id="path39" />
+      <path
+         style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:8.1749;stroke-linejoin:round;stroke-dasharray:none"
+         d="m 189.00825,147.53513 -163.7142,1.92973" id="path40" />
+      <path
+         style="fill:url(#linearGradient42);fill-opacity:1;stroke:#000000;stroke-width:8.1749;stroke-linejoin:round;stroke-dasharray:none"
+         d="M 107.15115,66.642903 V 230.3571" id="path41" />
+      <path
+         style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:8.1749;stroke-linejoin:round;stroke-dasharray:none"
+         d="M 152.6377,80.574568 V 216.42543" id="path42" />
+      <use x="0" y="0" xlink:href="#path41" id="use42" transform="matrix(-1,0,0,0.83148293,169.02152,25.024784)"
+         style="stroke-width:10.9666;stroke-linejoin:round;stroke-dasharray:none" />
+      <path
+         style="fill:url(#linearGradient48);fill-opacity:1;stroke:#000000;stroke-width:8.1749;stroke-linejoin:round;stroke-dasharray:none"
+         d="M 152.64679,80.574568 V 216.14992" id="path48" />
+      <path
+         style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:8.1749;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+         d="M 192.98755,80.574567 167.99704,31.079089 148.55026,68.790322" id="path49" />
+      <path
+         style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:8.175;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+         d="M 73.366345,239.13048 11.495975,201.53" id="path52" />
+      <path
+         style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:8.17499;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+         d="M 57.78292,239.70309 33.944882,276.78134 12.533495,220.33024" id="path54" />
+   </g>
+</svg>

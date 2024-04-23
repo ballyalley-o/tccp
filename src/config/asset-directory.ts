@@ -1,3 +1,5 @@
+import GLOBAL from 'config/global'
+
 const _asset = (image: string) => {
   return `/asset/${image}`
 }
@@ -20,7 +22,7 @@ const _svg = (svg: string) => {
 
 const ASSET = {
   // bg
-  _BG_TEMP: 'https://images.pexels.com/photos/9672971/pexels-photo-9672971.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+  default_badge: GLOBAL.DEFAULT_BADGE,
   BRAND: _asset('logo.png'),
   BRAND_ALT: _asset('favicon.ico'),
   // WAVES_COVER_BG: _background('waves.svg'),
@@ -38,7 +40,7 @@ const ASSET = {
   GITHUB_ICON: _social('github.svg'),
   EDX_ICON: _social('edx.svg'),
   FCC_ICON: _social('free-code-camp.svg'),
-  TCCP_ICON: _svg('tccp.svg'),
+  TCCP_ICON: _svg('tccp-vector.svg'),
   // element
   ARROW_DOWN: _element('arrow-down.svg'),
   // octicon

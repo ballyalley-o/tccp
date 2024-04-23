@@ -103,7 +103,7 @@ const typography = {
   },
   caption: {
     fontFamily: FONT_SECONDARY,
-    lineHeight: 1.5,
+    lineHeight: 0.5,
     fontSize: pxToRem(12)
   },
   overline: {

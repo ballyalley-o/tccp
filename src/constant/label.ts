@@ -26,7 +26,8 @@ const LABEL = {
   STUDENT: 'Student',
   TRAINER: 'Trainer',
 
-  BOOTCAMP_PAGE_TITLE: 'Worldclass Bootcamps Worldwide'
+  BOOTCAMP_PAGE_TITLE: 'Worldclass Bootcamps Worldwide',
+  COURSE_PAGE_TITLE: 'World Class Courses'
 }
 
 export default LABEL

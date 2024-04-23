@@ -21,15 +21,16 @@ const CourseSearch = () => {
     <Grid container flexDirection='column'>
       <Grid container spacing={2} flexDirection='row'>
         <Grid item lg={12}>
+          <TextField fullWidth label='Search' variant='outlined' />
+        </Grid>
+        <Grid item lg={12}>
           <Select value={rating} onChange={(e) => setRating(e.target.value)} fullWidth displayEmpty>
             <MenuItem value='' disabled>
-              {PLACEHOLDER.SELECT_RATING}
+              {PLACEHOLDER.SELECT_SKILL}
             </MenuItem>
-            <MenuItem value='5'>5 Stars</MenuItem>
-            <MenuItem value='4'>4 Stars</MenuItem>
-            <MenuItem value='3'>3 Stars</MenuItem>
-            <MenuItem value='2'>2 Stars</MenuItem>
-            <MenuItem value='1'>1 Star</MenuItem>
+            <MenuItem value='beginner'>Beginner</MenuItem>
+            <MenuItem value='intermediate'>Intermediate</MenuItem>
+            <MenuItem value='advanced'>Advanced</MenuItem>
           </Select>
         </Grid>
         <Grid item lg={12}>

@@ -1,4 +1,4 @@
-import { Drawer, Container, ListItem, Box, Toolbar, Card, Grid, CardHeader } from '@mui/material'
+import { Drawer, Container, ListItem, Box, Toolbar, Card, Grid, CardHeader, CardMedia } from '@mui/material'
 import { LoadingButton } from '@mui/lab'
 import { styled } from '@mui/material/styles'
 import { APP_NAVBAR } from 'config'
@@ -26,7 +26,9 @@ export const SToolbar = styled(Toolbar)(({ theme }) => ({
 
 // @bootcamp -- card
 export const SBadgeHeader = styled(CardHeader)({
-  position: 'relative'
+  position: 'relative',
+  padding: 0,
+  paddingY: 2
 })
 
 export const SCard = styled(Card)(({ theme }) => ({
@@ -67,6 +69,26 @@ export const GSContainerGrid = styled(Grid)(({ theme }) => ({
   borderRadius: theme.spacing(2),
   bgcolor: theme.palette.grey[300],
   backgroundImage: `url(${ASSET.DOT_MATRIX_BG})`
+}))
+
+// @bootcamp : tile
+export const GSPhotoCardMedia = styled(CardMedia)(({ theme }) => ({
+  objectFit: 'cover',
+  objectPosition: 'top',
+  marginTop: '-40px',
+  height: '230px'
+}))
+
+export const GSBadgeImg = styled('img')(({ theme }) => ({
+  height: 40,
+  width: 40,
+  overflow: 'hidden',
+  objectFit: 'cover',
+  position: 'absolute',
+  top: 200,
+  right: '10%',
+  zIndex: 1,
+  transform: 'translateX(-50%)'
 }))
 
 // @dashboard -- drawer

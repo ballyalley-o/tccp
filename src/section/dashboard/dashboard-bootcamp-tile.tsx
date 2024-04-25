@@ -1,74 +1,39 @@
 import { FC } from 'react'
 import { Card, CardContent, CardMedia, Typography, Box, Chip } from '@mui/material'
 import { useTheme, styled } from '@mui/material/styles'
-import { SScrollBox, SBadgeHeader } from 'theme/style'
+import { SScrollBox, SBadgeHeader, GSBadgeImg } from 'theme/style'
 import { photoLocation, badgeLocation } from 'util/asset-loc'
-
-const SBootcampCard = styled(Card)(({ theme }) => ({
-  width: '250px',
-  height: '400px',
-  boxShadow: 'none'
-}))
+import { COMPONENT, FLEX, PLACEHOLDER, TYPOGRAPHY_VARIANT, VARIANT, SIZE } from 'constant'
+import { OPhotoCardMedia, SBootcampCard } from './option'
+import { BootcampCareer } from 'section/bootcamp'
 
 const BootcampTile: FC<UploadLocationProps> = ({ bootcamp }) => {
   const theme = useTheme()
 
   return (
     <SBootcampCard>
-      <SBadgeHeader
-        avatar={
-          <img
-            src={badgeLocation({ bootcamp })}
-            alt={`${bootcamp.name} badge`}
-            style={{
-              height: 40,
-              width: 40,
-              overflow: 'hidden',
-              objectFit: 'cover',
-              position: 'absolute',
-              top: 200,
-              right: '10%',
-              zIndex: 1,
-              transform: 'translateX(-50%)'
-            }}
-          />
-        }
-      />
-      <CardMedia
-        component='img'
-        height='230'
-        image={photoLocation({ bootcamp })}
-        alt={bootcamp.name}
-        sx={{
-          objectFit: 'cover',
-          objectPosition: 'top',
-          marginTop: '-40px'
-        }}
-      />
+      <SBadgeHeader avatar={<GSBadgeImg src={badgeLocation({ bootcamp })} />} />
+      <CardMedia image={photoLocation({ bootcamp })} {...OPhotoCardMedia} />
       <CardContent>
         <Box my={1}>
-          <Typography gutterBottom variant='h6' component='div'>
+          <Typography gutterBottom variant={TYPOGRAPHY_VARIANT.H6} component={COMPONENT.DIV}>
             {bootcamp.name}
           </Typography>
         </Box>
 
-        <Typography variant='subtitle2' color='text.secondary'>
-          {bootcamp.location ? bootcamp.location.city + ', ' + bootcamp.location.country : 'No location provided'}
+        <Typography variant={TYPOGRAPHY_VARIANT.SUBTITLE2} color='text.secondary'>
+          {bootcamp.location ? bootcamp.location.city + ', ' + bootcamp.location.country : PLACEHOLDER.NO_LOCATION}
         </Typography>
         <Box
           sx={{
-            display: 'flex',
-            justifyContent: 'flex-end',
+            display: FLEX.FLEX,
+            justifyContent: FLEX.FLEX_END,
             mt: 6
           }}>
           {bootcamp.careers && bootcamp.careers.length > 0 ? (
-            <SScrollBox>
-              {bootcamp?.careers?.map((chip: string, index: number) => (
-                <Chip key={index} label={chip} variant='outlined' size='small' sx={{ mr: 1, color: 'common.black' }} />
-              ))}
-            </SScrollBox>
+            <BootcampCareer bootcamp={bootcamp} />
           ) : (
-            <Typography variant='caption' m='1em'>
+            <Typography variant={TYPOGRAPHY_VARIANT.CAPTION} m='1em'>
               &nbsp;
             </Typography>
           )}

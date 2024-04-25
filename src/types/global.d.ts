@@ -143,6 +143,33 @@ declare global {
     xl?: number
   }
 
+  interface BootcampCardProps {
+    _id?: string
+    name: string
+    badge: string
+    description: string
+    location?: Location
+    website: string
+    photo: string
+    rating: number
+    careers?: string[] | null
+  }
+
+  interface Location {
+    type?: string
+    coordinates?: number[]
+    formattedAddress?: string
+    street?: string
+    state?: string | null
+    city?: string
+    zipcode?: string
+    country: string
+  }
+
+  interface UploadLocationProps {
+    bootcamp: BootcampCardProps
+  }
+
   interface IDefaultAvatar {
     color?: COLOR
     firstName?: string

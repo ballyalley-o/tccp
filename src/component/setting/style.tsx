@@ -18,7 +18,6 @@ export const SCard = styled(CardActionArea, {
   border: `solid 1px ${alpha(theme.palette.grey[800], 0.22)}`,
   ...(selected && {
     color: theme.palette.primary.main,
-    // boxShadow: theme.customShadow.z12,
     borderColor: alpha(theme.palette.grey[800], 0.22)
   })
 }))

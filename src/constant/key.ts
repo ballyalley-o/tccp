@@ -9,6 +9,7 @@ enum KEY {
   PHOTO_DEFAULT = 'no-photo.jpeg',
   BADGE_DEFAULT = 'no-badge.png',
   // @form
+  FULL_NAME = 'fullname',
   FIRST_NAME = 'firstname',
   LAST_NAME = 'lastname',
   EMAIL = 'email',

@@ -20,6 +20,8 @@ interface ExtendedFormFieldProps extends FormFieldProps {
   errors?: any
   helperText?: string
   defaultValue?: string
+  isAccount?: boolean
+  disabled?: boolean
   setValue?: (value: string) => void
 }
 
@@ -37,6 +39,8 @@ const FormField = forwardRef(
       helperText,
       isGithub,
       errors,
+      isAccount = false,
+      disabled = false,
       required = false
     }: ExtendedFormFieldProps,
     ref
@@ -56,10 +60,10 @@ const FormField = forwardRef(
 
     return (
       <TextField
-        variant='filled'
+        variant={isAccount ? 'outlined' : 'filled'}
         color='primary'
         autoComplete={autoComplete}
-        disabled={submitting || sent}
+        disabled={submitting || sent || disabled}
         label={label}
         placeholder={placeholder}
         type={showPassword ? type : isPassword ? KEY.PASSWORD : type}
@@ -95,26 +99,50 @@ const FormField = forwardRef(
         fullWidth
         {...register(name)}
         sx={{
-          color: 'common.white',
-          '& .MuiFilledInput-root': {
-            color: 'common.black',
-            backgroundColor: 'common.white',
-            '& .MuiInputLabel-root': {
-              color: 'common.white'
+          ...(!isAccount && {
+            color: 'common.white',
+            '& .MuiFilledInput-root': {
+              color: 'common.black',
+              backgroundColor: 'common.white',
+              '& .MuiInputLabel-root': {
+                color: 'common.white'
+              },
+              '&.Mui-focused .MuiInputBase-input': {
+                color: 'common.black'
+              },
+              '&.Mui-focused': {
+                backgroundColor: 'secondary.main'
+              },
+              '&:hover': {
+                backgroundColor: 'secondary.main'
+              }
             },
-            '&.Mui-focused .MuiInputBase-input': {
-              color: 'common.black'
+            '&:active': {
+              color: 'common.white'
+            }
+          }),
+          // if isAccount is true, then apply the following styles
+          ...(isAccount && {
+            '& .MuiOutlinedInput-notchedOutline': {
+              border: 'none',
+              fontWeight: 'bold'
             },
             '&.Mui-focused': {
-              backgroundColor: 'secondary.main'
+              backgroundColor: 'transparent'
             },
-            '&:hover': {
-              backgroundColor: 'secondary.main'
-            }
-          },
-          '&:active': {
-            color: 'common.white'
-          },
+            // edit label color
+            '& .MuiInputLabel-root': {
+              color: 'common.black'
+            },
+            // disabled text color
+            '& .MuiInputBase-input ': {
+              color: 'grey.800',
+              opacity: 1,
+              fontWeight: 'bold'
+            },
+            backgroundColor: 'transparent',
+            fontWeight: 'bold'
+          }),
           padding: 1,
           marginY: 1
         }}

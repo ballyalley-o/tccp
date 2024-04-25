@@ -26,5 +26,8 @@ export enum SKELETON_VARIANT {
 }
 
 export enum VARIANT {
-  RECTANGULAR = 'rectangular'
+  RECTANGULAR = 'rectangular',
+  CIRCULAR = 'circular',
+  OUTLINED = 'outlined',
+  COVER = 'cover'
 }

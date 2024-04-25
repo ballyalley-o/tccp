@@ -4,7 +4,8 @@ enum ARIA {
   FIRST_NAME = 'First name',
   LAST_NAME = 'Last name',
   TOGGLE_PASSWORD = 'toggle password visibility',
-  TABS = 'tabs'
+  TABS = 'tabs',
+  COMPANY_BADGE = 'company badge'
 }
 
 export default ARIA

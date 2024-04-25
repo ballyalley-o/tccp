@@ -1,40 +1,35 @@
-import { Card, CardContent, CardMedia, CardHeader, Typography, Box, Chip } from '@mui/material'
+import { FC } from 'react'
+import { Card, CardContent, CardMedia, Typography, Box, Chip } from '@mui/material'
 import { useTheme, styled } from '@mui/material/styles'
+import { SScrollBox, SBadgeHeader } from 'theme/style'
+import { photoLocation, badgeLocation } from 'util/asset-loc'
 
-interface BootcampTileProps {
-  title: string
-  institution: string
-  badge: string
-  imageUrl: string
-  chips?: string[] | null
-}
-
-const SBadgeHeader = styled(CardHeader)({
-  position: 'relative',
-})
-
-const SCard = styled(Card)(({ theme }) => ({
+const SBootcampCard = styled(Card)(({ theme }) => ({
   width: '250px',
-  boxShadow: 'none',
+  height: '400px',
+  boxShadow: 'none'
 }))
 
-const BootcampTile = ({ title, institution, badge, imageUrl, chips }: BootcampTileProps) => {
+const BootcampTile: FC<UploadLocationProps> = ({ bootcamp }) => {
   const theme = useTheme()
+
   return (
-    <SCard>
+    <SBootcampCard>
       <SBadgeHeader
         avatar={
           <img
-            src={badge}
-            alt={`${institution} logo`}
+            src={badgeLocation({ bootcamp })}
+            alt={`${bootcamp.name} badge`}
             style={{
-              maxHeight: 40,
+              height: 40,
+              width: 40,
+              overflow: 'hidden',
+              objectFit: 'cover',
               position: 'absolute',
               top: 200,
               right: '10%',
               zIndex: 1,
-              transform: 'translateX(-50%)',
-              boxShadow: theme.shadows[4],
+              transform: 'translateX(-50%)'
             }}
           />
         }
@@ -42,34 +37,36 @@ const BootcampTile = ({ title, institution, badge, imageUrl, chips }: BootcampTi
       <CardMedia
         component='img'
         height='230'
-        image={imageUrl}
-        alt={title}
+        image={photoLocation({ bootcamp })}
+        alt={bootcamp.name}
         sx={{
           objectFit: 'cover',
           objectPosition: 'top',
-          marginTop: '-40px',
+          marginTop: '-40px'
         }}
       />
       <CardContent>
-        <Typography gutterBottom variant='h6' component='div'>
-          {title}
-        </Typography>
+        <Box my={1}>
+          <Typography gutterBottom variant='h6' component='div'>
+            {bootcamp.name}
+          </Typography>
+        </Box>
+
         <Typography variant='subtitle2' color='text.secondary'>
-          {institution}
+          {bootcamp.location ? bootcamp.location.city + ', ' + bootcamp.location.country : 'No location provided'}
         </Typography>
         <Box
           sx={{
             display: 'flex',
             justifyContent: 'flex-end',
-            mt: 2,
-          }}
-        >
-          {chips && chips.length > 0 ? (
-            chips.map((chip: any, index: number) => (
-              <Typography key={index} variant='caption' m='1em'>
-                #{chip}
-              </Typography>
-            ))
+            mt: 6
+          }}>
+          {bootcamp.careers && bootcamp.careers.length > 0 ? (
+            <SScrollBox>
+              {bootcamp?.careers?.map((chip: string, index: number) => (
+                <Chip key={index} label={chip} variant='outlined' size='small' sx={{ mr: 1, color: 'common.black' }} />
+              ))}
+            </SScrollBox>
           ) : (
             <Typography variant='caption' m='1em'>
               &nbsp;
@@ -77,7 +74,7 @@ const BootcampTile = ({ title, institution, badge, imageUrl, chips }: BootcampTi
           )}
         </Box>
       </CardContent>
-    </SCard>
+    </SBootcampCard>
   )
 }
 

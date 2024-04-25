@@ -9,6 +9,7 @@ enum KEY {
   PHOTO_DEFAULT = 'no-photo.jpeg',
   BADGE_DEFAULT = 'no-badge.png',
   // @form
+  FULL_NAME = 'fullname',
   FIRST_NAME = 'firstname',
   LAST_NAME = 'lastname',
   EMAIL = 'email',
@@ -28,6 +29,7 @@ enum KEY {
   TEXT = 'text',
   AUTO = 'auto',
   END = 'end',
+  IMAGE = 'img',
   // modes
   LIGHT = 'light',
   DARK = 'dark',
@@ -43,7 +45,9 @@ enum KEY {
   TOP = 'top',
   BOTTOM = 'bottom',
   LEFT = 'left',
-  RIGHT = 'right'
+  RIGHT = 'right',
+  HORIZONTAL = 'horizontal',
+  VERTICAL = 'vertical'
 }
 
 export default KEY

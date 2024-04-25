@@ -1,55 +1,21 @@
 import { FC } from 'react'
-import { Box, CardContent, CardMedia, Chip, Grid, Typography, Rating } from '@mui/material'
-import { SScrollBox, SBadgeHeader } from 'theme/style'
-import { ServerPath } from 'route/path'
-import { KEY } from 'constant'
-import { ASSET } from 'config'
-
-interface BootcampCardProps {
-  _id?: string
-  name: string
-  badge: string
-  description: string
-  address: string
-  photo: string
-  rating: number
-  careers?: string[] | null
-}
-
-interface UploadLocationProps {
-  bootcamp: BootcampCardProps
-}
-
-function photoLocation({ bootcamp }: UploadLocationProps) {
-  return bootcamp?.photo === KEY.PHOTO_DEFAULT
-    ? ServerPath.ORIGIN + `/upload/` + bootcamp?.photo
-    : ServerPath.ORIGIN + `/upload/${bootcamp._id}/` + bootcamp?.photo
-}
-
-function badgeLocation({ bootcamp }: UploadLocationProps) {
-  return bootcamp?.badge === KEY.BADGE_DEFAULT
-    ? ServerPath.ORIGIN + `/upload/badge/` + bootcamp?.badge
-    : ServerPath.ORIGIN + `/upload/badge/${bootcamp._id}/` + bootcamp?.badge
-}
+import { Box, CardContent, CardMedia, Grid, Typography, Rating } from '@mui/material'
+import { GSContainerGrid, SBadgeHeader } from 'theme/style'
+import { BootcampCareer } from 'section/bootcamp'
+import { ARIA, COMPONENT, FLEX, KEY, TYPOGRAPHY_VARIANT, VARIANT } from 'constant'
+import { badgeLocation, photoLocation } from 'util/asset-loc'
 
 const BootcampCard: FC<UploadLocationProps> = ({ bootcamp }) => {
   return (
-    <Grid
-      container
-      sx={{
-        mb: 4,
-        borderRadius: 2,
-        bgcolor: 'grey.300',
-        backgroundImage: `url(${ASSET.DOT_MATRIX_BG})`
-      }}>
+    <GSContainerGrid container>
       <Grid item xs={4}>
         <CardMedia
-          component='img'
+          component={COMPONENT.IMG}
           image={photoLocation({ bootcamp })}
           alt={bootcamp.name}
           sx={{
             height: { xs: '100vh', sm: 200, md: 200, lg: 250, xl: 300 },
-            objectFit: 'cover'
+            objectFit: VARIANT.COVER
           }}
         />
       </Grid>
@@ -58,18 +24,18 @@ const BootcampCard: FC<UploadLocationProps> = ({ bootcamp }) => {
           <Box>
             <Grid container>
               <Grid item xs={8}>
-                <Typography variant='h4' color='common.black'>
+                <Typography variant={TYPOGRAPHY_VARIANT.H4} color='common.black'>
                   {bootcamp?.name}
                 </Typography>
               </Grid>
               <Grid item xs={4}>
-                <Grid container spacing={0} justifyContent='flex-end'>
+                <Grid container spacing={0} justifyContent={FLEX.FLEX_END}>
                   <CardMedia
-                    component='img'
+                    component={KEY.IMAGE}
                     src={badgeLocation({ bootcamp })}
-                    alt='company badge'
+                    alt={ARIA.COMPANY_BADGE}
                     height={50}
-                    sx={{ width: 50, display: 'flex', justifyContent: 'flex-end', borderRadius: 2 }}
+                    sx={{ width: 50, display: FLEX.FLEX, justifyContent: FLEX.FLEX_END, borderRadius: 2 }}
                   />
                 </Grid>
               </Grid>
@@ -83,19 +49,15 @@ const BootcampCard: FC<UploadLocationProps> = ({ bootcamp }) => {
             }}
           />
           <Box height={40}>
-            <Typography variant='body2'>{bootcamp.description}</Typography>
+            <Typography variant={TYPOGRAPHY_VARIANT.BODY2}>{bootcamp.description}</Typography>
           </Box>
-          <Typography variant='h6' py={2}>
-            {bootcamp?.address}
+          <Typography variant={TYPOGRAPHY_VARIANT.H6} py={2}>
+            {bootcamp?.location?.city}, {bootcamp?.location?.state}
           </Typography>
         </CardContent>
-        <SScrollBox my={2} ml={2}>
-          {bootcamp?.careers?.map((chip: string, index: number) => (
-            <Chip key={index} label={chip} variant='outlined' size='small' sx={{ mr: 2, color: 'common.black' }} />
-          ))}
-        </SScrollBox>
+        <BootcampCareer bootcamp={bootcamp} />
       </Grid>
-    </Grid>
+    </GSContainerGrid>
   )
 }
 

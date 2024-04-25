@@ -1,7 +1,8 @@
-import { Drawer, ListItem, Box, Toolbar, Card, CardHeader } from '@mui/material'
+import { Drawer, Container, ListItem, Box, Toolbar, Card, Grid, CardHeader, CardMedia } from '@mui/material'
 import { LoadingButton } from '@mui/lab'
 import { styled } from '@mui/material/styles'
 import { APP_NAVBAR } from 'config'
+import { ASSET } from 'config'
 
 export const GSLoadingButton = styled(LoadingButton)(({ theme }) => ({
   backgroundColor: theme.palette.primary.dark,
@@ -25,7 +26,9 @@ export const SToolbar = styled(Toolbar)(({ theme }) => ({
 
 // @bootcamp -- card
 export const SBadgeHeader = styled(CardHeader)({
-  position: 'relative'
+  position: 'relative',
+  padding: 0,
+  paddingY: 2
 })
 
 export const SCard = styled(Card)(({ theme }) => ({
@@ -41,7 +44,51 @@ export const SScrollBox = styled(Box)(({ theme }) => ({
   flexWrap: 'nowrap',
   '&::-webkit-scrollbar': {
     display: 'none'
+  },
+  '&': {
+    scrollBehavior: 'smooth'
   }
+}))
+
+export const SScrollGrid = styled(Grid)(({ theme }) => ({
+  overflowX: 'auto',
+  display: 'flex',
+  marginRight: theme.spacing(2),
+  flexDirection: 'row',
+  flexWrap: 'nowrap',
+  '&::-webkit-scrollbar': {
+    display: 'none'
+  },
+  '&': {
+    scrollBehavior: 'smooth'
+  }
+}))
+
+export const GSContainerGrid = styled(Grid)(({ theme }) => ({
+  marginBottom: theme.spacing(4),
+  borderRadius: theme.spacing(2),
+  bgcolor: theme.palette.grey[300],
+  backgroundImage: `url(${ASSET.DOT_MATRIX_BG})`
+}))
+
+// @bootcamp : tile
+export const GSPhotoCardMedia = styled(CardMedia)(({ theme }) => ({
+  objectFit: 'cover',
+  objectPosition: 'top',
+  marginTop: '-40px',
+  height: '230px'
+}))
+
+export const GSBadgeImg = styled('img')(({ theme }) => ({
+  height: 40,
+  width: 40,
+  overflow: 'hidden',
+  objectFit: 'cover',
+  position: 'absolute',
+  top: 200,
+  right: '10%',
+  zIndex: 1,
+  transform: 'translateX(-50%)'
 }))
 
 // @dashboard -- drawer
@@ -82,6 +129,30 @@ export const SBox = styled(Box)(({ theme }) => ({
   backgroundSize: 'cover',
   transform: 'scale(1.0) skew(30deg)',
   transition: 'all 0.5s ease'
+}))
+
+export const GSBox = styled(Box)(({ theme }) => ({
+  pointerEvents: 'none',
+  position: 'absolute',
+  top: -190,
+  opacity: 0.9,
+  zIndex: -3
+}))
+
+export const GSDividerBox = styled(Box)(({ theme }) => ({
+  display: 'flex-start',
+  justifyContent: 'center',
+  alignItems: 'center',
+  width: '100%',
+  marginTop: theme.spacing(2)
+}))
+
+export const GSRundownContainer = styled(Container)(({ theme }) => ({
+  marginTop: theme.spacing(10),
+  marginBottom: theme.spacing(15),
+  position: 'relative',
+  flexDirection: 'column',
+  alignItems: 'center'
 }))
 
 // @fallback -- page

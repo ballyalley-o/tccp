@@ -1,83 +1,45 @@
-import { Card, CardContent, CardMedia, CardHeader, Typography, Box, Chip } from '@mui/material'
+import { FC } from 'react'
+import { Card, CardContent, CardMedia, Typography, Box, Chip } from '@mui/material'
 import { useTheme, styled } from '@mui/material/styles'
+import { SScrollBox, SBadgeHeader, GSBadgeImg } from 'theme/style'
+import { photoLocation, badgeLocation } from 'util/asset-loc'
+import { COMPONENT, FLEX, PLACEHOLDER, TYPOGRAPHY_VARIANT, VARIANT, SIZE } from 'constant'
+import { OPhotoCardMedia, SBootcampCard } from './option'
+import { BootcampCareer } from 'section/bootcamp'
 
-interface BootcampTileProps {
-  title: string
-  institution: string
-  badge: string
-  imageUrl: string
-  chips?: string[] | null
-}
-
-const SBadgeHeader = styled(CardHeader)({
-  position: 'relative',
-})
-
-const SCard = styled(Card)(({ theme }) => ({
-  width: '250px',
-  boxShadow: 'none',
-}))
-
-const BootcampTile = ({ title, institution, badge, imageUrl, chips }: BootcampTileProps) => {
+const BootcampTile: FC<UploadLocationProps> = ({ bootcamp }) => {
   const theme = useTheme()
+
   return (
-    <SCard>
-      <SBadgeHeader
-        avatar={
-          <img
-            src={badge}
-            alt={`${institution} logo`}
-            style={{
-              maxHeight: 40,
-              position: 'absolute',
-              top: 200,
-              right: '10%',
-              zIndex: 1,
-              transform: 'translateX(-50%)',
-              boxShadow: theme.shadows[4],
-            }}
-          />
-        }
-      />
-      <CardMedia
-        component='img'
-        height='230'
-        image={imageUrl}
-        alt={title}
-        sx={{
-          objectFit: 'cover',
-          objectPosition: 'top',
-          marginTop: '-40px',
-        }}
-      />
+    <SBootcampCard>
+      <SBadgeHeader avatar={<GSBadgeImg src={badgeLocation({ bootcamp })} />} />
+      <CardMedia image={photoLocation({ bootcamp })} {...OPhotoCardMedia} />
       <CardContent>
-        <Typography gutterBottom variant='h6' component='div'>
-          {title}
-        </Typography>
-        <Typography variant='subtitle2' color='text.secondary'>
-          {institution}
+        <Box my={1}>
+          <Typography gutterBottom variant={TYPOGRAPHY_VARIANT.H6} component={COMPONENT.DIV}>
+            {bootcamp.name}
+          </Typography>
+        </Box>
+
+        <Typography variant={TYPOGRAPHY_VARIANT.SUBTITLE2} color='text.secondary'>
+          {bootcamp.location ? bootcamp.location.city + ', ' + bootcamp.location.country : PLACEHOLDER.NO_LOCATION}
         </Typography>
         <Box
           sx={{
-            display: 'flex',
-            justifyContent: 'flex-end',
-            mt: 2,
-          }}
-        >
-          {chips && chips.length > 0 ? (
-            chips.map((chip: any, index: number) => (
-              <Typography key={index} variant='caption' m='1em'>
-                #{chip}
-              </Typography>
-            ))
+            display: FLEX.FLEX,
+            justifyContent: FLEX.FLEX_END,
+            mt: 6
+          }}>
+          {bootcamp.careers && bootcamp.careers.length > 0 ? (
+            <BootcampCareer bootcamp={bootcamp} />
           ) : (
-            <Typography variant='caption' m='1em'>
+            <Typography variant={TYPOGRAPHY_VARIANT.CAPTION} m='1em'>
               &nbsp;
             </Typography>
           )}
         </Box>
       </CardContent>
-    </SCard>
+    </SBootcampCard>
   )
 }
 

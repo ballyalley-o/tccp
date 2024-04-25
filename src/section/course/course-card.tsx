@@ -4,16 +4,18 @@ import { dispatch } from 'store'
 import { useGetBootcampQuery } from 'store/slice'
 import { Box, CardContent, CardMedia, Chip, Grid, Typography, Rating } from '@mui/material'
 import { ServerPath } from 'route/path'
-import { KEY } from 'constant'
+import { KEY, PLACEHOLDER } from 'constant'
 import { ASSET } from 'config'
 import { capitalize } from 'util/format'
+import { badgeLocation } from 'util/asset-loc'
 
 interface CourseCardProps {
   course: Course
 }
 
 const CourseCard: FC<CourseCardProps> = ({ course }) => {
-  const { data: bootcamp, error, isLoading } = useGetBootcampQuery(course?.bootcamp?._id)
+  const { data, error, isLoading, refetch } = useGetBootcampQuery(course?.bootcamp?._id)
+  const { data: bootcamp } = data
 
   let minimumSkill = ''
 
@@ -21,11 +23,11 @@ const CourseCard: FC<CourseCardProps> = ({ course }) => {
     minimumSkill = capitalize(course?.minimumSkill)
   }
 
-  function badgeLocation(bootcamp: Bootcamp) {
-    return bootcamp?.badge === KEY.BADGE_DEFAULT
-      ? ServerPath.ORIGIN + `/upload/badge/` + bootcamp?.badge
-      : ServerPath.ORIGIN + `/upload/badge/${bootcamp?._id}/` + bootcamp?.badge
-  }
+  useEffect(() => {
+    if (!isLoading) {
+      refetch()
+    }
+  }, [])
 
   return (
     <Grid
@@ -42,18 +44,18 @@ const CourseCard: FC<CourseCardProps> = ({ course }) => {
           <Grid container>
             <Grid item xs={8}>
               <Typography variant='h5' color='common.black'>
-                {course?.title.charAt(0).toUpperCase() + course?.title.slice(1)}
+                {course?.title?.charAt(0).toUpperCase() + course?.title?.slice(1)}
               </Typography>
               <Grid container flex={1} flexDirection='row' gap={1}>
-                <Typography variant='subtitle2'>Duration: {course?.duration + ' weeks' || 'No duration specified'}</Typography>
-                <Typography variant='subtitle2'>Tuition: {course?.tuition || 'No tuition specified'}</Typography>
+                <Typography variant='subtitle2'>Duration: {course?.duration + ' weeks' || PLACEHOLDER.NO_DURATION}</Typography>
+                <Typography variant='subtitle2'>Tuition: {course?.tuition || PLACEHOLDER.NO_TUITION}</Typography>
               </Grid>
             </Grid>
             <Grid item xs={4}>
               <Grid container spacing={0} justifyContent='flex-end'>
                 <CardMedia
                   component='img'
-                  src={course?.bootcamp === null ? ASSET.default_badge : badgeLocation(bootcamp?.data)}
+                  src={course?.bootcamp === null ? ASSET.default_badge : badgeLocation({ bootcamp })}
                   alt='company badge'
                   height={50}
                   sx={{ width: 50, display: 'flex', borderRadius: 2 }}
@@ -64,13 +66,13 @@ const CourseCard: FC<CourseCardProps> = ({ course }) => {
         </Box>
 
         <Typography variant='h6' py={2}>
-          {minimumSkill || 'No minimum skill required'}
+          {minimumSkill || PLACEHOLDER.NO_MINIMUM_SKILL}
         </Typography>
         <Box height={130}>
           <Typography variant='subtitle2'>{course.description.charAt(0).toUpperCase() + course.description.slice(1)}</Typography>
         </Box>
         <Typography variant='h6' py={2}>
-          {course?.bootcamp?.name.charAt(0).toUpperCase() + course?.bootcamp?.name.slice(1) || 'Solo'}
+          {course?.bootcamp?.name.charAt(0).toUpperCase() + course?.bootcamp?.name.slice(1) || PLACEHOLDER.BOOTCAMP_NAME}
         </Typography>
       </CardContent>
     </Grid>

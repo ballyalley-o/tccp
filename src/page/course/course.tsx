@@ -1,6 +1,6 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { m } from 'framer-motion'
-import { useGetAllCourseQuery } from 'store/slice'
+import { useGetAllBootcampQuery } from 'store/slice'
 import { MotionLazyContainer } from 'component/motion'
 import { Box, Grid, Pagination } from '@mui/material'
 import { CourseCard } from 'section/course'
@@ -10,13 +10,21 @@ import { Typography } from 'component/typography'
 import { CourseSearch } from 'section/course'
 import { ASSET } from 'config'
 import { LABEL } from 'constant'
+
 const Course = () => {
   const [currentPage, setCurrentPage] = useState(1)
-  const { data, error, isLoading } = useGetAllCourseQuery()
+  const { data, error, isLoading, refetch } = useGetAllBootcampQuery()
 
   const handlePageChange = (event: any, value: any) => {
     setCurrentPage(value)
   }
+
+  useEffect(() => {
+    if (!isLoading) {
+      window.scrollTo(0, 0)
+      refetch()
+    }
+  }, [])
 
   return (
     <MotionLazyContainer>

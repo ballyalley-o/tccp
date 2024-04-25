@@ -81,7 +81,8 @@ enum BUTTON {
   //  @auth
   LOG_IN = 'Log In',
   LOG_OUT = 'Log Out',
-  REGISTER = 'Register'
+  REGISTER = 'Register',
+  START_APPLICATION = ' Start your Application'
 }
 
 export { BUTTON }

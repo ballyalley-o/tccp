@@ -10,6 +10,11 @@ enum PLACEHOLDER {
   COUNTRY = 'Country',
   ZIP_CODE = 'Zip Code',
 
+  BOOTCAMP_NAME = 'TCCP Exclusive',
+  NO_DURATION = 'No duration specified',
+  NO_TUITION = 'No tuition specified',
+  NO_MINIMUM_SKILL = 'No minimum skill required',
+
   // @bootcamp search form
   MILES_FROM = 'Miles From',
   ENTER_ZIPCODE = 'Enter Zipcode',

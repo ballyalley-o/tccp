@@ -1,6 +1,7 @@
 import { FC, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { dispatch } from 'store'
+import { useParams } from 'react-router-dom'
 import { useGetBootcampQuery } from 'store/slice'
 import { Box, CardContent, CardMedia, Chip, Grid, Typography, Rating } from '@mui/material'
 import { ServerPath } from 'route/path'
@@ -15,7 +16,8 @@ interface CourseCardProps {
 
 const CourseCard: FC<CourseCardProps> = ({ course }) => {
   const { data, error, isLoading, refetch } = useGetBootcampQuery(course?.bootcamp?._id)
-  const { data: bootcamp } = data
+
+  const { _id, badge } = data?.data || {}
 
   let minimumSkill = ''
 
@@ -55,7 +57,7 @@ const CourseCard: FC<CourseCardProps> = ({ course }) => {
               <Grid container spacing={0} justifyContent='flex-end'>
                 <CardMedia
                   component='img'
-                  src={course?.bootcamp === null ? ASSET.default_badge : badgeLocation({ bootcamp })}
+                  src={course?.bootcamp === null ? ASSET.default_badge : badgeLocation({ _id, badge })}
                   alt='company badge'
                   height={50}
                   sx={{ width: 50, display: 'flex', borderRadius: 2 }}
@@ -72,7 +74,7 @@ const CourseCard: FC<CourseCardProps> = ({ course }) => {
           <Typography variant='subtitle2'>{course.description.charAt(0).toUpperCase() + course.description.slice(1)}</Typography>
         </Box>
         <Typography variant='h6' py={2}>
-          {course?.bootcamp?.name.charAt(0).toUpperCase() + course?.bootcamp?.name.slice(1) || PLACEHOLDER.BOOTCAMP_NAME}
+          {(course && course?.bootcamp?.name.charAt(0).toUpperCase()) + course?.bootcamp?.name.slice(1) || PLACEHOLDER.BOOTCAMP_NAME}
         </Typography>
       </CardContent>
     </Grid>

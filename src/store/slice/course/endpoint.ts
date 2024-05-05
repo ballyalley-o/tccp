@@ -19,6 +19,13 @@ export const courseSlice = apiSlice.injectEndpoints({
         method: GET
       })
     }),
+    getAllCourseByBootcamp: builder.query({
+      query: (id) => ({
+        url: ServerPath.COURSE_BY_BOOTCAMP(id),
+        method: GET
+      }),
+      keepUnusedDataFor: 5
+    }),
     createCourse: builder.mutation({
       query: (data: any) => ({
         url: ServerPath.COURSE,
@@ -42,4 +49,11 @@ export const courseSlice = apiSlice.injectEndpoints({
   })
 })
 
-export const { useGetAllCourseQuery, useGetCourseQuery, useCreateCourseMutation, useUpdateCourseMutation, useDeleteCourseMutation } = courseSlice
+export const {
+  useGetAllCourseQuery,
+  useGetCourseQuery,
+  useGetAllCourseByBootcampQuery,
+  useCreateCourseMutation,
+  useUpdateCourseMutation,
+  useDeleteCourseMutation
+} = courseSlice

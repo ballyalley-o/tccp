@@ -3,6 +3,7 @@ import { blue, green, grey, red } from '@mui/material/colors'
 import { Theme } from '@mui/material/styles'
 import ComponentOverride from './override'
 import { ASSET } from 'config'
+import { KEY } from 'constant'
 
 export const COLORS = ['primary', 'secondary', 'info', 'success', 'warning', 'error']
 
@@ -75,6 +76,19 @@ const BRAND = {
   success: green[500]
 }
 
+export const GREY = {
+  0: '#F2EED8',
+  100: '#F2EED8',
+  200: '#F5F5F5',
+  300: '#DFDFDF',
+  400: '#DFE3E8',
+  500: '#919EAB',
+  600: '#637381',
+  700: '#454F5B',
+  800: '#212B36',
+  900: '#161C24'
+}
+
 export const COMMON = {
   light: '#F2EED8',
   main: '#D9D9D9',
@@ -83,6 +97,7 @@ export const COMMON = {
   red: red[500],
   green: green[500],
   dark: '#1E1E1F',
+  grey: GREY,
   black: '#000000',
   white: '#F2EED8'
 }
@@ -101,7 +116,7 @@ const theme = {
     },
     common: COMMON,
     brand: BRAND,
-    mode: 'light',
+    mode: KEY.LIGHT,
     backgroundImage: ASSET.PATTERN_BG
   },
   shape: {
@@ -156,7 +171,24 @@ const theme = {
       ...rawTheme.typography.subtitle1,
       fontSize: 18
     },
+    overline0: {
+      ...rawTheme.typography.overline,
+      fontSize: 10,
+      fontWeight: 'bold',
+      textTransform: 'uppercase'
+    },
     overline: {
+      ...rawTheme.typography.overline,
+      fontSize: 12,
+      fontWeight: 'bold',
+      textTransform: 'uppercase'
+    },
+    overline1: {
+      ...rawTheme.typography.overline,
+      fontSize: 14,
+      textTransform: 'uppercase'
+    },
+    overline2: {
       ...rawTheme.typography.overline,
       fontSize: 16,
       textTransform: 'uppercase'

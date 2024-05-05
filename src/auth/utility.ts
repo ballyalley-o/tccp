@@ -56,7 +56,6 @@ export const setSession = (token: string | null) => {
     localStorage.setItem(LOCAL_STORAGE.TOKEN, token)
 
     axios.defaults.headers.common.Authorization = `${token}`
-    console.log(axios.defaults.headers.common.Authorization, 'axios.defaults.headers.common.Authorization')
     const { exp } = jwtDecode(token)
     tokenExpired(exp)
   } else {

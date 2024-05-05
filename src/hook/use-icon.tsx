@@ -8,7 +8,7 @@
  *
  *  @properties icon - The Icon component to render.
  *
- * @param {ICON_NAME[]} iconName - The name of the icon to retrieve.
+ * @param  iconName - The name of the icon to retrieve.
  * @returns {Object} - An object containing the Icon component and the icon source.
  */
 import { FC, useState, useEffect } from 'react'

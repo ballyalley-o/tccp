@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { m } from 'framer-motion'
-import { useGetAllBootcampQuery } from 'store/slice'
+import { useGetAllBootcampQuery, useGetAllCourseQuery } from 'store/slice'
 import { MotionLazyContainer } from 'component/motion'
 import { Box, Grid, Pagination } from '@mui/material'
 import { CourseCard } from 'section/course'
@@ -13,7 +13,7 @@ import { LABEL } from 'constant'
 
 const Course = () => {
   const [currentPage, setCurrentPage] = useState(1)
-  const { data, error, isLoading, refetch } = useGetAllBootcampQuery()
+  const { data, error, isLoading, refetch } = useGetAllCourseQuery()
 
   const handlePageChange = (event: any, value: any) => {
     setCurrentPage(value)
@@ -43,7 +43,7 @@ const Course = () => {
           </Grid>
           <Grid item sm={9}>
             <Pagination
-              count={Math.ceil(data?.data?.length ?? 0 / 9)}
+              count={Math.ceil((data?.data?.length ?? 0) / 9)}
               page={currentPage}
               onChange={handlePageChange}
               variant='outlined'
@@ -67,7 +67,7 @@ const Course = () => {
               </Grid>
             </SCard>
             <Pagination
-              count={Math.ceil(data?.data?.length ?? 0 / 9)}
+              count={Math.ceil((data?.data?.length ?? 0) / 9)}
               page={currentPage}
               onChange={handlePageChange}
               variant='outlined'

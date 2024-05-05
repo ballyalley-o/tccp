@@ -1,6 +1,8 @@
 enum ROUTING {
   ROOT = '/',
+  ALL = 'all',
   ID = ':id',
+  VIEW = 'view',
   DASHBOARD = 'dashboard',
   // :bootcamp
   BOOTCAMP = 'bootcamp',

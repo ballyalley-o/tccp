@@ -106,10 +106,22 @@ const typography = {
     lineHeight: 0.5,
     fontSize: pxToRem(12)
   },
+  overline0: {
+    fontWeight: 900,
+    lineHeight: 1.5,
+    fontSize: pxToRem(10),
+    textTransform: 'uppercase'
+  },
   overline: {
     fontWeight: 700,
     lineHeight: 1.5,
     fontSize: pxToRem(12),
+    textTransform: 'uppercase'
+  },
+  overline1: {
+    fontWeight: 700,
+    lineHeight: 1.5,
+    fontSize: pxToRem(13),
     textTransform: 'uppercase'
   },
   overline2: {

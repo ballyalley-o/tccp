@@ -8,7 +8,7 @@ import { MotionLazyContainer } from 'component/motion'
 import { SkeletonLoader } from 'component/skeleton'
 import { Typography } from 'component/typography'
 import { ASSET } from 'config'
-import { LABEL, PLACEHOLDER } from 'constant'
+import { FLEX, KEY, LABEL, PLACEHOLDER } from 'constant'
 
 function Bootcamp() {
   const [currentPage, setCurrentPage] = useState(1)
@@ -29,11 +29,11 @@ function Bootcamp() {
           <Box
             component={m.div}
             flex={1}
-            justifyContent='center'
+            justifyContent={KEY.CENTER}
             sx={{
-              display: 'flex',
-              alignItems: 'center',
-              flexDirection: 'column'
+              display: FLEX.FLEX,
+              alignItems: KEY.CENTER,
+              flexDirection: FLEX.FLEX_COLUMN
             }}>
             <img src={ASSET.TCCP_ICON} alt='logo' width={100} />
           </Box>
@@ -48,7 +48,7 @@ function Bootcamp() {
 
           <Grid item sm={9}>
             <Pagination
-              count={Math.ceil(data?.data?.length ?? 0 / 6)}
+              count={Math.ceil((data?.data?.length ?? 0) / 6)}
               page={currentPage}
               onChange={handlePageChange}
               variant='outlined'
@@ -73,7 +73,7 @@ function Bootcamp() {
               </Grid>
             </SCard>
             <Pagination
-              count={Math.ceil(data?.data?.length ?? 0 / 6)}
+              count={Math.ceil((data?.data?.length ?? 0) / 6)}
               page={currentPage}
               onChange={handlePageChange}
               variant='outlined'

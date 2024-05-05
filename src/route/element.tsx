@@ -22,6 +22,7 @@ export const RegisterPage = Loadable(() => import('page/auth/register/register')
 export const UserAccountPage = Loadable(() => import('page/auth/account/user-account'))
 // bootcamp
 export const BootcampPage = Loadable(() => import('page/bootcamp/bootcamp'))
+export const BootcampViewPage = Loadable(() => import('page/bootcamp/view/view'))
 // course
 export const CoursePage = Loadable(() => import('page/course/course'))
 // fallback

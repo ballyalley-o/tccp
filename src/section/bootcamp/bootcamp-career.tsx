@@ -2,6 +2,7 @@ import { FC } from 'react'
 import { Chip } from '@mui/material'
 import { SScrollBox } from 'theme/style'
 import { SIZE, VARIANT } from 'constant'
+import { ChipPropsVariantOverrides } from '@mui/material'
 
 const BootcampCareer: FC<UploadLocationProps> = ({ bootcamp }) => {
   return (

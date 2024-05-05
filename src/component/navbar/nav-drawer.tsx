@@ -24,7 +24,7 @@ const NavDrawer = ({ open, onClose }: NavDrawerProps) => {
               sx={{ pl: 0.5 }}
             />
             <SListItem>
-              <Link to='/find-bootcamp-by-course' style={{ textDecoration: 'none', color: 'inherit' }}>
+              <Link to='/bootcamp/all' style={{ textDecoration: 'none', color: 'inherit' }}>
                 <ListItemText primary={<Typography variant='subtitle2'>Find a Bootcamp</Typography>} />
               </Link>
             </SListItem>
@@ -53,7 +53,7 @@ const NavDrawer = ({ open, onClose }: NavDrawerProps) => {
               </Link>
             </SListItem>
             <SListItem>
-              <Link to='/course' style={{ textDecoration: 'none', color: 'inherit' }}>
+              <Link to='/course/all' style={{ textDecoration: 'none', color: 'inherit' }}>
                 <ListItemText primary={<Typography variant='subtitle2'>Find a Course</Typography>} />
               </Link>
             </SListItem>

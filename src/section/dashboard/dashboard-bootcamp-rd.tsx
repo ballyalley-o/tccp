@@ -4,7 +4,7 @@ import { Box, Grid, Divider, Tab, Tabs, Skeleton } from '@mui/material'
 import { SScrollGrid, GSBox, GSDividerBox, GSRundownContainer } from 'theme/style'
 import { useGetAllBootcampQuery } from 'store/slice'
 import { Button, Typography } from 'component'
-import { BUTTON, LABEL, KEY, COLOR, COMPONENT, BUTTON_VARIANT, SIZE, VARIANT, FLEX, ARIA, TYPOGRAPHY_VARIANT, FONTWEIGHT } from 'constant'
+import { BUTTON, LABEL, KEY, COLOR, COMPONENT, BUTTON_VARIANT, SIZE, VARIANT, FLEX, ARIA, TYPOGRAPHY, FONTWEIGHT } from 'constant'
 import { CATEGORY } from 'config'
 import BootcampTile from './dashboard-bootcamp-tile'
 import { AuthPath } from 'route/path'
@@ -33,7 +33,7 @@ function DashboardBootcampRundown() {
       <GSRundownContainer>
         <Grid container sx={{ mb: 5 }}>
           <Grid item alignItems={FLEX.FLEX_START} my={1}>
-            <Typography variant={TYPOGRAPHY_VARIANT.H3} marked={KEY.LEFT} fontWeight={FONTWEIGHT.MEDIUM}>
+            <Typography variant={TYPOGRAPHY.H3} marked={KEY.LEFT} fontWeight={FONTWEIGHT.MEDIUM}>
               {LABEL.NEW_BOOTCAMPS}
             </Typography>
           </Grid>

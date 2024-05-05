@@ -10,6 +10,7 @@ export { default as Paper } from './paper/paper'
 export { default as Snackbar } from './snackbar/snackbar'
 // button
 export { default as Button } from './button/button'
+export { default as BackButton } from './button/back/back'
 //  typography
 export { default as Typography } from './typography/typography'
 // markdown

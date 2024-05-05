@@ -1,28 +1,30 @@
 import { FC } from 'react'
-import { Card, CardContent, CardMedia, Typography, Box, Chip } from '@mui/material'
-import { useTheme, styled } from '@mui/material/styles'
-import { SScrollBox, SBadgeHeader, GSBadgeImg } from 'theme/style'
+import { CardContent, CardMedia, Typography, Box } from '@mui/material'
+import { useTheme } from '@mui/material/styles'
+import { SBadgeHeader, GSBadgeImg } from 'theme/style'
 import { photoLocation, badgeLocation } from 'util/asset-loc'
-import { COMPONENT, FLEX, PLACEHOLDER, TYPOGRAPHY_VARIANT, VARIANT, SIZE } from 'constant'
+import { COMPONENT, FLEX, PLACEHOLDER, TYPOGRAPHY } from 'constant'
 import { OPhotoCardMedia, SBootcampCard } from './option'
 import { BootcampCareer } from 'section/bootcamp'
 
 const BootcampTile: FC<UploadLocationProps> = ({ bootcamp }) => {
   const theme = useTheme()
 
+  const { badge, _id, photo } = bootcamp || {}
+
   return (
     <SBootcampCard>
-      <SBadgeHeader avatar={<GSBadgeImg src={badgeLocation({ bootcamp })} />} />
-      <CardMedia image={photoLocation({ bootcamp })} {...OPhotoCardMedia} />
+      <SBadgeHeader avatar={<GSBadgeImg src={badgeLocation({ _id, badge })} />} />
+      <CardMedia image={photoLocation({ photo, _id })} {...OPhotoCardMedia} />
       <CardContent>
         <Box my={1}>
-          <Typography gutterBottom variant={TYPOGRAPHY_VARIANT.H6} component={COMPONENT.DIV}>
-            {bootcamp.name}
+          <Typography gutterBottom variant={TYPOGRAPHY.H6} component={COMPONENT.DIV}>
+            {bootcamp?.name}
           </Typography>
         </Box>
 
-        <Typography variant={TYPOGRAPHY_VARIANT.SUBTITLE2} color='text.secondary'>
-          {bootcamp.location ? bootcamp.location.city + ', ' + bootcamp.location.country : PLACEHOLDER.NO_LOCATION}
+        <Typography variant={TYPOGRAPHY.SUBTITLE2} color='text.secondary'>
+          {bootcamp?.location ? bootcamp?.location?.city + ', ' + bootcamp?.location?.country : PLACEHOLDER.NO_LOCATION}
         </Typography>
         <Box
           sx={{
@@ -30,10 +32,10 @@ const BootcampTile: FC<UploadLocationProps> = ({ bootcamp }) => {
             justifyContent: FLEX.FLEX_END,
             mt: 6
           }}>
-          {bootcamp.careers && bootcamp.careers.length > 0 ? (
+          {bootcamp?.careers && bootcamp?.careers.length > 0 ? (
             <BootcampCareer bootcamp={bootcamp} />
           ) : (
-            <Typography variant={TYPOGRAPHY_VARIANT.CAPTION} m='1em'>
+            <Typography variant={TYPOGRAPHY.CAPTION} m='1em'>
               &nbsp;
             </Typography>
           )}

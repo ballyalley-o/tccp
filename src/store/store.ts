@@ -11,9 +11,8 @@ const store = configureStore({
   reducer: rootReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
-      serializableCheck: {
-        ignoredActions: [PERSIST, REHYDRATE]
-      }
+      serializableCheck: GLOBAL.APP_ENV === KEY.PRODUCTION ? undefined : false,
+      immutableCheck: false
     }).concat(apiSlice.middleware),
 
   devTools: GLOBAL.APP_ENV !== KEY.PRODUCTION

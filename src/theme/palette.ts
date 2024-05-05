@@ -38,21 +38,23 @@ const ERROR = {
   contrastText: '#F2EED8'
 }
 
+const ACTION = {
+  hover: alpha(GREY[500], 0.08),
+  selected: alpha(GREY[300], 0.16),
+  disabled: alpha(GREY[300], 0.8),
+  disabledBackground: alpha(GREY[400], 0.24),
+  focus: alpha(GREY[500], 0.24),
+  hoverOpacity: 0.08,
+  disabledOpacity: 0.48
+}
+
 const COMMON = {
   common: COMMON_COLOR,
   primary: PRIMARY,
   error: ERROR,
   grey: GREY,
   divider: alpha(GREY[500], 0.24),
-  action: {
-    hover: alpha(GREY[500], 0.08),
-    selected: alpha(GREY[300], 0.16),
-    disabled: alpha(GREY[300], 0.8),
-    disabledBackground: alpha(GREY[400], 0.24),
-    focus: alpha(GREY[500], 0.24),
-    hoverOpacity: 0.08,
-    disabledOpacity: 0.48
-  },
+  action: ACTION,
   background: BRAND.background
 }
 

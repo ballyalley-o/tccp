@@ -24,11 +24,9 @@ function App() {
           <BrowserRouter>
             <SettingProvider>
               <SnackProvider>
-                <AppNavBar />
                 <ErrorBoundary fallback={<Fallback fallbackTitle={FALLBACK.BAD_REQUEST.MESSAGE} errorCode={FALLBACK.BAD_REQUEST.CODE} />}>
                   <Router />
                 </ErrorBoundary>
-                <AppFooter />
               </SnackProvider>
             </SettingProvider>
           </BrowserRouter>

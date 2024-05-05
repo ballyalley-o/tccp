@@ -14,6 +14,7 @@ export class ServerPath {
   static BOOTCAMP_ID = (bootcampId: string) => conNex(ROUTING.BOOTCAMP, bootcampId)
   static COURSE = ROUTING.COURSE
   static COURSE_ID = (courseId: string) => conNex(ROUTING.COURSE, courseId)
+  static COURSE_BY_BOOTCAMP = (bootcampId: string) => conNex(ROUTING.BOOTCAMP, bootcampId, ROUTING.COURSE)
   static AUTH_LOG_IN = conNex(ROUTING.AUTH, ROUTING.LOG_IN)
   static AUTH_LOG_OUT = conNex(ROUTING.AUTH, ROUTING.LOG_OUT)
   static AUTH_REGISTER = conNex(ROUTING.AUTH, ROUTING.REGISTER)
@@ -49,8 +50,8 @@ export class BootcampPath {
     throw new Error(RESPONSE.error.NotInstance)
   }
 
-  static BOOTCAMP = ROUTING.BOOTCAMP
-  static BOOTCAMP_ID = conNex(ROUTING.BOOTCAMP, ROUTING.ID)
+  static BOOTCAMP = conNex(ROUTING.BOOTCAMP, ROUTING.ALL)
+  static BOOTCAMP_ID = (bootcampId: string | undefined) => conNex(ROUTING.BOOTCAMP, bootcampId, ROUTING.VIEW)
 }
 
 export class FallbackPath {

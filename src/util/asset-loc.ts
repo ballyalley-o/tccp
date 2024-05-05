@@ -1,14 +1,16 @@
 import { ServerPath } from 'route/path'
 import { KEY } from 'constant'
 
-export function photoLocation({ bootcamp }: UploadLocationProps) {
-  return bootcamp?.photo === KEY.PHOTO_DEFAULT
-    ? ServerPath.ORIGIN + `/upload/` + bootcamp?.photo
-    : ServerPath.ORIGIN + `/upload/${bootcamp._id}/` + bootcamp?.photo
+export interface AssetLocation {
+  _id: string
+  photo?: string
+  badge?: string
 }
 
-export function badgeLocation({ bootcamp }: UploadLocationProps) {
-  return bootcamp?.badge === KEY.BADGE_DEFAULT
-    ? ServerPath.ORIGIN + `/upload/badge/` + bootcamp?.badge
-    : ServerPath.ORIGIN + `/upload/badge/${bootcamp._id}/` + bootcamp?.badge
+export function photoLocation({ _id, photo }: AssetLocation) {
+  return photo === KEY.PHOTO_DEFAULT ? ServerPath.ORIGIN + `/upload/` + photo : ServerPath.ORIGIN + `/upload/${_id}/` + photo
+}
+
+export function badgeLocation({ _id, badge }: AssetLocation) {
+  return badge === KEY.BADGE_DEFAULT ? ServerPath.ORIGIN + `/upload/badge/` + badge : ServerPath.ORIGIN + `/upload/badge/${_id}/` + badge
 }

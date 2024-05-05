@@ -24,6 +24,12 @@ export const SToolbar = styled(Toolbar)(({ theme }) => ({
   }
 }))
 
+export const SSpanBox = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'row',
+  alignItems: 'center'
+}))
+
 // @bootcamp -- card
 export const SBadgeHeader = styled(CardHeader)({
   position: 'relative',
@@ -40,6 +46,7 @@ export const SScrollBox = styled(Box)(({ theme }) => ({
   overflowX: 'auto',
   display: 'flex',
   marginRight: theme.spacing(2),
+  marginLeft: theme.spacing(2),
   flexDirection: 'row',
   flexWrap: 'nowrap',
   '&::-webkit-scrollbar': {

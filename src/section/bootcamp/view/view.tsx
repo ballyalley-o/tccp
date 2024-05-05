@@ -1,23 +1,8 @@
 import { FC, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { ICON_NAME, useIcon } from 'hook'
-import { useGetBootcampQuery, useGetAllCourseByBootcampQuery } from 'store/slice'
-import {
-  Box,
-  Grid,
-  Typography,
-  Container,
-  CardMedia,
-  Chip,
-  CardContent,
-  Divider,
-  Accordion,
-  AccordionSummary,
-  AccordionDetails,
-  List,
-  ListItem,
-  ListItemText
-} from '@mui/material'
+import { useGetBootcampQuery, useGetAllCourseByBootcampQuery, useGetCourseQuery } from 'store/slice'
+import { Box, Grid, Typography, Container, CardMedia, Chip, CardContent, Divider } from '@mui/material'
 import { BackButton } from 'component'
 import { GSContainerGrid, SSpanBox } from 'theme/style'
 import { MotionLazyContainer } from 'component/motion'
@@ -47,15 +32,16 @@ const BootcampViewSection: FC<BootcampViewSectionProps> = () => {
     duration,
     phone,
     website,
+    course,
     slug,
     housing,
     jobAssistance,
     jobGuarantee
   } = bootcamp?.data || {}
 
-  const courseQueryResult = useGetAllCourseByBootcampQuery(_id)
-
-  const { data: course, error: courseError, isLoading: courseLoading } = courseQueryResult || { data: null, error: null, isLoading: false }
+  // const courseQueryResult = useGetAllCourseByBootcampQuery(_id)
+  // const courseId = course && course.length !== 0 && course?.map((course: any) => course._id)
+  // const { data: course, error: courseError, isLoading: courseLoading } = useGetAllCourseByBootcampQuery(_id)
 
   const { Icon: PhoneIcon, iconSrc: phoneSrc } = useIcon(ICON_WEB_NAME.PHONE)
   const { Icon: RightIcon, iconSrc: rightSrc } = useIcon(ICON_WEB_NAME.CHEVRON_RIGHT)
@@ -234,8 +220,8 @@ const BootcampViewSection: FC<BootcampViewSectionProps> = () => {
                   {LABEL.COURSE_COVERED}
                 </Typography>
               </Box>
-              {course?.data?.length > 0 ? (
-                <CourseTable course={course?.data} />
+              {course?.length !== 0 && course ? (
+                <CourseTable course={course} />
               ) : (
                 <Typography variant={TYPOGRAPHY.BODY1}>{PLACEHOLDER.NO_COURSE_AVAILABLE}</Typography>
               )}

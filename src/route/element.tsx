@@ -1,5 +1,5 @@
 import { Suspense, lazy, FC, ComponentType } from 'react'
-import { LoadingScreen } from 'component/loading-screen'
+import { LoadingScreen } from 'component'
 import { MotionLazyContainer } from 'component/motion'
 
 const Loadable = (Component: () => Promise<{ default: ComponentType<any> }>): FC<any> => {

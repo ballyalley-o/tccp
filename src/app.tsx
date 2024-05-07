@@ -1,7 +1,6 @@
 import { Fragment, useEffect } from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import { HelmetProvider } from 'react-helmet-async'
-import { AppNavBar, AppFooter } from 'component'
 import { Fallback } from 'page'
 import { AuthProvider } from 'auth/auth-provider'
 import { SettingProvider } from 'component/setting'

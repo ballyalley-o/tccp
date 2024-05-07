@@ -92,7 +92,7 @@ export const GSBadgeImg = styled('img')(({ theme }) => ({
   overflow: 'hidden',
   objectFit: 'cover',
   position: 'absolute',
-  top: 200,
+  top: 160,
   right: '10%',
   zIndex: 1,
   transform: 'translateX(-50%)'

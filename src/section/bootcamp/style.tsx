@@ -1,6 +1,7 @@
 import { styled } from '@mui/material/styles'
 import { m } from 'framer-motion'
-import { TableRow, TableContainer, TableCell, Collapse } from '@mui/material'
+import { TableRow, TableContainer, TableCell, Collapse, Grid } from '@mui/material'
+import { KEY } from 'constant'
 
 export const SRoot = styled(m.div)({
   maxWidth: '100vw',
@@ -37,4 +38,12 @@ export const STableHeadCell = styled(TableCell)(({ theme }) => ({
   fontWeight: 'bold',
   fontSize: '1rem',
   backgroundColor: 'transparent'
+}))
+
+export const SCollapseGrid = styled(Grid)(({ theme }) => ({
+  margin: 1,
+  paddingTop: theme.spacing(3),
+  width: '800px',
+  height: '100%',
+  overflow: KEY.AUTO
 }))

@@ -1,6 +1,7 @@
 import { KEY } from 'constant'
 
 const LABEL = {
+  APPLY_FOR_COURSE: 'Apply for this Course',
   GO_BACK: 'Go Back',
   LOG_IN: 'Log In',
   LOG_OUT: 'Log Out',

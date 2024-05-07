@@ -1,93 +1,99 @@
+import React, { useEffect, useRef, useState } from 'react'
 import { m } from 'framer-motion'
-import { useLocation } from 'react-router-dom'
-import { alpha, styled } from '@mui/material/styles'
-import { Box, LinearProgress } from '@mui/material'
+import { gsap } from 'gsap'
 import { useResponsive } from 'hook'
-import ProgressBar from './progress-bar'
+import { useSpring, config, animated } from '@react-spring/web'
+import useMeasure from 'react-use-measure'
+import { Box, Typography, Stack } from '@mui/material'
+import { AnimatedBrandLogo } from 'component/loading-screen'
+import { KEY, TYPOGRAPHY } from 'constant'
+import { SRoot } from './style'
+import styles from './styles.module.css'
+import { GLOBAL } from 'config'
 
-const StyledRoot = styled('div')(({ theme }) => ({
-  right: 0,
-  bottom: 0,
-  zIndex: 9998,
-  width: '100%',
-  height: '100%',
-  position: 'fixed',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  backgroundColor: theme.palette.background.default
-}))
+const loadingPhrases = ['Loading...', 'Hang tight...', 'Just a moment...', 'Almost there...']
 
 function LoadingScreen() {
-  const { pathname } = useLocation()
+  const [loadingProgress, setLoadingProgress] = useState<any>(0)
+  const [phrase, setPhrase] = useState(loadingPhrases[0])
+  const [open, toggle] = useState(false)
+  const [ref, { width }] = useMeasure()
+  const props = useSpring({ width })
+  const props2 = useSpring({
+    from: { x: 0, y: 0, z: 0 },
+    to: { x: 1, y: 1, z: 1 }
+  })
+
+  const [parallaxProps, setParallaxProps] = useSpring(() => ({
+    xy: [0, 0],
+    config: config.wobbly
+  }))
+
   const isDesktop = useResponsive({ query: 'up', start: 'md', end: 'xl' })
 
-  const size = 128
+  const worldRef = useRef(null)
+
+  const handleLoadingProgress = (progress: number) => {
+    setLoadingProgress(progress)
+  }
+
+  useEffect(() => {
+    const world = worldRef.current as SVGSVGElement | null
+    const tl = gsap.timeline({ repeat: -1, yoyo: true })
+
+    tl.to(world, { rotation: 360, duration: 5, ease: 'power2.inOut' }).to(world, { rotationY: 360, duration: 3, ease: 'power2.inOut' })
+
+    return () => {
+      tl.kill()
+    }
+  }, [])
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setPhrase(loadingPhrases[Math.floor(Math.random() * loadingPhrases.length)])
+    }, 2000)
+
+    return () => clearInterval(interval)
+  }, [])
+
+  const handleMouseMove = (event: any) => {
+    const { clientX, clientY } = event
+    const offsetX = (clientX - window.innerWidth / 2) / 50
+    const offsetY = (clientY - window.innerHeight / 2) / 50
+    setParallaxProps({ xy: [offsetX, offsetY] })
+  }
 
   return (
-    <>
-      <ProgressBar />
-      <StyledRoot
+    <SRoot
+      sx={{
+        ...(isDesktop && {})
+      }}
+      onMouseMove={handleMouseMove}>
+      <Stack
         sx={{
-          ...(isDesktop && {
-            width: `calc(100% - ${size}px)`
-          })
+          alignItems: KEY.CENTER
         }}>
-        (
-        <>
-          <m.div
-            animate={{
-              scale: [1, 0.9, 0.9, 1, 1],
-              opacity: [1, 0.48, 0.48, 1, 1]
-            }}
-            transition={{
-              duration: 2,
-              ease: 'easeInOut',
-              repeatDelay: 1,
-              repeat: Infinity
-            }}></m.div>
+        <animated.div
+          style={{
+            transform: parallaxProps.xy.to((x, y) => `translate3d(${x}px, ${y}px, 0)`)
+          }}>
+          <AnimatedBrandLogo worldRef={worldRef} />
+        </animated.div>
 
-          <Box
-            component={m.div}
-            animate={{
-              scale: [1.6, 1, 1, 1.6, 1.6],
-              rotate: [270, 0, 0, 270, 270],
-              opacity: [0.25, 1, 1, 1, 0.25],
-              borderRadius: ['25%', '25%', '50%', '50%', '25%']
-            }}
-            transition={{ ease: 'linear', duration: 3.2, repeat: Infinity }}
-            sx={{
-              width: 100,
-              height: 100,
-              position: 'absolute',
-              border: (theme) => `solid 3px ${alpha(theme.palette.primary.dark, 0.24)}`
-            }}
-          />
-
-          <Box
-            component={m.div}
-            animate={{
-              scale: [1, 1.2, 1.2, 1, 1],
-              rotate: [0, 270, 270, 0, 0],
-              opacity: [1, 0.25, 0.25, 0.25, 1],
-              borderRadius: ['25%', '25%', '50%', '50%', '25%']
-            }}
-            transition={{
-              ease: 'linear',
-              duration: 3.2,
-              repeat: Infinity
-            }}
-            sx={{
-              width: 120,
-              height: 120,
-              position: 'absolute',
-              border: (theme) => `solid 8px ${alpha(theme.palette.primary.dark, 0.24)}`
-            }}
-          />
-        </>
-        )
-      </StyledRoot>
-    </>
+        <Typography variant={TYPOGRAPHY.SUBTITLE1} sx={{ color: 'grey.300' }}>
+          {GLOBAL.APP_NAME}
+        </Typography>
+        <Box my={1}>
+          <Typography variant={TYPOGRAPHY.BODY2}>{phrase}</Typography>
+        </Box>
+        <m.div className={styles.container}>
+          <m.div ref={ref} className={styles.main} onClick={() => toggle(!open)}>
+            <animated.div className={styles.fill} style={props} />
+            <animated.div className={styles.content}>{props.width.to((x) => x.toFixed(0))}</animated.div>
+          </m.div>
+        </m.div>
+      </Stack>
+    </SRoot>
   )
 }
 

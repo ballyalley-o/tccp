@@ -75,22 +75,19 @@ function LogIn() {
           localStorage.removeItem(LOCAL_STORAGE.USER_INFO)
         }
       } else {
-        console.log('ERROR 1', RESPONSE.error.INVALID_CREDENTIAL)
         snack(RESPONSE.error.INVALID_CREDENTIAL, {
           variant: COLOR.ERROR
         })
-        console.log('ERROR 2', RESPONSE.error.INVALID_CREDENTIAL)
         throw new Error(RESPONSE.error.INVALID_CREDENTIAL)
       }
     } catch (error: any) {
-      // console.log('ERROR 3', error)
-      snack(RESPONSE.error.INVALID_CREDENTIAL, { variant: COLOR.ERROR })
+      snack(error?.data?.message, { variant: COLOR.ERROR })
       reset()
-      if (error.message === RESPONSE.error.INVALID_CREDENTIAL) {
+      if (error?.data?.message === RESPONSE.error.INVALID_CREDENTIAL) {
         setError(KEY.EMAIL, { message: RESPONSE.error.EMAIL_INVALID })
         setError(KEY.PASSWORD, { message: RESPONSE.error.PASSWORD_INVALID })
       } else {
-        snack(RESPONSE.error.INVALID_CREDENTIAL, {
+        snack(error?.data?.message, {
           variant: COLOR.ERROR
         })
         setError(KEY.EMAIL, { message: error.message })

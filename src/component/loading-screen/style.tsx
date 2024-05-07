@@ -1,40 +1,27 @@
-import { useTheme } from '@mui/material/styles'
-import GlobalStyles from '@mui/material/GlobalStyles'
+import { m } from 'framer-motion'
+import { styled } from '@mui/material/styles'
+import { Box } from '@mui/material'
 
-function SProgressBar() {
-  const theme = useTheme()
+export const SBox = styled(Box)(({ theme }) => ({
+  height: '100vh',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  backgroundColor: theme.palette.grey[900],
+  color: theme.palette.common.white
+}))
 
-  const inputGlobalStyles = (
-    <GlobalStyles
-      styles={{
-        '#nprogress': {
-          pointerEvents: 'none',
-          '.bar': {
-            top: 0,
-            left: 0,
-            height: 2,
-            zIndex: 9999,
-            width: '100%',
-            position: 'fixed',
-            backgroundColor: theme.palette.primary.main,
-            boxShadow: `0 0 2px ${theme.palette.primary.main}`,
-          },
-          '.peg': {
-            right: 0,
-            opacity: 1,
-            width: 100,
-            height: '100%',
-            display: 'block',
-            position: 'absolute',
-            transform: 'rotate(3deg) translate(0px, -4px)',
-            boxShadow: `0 0 10px ${theme.palette.primary.main}, 0 0 5px ${theme.palette.primary.main}`,
-          },
-        },
-      }}
-    />
-  )
+export const SContainerBox = styled(Box)(({ theme }) => ({
+  position: 'relative',
+  width: '300px',
+  height: '300px'
+}))
 
-  return inputGlobalStyles
-}
-
-export default SProgressBar
+export const SRoot = styled(m.div)(({ theme }) => ({
+  height: '100vh',
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'center',
+  alignItems: 'center',
+  backgroundColor: theme.palette.background.default
+}))

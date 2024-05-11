@@ -12,6 +12,7 @@ export class ServerPath {
   static SERVER = GLOBAL.APP_SERVER
   static BOOTCAMP = ROUTING.BOOTCAMP
   static BOOTCAMP_ID = (bootcampId: string) => conNex(ROUTING.BOOTCAMP, bootcampId)
+  static BOOTCAMP_FEEDBACK = (bootcampId: string) => conNex(ROUTING.BOOTCAMP, bootcampId, ROUTING.FEEDBACK)
   static COURSE = ROUTING.COURSE
   static COURSE_ID = (courseId: string) => conNex(ROUTING.COURSE, courseId)
   static COURSE_BY_BOOTCAMP = (bootcampId: string) => conNex(ROUTING.BOOTCAMP, bootcampId, ROUTING.COURSE)
@@ -21,6 +22,8 @@ export class ServerPath {
   static AUTH_USER = conNex(ROUTING.AUTH, ROUTING.USER)
   static AUTH_SINGLE_USER = (userId: string) => conNex(ROUTING.AUTH, ROUTING.USER, userId)
   static AUTH_ACCOUNT = conNex(ROUTING.AUTH, ROUTING.ACCOUNT)
+  static FEEDBACK = ROUTING.FEEDBACK
+  static FEEDBACK_ID = (feedbackId: string) => conNex(ROUTING.FEEDBACK, feedbackId)
 }
 
 export class RootPath {

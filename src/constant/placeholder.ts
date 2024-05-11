@@ -16,6 +16,7 @@ enum PLACEHOLDER {
   NO_MINIMUM_SKILL = 'No minimum skill required',
   NO_COURSE_AVAILABLE = 'No course available',
   NO_LOCATION = 'No location provided',
+  NO_FEEDBACK = 'No feedbacks for this bootcamp',
   NO_CAREER = 'No career provided',
 
   // @bootcamp search form

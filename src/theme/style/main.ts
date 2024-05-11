@@ -39,7 +39,9 @@ export const SBadgeHeader = styled(CardHeader)({
 
 export const SCard = styled(Card)(({ theme }) => ({
   width: '250px',
-  boxShadow: 'none'
+  boxShadow: 'none',
+  display: 'flex',
+  bgcolor: 'transparent'
 }))
 
 export const SScrollBox = styled(Box)(({ theme }) => ({

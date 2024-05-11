@@ -15,6 +15,7 @@ enum ROUTING {
   REGISTER = 'register',
   ACCOUNT = 'account',
   USER = 'user',
+  FEEDBACK = 'feedback',
   FORGOT_PASSWORD = 'forgot-password',
   RESET_PASSWORD = 'reset-password',
   RESET_TOKEN = 'reset-token',

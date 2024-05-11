@@ -12,8 +12,8 @@ const Main: FC<MainProps> = ({ children, isDesktop }) => {
     <Box
       component='main'
       sx={{
-        // pt: `${HEADER.H_MOBILE + SPACING.SM}px`,
-        // pb: `${HEADER.H_MOBILE + SPACING.SM}px`,
+        pt: `${HEADER.H_MOBILE + SPACING.SM}px`,
+        pb: `${HEADER.H_MOBILE + SPACING.SM}px`,
         ...(isDesktop && {
           // px: 2,
           pb: `${HEADER.H_DASHBOARD_DESKTOP + SPACING.SM}px`

@@ -1,11 +1,17 @@
+// import goodlog from 'good-logs'
 import { createSlice } from '@reduxjs/toolkit'
+import axiosInstance from 'util/axios'
+import { ServerPath } from 'route/path'
+import { GLOBAL } from 'config'
 
 const initialState = {
   initial: false,
   responseMessage: null,
   isLoading: false,
   success: false,
+  bootcampFeedback: [],
   error: null,
+  currentPage: 1,
   user: null,
   allBootcamp: [],
   bootcamp: {},
@@ -21,6 +27,9 @@ const bootcampSlice = createSlice({
       const { initial, isAuthenticated } = action.payload
       state.initial = initial
     },
+    setCurrentPage(state, action) {
+      state.currentPage = action.payload
+    },
     setBootcamps(state, action) {
       state.allBootcamp = action.payload
     },
@@ -30,6 +39,11 @@ const bootcampSlice = createSlice({
       state.isLoading = false
       state.responseMessage = action.payload.message
       state.bootcamp = action.payload
+    },
+    getBootcampFeedback(state, action) {
+      state.isLoading = false
+      state.success = true
+      state.bootcampFeedback = action.payload
     },
     setCourses(state, action) {
       state.allCourse = action.payload
@@ -66,6 +80,11 @@ const bootcampSlice = createSlice({
       state.success = false
       state.isLoading = false
     },
+    resetBootcampFeedback(state) {
+      state.bootcampFeedback = []
+      state.success = false
+      state.isLoading = false
+    },
     clearError(state, action) {
       state.isLoading = false
       state.error = null
@@ -77,6 +96,7 @@ export default bootcampSlice.reducer
 
 export const {
   setInitial,
+  setCurrentPage,
   setBootcamps,
   setBootcamp,
   setCourses,
@@ -84,8 +104,24 @@ export const {
   setLoading,
   stopLoading,
   hasError,
+  getBootcampFeedback,
   setResetBootcamp,
   setResetAllBootcamp,
   setResetAllCourse,
-  clearError
+  clearError,
+  resetBootcampFeedback
 } = bootcampSlice.actions
+
+export function getBootcampFeedbackThunk(bootcampId: any) {
+  return async (dispatch: any) => {
+    dispatch(bootcampSlice.actions.setLoading({}))
+    try {
+      const response = await axiosInstance.get(GLOBAL.APP_SERVER + `/bootcamp/${bootcampId}/feedback`)
+
+      dispatch(getBootcampFeedback(response?.data))
+    } catch (error) {
+      dispatch(hasError(error))
+      console.error('bgRed', error)
+    }
+  }
+}

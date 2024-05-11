@@ -1,21 +1,24 @@
-import { useState } from 'react'
+import { memo } from 'react'
+import { useSelector } from 'react-redux'
+import { dispatch } from 'store'
 import { m } from 'framer-motion'
 import { Pagination, Box, Grid } from '@mui/material'
 import { SCard } from 'theme/style'
 import { useGetAllBootcampQuery } from 'store/slice/bootcamp'
+import { setCurrentPage } from 'store/slice/bootcamp/bootcamp'
 import { BootcampSearch, BootcampCard } from 'section/bootcamp'
 import { MotionLazyContainer } from 'component/motion'
 import { SkeletonLoader } from 'component/skeleton'
 import { Typography } from 'component/typography'
 import { ASSET } from 'config'
-import { FLEX, KEY, LABEL, PLACEHOLDER } from 'constant'
+import { FLEX, KEY, LABEL, TYPOGRAPHY } from 'constant'
 
 function Bootcamp() {
-  const [currentPage, setCurrentPage] = useState(1)
+  const { currentPage } = useSelector((state: any) => state.bootcamp)
   const { data, error, isLoading } = useGetAllBootcampQuery()
 
   const handlePageChange = (event: any, value: any) => {
-    setCurrentPage(value)
+    dispatch(setCurrentPage(value))
   }
 
   return (
@@ -37,7 +40,7 @@ function Bootcamp() {
             }}>
             <img src={ASSET.TCCP_ICON} alt='logo' width={100} />
           </Box>
-          <Typography variant='h2' marked='center' align='center' component='h2'>
+          <Typography variant={TYPOGRAPHY.H2} marked='center' align='center' component='h2'>
             {LABEL.BOOTCAMP_PAGE_TITLE}
           </Typography>
         </Box>
@@ -56,12 +59,7 @@ function Bootcamp() {
               color='primary'
               sx={{ display: 'flex', justifyContent: 'flex-end', mb: 2 }}
             />
-            <SCard
-              sx={{
-                width: '100%',
-                display: 'flex',
-                bgcolor: 'transparent'
-              }}>
+            <SCard sx={{}}>
               <Grid container flexDirection='column' flex={1} sx={{ backgroundColor: 'transparent' }}>
                 {isLoading ? (
                   <SkeletonLoader cards={8} />
@@ -88,4 +86,4 @@ function Bootcamp() {
   )
 }
 
-export default Bootcamp
+export default memo(Bootcamp)

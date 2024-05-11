@@ -2,7 +2,7 @@ import { combineReducers } from '@reduxjs/toolkit'
 import { persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import { KEY } from 'constant'
-import { apiSlice, authReducer, bootcampReducer } from './slice'
+import { apiSlice, authReducer, bootcampReducer, feedbackReducer } from './slice'
 
 export const apiPersistConfig = {
   key: 'api',
@@ -39,6 +39,13 @@ export const bootcampPersistConfig = {
   blacklist: ['error', 'initial', 'responseMessage']
 }
 
+export const feedbackPersistConfig = {
+  key: 'feedback',
+  storage,
+  keyPrefix: KEY.PERSIST_PREFIX,
+  blacklist: ['error', 'initial', 'responseMessage']
+}
+
 export const coursePersistConfig = {
   key: 'course',
   storage,
@@ -49,7 +56,8 @@ export const coursePersistConfig = {
 const rootReducer = combineReducers({
   [apiSlice.reducerPath]: persistReducer(apiPersistConfig, apiSlice.reducer),
   auth: persistReducer(authPersistConfig, authReducer),
-  bootcamp: persistReducer(bootcampPersistConfig, bootcampReducer)
+  bootcamp: persistReducer(bootcampPersistConfig, bootcampReducer),
+  feedback: persistReducer(feedbackPersistConfig, feedbackReducer)
 })
 
 export default rootReducer

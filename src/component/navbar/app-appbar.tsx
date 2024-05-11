@@ -1,12 +1,10 @@
-import { useEffect, useState } from 'react'
-import { Link as RouterLink, useParams, useLocation } from 'react-router-dom'
+import { useState } from 'react'
+import { useLocation } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { createSelector } from 'reselect'
 import { m } from 'framer-motion'
 import { Box, Link, IconButton, Stack } from '@mui/material'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import ExpandLessIcon from '@mui/icons-material/ExpandLess'
-import { Button } from 'component'
 import AppBar from './appbar'
 import { MotionLazyContainer, MotionText, varFade } from 'component/motion'
 import { SToolbar, SBox } from 'theme/style'
@@ -15,8 +13,9 @@ import { NavDrawer } from 'component/navbar'
 import { Logo } from 'component/logo'
 import { AccountPopover } from 'component/navbar'
 import { GLOBAL } from 'config'
-import { BUTTON } from 'constant'
+import { BUTTON, BUTTON_VARIANT, FLEX, TYPOGRAPHY, VARIANT } from 'constant'
 import { RootPath, AuthPath } from 'route/path'
+import { SRegisterButton } from './style'
 
 const rightLink = {
   fontSize: 12,
@@ -51,7 +50,7 @@ function AppNavBar(): JSX.Element {
           <Logo width={40} onMouseEnter={() => setIsLogoHovered(true)} onMouseLeave={() => setIsLogoHovered(false)} />
 
           <Link
-            variant='body1'
+            variant={TYPOGRAPHY.BODY1}
             underline='none'
             href={RootPath.DASHBOARD}
             sx={{
@@ -112,33 +111,18 @@ function AppNavBar(): JSX.Element {
                   sx={{
                     py: 1,
                     flex: 1,
-                    display: 'flex',
-                    justifyContent: 'flex-end'
+                    display: FLEX.FLEX,
+                    justifyContent: FLEX.FLEX_END
                   }}></Box>
               ) : (
                 <AnimatedButton to={AuthPath.LOG_IN} text={BUTTON.LOG_IN} style={rightLink} />
               )}
               <Box>
                 {!user && !isRegisterRoute && (
-                  <Link variant='h6' underline='none' href={AuthPath.REGISTER} sx={{ ...rightLink, color: 'secondary.main' }}>
-                    <Button
-                      variant='contained'
-                      color='primary'
-                      sx={{
-                        fontSize: 12,
-                        fontWeight: 'bold',
-                        padding: '.1em 1em',
-                        borderRadius: 0,
-                        textTransform: 'none',
-                        border: '1px solid transparent',
-                        '&:hover': {
-                          bgcolor: 'secondary.main',
-                          color: 'common.black',
-                          border: '1px solid'
-                        }
-                      }}>
+                  <Link variant={TYPOGRAPHY.H6} underline='none' href={AuthPath.REGISTER} sx={{ ...rightLink, color: 'secondary.main' }}>
+                    <SRegisterButton variant={BUTTON_VARIANT.CONTAINED} color='primary'>
                       {BUTTON.REGISTER}
-                    </Button>
+                    </SRegisterButton>
                   </Link>
                 )}
               </Box>

@@ -14,9 +14,10 @@ export default function AppForm({ isLogin, size = 'sm', children, ...props }: Ap
     <Box
       sx={{
         display: 'flex',
-        backgroundImage: `url(${ASSET.PATTERN_BG})`,
+        // backgroundImage: `url(${ASSET.PATTERN_BG})`,
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
+        backgroundColor: 'common.black',
         margin: 'auto',
         fontSize: '1.2rem',
         color: 'common.white'
@@ -24,7 +25,7 @@ export default function AppForm({ isLogin, size = 'sm', children, ...props }: Ap
       <Container maxWidth={size} sx={{ width: isLogin ? 500 : 'auto' }}>
         <Box sx={{ height: '100vh', alignContent: 'center' }}>
           <Paper
-            background="dark"
+            background='dark'
             sx={{
               py: { xs: 4, md: 8 },
               px: { xs: 3, md: 6 },

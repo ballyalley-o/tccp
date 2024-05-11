@@ -1,10 +1,12 @@
 import { Fragment, FC, useState } from 'react'
-import { TableRow, TableCell, Box, IconButton, Typography } from '@mui/material'
+import { TableRow, TableCell, Box, IconButton, Typography, CardMedia, Divider, Grid } from '@mui/material'
+import { Button } from 'component'
 import { STableRow, SCollapse } from 'section/bootcamp'
 import { useIcon } from 'hook'
 import { ICON_WEB_NAME } from 'config'
-import { KEY, TYPOGRAPHY } from 'constant'
+import { BUTTON_VARIANT, COMPONENT, KEY, LABEL, TYPOGRAPHY } from 'constant'
 import { capitalize } from 'util/format'
+import { SCollapseGrid } from 'section/bootcamp'
 
 interface CourseRowProps {
   row: any
@@ -34,11 +36,9 @@ const CourseRow: FC<CourseRowProps> = ({ row }) => {
         </TableCell>
       </STableRow>
       <TableRow>
-        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={8}>
+        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <SCollapse in={open} timeout={KEY.AUTO} unmountOnExit>
-            <Box sx={{ margin: 1, paddingTop: 2, paddingBottom: 2 }}>
-              <Typography variant={TYPOGRAPHY.BODY1}>{row?.description}</Typography>
-            </Box>
+            <CollapseTable row={row} />
           </SCollapse>
         </TableCell>
       </TableRow>
@@ -47,3 +47,21 @@ const CourseRow: FC<CourseRowProps> = ({ row }) => {
 }
 
 export default CourseRow
+
+const CollapseTable: FC<CourseRowProps> = ({ row }) => {
+  return (
+    <SCollapseGrid container flexDirection='column' flex={1}>
+      <Grid item sm={8}>
+        <Box sx={{ borderRight: 1, borderColor: 'grey.300' }}>
+          <Typography variant={TYPOGRAPHY.OVERLINE}>{LABEL.DESCRIPTION}</Typography>
+          <Typography variant={TYPOGRAPHY.BODY1}>{row?.description}</Typography>
+        </Box>
+      </Grid>
+      <Grid item sm={3}>
+        <Button variant={BUTTON_VARIANT.CONTAINED} color='inherit' fullWidth sx={{ marginTop: 1 }}>
+          {LABEL.APPLY_FOR_COURSE}
+        </Button>
+      </Grid>
+    </SCollapseGrid>
+  )
+}

@@ -1,6 +1,8 @@
+import { FC } from 'react'
 import { styled } from '@mui/material/styles'
 import { m } from 'framer-motion'
-import { TableRow, TableContainer, TableCell, Collapse } from '@mui/material'
+import { Avatar, Box, TableRow, TableContainer, TableCell, Collapse, Grid } from '@mui/material'
+import { KEY } from 'constant'
 
 export const SRoot = styled(m.div)({
   maxWidth: '100vw',
@@ -38,3 +40,58 @@ export const STableHeadCell = styled(TableCell)(({ theme }) => ({
   fontSize: '1rem',
   backgroundColor: 'transparent'
 }))
+
+export const SCollapseGrid = styled(Grid)(({ theme }) => ({
+  margin: 1,
+  paddingTop: theme.spacing(3),
+  width: '800px',
+  height: '100%',
+  overflow: KEY.AUTO
+}))
+
+interface QuoteBubbleProps {
+  color: string
+  children?: any
+}
+
+// export const SRootBox: FC<QuoteBubbleProps> = styled(({ color, ...other }: { color: string }) => <Box {...other} />)(
+//   ({ color }: { color: string }) => ({
+//     maxWidth: '400px',
+//     margin: '0 auto',
+//     padding: '16px',
+//     position: 'relative',
+//     borderRadius: '4px',
+//     background: '#000'
+//   })
+// )
+
+export const SRootBox = styled(Box)(({ theme }) => ({
+  maxWidth: '400px',
+  margin: '0 auto',
+  padding: '16px',
+  position: 'relative',
+  borderRadius: '4px',
+  background: theme.palette.common.black
+}))
+
+export const SQuoteBox = styled(Box)(({ theme }) => ({
+  position: 'relative',
+  padding: 16
+}))
+
+export const SAvatar = styled(Avatar)(({ theme }) => ({
+  marginRight: 8
+}))
+
+export const SQuoteArrowBox: FC<QuoteBubbleProps> = styled(({ color, ...other }: { color: string }) => <Box {...other} />)(
+  ({ color }: { color: string }) => ({
+    width: 0,
+    height: 0,
+    borderLeft: '10px solid transparent',
+    borderRight: '10px solid transparent',
+    borderTop: `10px solid ${color}`,
+    margin: '0 auto',
+    position: 'relative',
+    right: '50px'
+  })
+)

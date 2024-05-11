@@ -1,15 +1,19 @@
-import { FC, useEffect } from 'react'
+import { FC, Fragment, memo, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import { ICON_NAME, useIcon } from 'hook'
-import { useGetBootcampQuery, useGetAllCourseByBootcampQuery, useGetCourseQuery } from 'store/slice'
+import { useIcon } from 'hook'
+import { useSelector } from 'react-redux'
+import { getBootcampFeedbackThunk, resetBootcampFeedback } from 'store/slice/bootcamp/bootcamp'
+import { useGetBootcampQuery, useGetBootcampFeedbackQuery, useGetCourseQuery } from 'store/slice'
 import { Box, Grid, Typography, Container, CardMedia, Chip, CardContent, Divider } from '@mui/material'
 import { BackButton } from 'component'
-import { GSContainerGrid, SSpanBox } from 'theme/style'
+import { SSpanBox } from 'theme/style'
 import { MotionLazyContainer } from 'component/motion'
 import { ICON_WEB_NAME } from 'config'
 import { FLEX, KEY, LABEL, PLACEHOLDER, TYPOGRAPHY, COMPONENT, ARIA, VARIANT, SIZE } from 'constant'
 import { badgeLocation, photoLocation } from 'util/asset-loc'
 import CourseTable from './course-table'
+import FeedbackQuote from './feedback-bubble'
+import { dispatch } from 'store'
 
 interface BootcampViewSectionProps {
   bootcamp?: Bootcamp
@@ -18,7 +22,7 @@ interface BootcampViewSectionProps {
 const BootcampViewSection: FC<BootcampViewSectionProps> = () => {
   const { id } = useParams<{ id: string }>()
   const { data: bootcamp, error, isLoading } = useGetBootcampQuery(id)
-
+  const { bootcampFeedback } = useSelector((state: any) => state.bootcamp)
   const {
     _id,
     name,
@@ -27,7 +31,7 @@ const BootcampViewSection: FC<BootcampViewSectionProps> = () => {
     photo,
     location,
     careers,
-    averageRating,
+    rating,
     user,
     duration,
     phone,
@@ -35,10 +39,12 @@ const BootcampViewSection: FC<BootcampViewSectionProps> = () => {
     course,
     slug,
     housing,
+    feedback,
     jobAssistance,
     jobGuarantee
   } = bootcamp?.data || {}
 
+  // const { data: bootcampFeedback } = useGetBootcampFeedbackQuery(_id)
   // const courseQueryResult = useGetAllCourseByBootcampQuery(_id)
   // const courseId = course && course.length !== 0 && course?.map((course: any) => course._id)
   // const { data: course, error: courseError, isLoading: courseLoading } = useGetAllCourseByBootcampQuery(_id)
@@ -49,11 +55,18 @@ const BootcampViewSection: FC<BootcampViewSectionProps> = () => {
   const { Icon, iconSrc: crossSrc } = useIcon(ICON_WEB_NAME.CLOSE_OUTLINE)
   const { iconSrc: checkSrc } = useIcon(ICON_WEB_NAME.CHECK_OUTLINE)
 
+  useEffect(() => {
+    dispatch(getBootcampFeedbackThunk(_id))
+    return () => {
+      dispatch(resetBootcampFeedback())
+    }
+  }, [dispatch, _id])
+
   return (
     <MotionLazyContainer>
       <Box
         sx={{
-          height: '100vh'
+          height: '100%'
         }}>
         <Grid container spacing={2}>
           <Grid item sm={12}>
@@ -71,7 +84,7 @@ const BootcampViewSection: FC<BootcampViewSectionProps> = () => {
                 {slug && (
                   <SSpanBox mt={2}>
                     <Typography variant={TYPOGRAPHY.CAPTION} color='common.black'>
-                      Tags: &nbsp;
+                      {LABEL.TAGS} &nbsp;
                     </Typography>
                     <SSpanBox>
                       <Typography variant={TYPOGRAPHY.CAPTION}>{slug || '5'}</Typography>
@@ -157,7 +170,6 @@ const BootcampViewSection: FC<BootcampViewSectionProps> = () => {
                     </Typography>
 
                     {careers?.map((career: string, index: any) => (
-                      // chip for each career
                       <Chip
                         key={index}
                         label={<Typography variant={TYPOGRAPHY.BODY2}>{career}</Typography>}
@@ -172,7 +184,7 @@ const BootcampViewSection: FC<BootcampViewSectionProps> = () => {
                     <Typography variant={TYPOGRAPHY.H5} color='common.black'>
                       {LABEL.RATING}
                     </Typography>
-                    <Typography variant={TYPOGRAPHY.BODY1}>{averageRating || '5'}</Typography>
+                    <Typography variant={TYPOGRAPHY.BODY1}>{rating || '5'}</Typography>
                   </Box>
 
                   <Box
@@ -227,10 +239,51 @@ const BootcampViewSection: FC<BootcampViewSectionProps> = () => {
               )}
             </Grid>
           </Grid>
+          <Box py={6}>
+            <Divider />
+          </Box>
+          <Box my={2}>
+            <Typography variant={TYPOGRAPHY.H5} color='common.black'>
+              {LABEL.FEEDBACKS}
+            </Typography>
+          </Box>
+          <Grid container>
+            <Grid item sm={8}>
+              <Grid container flexDirection='row' spacing={2}>
+                {bootcampFeedback?.data?.length <= 0 ? (
+                  <Box height='300px' margin='auto' padding={5}>
+                    <Typography variant={TYPOGRAPHY.BODY1} color='grey.400'>
+                      {PLACEHOLDER.NO_FEEDBACK}
+                    </Typography>
+                  </Box>
+                ) : (
+                  bootcampFeedback?.data?.map((f: any, index: any) => (
+                    <Grid item sm={f?.body && f.body.length > 300 ? 6 : 3}>
+                      <FeedbackQuote key={index} feedback={f} />
+                    </Grid>
+                  ))
+                )}
+              </Grid>
+            </Grid>
+            <Grid item sm={4}>
+              <Box
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}>
+                <Typography variant={TYPOGRAPHY.H6} color='common.black'>
+                  Feedback
+                </Typography>
+                <Typography variant={TYPOGRAPHY.BODY1}>Input</Typography>
+              </Box>
+            </Grid>
+          </Grid>
         </Container>
       </Box>
     </MotionLazyContainer>
   )
 }
 
-export default BootcampViewSection
+export default memo(BootcampViewSection)

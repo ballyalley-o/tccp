@@ -1,7 +1,5 @@
-// import goodlog from 'good-logs'
 import { createSlice } from '@reduxjs/toolkit'
 import axiosInstance from 'util/axios'
-import { ServerPath } from 'route/path'
 import { GLOBAL } from 'config'
 
 const initialState = {
@@ -12,15 +10,16 @@ const initialState = {
   bootcampFeedback: [],
   error: null,
   currentPage: 1,
+  feedback: null,
   user: null,
-  allBootcamp: [],
+  course: {},
   bootcamp: {},
-  allCourse: [],
-  course: {}
+  allFeedback: [],
+  allCourse: []
 }
 
-const bootcampSlice = createSlice({
-  name: 'bootcamp',
+const feedbackSlice = createSlice({
+  name: 'feedback',
   initialState,
   reducers: {
     setInitial(state, action) {
@@ -30,9 +29,6 @@ const bootcampSlice = createSlice({
     setCurrentPage(state, action) {
       state.currentPage = action.payload
     },
-    setBootcamps(state, action) {
-      state.allBootcamp = action.payload
-    },
     setBootcamp(state, action) {
       const { bootcamp } = action.payload
       state.success = true
@@ -40,16 +36,16 @@ const bootcampSlice = createSlice({
       state.responseMessage = action.payload.message
       state.bootcamp = action.payload
     },
+    getFeedback(state, action) {
+      state.feedback = action.payload
+    },
+    getAllFeedback(state, action) {
+      state.allFeedback = action.payload
+    },
     getBootcampFeedback(state, action) {
       state.isLoading = false
       state.success = true
       state.bootcampFeedback = action.payload
-    },
-    setCourses(state, action) {
-      state.allCourse = action.payload
-    },
-    setCourse(state, action) {
-      state.course = action.payload
     },
     setLoading(state, action) {
       state.isLoading = true
@@ -68,15 +64,8 @@ const bootcampSlice = createSlice({
       state.success = false
       state.isLoading = false
     },
-    setResetAllBootcamp(state, action) {
-      state.allBootcamp = []
-      state.responseMessage = null
-      state.success = false
-      state.isLoading = false
-    },
-    setResetAllCourse(state, action) {
-      state.allBootcamp = []
-      state.responseMessage = null
+    setResetAllFeedback(state, action) {
+      state.allFeedback = []
       state.success = false
       state.isLoading = false
     },
@@ -92,36 +81,20 @@ const bootcampSlice = createSlice({
   }
 })
 
-export default bootcampSlice.reducer
+export default feedbackSlice.reducer
 
 export const {
   setInitial,
   setCurrentPage,
-  setBootcamps,
   setBootcamp,
-  setCourses,
-  setCourse,
+  getFeedback,
+  getAllFeedback,
   setLoading,
   stopLoading,
   hasError,
   getBootcampFeedback,
   setResetBootcamp,
-  setResetAllBootcamp,
-  setResetAllCourse,
+  setResetAllFeedback,
   clearError,
   resetBootcampFeedback
-} = bootcampSlice.actions
-
-export function getBootcampFeedbackThunk(bootcampId: any) {
-  return async (dispatch: any) => {
-    dispatch(bootcampSlice.actions.setLoading({}))
-    try {
-      const response = await axiosInstance.get(GLOBAL.APP_SERVER + `/bootcamp/${bootcampId}/feedback`)
-
-      dispatch(getBootcampFeedback(response?.data))
-    } catch (error) {
-      dispatch(hasError(error))
-      console.error('bgRed', error)
-    }
-  }
-}
+} = feedbackSlice.actions

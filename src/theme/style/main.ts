@@ -39,7 +39,9 @@ export const SBadgeHeader = styled(CardHeader)({
 
 export const SCard = styled(Card)(({ theme }) => ({
   width: '250px',
-  boxShadow: 'none'
+  boxShadow: 'none',
+  display: 'flex',
+  bgcolor: 'transparent'
 }))
 
 export const SScrollBox = styled(Box)(({ theme }) => ({
@@ -92,7 +94,7 @@ export const GSBadgeImg = styled('img')(({ theme }) => ({
   overflow: 'hidden',
   objectFit: 'cover',
   position: 'absolute',
-  top: 200,
+  top: 160,
   right: '10%',
   zIndex: 1,
   transform: 'translateX(-50%)'

@@ -81,14 +81,13 @@ function LogIn() {
         throw new Error(RESPONSE.error.INVALID_CREDENTIAL)
       }
     } catch (error: any) {
-      console.error('error : ', error || '')
       snack(error?.data?.message, { variant: COLOR.ERROR })
       reset()
-      if (error.message === RESPONSE.error.INVALID_CREDENTIAL) {
+      if (error?.data?.message === RESPONSE.error.INVALID_CREDENTIAL) {
         setError(KEY.EMAIL, { message: RESPONSE.error.EMAIL_INVALID })
         setError(KEY.PASSWORD, { message: RESPONSE.error.PASSWORD_INVALID })
       } else {
-        snack(error.message, {
+        snack(error?.data?.message, {
           variant: COLOR.ERROR
         })
         setError(KEY.EMAIL, { message: error.message })

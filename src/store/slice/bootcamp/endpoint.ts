@@ -19,6 +19,12 @@ export const bootcampSlice = apiSlice.injectEndpoints({
         method: GET
       })
     }),
+    getBootcampFeedback: builder.query({
+      query: (id) => ({
+        url: ServerPath.BOOTCAMP_FEEDBACK(id),
+        method: GET
+      })
+    }),
     createBootcamp: builder.mutation({
       query: (data: any) => ({
         url: ServerPath.BOOTCAMP,
@@ -44,5 +50,11 @@ export const bootcampSlice = apiSlice.injectEndpoints({
   })
 })
 
-export const { useGetAllBootcampQuery, useGetBootcampQuery, useCreateBootcampMutation, useUpdateBootcampMutation, useDeleteBootcampMutation } =
-  bootcampSlice
+export const {
+  useGetAllBootcampQuery,
+  useGetBootcampFeedbackQuery,
+  useGetBootcampQuery,
+  useCreateBootcampMutation,
+  useUpdateBootcampMutation,
+  useDeleteBootcampMutation
+} = bootcampSlice

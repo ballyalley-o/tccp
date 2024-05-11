@@ -60,15 +60,15 @@ const COMMON = {
 
 export default function palettee(mode: KEY.LIGHT | KEY.DARK = KEY.DARK) {
   const text = {
-    primary: mode === KEY.DARK ? GREY[0] : GREY[900],
+    primary: mode === KEY.DARK ? GREY[100] : GREY[900],
     secondary: GREY[500],
     disabled: GREY[600]
   }
 
   const background = {
-    paper: mode === 'dark' ? GREY[800] : GREY[100],
+    paper: mode === 'dark' ? GREY[800] : GREY[800],
     default: mode === 'dark' ? GREY[900] : 'common.white',
-    neutral: mode === 'dark' ? alpha(GREY[500], 0.16) : alpha(GREY[500], 1)
+    neutral: mode === 'dark' ? alpha(GREY[500], 0.16) : alpha(GREY[900], 1)
   }
 
   return {

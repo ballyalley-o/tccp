@@ -28,20 +28,9 @@ function Bootcamp() {
           margin: 10,
           px: 10
         }}>
-        <Box mt={20}>
-          <Box
-            component={m.div}
-            flex={1}
-            justifyContent={KEY.CENTER}
-            sx={{
-              display: FLEX.FLEX,
-              alignItems: KEY.CENTER,
-              flexDirection: FLEX.FLEX_COLUMN
-            }}>
-            <img src={ASSET.TCCP_ICON} alt='logo' width={100} />
-          </Box>
-          <Typography variant={TYPOGRAPHY.H2} marked='center' align='center' component='h2'>
-            {LABEL.BOOTCAMP_PAGE_TITLE}
+        <Box sx={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'left', flexDirection: 'column' }}>
+          <Typography variant={TYPOGRAPHY.H2} marked={'left'} align='left' component='h2'>
+           {'Bootcamps'}
           </Typography>
         </Box>
         <Grid container flexDirection='row' spacing={2} sx={{ mt: 8, display: 'flex' }}>
@@ -59,8 +48,8 @@ function Bootcamp() {
               color='primary'
               sx={{ display: 'flex', justifyContent: 'flex-end', mb: 2 }}
             />
-            <SCard sx={{}}>
-              <Grid container flexDirection='column' flex={1} sx={{ backgroundColor: 'transparent' }}>
+
+              <Grid container flexDirection='row' display={'flex'} flex={1} sx={{ backgroundColor: 'transparent' }}>
                 {isLoading ? (
                   <SkeletonLoader cards={8} />
                 ) : (
@@ -69,7 +58,7 @@ function Bootcamp() {
                     .map((bootcamp: any, index: number) => <BootcampCard key={index} bootcamp={bootcamp} />)
                 )}
               </Grid>
-            </SCard>
+
             <Pagination
               count={Math.ceil((data?.data?.length ?? 0) / 6)}
               page={currentPage}

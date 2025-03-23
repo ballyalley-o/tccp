@@ -8,22 +8,22 @@ import { CardMedia, Box, Typography, Grid, Divider, Accordion, AccordionSummary,
 import { useTheme } from '@mui/material/styles'
 import { FormField, FormProvider } from 'component/form'
 import { MotionLazyContainer } from 'component/motion'
-import { BootcampCard } from 'section/bootcamp'
+// import { BootcampCard } from 'section/bootcamp'
 import { DefaultAvatar } from 'component/avatar'
 import { useAccountQuery } from 'store/slice'
 import { SCard } from 'theme/style'
 import { ASSET } from 'config'
 import { KEY } from 'constant'
-import { mockBootcamp } from '_mock'
 
 const UserAccount = () => {
-  const [isEditState, setIsEditState] = useState<boolean>(false)
-  const { data: account, isLoading, error, refetch } = useAccountQuery({}) as any
-  const [updateAccount] = useUpdateUserMutation()
+  const [isEditState, setIsEditState]  = useState<boolean>(false)
+  const { data: account, refetch }     = useAccountQuery({}) as any
+  // const { bootcamp }                   = useGetBootcampQuery({ _id:   }) as any
+  const [updateAccount]                = useUpdateUserMutation()
   const { Icon, iconSrc: editIconSrc } = useIcon(ICON_NAME.EDIT)
-  const { iconSrc: downIconSrc } = useIcon(ICON_NAME.CHEVRON_DOWN)
-  const { iconSrc: saveSrc } = useIcon(ICON_NAME.SAVE)
-  const theme = useTheme()
+  const { iconSrc: downIconSrc }       = useIcon(ICON_NAME.CHEVRON_DOWN)
+  const { iconSrc: saveSrc }           = useIcon(ICON_NAME.SAVE)
+  const theme                          = useTheme()
 
   const date = new Date(account?.data?.createdAt)
   const year = date.getFullYear()
@@ -53,9 +53,7 @@ const UserAccount = () => {
   })
 
   const {
-    control,
     handleSubmit,
-    reset,
     setError,
     formState: { errors, isSubmitting, isSubmitSuccessful }
   } = methods
@@ -264,7 +262,7 @@ const UserAccount = () => {
                   }}
                 />
 
-                <BootcampCard bootcamp={mockBootcamp[0]} />
+                {/* <BootcampCard bootcamp={} /> */}
                 <Grid container spacing={2}>
                   <Grid item lg={3}>
                     <Typography variant='h6' fontWeight='bold' gutterBottom>

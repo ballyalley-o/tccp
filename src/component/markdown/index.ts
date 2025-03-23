@@ -1,1 +1,1 @@
-export { default as Markdown } from 'component/markdown/Markdown'
+export { default as Markdown } from './markdown'

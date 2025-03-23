@@ -1,5 +1,5 @@
 import { COLOR, LOCAL_STORAGE } from 'constant'
-import React, { FC, createContext, useEffect, useState, useMemo, useCallback } from 'react'
+import React, { FC, createContext, useEffect, useMemo, useCallback } from 'react'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import localStorageSpace from 'util/local-storage-space'
 import storage from 'redux-persist/lib/storage'
@@ -33,7 +33,7 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
   // const [isAuthenticated, setIsAuthenticated] = useState(false)
   const { user, isAuthenticated } = useSelector((state: RootState) => state.auth || {})
   const [logoutCall] = useLogoutMutation()
-  const [loginCall, { isLoading, error }] = useLoginMutation()
+  const [loginCall, { error }] = useLoginMutation()
 
   const storageAvailable = useMemo(() => localStorageSpace(), [])
 

@@ -1,21 +1,18 @@
 import { memo } from 'react'
 import { useSelector } from 'react-redux'
 import { dispatch } from 'store'
-import { m } from 'framer-motion'
 import { Pagination, Box, Grid } from '@mui/material'
-import { SCard } from 'theme/style'
 import { useGetAllBootcampQuery } from 'store/slice/bootcamp'
 import { setCurrentPage } from 'store/slice/bootcamp/bootcamp'
 import { BootcampSearch, BootcampCard } from 'section/bootcamp'
 import { MotionLazyContainer } from 'component/motion'
 import { SkeletonLoader } from 'component/skeleton'
 import { Typography } from 'component/typography'
-import { ASSET } from 'config'
-import { FLEX, KEY, LABEL, TYPOGRAPHY } from 'constant'
+import { TYPOGRAPHY } from 'constant'
 
 function Bootcamp() {
   const { currentPage } = useSelector((state: any) => state.bootcamp)
-  const { data, error, isLoading } = useGetAllBootcampQuery()
+  const { data, isLoading } = useGetAllBootcampQuery()
 
   const handlePageChange = (event: any, value: any) => {
     dispatch(setCurrentPage(value))

@@ -8,9 +8,9 @@ export interface AssetLocation {
 }
 
 export function photoLocation({ _id, photo }: AssetLocation) {
-  return photo === KEY.PHOTO_DEFAULT ? ServerPath.ORIGIN + `/upload/` + photo : ServerPath.ORIGIN + `/upload/${_id}/` + photo
+  return photo === KEY.PHOTO_DEFAULT ? ServerPath.ORIGIN + `/api/v1.1.0/upload/` + photo : ServerPath.ORIGIN + `/api/v1.1.0/upload/${_id}/` + photo
 }
 
 export function badgeLocation({ _id, badge }: AssetLocation) {
-  return badge === KEY.BADGE_DEFAULT ? ServerPath.ORIGIN + `/upload/badge/` + badge : ServerPath.ORIGIN + `/upload/badge/${_id}/` + badge
+  return badge === KEY.BADGE_DEFAULT ? ServerPath.ORIGIN + `/api/v1.1.0/upload/badge/` + badge : ServerPath.ORIGIN + `/api/v1.1.0/upload/badge/${_id}/` + badge
 }

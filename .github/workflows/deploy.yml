@@ -35,9 +35,9 @@ jobs:
       - name: 🚀 Deploy to Server
         run: |
           ssh -o StrictHostKeyChecking=no bally@45.79.236.212 << 'EOF'
-          rm -rf /var/www/thecodecoachprojct.com/*
+          sudo rm -rf /var/www/thecodecoachprojct.com/*
           exit
           EOF
-          scp -o StrictHostKeyChecking=no -r dist/* bally@45.79.236.212:/var/www/thecodecoachprojct.com/
+          sudo scp -o StrictHostKeyChecking=no -r dist/* bally@45.79.236.212:/var/www/thecodecoachprojct.com/
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}

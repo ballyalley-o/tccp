@@ -29,6 +29,7 @@ jobs:
           mkdir -p ~/.ssh
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H 45.79.236.212 >> ~/.ssh/known_hosts
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 

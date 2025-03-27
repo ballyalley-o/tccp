@@ -37,8 +37,6 @@ jobs:
         run: |
           ssh -o StrictHostKeyChecking=no bally@45.79.236.212 << 'EOF'
           sudo rm -rf /var/www/thecodecoachprojct.com/*
-          exit
-          EOF
-          sudo scp -o StrictHostKeyChecking=no -r dist/* bally@45.79.236.212:/var/www/thecodecoachprojct.com/
+          sudo cp -r ~/workspace/repositories/tccp/dist/* /var/www/thecodecoachprojct.com/
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
